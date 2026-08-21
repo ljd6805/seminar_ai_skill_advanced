@@ -1500,10 +1500,32 @@ section.present .tk.o6 { animation-delay:1.05s; }
 .tk.comp .term + .term { margin-top:0.45rem; }
 .tk.comp .term-body { font-size:0.76rem; line-height:1.62; padding:0.5rem 0.75rem; }
 /* 카드 애니메이션 가드 — 인쇄·모션 최소화·오버뷰에서는 전부 표시 */
-@media print { .reveal .tk, .reveal .fin3 .f { opacity:1 !important; animation:none !important; } }
-@media (prefers-reduced-motion: reduce) { .reveal .tk, .reveal .fin3 .f { opacity:1 !important; animation:none !important; } }
-.reveal.overview .tk, .reveal.overview .fin3 .f { opacity:1 !important; animation:none !important; }
+@media print { .reveal .tk, .reveal .fin3 .f, .reveal .tname { opacity:1 !important; animation:none !important; } }
+@media (prefers-reduced-motion: reduce) { .reveal .tk, .reveal .fin3 .f, .reveal .tname { opacity:1 !important; animation:none !important; } }
+.reveal.overview .tk, .reveal.overview .fin3 .f, .reveal.overview .tname { opacity:1 !important; animation:none !important; }
 section[data-layer="APPENDIX"] .tk { opacity:1 !important; animation:none !important; }
+
+/* --- 해결 장 하단 · 기술소개 배너 (이름은 답으로서 마지막에 등장) --- */
+.tname {
+  display:grid; grid-template-columns:auto 1fr auto; gap:1.2rem; align-items:center;
+  margin-top:0.75rem; border:0.1rem solid rgba(190,200,224,0.35); border-radius:0.95rem;
+  padding:0.55rem 1.1rem 0.62rem; background:rgba(255,255,255,0.02); opacity:0;
+}
+section.present .tname { animation:asFadeUp .6s ease var(--dly,1.4s) both; }
+.tname .tn-k { display:block; font-family:var(--mono); font-size:0.62rem; font-weight:700; letter-spacing:0.16em; color:var(--fg-soft) !important; margin-bottom:0.1rem; }
+.tname .tn-name { font-size:1.42rem; font-weight:800; line-height:1.2; white-space:nowrap; }
+.tname .tn-en { display:block; font-family:var(--mono); font-size:0.72rem; color:var(--fg-soft) !important; margin-top:0.08rem; }
+.tname .tn-one { font-size:1.06rem; line-height:1.5; word-break:keep-all; color:#E8ECF5 !important; }
+.tname .tn-one b { color:#fff; }
+.tname .pills { display:flex; flex-direction:column; gap:0.3rem; align-items:flex-end; }
+.tname.p1 { border-color:rgba(43,234,208,0.55); background:rgba(43,234,208,0.045); }
+.reveal section .tname.p1 .tn-name { color:#7FE8D8; }
+.tname.p2 { border-color:rgba(143,168,255,0.55); background:rgba(143,168,255,0.05); }
+.reveal section .tname.p2 .tn-name { color:#AFC3FF; }
+.tname.p3 { border-color:rgba(255,122,149,0.55); background:rgba(255,122,149,0.05); }
+.reveal section .tname.p3 .tn-name { color:#FF94AC; }
+.tname.p4 { border-color:rgba(255,212,107,0.55); background:rgba(255,212,107,0.05); }
+.reveal section .tname.p4 .tn-name { color:#FFE08A; }
 
 /* --- 기법 번호 뱃지 (파트색) --- */
 .reveal section .tkb {
@@ -1740,11 +1762,168 @@ section.present .fin3 .f1 { animation:asFadeUp .6s ease .3s both; }
 section.present .fin3 .f2 { animation:asFadeUp .6s ease .95s both; }
 section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
 
-/* --- 33장 부록 요약표 --- */
+/* --- 부록 요약표 --- */
 .apx .risk-table { font-size:0.74rem; }
 .apx .risk-table th, .apx .risk-table td { padding:0.3rem 0.55rem; line-height:1.42; }
 .apx .risk-table td:last-child { color:#C9D0E4; }
 .apx .risk-table td.one { color:#5BFFE0; white-space:nowrap; }
+
+/* ================================================================
+   v0.2 그림 중심 본편 — 씬 문법 (scn-*)
+   각 기법 = [그림 장: Before/After 씬 + 3줄 요약] + [READ 상세 카드]
+   ================================================================ */
+
+/* READ 상세 카드는 문서형 — 카드 등장 애니 없이 전부 표시 */
+section[data-layer="READ"] .tk { opacity:1 !important; animation:none !important; }
+
+/* 장면 패널 */
+.scn { display:grid; grid-template-columns:1fr 1fr; gap:1.0rem; margin-top:0.75rem; align-items:stretch; }
+.scn.one { grid-template-columns:1fr; }
+.scn-p {
+  position:relative; border-radius:1rem; padding:1.45rem 1.0rem 0.95rem; min-height:12rem;
+  border:0.11rem dashed rgba(190,200,224,0.3); background:rgba(255,255,255,0.015);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.75rem;
+}
+.scn-p.bad { border-color:rgba(255,122,149,0.5); background:rgba(255,122,149,0.03); }
+.scn-p.good { border-style:solid; }
+.scn-p.g1 { border-color:rgba(43,234,208,0.5); background:rgba(43,234,208,0.035); }
+.scn-p.g2 { border-color:rgba(143,168,255,0.5); background:rgba(143,168,255,0.04); }
+.scn-p.g4 { border-color:rgba(255,212,107,0.5); background:rgba(255,212,107,0.04); }
+.scn-tag {
+  position:absolute; top:-0.72rem; left:1.0rem; z-index:2;
+  font-family:var(--mono); font-size:0.68rem; font-weight:700;
+  padding:0.08rem 0.6rem; border-radius:999px; background:var(--bg-0);
+  border:0.0625rem solid rgba(190,200,224,0.4); color:#B9C2DA;
+}
+.reveal section .scn-p.bad > .scn-tag { color:#FF94AC; border-color:rgba(255,122,149,0.5); }
+.reveal section .scn-p.g1 > .scn-tag { color:#9FF5E6; border-color:rgba(43,234,208,0.5); }
+.reveal section .scn-p.g2 > .scn-tag { color:#C4D2FF; border-color:rgba(143,168,255,0.55); }
+.reveal section .scn-p.g4 > .scn-tag { color:#FFE9AE; border-color:rgba(255,212,107,0.5); }
+.scn-row { display:flex; align-items:center; justify-content:center; gap:0.55rem; flex-wrap:wrap; width:100%; }
+.scn-col { display:flex; flex-direction:column; align-items:center; gap:0.45rem; }
+.scn-cap { font-size:0.82rem; color:var(--fg-soft) !important; text-align:center; word-break:keep-all; line-height:1.5; }
+.scn-cap b { color:#E8ECF5; }
+
+/* 애니메이션 DSL — 인라인 CSS 변수(--dly·--dur·--l0·--l1·--t0·--t1·--w)로 지정.
+   전부 .sim 내부 + section.present 게이트 → ↻ 재생·인쇄·모션 최소화 자동 대응 */
+.h0 { opacity:0; }
+section.present .sim .ain   { animation:asFadeUp .5s ease var(--dly,0s) both; }
+section.present .sim .apop  { animation:asZoomIn .45s ease var(--dly,0s) both; }
+section.present .sim .agray { animation:kfGray .7s ease var(--dly,0s) forwards; }
+section.present .sim .ahit  { animation:kfHit .55s ease var(--dly,0s) both; }
+section.present .sim .aglow { animation:kfGlow .5s ease var(--dly,0s) both; }
+section.present .sim .amvx  { animation:kfMvx var(--dur,1.6s) ease-in-out var(--dly,0s) both; }
+section.present .sim .amvy  { animation:kfMvy var(--dur,1.4s) ease-in var(--dly,0s) both; }
+section.present .sim .amvb  { animation:kfMvb var(--dur,3s) ease-in-out var(--dly,0s) both; }
+section.present .sim .afill .g-bar i { animation:kfFill var(--dur,1.2s) cubic-bezier(.3,.7,.4,1) var(--dly,.3s) both; }
+section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; }
+@keyframes kfGray { to { opacity:0.18; filter:grayscale(1); } }
+@keyframes kfHit { 0%,100% { transform:none; } 30% { transform:translate(0.22rem,-0.08rem) rotate(1.6deg); } 65% { transform:translate(-0.16rem,0.04rem) rotate(-1.2deg); } }
+@keyframes kfGlow { to { border-color:var(--gc,rgba(43,234,208,0.9)); box-shadow:0 0 0.95rem var(--gs,rgba(43,234,208,0.3)); } }
+@keyframes kfMvx { from { left:var(--l0); } to { left:var(--l1); } }
+@keyframes kfMvy { from { top:var(--t0); } to { top:var(--t1); } }
+@keyframes kfMvb { 0% { left:var(--l0); } 38%, 56% { left:var(--l1); } 100% { left:var(--l0); } }
+@keyframes kfFill { from { width:0; } to { width:var(--w,100%); } }
+
+/* 게이지 (컨텍스트 사용량) */
+.g { width:100%; max-width:15rem; }
+.g .g-bar { position:relative; height:0.8rem; border-radius:999px; background:rgba(255,255,255,0.07); border:0.0625rem solid rgba(255,255,255,0.13); overflow:hidden; }
+.g .g-bar i { display:block; height:100%; width:var(--w,50%); border-radius:inherit; background:linear-gradient(90deg,var(--accent),var(--accent-2)); }
+.g.red .g-bar i { background:linear-gradient(90deg,#FF7A95,#FF4D6D); }
+.g .g-cap { display:flex; justify-content:space-between; gap:0.5rem; font-family:var(--mono); font-size:0.6rem; color:var(--fg-soft) !important; margin-top:0.2rem; }
+.g .g-cap b { color:#E8ECF5; font-weight:700; }
+
+/* 문서/파일 글리프 */
+.doc {
+  position:relative; border:0.0625rem solid rgba(190,200,224,0.45); border-radius:0.5rem;
+  background:#10142A; padding:0.45rem 0.65rem 0.5rem;
+  font-family:var(--mono); font-size:0.64rem; color:#C7CFE8 !important;
+  line-height:1.5; text-align:left; box-shadow:0 0.25rem 0.7rem rgba(0,0,0,0.35);
+  min-width:7rem;
+}
+.doc .dt { display:block; font-weight:700; font-size:0.66rem; color:#E6EAF5 !important; margin-bottom:0.2rem; white-space:nowrap; }
+.doc .dl { display:block; height:0.13rem; border-radius:1rem; background:rgba(190,200,224,0.26); margin:0.18rem 0; }
+.reveal section .doc.mint { border-color:rgba(43,234,208,0.55); } .reveal section .doc.mint .dt { color:#9FF5E6 !important; }
+.reveal section .doc.coral { border-color:rgba(255,122,149,0.55); } .reveal section .doc.coral .dt { color:#FFB3C2 !important; }
+.reveal section .doc.blue { border-color:rgba(143,168,255,0.6); } .reveal section .doc.blue .dt { color:#C4D2FF !important; }
+.reveal section .doc.amber { border-color:rgba(255,212,107,0.55); } .reveal section .doc.amber .dt { color:#FFE9AE !important; }
+.doc .stamp {
+  position:absolute; right:-0.55rem; top:-0.6rem;
+  font-family:var(--mono); font-size:0.56rem; font-weight:800;
+  padding:0.08rem 0.4rem; border-radius:0.4rem; border:0.11rem solid rgba(43,234,208,0.85);
+  background:var(--bg-0); color:#9FF5E6 !important; transform:rotate(-4deg); white-space:nowrap;
+}
+.doc .stamp.red { border-color:rgba(255,122,149,0.85); color:#FFB3C2 !important; }
+.doc .stamp.amb { border-color:rgba(255,212,107,0.85); color:#FFE9AE !important; }
+
+/* 말풍선(대화 전달 — 증발용) */
+.blob {
+  border-radius:1rem; padding:0.42rem 0.85rem; background:#1B2138;
+  border:0.0625rem dashed rgba(190,200,224,0.45); font-size:0.78rem; color:#C7CFE8 !important;
+  word-break:keep-all; text-align:center;
+}
+
+/* 지적 카운터 배지 */
+.reveal section .cnt {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:1.5rem; height:1.5rem; padding:0 0.3rem; border-radius:50%;
+  background:#4A1A26; border:0.13rem solid #FF7A95; color:#FFD0DA;
+  font-family:var(--mono); font-weight:800; font-size:0.78rem;
+}
+.reveal section .cnt.ok { background:#0D3D38; border-color:#2BEAD0; color:#C5FFF5; }
+
+/* 판정 라벨 (FAIL/PASS) */
+.reveal section .vlab { font-family:var(--mono); font-weight:800; font-size:0.78rem; letter-spacing:0.05em; padding:0.14rem 0.6rem; border-radius:0.45rem; border:0.1rem solid; background:var(--bg-0); white-space:nowrap; }
+.reveal section .vlab.fail { color:#FF94AC; border-color:rgba(255,122,149,0.8); }
+.reveal section .vlab.pass { color:#5BFFE0; border-color:rgba(43,234,208,0.8); }
+
+/* 파일 그리드 + 스캔 라인 (④ 지도 우선) */
+.gridm { position:relative; display:grid; grid-template-columns:repeat(8,1fr); gap:0.32rem; width:100%; padding:0.15rem; }
+.gridm i { display:block; height:1.2rem; border-radius:0.28rem; background:rgba(190,200,224,0.1); border:0.0625rem solid rgba(190,200,224,0.15); }
+.gridm i.hit { background:rgba(43,234,208,0.18); border-color:rgba(43,234,208,0.8); box-shadow:0 0 0.5rem rgba(43,234,208,0.25); }
+.scan { position:absolute; z-index:2; top:0; bottom:0; width:0.16rem; border-radius:1rem; background:linear-gradient(180deg,transparent,rgba(43,234,208,0.9),transparent); left:var(--l1); }
+
+/* 하단 3줄 요약 스트립: 문제 · 왜 통하나 · 효과 */
+.cap3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.65rem; margin-top:0.8rem; }
+.cap3 .c3 { border-left:0.22rem solid rgba(190,200,224,0.5); border-radius:0.35rem; padding:0.36rem 0.75rem 0.42rem; font-size:0.95rem; line-height:1.52; background:rgba(255,255,255,0.02); word-break:keep-all; }
+.cap3 .c3 b { color:#fff; }
+.cap3 .c3 .c3t { display:block; font-family:var(--mono); font-size:0.6rem; font-weight:700; letter-spacing:0.14em; margin-bottom:0.14rem; color:var(--fg-soft) !important; }
+.cap3 .c3.prob { border-color:#FF7A95; } .reveal section .c3.prob .c3t { color:#FF94AC !important; }
+.cap3 .c3.why { border-color:#FFD46B; } .reveal section .c3.why .c3t { color:#FFE08A !important; }
+.cap3 .c3.eff { border-color:#2BEAD0; } .reveal section .c3.eff .c3t { color:#5BFFE0 !important; }
+
+/* 4장 문제 목격 미니 씬 (정적 glyph) */
+.pv { display:flex; flex-direction:column; gap:0.55rem; align-items:center; }
+.pv .pv-arr { color:var(--fg-soft) !important; font-weight:800; font-size:0.85rem; }
+
+/* 리플레이 로그용 전역 판정색 (pp-log 밖에서도) */
+.reveal section .plv { color:#9FF5E6; }
+.reveal section .plx { color:#FFB3C2; }
+
+/* 씬 요소 가드 — 인쇄·모션 최소화·오버뷰에서 최종 상태로 표시 */
+@media print {
+  .reveal .afill .g-bar i { width:var(--w,100%) !important; animation:none !important; }
+  .reveal .h0 { opacity:1 !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal .afill .g-bar i { width:var(--w,100%) !important; animation:none !important; }
+  .reveal .h0 { opacity:1 !important; }
+}
+.reveal.overview .sim, .reveal.overview .sim * { animation:none !important; }
+.reveal.overview .h0 { opacity:1 !important; }
+.reveal.overview .afill .g-bar i { width:var(--w,100%) !important; }
+
+/* 38장 네 겹 그물 — 결함 낙하 씬 */
+.netfall { position:relative; padding:0.4rem 0 0.2rem; }
+.nf-chip {
+  position:absolute; z-index:3; top:var(--t1);
+  font-size:0.68rem; font-weight:700; font-family:var(--mono);
+  padding:0.16rem 0.55rem; border-radius:999px;
+  border:0.0781rem solid rgba(255,122,149,0.7); background:#221019; color:#FFC9D4 !important;
+  white-space:nowrap; box-shadow:0 0.2rem 0.7rem rgba(0,0,0,0.4);
+}
+.nf-chip.okc { border-color:rgba(43,234,208,0.7); background:#0C2622; color:#C5FFF5 !important; }
+.netfall .net-row { position:relative; z-index:1; }
 </style>
 </head>
 <body>
@@ -1764,18 +1943,17 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
     <section class="section-opener" data-hero data-sec="SKILL 심화 세미나">
       <div class="autoshow fade-up"><span class="chip">AI AGENT 세미나 · 4편 — SKILL 심화 · 이론편</span></div>
       <h1 class="autoshow fade-up" style="font-size:4.4rem">스킬 하나에서,<br><span class="grad">스킬 시스템으로</span></h1>
-      <p class="autoshow fade-up" style="font-size:1.42rem; margin-top:1.1rem">컨텍스트 절약 · 스킬 연계 · 검증 하네스 — <b>256k를 설계 조건으로 바꾸는</b> 14가지 기법을 다룹니다.</p>
+      <p class="autoshow fade-up" style="font-size:1.42rem; margin-top:1.1rem">열네 개의 <b>사건</b>에서 출발합니다 — 문제를 목격하고, 원인을 분석하고, 해결한 뒤에야 기법의 이름을 부릅니다.</p>
       <div class="meta autoshow fade-up">
-        <span><b>발표자</b> 이종덕</span><span><b>세션</b> 이론편 (실습편 별도 예정)</span><span><b>ver</b> 0.1 초안</span>
+        <span><b>발표자</b> 이종덕</span><span><b>세션</b> 이론편 (실습편 별도 예정)</span><span><b>ver</b> 0.3 사건 서사 개편</span>
       </div>
-      <p class="mode-links autoshow fade-up"><a href="?mode=presentation">발표 모드 — 본편·데모만</a> &nbsp;·&nbsp; <a href="?">전체 자료 보기</a></p>
     </section>
 
     <!-- 2 · 지난 여정 -->
     <section data-sec="도입">
       <div><span class="chip">지난 여정</span></div>
       <h2>여러분은 이미, 스킬을 만들 줄 압니다</h2>
-      <div class="flow-lane autoshow fade-up" style="margin-top:1.0rem; gap:0.6rem">
+      <div class="flow-lane autoshow fade-up" style="margin-top:1.1rem; gap:0.6rem">
         <div class="flow-step neutral"><span>1편 · 개념</span><small>Agent · Skill · MCP · Harness</small></div>
         <span class="flow-arrow">→</span>
         <div class="flow-step neutral"><span>2편 · SKILL QUEST</span><small>첫 스킬 제작 · 수리 · 확장</small></div>
@@ -1784,22 +1962,22 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
         <span class="flow-arrow">→</span>
         <div class="flow-step me"><span>4편 · 오늘</span><small>SKILL 심화 — 기법 카탈로그</small></div>
       </div>
-      <div class="panel autoshow fade-up" style="margin-top:1.1rem">
+      <div class="panel autoshow fade-up" style="margin-top:1.2rem">
         <div class="phead">2편에서 배운 다섯 이론 — 오늘의 출발선</div>
         <div class="pills" style="gap:0.45rem; flex-wrap:wrap; display:flex">
-          <span class="pill neutral">① 최소 구성 — 폴더 하나, SKILL.md 하나</span>
-          <span class="pill neutral">② 트리거링 — description이 발동을 결정</span>
-          <span class="pill neutral">③ 좋은 본문 — 입력·출력·절차·금지·검증</span>
-          <span class="pill neutral">④ 교통정리 — 스킬 여럿의 description 설계</span>
-          <span class="pill neutral">⑤ 확장 — 기준은 references/에 동봉</span>
+          <span class="pill neutral">① 최소 구성</span>
+          <span class="pill neutral">② 트리거링</span>
+          <span class="pill neutral">③ 5요소 본문</span>
+          <span class="pill neutral">④ 교통정리</span>
+          <span class="pill neutral">⑤ 레퍼런스 번들</span>
         </div>
       </div>
-      <p class="autoshow fade-up" style="font-size:1.3rem; margin-top:1.1rem">오늘은 이 다섯 이론 위에 <b class="accent">열네 가지 기법</b>을 쌓습니다 — 스킬 <b>하나</b>가 아니라 스킬 <b>시스템</b>의 이야기입니다.</p>
-      <p class="note autoshow fade-up" style="margin-top:0.8rem">잘 만든 스킬 하나가 어디서 막히는지부터, 직접 보겠습니다.</p>
+      <p class="autoshow fade-up" style="font-size:1.32rem; margin-top:1.2rem">오늘은 이 다섯 이론 위에 <b class="accent">열네 가지 기법</b>을 쌓습니다 — 스킬 <b>하나</b>가 아니라 스킬 <b>시스템</b>의 이야기입니다.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.9rem">잘 만든 스킬 하나가 어디서 막히는지부터, 직접 보겠습니다.</p>
     </section>
 
-    <!-- 3 · 목격 (DEMO) -->
-    <section data-sec="도입 · 목격" data-layer="DEMO">
+    <!-- 3 · 목격 -->
+    <section data-sec="도입 · 목격">
       <div><span class="chip">목격</span> <span class="pill">실행 상황 재현 <span class="tiny" style="font-weight:400">(설명을 위해 구성한 예시)</span></span></div>
       <h2>잘 만든 스킬도, 여기서 막힙니다</h2>
       <div class="term shell sim" style="margin-top:0.7rem">
@@ -1828,16 +2006,39 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
     <!-- 4 · 문제 정의 -->
     <section data-sec="도입 · 문제 정의">
       <div><span class="chip">문제 정의</span></div>
-      <h2>세 가지 문제를, <span class="grad">열네 가지 기법</span>으로 풉니다</h2>
-      <table class="risk-table" style="margin-top:0.9rem; width:100%">
-        <tr class="rh"><th style="width:3rem">#</th><th>문제</th><th>핵심 질문</th><th style="width:17rem">답</th></tr>
-        <tr class="autoshow fade-up"><td>1</td><td>컨텍스트가 <b>모자라다</b></td><td>256k 안에서 큰 일을 어떻게 하나?</td><td><b>PART 1 · 절약술</b> <span class="dim">기법 ①~⑤</span></td></tr>
-        <tr class="autoshow fade-up"><td>2</td><td>프로세스가 <b>사람 손에 있다</b></td><td>여러 스킬을 누가 잇는가?</td><td><b>PART 2 · 연계술</b> <span class="dim">기법 ⑥~⑨</span></td></tr>
-        <tr class="autoshow fade-up"><td>3</td><td>"완료"를 <b>믿을 수 없다</b></td><td>결과를 무엇으로 보증하나?</td><td><b>PART 3 · 검증술</b> <span class="dim">기법 ⑩~⑬</span></td></tr>
-        <tr class="autoshow fade-up"><td>+1</td><td>기법이 <b>퍼지지 않는다</b></td><td>팀 전체의 기본값으로 만들려면?</td><td><b>PART 4 · 확산</b> <span class="dim">기법 ⑭</span></td></tr>
-      </table>
-      <p class="autoshow fade-up" style="font-size:1.22rem; margin-top:1.0rem">모든 기법은 <b>같은 카드 한 장</b>으로 정리했습니다 — 이름 → 문제제기 → 기법설명 → 예제 → 스킬구성 → 극복 원리 → 효과.</p>
-      <p class="note autoshow fade-up" style="margin-top:0.8rem">이 표가 오늘의 <b>로드맵</b>입니다. 그 전에, 문제 1의 무대인 <b class="accent">256k</b>부터 체감해 보겠습니다.</p>
+      <h2>세 가지 문제를, <span class="grad">열네 개의 사건</span>으로 풉니다</h2>
+      <div class="grid-3" style="margin-top:1.3rem; align-items:stretch">
+        <div class="scn-p bad autoshow zoom-in" style="min-height:13.5rem">
+          <span class="scn-tag">문제 ① — 컨텍스트</span>
+          <div class="pv" style="width:100%">
+            <div class="doc coral"><span class="dt">regression.log — 500,000줄</span><span class="dl"></span><span class="dl" style="width:84%"></span></div>
+            <div class="g red" style="--w:100%"><div class="g-bar"><i></i></div><div class="g-cap"><span>읽다가</span><b>한도 초과 · 중단</b></div></div>
+            <span class="pv-arr">▼</span>
+            <span class="pill green">PART 1 · 절약술 <span class="tiny" style="font-weight:400">사건 ①~⑤</span></span>
+          </div>
+        </div>
+        <div class="scn-p bad autoshow zoom-in" style="min-height:13.5rem">
+          <span class="scn-tag">문제 ② — 프로세스</span>
+          <div class="pv" style="width:100%">
+            <span class="blob">"요약해줘"</span>
+            <span class="blob">"이제 분석해줘"</span>
+            <span class="blob" style="border-color:rgba(255,122,149,0.6)">"…다음이 뭐였지?"</span>
+            <span class="pv-arr">▼</span>
+            <span class="pill" style="border-color:rgba(143,168,255,0.8); background:#1A2140; color:#C4D2FF !important">PART 2 · 연계술 <span class="tiny" style="font-weight:400">사건 ⑥~⑨</span></span>
+          </div>
+        </div>
+        <div class="scn-p bad autoshow zoom-in" style="min-height:13.5rem">
+          <span class="scn-tag">문제 ③ — 신뢰</span>
+          <div class="pv" style="width:100%">
+            <span class="blob">"리포트 완료했습니다."</span>
+            <span class="vlab fail">CHECK — 합계 불일치</span>
+            <span class="pv-arr">▼</span>
+            <span class="pill pink">PART 3 · 검증술 <span class="tiny" style="font-weight:400">사건 ⑩~⑬</span></span>
+          </div>
+        </div>
+      </div>
+      <p class="autoshow fade-up" style="font-size:1.15rem; margin-top:1.1rem; text-align:center">그리고 하나 더 — 이걸 <b>팀의 기본값</b>으로 만드는 문제 <span class="pill amber" style="margin-left:0.4rem">PART 4 · 확산 <span class="tiny" style="font-weight:400">사건 ⑭</span></span></p>
+      <p class="note autoshow fade-up" style="margin-top:0.9rem">이 그림이 오늘의 <b>로드맵</b>입니다. 그 전에, 문제 ①의 무대인 <b class="accent">256k</b>부터 체감해 보겠습니다.</p>
     </section>
 
     <!-- 5 · 256k 가계부 -->
@@ -1866,82 +2067,122 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
             <li class="show"><span class="ix">태도 2</span><span class="lb"><b>원본은 밖에서</b> — 큰 데이터는 컨텍스트 밖에서 처리</span></li>
             <li class="show"><span class="ix">태도 3</span><span class="lb"><b>기억은 파일로</b> — 대화에 맡기지 않는다</span></li>
           </ul>
-          <p class="small dim" style="margin-top:0.2rem">PART 1의 다섯 기법이 이 세 태도의 구현입니다.</p>
+          <p class="small dim" style="margin-top:0.2rem">PART 1의 다섯 사건이 이 세 태도로 해결됩니다.</p>
         </div>
       </div>
       <p class="note autoshow fade-up" style="margin-top:0.8rem">256k 토큰이면 한글 문서로는 수백 페이지지만, <b>코드와 로그는 순식간에</b> 채웁니다 — 비율은 개념도이며 환경마다 다릅니다.</p>
     </section>
 
-    <!-- 6 · 카드 읽는 법 -->
-    <section data-sec="도입 · 카드 읽는 법">
-      <div><span class="chip">카드 읽는 법</span></div>
-      <h2>오늘의 모든 기법은, 같은 카드 한 장으로 읽습니다</h2>
-      <div class="grid-2" style="margin-top:0.9rem; grid-template-columns:1.25fr 0.75fr; align-items:stretch">
-        <div class="tkmap autoshow fade-left">
-          <div class="tm c1"><span class="tk-n" style="color:#FF94AC; border-color:rgba(255,122,149,0.85)">1</span><span>문제제기<br><small>어떤 일이 막히는가 — 기법의 존재 이유</small></span></div>
-          <div class="tm c3"><span class="tk-n" style="color:#C7CFE8; border-color:rgba(190,200,224,0.6)">3</span><span>예제<br><small>실제 요청 한 문장과 그때의 동작</small></span></div>
-          <div class="tm c2"><span class="tk-n" style="color:#B7A5FF; border-color:rgba(155,130,255,0.85)">2</span><span>기법설명<br><small>무엇을 어떻게 바꾸는가</small></span></div>
-          <div class="tm c4"><span class="tk-n" style="color:#AFC3FF; border-color:rgba(143,168,255,0.85)">4</span><span>스킬구성<br><small>폴더 구조와 SKILL.md 핵심 발췌</small></span></div>
-          <div class="tm c5"><span class="tk-n" style="color:#FFE08A; border-color:rgba(255,212,107,0.85)">5</span><span>문제극복 원리<br><small>왜 이 방법이 통하는가</small></span></div>
-          <div class="tm c6"><span class="tk-n" style="color:#5BFFE0; border-color:rgba(43,234,208,0.85)">6</span><span>스킬효과<br><small>도입하면 무엇이 달라지는가</small></span></div>
+    <!-- 6 · 진행 방식 -->
+    <section data-sec="도입 · 진행 방식">
+      <div><span class="chip">진행 방식</span></div>
+      <h2>사건 하나에 두 장 — <span class="grad">문제 장, 해결 장</span></h2>
+      <div class="grid-2" style="margin-top:1.0rem; align-items:stretch">
+        <div class="panel autoshow fade-left" style="gap:0.55rem; border-color:rgba(255,122,149,0.4)">
+          <div class="phead bad">문제 장 — 사건을 목격합니다</div>
+          <ul class="ol" style="flex:none">
+            <li class="show"><span class="ix">예시</span><span class="lb"><b>구체적 상황 재현</b> — 실제 요청, 실제 실패 로그</span></li>
+            <li class="show"><span class="ix">제기</span><span class="lb"><b>문제제기</b> — 무엇이 막혔는가 (제목 한 문장)</span></li>
+            <li class="show"><span class="ix">원인</span><span class="lb"><b>원인 분석</b> — 왜 이런 일이 생기는가 (구조·수치)</span></li>
+          </ul>
         </div>
-        <div class="panel autoshow fade-right" style="justify-content:center; gap:0.6rem">
-          <div class="phead">카드의 지리 — 14장 내내 고정</div>
-          <p style="font-size:1.05rem; line-height:1.7"><b class="accent">왼쪽 열</b>은 이야기 — 문제 ①, 방법 ②, 원리 ⑤, 효과 ⑥.<br><b class="accent2">오른쪽 열</b>은 자료 — 예제 ③과 구성 ④.</p>
-          <p class="small dim">발표에서는 이야기 열을 중심으로 말하고, 자료 열은 실습 때 돌아와 읽는 설계입니다. 카드 맨 아래에는 <b style="color:#C9D0E4">외우는 한 줄</b>이 있습니다.</p>
+        <div class="panel autoshow fade-right" style="gap:0.55rem; border-color:rgba(43,234,208,0.45)">
+          <div class="phead good">해결 장 — 같은 사건을 다시 돌립니다</div>
+          <ul class="ol" style="flex:none">
+            <li class="show"><span class="ix">해결</span><span class="lb"><b>해결 리플레이</b> — 같은 요청이 단계별로 풀리는 과정</span></li>
+            <li class="show"><span class="ix">구성</span><span class="lb"><b>스킬구성</b> — 이 해결을 만드는 SKILL.md 발췌</span></li>
+            <li class="show"><span class="ix">명명</span><span class="lb"><b>기술소개</b> — 이름은 마지막에, 답으로서 등장</span></li>
+          </ul>
         </div>
       </div>
-      <p class="note autoshow fade-up" style="margin-top:0.9rem">색도 시리즈 그대로입니다 — <span class="accent3">코랄=문제</span> · <span class="accent">보라=절차</span> · <span style="color:#AFC3FF; font-weight:700">청보라=스킬 구성</span> · <span class="accent4">앰버=원리</span> · <span class="accent2">민트=효과</span>.</p>
+      <p class="autoshow fade-up" style="font-size:1.25rem; margin-top:1.1rem; text-align:center">기법을 외우러 가지 않습니다 — <b>사건을 해결하다 보면 카탈로그가 완성됩니다.</b></p>
+      <p class="note autoshow fade-up" style="margin-top:0.9rem">색 언어는 시리즈 그대로 — <span class="accent3">코랄=문제·원인</span> · <span class="accent">보라=Agent</span> · <span style="color:#AFC3FF; font-weight:700">청보라=스킬 구성</span> · <span class="accent2">민트=해결·효과</span> · <span class="accent4">앰버=사람·원리</span>.</p>
     </section>
 
     <!-- 7 · PART 1 간지 -->
     <section class="section-opener" data-hero data-sec="PART 1 · 컨텍스트 절약술">
-      <div class="autoshow fade-up"><span class="chip">PART 1 · 컨텍스트 절약술 — 기법 ①~⑤</span></div>
+      <div class="autoshow fade-up"><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 ①~⑤</span></div>
       <h1 class="autoshow fade-up" style="font-size:3.9rem">쓰지 않는 것이<br><span class="grad">최고의 절약</span>입니다</h1>
       <ul class="ol autoshow fade-up" style="margin-top:1.4rem; max-width:46rem; flex:none">
-        <li class="show"><span class="ix">기법 ①</span><span class="lb">레퍼런스 계층화 <span class="dim small">Progressive Disclosure — 목차만 상주</span></span></li>
-        <li class="show"><span class="ix">기법 ②</span><span class="lb">스크립트 위임 <span class="dim small">Script Offloading — 세는 일은 코드가</span></span></li>
-        <li class="show"><span class="ix">기법 ③</span><span class="lb">외부 기억 <span class="dim small">External Memory — 기억은 파일에</span></span></li>
-        <li class="show"><span class="ix">기법 ④</span><span class="lb">지도 우선 탐색 <span class="dim small">Map-first Navigation — 읽기 전에 지도</span></span></li>
-        <li class="show"><span class="ix">기법 ⑤</span><span class="lb">분업 요약 <span class="dim small">Fan-out &amp; Summarize — 컨텍스트를 곱한다</span></span></li>
+        <li class="show"><span class="ix">사건 ①</span><span class="lb">스킬을 부를 때마다 규칙 30페이지가 실린다</span></li>
+        <li class="show"><span class="ix">사건 ②</span><span class="lb">로그 50만 줄은 읽지도, 세지도 못한다</span></li>
+        <li class="show"><span class="ix">사건 ③</span><span class="lb">3시간짜리 작업이 첫 결정을 잊는다</span></li>
+        <li class="show"><span class="ix">사건 ④</span><span class="lb">설명 하나에 리포 절반을 읽는다</span></li>
+        <li class="show"><span class="ix">사건 ⑤</span><span class="lb">아무리 아껴도 한 번에 안 들어간다</span></li>
       </ul>
       <p class="autoshow fade-up" style="margin-top:1.2rem; font-size:1.2rem; color:var(--fg-soft) !important">공통 원리 — <b style="color:#fff">컨텍스트에는 결론만 들여보낸다.</b></p>
     </section>
 
-    <!-- 8 · 기법 ① 레퍼런스 계층화 -->
-    <section data-sec="PART 1 · 기법 ① 레퍼런스 계층화">
+    <!-- 8 · 사건 ① 문제 -->
+    <section data-sec="PART 1 · 사건 ① — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 기법 01 / 14</span></div>
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 01 · 문제</span></div>
         <div class="ska-track p1">
-          <span class="ska-cell now"><span class="n">1</span>레퍼런스</span>
-          <span class="ska-cell"><span class="n">2</span>스크립트</span>
-          <span class="ska-cell"><span class="n">3</span>외부 기억</span>
-          <span class="ska-cell"><span class="n">4</span>지도</span>
-          <span class="ska-cell"><span class="n">5</span>분업</span>
+          <span class="ska-cell now"><span class="n">1</span>규칙 30p</span>
+          <span class="ska-cell"><span class="n">2</span>로그 50만</span>
+          <span class="ska-cell"><span class="n">3</span>3시간 작업</span>
+          <span class="ska-cell"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">지식은 문 뒤에 두고, 목차만 상주시킵니다</h2>
-        <span class="pill">레퍼런스 계층화 · Progressive Disclosure</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>팀 컨벤션 30페이지를 통째로 SKILL.md에 넣었더니, <b>발동할 때마다 수만 토큰</b>이 실립니다. 정작 이번 리뷰에 필요한 규칙은 그중 한 장뿐입니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p>SKILL.md에는 절차와 <b>"언제 무엇을 읽는지"</b>만 남기고, 지식은 references/에 주제별 파일로 쪼갭니다. 본문의 참조 조건이 해당 상황에서만 그 파일을 열게 합니다.</p></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>상주 비용은 description 한 줄(수십 토큰)뿐. 지식 비용이 <b>전체 보유량이 아니라 이번 작업 관련량에 비례</b>하게 바뀝니다.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>지식 100페이지짜리 스킬도 부담 없이 보유합니다 — 규칙이 늘어도 컨텍스트 비용은 그대로.</p>
-            <div class="pills"><span class="pill green">상주 ≈ 수십 토큰</span><span class="pill neutral">로드는 조건부</span><span class="pill neutral">기준 개정 = 파일 교체</span></div></div>
+      <h2>스킬을 부를 때마다, 규칙 30페이지가 통째로 실립니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 컨벤션 리뷰 스킬 (규칙을 본문에 전부 넣은 버전)</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER</span>  "이 diff 컨벤션 리뷰해줘" <span class="sh-dim">— 변경은 스레드 코드 한 곳</span></div>
+              <div class="ska-log"><span class="sh-ok">LOAD</span>  convention-review — SKILL.md <span class="sh-dim">(규칙 30페이지 포함)</span></div>
+              <div class="ska-log"><span class="ska-danger">+38,000 토큰</span> <span class="sh-dim">— 네이밍·예외·동시성… 전부 로드</span></div>
+              <div class="ska-log"><span class="sh-dim">이번 리뷰에 실제로 쓰인 규칙: 동시성 한 장 (약 2,000 토큰)</span></div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> 리뷰 완료 <span class="sh-dim">— 이 대화, 세 번 만에 한도 근접</span></div>
+              <div class="ska-log"><span class="ska-danger">⚠ 다음 요청부터 초반 대화 컴팩션 시작</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>"이 diff 컨벤션 리뷰해줘" — 변경이 스레드 코드뿐이면 <span class="mono" style="font-size:0.85em">concurrency.md</span> 하나만 열립니다. 규칙 3묶음 중 2묶음은 끝까지 읽히지 않습니다.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/convention-review/</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">convention-review/</span>
+        <div class="scn-p bad" style="gap:0.75rem">
+          <span class="scn-tag">원인 분석</span>
+          <div class="g red afill" style="--w:95%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>발동 시 로드</span><b>본문 전체 38k</b></div></div>
+          <div class="g afill" style="--w:6%; --dly:1.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>실제 필요량</span><b>규칙 1편 ≈ 2k</b></div></div>
+          <p class="scn-cap">2편 로드 사이클 — <b>발동하면 본문 전체가 로드</b>됩니다.<br>지식과 절차가 한 파일이면, 로드 단위는 <b>전부 아니면 전무</b>.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">쓴 것은 5%인데 낸 값은 100% — <b>지식의 담는 위치</b>가 문제입니다. 다음 장에서 이 사건을 해결합니다.</p>
+    </section>
+
+    <!-- 9 · 사건 ① 해결 -->
+    <section data-sec="PART 1 · 사건 ① — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 01 · 해결</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell now"><span class="n">1</span>규칙 30p</span>
+          <span class="ska-cell"><span class="n">2</span>로그 50만</span>
+          <span class="ska-cell"><span class="n">3</span>3시간 작업</span>
+          <span class="ska-cell"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2>지식을 문 뒤에 두면, 이번 건 규칙만 들어옵니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 요청, 지식을 references/로 분리한 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER</span>  "이 diff 컨벤션 리뷰해줘"</div>
+              <div class="ska-log"><span class="sh-ok">LOAD</span>  convention-review — SKILL.md 40줄 <span class="sh-dim">(+900 토큰)</span></div>
+              <div class="ska-log"><span class="sh-cmd">SCAN</span>  diff → thread · mutex 감지 <span class="sh-dim">— 참조 조건 충족</span></div>
+              <div class="ska-log"><span class="sh-ok">READ</span>  references/concurrency.md <span class="sh-dim">만 (+2,400 토큰)</span></div>
+              <div class="ska-log"><span class="sh-dim">naming.md · error-handling.md — 끝까지 읽히지 않음</span></div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> 지적 2건 — 근거: concurrency.md §3</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  총 3,300 토큰 <span class="sh-dim">— 이전의 1/11</span> ✓</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/convention-review/</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">convention-review/</span>
 ├─ <span class="t-key">SKILL.md</span>              <span class="t-out">← 절차 40줄, 목차 역할</span>
 └─ <span class="t-key">references/</span>
    ├─ naming.md
@@ -1953,47 +2194,86 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
    · 이름·구조 지적      → <span class="t-str">references/naming.md</span>
    · 예외 처리 등장      → <span class="t-str">references/error-handling.md</span>
    · thread·mutex 등장  → <span class="t-str">references/concurrency.md</span>
-3. <span class="t-hl">읽지 않은 규칙으로는 지적하지 않는다.</span></div></div></div>
+3. <span class="t-hl">읽지 않은 규칙으로는 지적하지 않는다.</span></div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>목차만 상주, 지식은 문 뒤에.</b></p>
+      <div class="tname p1">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ① 레퍼런스 계층화</span><span class="tn-en">Progressive Disclosure</span></div>
+        <p class="tn-one"><b>목차만 상주, 지식은 문 뒤에.</b> 지식 비용이 보유량이 아니라 <b>이번 작업 관련량</b>에 비례하게 됩니다.</p>
+        <div class="pills"><span class="pill green">상주 ≈ 수십 토큰</span><span class="pill neutral">기준 개정 = 파일 교체</span></div>
+      </div>
     </section>
 
-    <!-- 9 · 기법 ② 스크립트 위임 -->
-    <section data-sec="PART 1 · 기법 ② 스크립트 위임">
+    <!-- 10 · 사건 ② 문제 -->
+    <section data-sec="PART 1 · 사건 ② — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 기법 02 / 14</span></div>
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 02 · 문제</span></div>
         <div class="ska-track p1">
-          <span class="ska-cell done"><span class="n"></span>레퍼런스</span>
-          <span class="ska-cell now"><span class="n">2</span>스크립트</span>
-          <span class="ska-cell"><span class="n">3</span>외부 기억</span>
-          <span class="ska-cell"><span class="n">4</span>지도</span>
-          <span class="ska-cell"><span class="n">5</span>분업</span>
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell now"><span class="n">2</span>로그 50만</span>
+          <span class="ska-cell"><span class="n">3</span>3시간 작업</span>
+          <span class="ska-cell"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">세는 일은 코드에게, 판단은 에이전트에게 맡깁니다</h2>
-        <span class="pill">스크립트 위임 · Script Offloading</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>regression.log 50만 줄은 256k에 <b>들어가지도 않고</b>, 욱여넣어도 LLM은 개수를 정확히 세지 못합니다. 읽다가 컨텍스트가 끝나고, 세다가 숫자가 틀립니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p>대량 데이터의 집계·검색·통계는 scripts/의 코드가 <b>컨텍스트 밖에서</b> 처리하고, 에이전트는 그 요약 출력만 받아 판단합니다. "원본을 직접 읽지 말 것"을 금지 조항으로 못 박습니다.</p>
-            <div class="fl"><span class="fl-node ghost">원본 50만 줄</span><span class="fl-arr"><small>실행</small>→</span><span class="fl-node scr">digest.py</span><span class="fl-arr ok"><small>요약 30줄</small>→</span><span class="fl-node ag">Agent 판단</span></div></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>원본은 끝까지 컨텍스트 밖 — 들어오는 것은 <b>결과 30줄(≈1천 토큰)</b>뿐입니다. 게다가 숫자는 코드가 센 값이라 틀리지 않습니다.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>파일 크기와 무관하게 일정한 토큰 소비, 그리고 집계 정확도.</p>
-            <div class="pills"><span class="pill green">50만 줄 → 30줄</span><span class="pill neutral">수치는 결정적</span><span class="pill neutral">재실행 가능</span></div></div>
+      <h2>50만 줄 로그는, 읽지도 세지도 못합니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 리그레션 로그 원인 분석</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER</span>  "지난밤 regression.log 원인 분석해줘"</div>
+              <div class="ska-log"><span class="sh-ok">READ</span>  logs/regression.log <span class="sh-dim">— 500,000줄</span></div>
+              <div class="ska-log"><span class="ska-danger">⚠ 컨텍스트 한도 초과 — 12% 지점에서 읽기 중단</span></div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "TimeoutError가 가장 많아 보입니다" <span class="sh-dim">— 읽은 범위 기준 추정</span></div>
+              <div class="ska-log"><span class="ska-danger">실제 1위는 AssertionError 1,842건 — 오답</span></div>
+              <div class="ska-log"><span class="sh-dim">읽은 부분조차, 세어 보면 건수가 매번 다르다</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>"어젯밤 리그레션 원인 요약해줘" — digest.py가 50만 줄을 훑어 <b>오류 유형별 건수와 대표 스택 20건</b>을 돌려주고, 에이전트는 그 30줄로 원인 후보를 짚습니다.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/log-digest/</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">log-digest/</span>
+        <div class="scn-p bad" style="gap:0.75rem">
+          <span class="scn-tag">원인 분석</span>
+          <div class="g red afill" style="--w:100%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>필요 용량</span><b>50만 줄 ≈ 수백만 토큰</b></div></div>
+          <div class="g afill" style="--w:8%; --dly:1.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>가진 창</span><b>256k — 수십 배 부족</b></div></div>
+          <p class="scn-cap">용량도 문제, <b>능력도 문제</b> — LLM은 확률적 생성기라<br><b>세는 일</b>(집계·산술)에 구조적으로 약합니다.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">읽기(용량 초과)와 집계(능력 불일치), <b>두 번 실패하는 작업</b>입니다. 다음 장에서 이 사건을 해결합니다.</p>
+    </section>
+
+    <!-- 11 · 사건 ② 해결 -->
+    <section data-sec="PART 1 · 사건 ② — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 02 · 해결</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell now"><span class="n">2</span>로그 50만</span>
+          <span class="ska-cell"><span class="n">3</span>3시간 작업</span>
+          <span class="ska-cell"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2>집계를 코드에 맡기면, 30줄만 들어옵니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 요청, 스크립트를 동봉한 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER</span>  "지난밤 regression.log 원인 분석해줘"</div>
+              <div class="ska-log"><span class="sh-cmd">RUN</span>   python scripts/digest.py logs/regression.log</div>
+              <div class="ska-log"><span class="sh-dim">      (50만 줄은 컨텍스트 밖에서 코드가 훑는다)</span></div>
+              <div class="ska-log"><span class="sh-ok">OUT</span>   AssertionError 1,842 · TimeoutError 317 · 첫 급증 02:14</div>
+              <div class="ska-log"><span class="sh-ok">READ</span>  요약 30줄만 입장 <span class="sh-dim">(+1,000 토큰)</span></div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "1위 AssertionError — 02:14 배포와의 상관 검토 제안"</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  수치는 스크립트 값 그대로 인용 — 오차 0 ✓</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/log-digest/</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">log-digest/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">scripts/</span>
    └─ digest.py           <span class="t-out">← 집계·통계 담당</span>
@@ -2003,46 +2283,90 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
 2. <span class="t-str">python scripts/digest.py &lt;로그경로&gt;</span> 를 실행한다.
    <span class="t-out">→ 유형별 건수 · 첫 발생 시각 · 대표 스택 20건</span>
 3. 스크립트 출력<b>만</b> 근거로 원인 후보를 판단한다.
-4. 수치는 출력의 숫자를 그대로 옮긴다. <span class="t-out">(직접 세지 않는다)</span></div></div></div>
+4. 수치는 출력의 숫자를 그대로 옮긴다. <span class="t-out">(직접 세지 않는다)</span></div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>세는 일은 코드가, 뜻을 읽는 일은 모델이.</b></p>
+      <div class="tname p1">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ② 스크립트 위임</span><span class="tn-en">Script Offloading</span></div>
+        <p class="tn-one"><b>세는 일은 코드가, 뜻을 읽는 일은 모델이.</b> 원본은 끝까지 밖 — 들어오는 것은 결정적으로 계산된 결과뿐.</p>
+        <div class="pills"><span class="pill green">50만 줄 → 30줄</span><span class="pill neutral">수치 정확도 100%</span></div>
+      </div>
     </section>
 
-    <!-- 10 · 기법 ③ 외부 기억 -->
-    <section data-sec="PART 1 · 기법 ③ 외부 기억">
+    <!-- 12 · 사건 ③ 문제 -->
+    <section data-sec="PART 1 · 사건 ③ — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 기법 03 / 14</span></div>
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 03 · 문제</span></div>
         <div class="ska-track p1">
-          <span class="ska-cell done"><span class="n"></span>레퍼런스</span>
-          <span class="ska-cell done"><span class="n"></span>스크립트</span>
-          <span class="ska-cell now"><span class="n">3</span>외부 기억</span>
-          <span class="ska-cell"><span class="n">4</span>지도</span>
-          <span class="ska-cell"><span class="n">5</span>분업</span>
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell done"><span class="n"></span>로그 50만</span>
+          <span class="ska-cell now"><span class="n">3</span>3시간 작업</span>
+          <span class="ska-cell"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">기억을 대화가 아니라, 파일에 둡니다</h2>
-        <span class="pill">외부 기억 · External Memory</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>긴 작업일수록 대화가 길어지고, 컨텍스트가 차면 <b>오래된 내용부터 요약·유실</b>됩니다. 40분 전에 정한 규칙을 에이전트가 잊고, 세션이 끊기면 처음부터입니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p>스킬이 <b>작업 상태 파일</b>을 강제합니다 — 결정·진행·발견을 정해진 양식으로 파일에 적고, 매 단계 그 파일을 다시 읽고 시작합니다. 대화는 흘러가도 파일은 남습니다.</p></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>기억의 저장소를 컨텍스트(유한·휘발)에서 <b>파일(무한·영속)</b>로 옮기고, 컨텍스트에는 현재 단계에 필요한 부분만 재적재합니다. 컴팩션과 세션 종료가 더는 사고가 아닙니다.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>몇 시간짜리 작업도 끊겼다 이어집니다 — 진행 상태가 재현 가능해집니다.</p>
-            <div class="pills"><span class="pill green">세션 무관 재개</span><span class="pill neutral">인수인계 문서 겸용</span><span class="pill neutral">진행 감사 가능</span></div></div>
+      <h2>3시간짜리 작업이, 첫 결정을 잊습니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 모듈 40개 API 마이그레이션</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-dim">10:05</span> <span class="sh-req">USER</span> "전부 v2 API로 통일하기로 하자" <span class="sh-dim">— 첫 결정</span></div>
+              <div class="ska-log"><span class="sh-dim">10:10~12:30</span> <span class="sh-ok">EDIT</span> 모듈 1~30 진행 <span class="sh-dim">— 대화·파일 본문 누적</span></div>
+              <div class="ska-log"><span class="sh-dim">12:41</span> <span class="ska-danger">EDIT 모듈 31 — v1 스타일로 변환</span> <span class="sh-dim">← 첫 결정을 잊음</span></div>
+              <div class="ska-log"><span class="sh-dim">12:58</span> <span class="ska-danger">세션 종료 (점심·PC 절전)</span></div>
+              <div class="ska-log"><span class="sh-dim">14:02</span> <span class="sh-req">USER</span> "이어서 해줘"</div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "무슨 작업을 말씀하시는지…" <span class="ska-danger">— 처음부터 다시</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>"모듈 40개 마이그레이션, 이어서 해줘" — 새 세션이 <span class="mono" style="font-size:0.85em">output/state.md</span>를 읽고 <b>27번째부터 재개</b>합니다. 지난 세션의 대화는 하나도 필요 없습니다.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/long-task/</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">long-task/</span>
+        <div class="scn-p bad" style="gap:0.7rem">
+          <span class="scn-tag">원인 분석</span>
+          <div class="scn-row" style="gap:0.4rem">
+            <span class="blob agray" style="--dly:0.8s">첫 결정</span>
+            <span class="blob agray" style="--dly:1.1s">초반 진행</span>
+            <span class="blob">최근 대화</span>
+          </div>
+          <span class="vlab fail h0 ain" style="--dly:1.5s">세션 종료 = 전체 삭제</span>
+          <p class="scn-cap">기억이 <b>대화에만</b> 있습니다.<br>컴팩션은 <b>앞(오래된 결정)부터</b> 지우고, 세션 종료는 <b>전부</b> 지웁니다.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">성실히 일할수록 대화가 길어지고, 길어질수록 먼저 잊습니다 — <b>기억의 저장소</b>가 문제입니다. 다음 장에서 해결합니다.</p>
+    </section>
+
+    <!-- 13 · 사건 ③ 해결 -->
+    <section data-sec="PART 1 · 사건 ③ — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 03 · 해결</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell done"><span class="n"></span>로그 50만</span>
+          <span class="ska-cell now"><span class="n">3</span>3시간 작업</span>
+          <span class="ska-cell"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2>기억을 파일에 두면, 세션이 끊겨도 이어집니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 작업, 상태 파일을 강제한 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-dim">14:02</span> <span class="sh-req">USER</span> "이어서 해줘" <span class="sh-dim">— 새 세션, 빈 컨텍스트</span></div>
+              <div class="ska-log"><span class="sh-ok">READ</span>  output/state.md</div>
+              <div class="ska-log"><span class="sh-dim">      규칙: v2 통일 · [x] 1~30 · 다음: 31 · 메모: 03 API 변경</span></div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "31번 모듈부터 v2 규칙으로 재개합니다"</div>
+              <div class="ska-log"><span class="sh-ok">EDIT</span>  모듈 31 — v2 ✓ <span class="sh-dim">(첫 결정이 파일에 살아있다)</span></div>
+              <div class="ska-log"><span class="sh-ok">WRITE</span> state.md — [x] 31 · 메모 1줄 추가</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  지난 대화 필요량: 0줄 ✓</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/long-task/</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">long-task/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">assets/</span>
    └─ state-template.md   <span class="t-out">← 진행 상태 양식</span>
@@ -2050,49 +2374,89 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
 <span class="t-hl">SKILL.md ▸ 절차 발췌</span>
 1. 시작 시 <span class="t-str">output/state.md</span> 가 있으면 <span class="t-hl">먼저 읽고 이어서</span> 한다.
    없으면 assets/state-template.md 로 생성한다.
-2. 항목 하나를 끝낼 때마다 state.md 의 해당 줄을
-   [ ] → [x] 로 바꾸고, 발견 사항을 "메모" 절에 1줄 남긴다.
-3. 대화가 길어지면 <span class="t-hl">지난 대화가 아니라 state.md</span> 를 기준으로 삼는다.</div></div></div>
+2. 항목 하나를 끝낼 때마다 해당 줄을 [ ] → [x] 로 바꾸고,
+   발견 사항을 "메모" 절에 1줄 남긴다.
+3. 대화가 길어지면 <span class="t-hl">지난 대화가 아니라 state.md</span> 를
+   기준으로 삼는다.</div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>대화는 흘러가고, 파일은 남는다.</b></p>
+      <div class="tname p1">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ③ 외부 기억</span><span class="tn-en">External Memory</span></div>
+        <p class="tn-one"><b>대화는 흘러가고, 파일은 남는다.</b> 기억을 휘발(컨텍스트)에서 영속(파일)으로 — 컴팩션·세션 종료가 더는 사고가 아닙니다.</p>
+        <div class="pills"><span class="pill green">세션 무관 재개</span><span class="pill neutral">인수인계 문서 겸용</span></div>
+      </div>
     </section>
 
-    <!-- 11 · 기법 ④ 지도 우선 탐색 -->
-    <section data-sec="PART 1 · 기법 ④ 지도 우선 탐색">
+    <!-- 14 · 사건 ④ 문제 -->
+    <section data-sec="PART 1 · 사건 ④ — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 기법 04 / 14</span></div>
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 04 · 문제</span></div>
         <div class="ska-track p1">
-          <span class="ska-cell done"><span class="n"></span>레퍼런스</span>
-          <span class="ska-cell done"><span class="n"></span>스크립트</span>
-          <span class="ska-cell done"><span class="n"></span>외부 기억</span>
-          <span class="ska-cell now"><span class="n">4</span>지도</span>
-          <span class="ska-cell"><span class="n">5</span>분업</span>
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell done"><span class="n"></span>로그 50만</span>
+          <span class="ska-cell done"><span class="n"></span>3시간 작업</span>
+          <span class="ska-cell now"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">읽기 전에, 지도부터 그립니다</h2>
-        <span class="pill">지도 우선 탐색 · Map-first Navigation</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>"이 리포 분석해줘" — 에이전트가 파일을 통째로 차례차례 읽습니다. 대형 리포면 절반도 못 가 <b>컨텍스트가 바닥나고</b>, 읽은 내용 대부분은 결론과 무관합니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p>탐색 순서를 스킬로 강제합니다 — ① 구조 훑기(tree) ② 후보 찾기(grep) ③ 필요 범위만 읽기(±N줄). 그리고 <b>통째 읽기 금지</b>를 명시합니다. 읽기는 항상 검색의 결과여야 합니다.</p>
-            <div class="fl"><span class="fl-node">tree<small>구조</small></span><span class="fl-arr">→</span><span class="fl-node">grep<small>후보</small></span><span class="fl-arr">→</span><span class="fl-node ag">±50줄만 읽기<small>범위</small></span></div></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>토큰 소비가 <b>리포 크기가 아니라 질문 크기에 비례</b>하게 바뀝니다. 같은 256k로 열 배 큰 리포를 다룰 수 있습니다.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>대형 리포에서도 일정한 토큰·응답 시간 — 근거 위치까지 정확해집니다.</p>
-            <div class="pills"><span class="pill green">소비 ∝ 질문 크기</span><span class="pill neutral">근거는 파일:줄</span></div></div>
+      <h2>설명 하나 듣자고, 리포 절반을 읽게 하고 있습니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 대형 리포에서 코드 답사</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER</span>  "결제 검증이 어디서 어떻게 도는지 설명해줘"</div>
+              <div class="ska-log"><span class="sh-ok">READ</span>  src/api.cpp <span class="sh-dim">— 4,200줄 통째</span></div>
+              <div class="ska-log"><span class="sh-ok">READ</span>  src/core.cpp <span class="sh-dim">— 9,800줄 통째</span></div>
+              <div class="ska-log"><span class="sh-dim">READ × 7파일 계속… (답과 무관한 코드가 대부분)</span></div>
+              <div class="ska-log"><span class="ska-danger">⚠ 9파일째 — 컨텍스트 한도, 앞 파일 내용 유실 시작</span></div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "validate 함수가… <span class="ska-danger">(파일들이 뒤섞인 설명)</span>"</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>"결제 검증 로직, 어디서 뭘 하는지 설명해줘" — 구조 파악 → <span class="mono" style="font-size:0.85em">grep validate</span> → 해당 함수 ±50줄만 읽고 답합니다. <b>읽은 총량 300줄 미만.</b></p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/repo-scout/SKILL.md</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">## 절차 — 넓게 → 좁게 → 깊게</span>
+        <div class="scn-p bad" style="gap:0.75rem">
+          <span class="scn-tag">원인 분석</span>
+          <div class="g red afill" style="--w:97%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>읽은 양</span><b>∝ 리포 크기 (수만 줄)</b></div></div>
+          <div class="g afill" style="--w:5%; --dly:1.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>답에 필요한 양</span><b>≈ 300줄</b></div></div>
+          <p class="scn-cap">탐색 전략이 없으면 <b>"무엇을 읽을지"를 읽으면서</b> 찾게 됩니다 — 읽기가 검색을 대신하는 구조.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">질문은 300줄짜리인데 비용은 리포 크기 — <b>비례 관계</b>가 잘못됐습니다. 다음 장에서 해결합니다.</p>
+    </section>
+
+    <!-- 15 · 사건 ④ 해결 -->
+    <section data-sec="PART 1 · 사건 ④ — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 04 · 해결</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell done"><span class="n"></span>로그 50만</span>
+          <span class="ska-cell done"><span class="n"></span>3시간 작업</span>
+          <span class="ska-cell now"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2>지도를 먼저 그리면, 300줄로 끝납니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 질문, 탐색 순서를 강제한 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER</span>  "결제 검증이 어디서 어떻게 도는지 설명해줘"</div>
+              <div class="ska-log"><span class="sh-cmd">RUN</span>   tree -L 2 <span class="sh-dim">— 구조 12줄만</span></div>
+              <div class="ska-log"><span class="sh-cmd">RUN</span>   grep -rn "validatePayment" <span class="sh-dim">— 후보 3곳</span></div>
+              <div class="ska-log"><span class="sh-ok">READ</span>  pay/validate.cpp:120–220 <span class="sh-dim">— 필요 범위 ±50줄만</span></div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "요청 → validate() → 한도 검사 → 승인 큐 순입니다"</div>
+              <div class="ska-log"><span class="sh-dim">      근거: pay/validate.cpp:143</span></div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  읽은 총량 297줄 ✓</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/repo-scout/SKILL.md</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">## 절차 — 넓게 → 좁게 → 깊게</span>
 1. <span class="t-str">tree -L 2</span> 로 구조만 파악한다. <span class="t-out">(내용 열람 금지)</span>
 2. <span class="t-str">grep -rn "&lt;심볼&gt;"</span> 로 후보 위치를 찾는다.
 3. 후보 파일은 해당 함수 <span class="t-hl">±50줄만</span> 읽는다.
@@ -2100,47 +2464,86 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
 
 <span class="t-hl">## 금지</span>
 · 폴더를 순회하며 파일 전체를 읽는 행위
-· 1,000줄 넘는 파일의 통째 읽기 <span class="t-out">(필요 범위만)</span></div></div></div>
+· 1,000줄 넘는 파일의 통째 읽기 <span class="t-out">(필요 범위만)</span></div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>읽기는 검색의 결과여야 한다.</b></p>
+      <div class="tname p1">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ④ 지도 우선 탐색</span><span class="tn-en">Map-first Navigation</span></div>
+        <p class="tn-one"><b>읽기는 검색의 결과여야 한다.</b> 소비가 리포 크기가 아니라 <b>질문 크기에 비례</b> — 같은 256k로 열 배 큰 리포를 다룹니다.</p>
+        <div class="pills"><span class="pill green">297줄로 완료</span><span class="pill neutral">근거는 파일:줄</span></div>
+      </div>
     </section>
 
-    <!-- 12 · 기법 ⑤ 분업 요약 -->
-    <section data-sec="PART 1 · 기법 ⑤ 분업 요약">
+    <!-- 16 · 사건 ⑤ 문제 -->
+    <section data-sec="PART 1 · 사건 ⑤ — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 기법 05 / 14</span></div>
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 05 · 문제</span></div>
         <div class="ska-track p1">
-          <span class="ska-cell done"><span class="n"></span>레퍼런스</span>
-          <span class="ska-cell done"><span class="n"></span>스크립트</span>
-          <span class="ska-cell done"><span class="n"></span>외부 기억</span>
-          <span class="ska-cell done"><span class="n"></span>지도</span>
-          <span class="ska-cell now"><span class="n">5</span>분업</span>
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell done"><span class="n"></span>로그 50만</span>
+          <span class="ska-cell done"><span class="n"></span>3시간 작업</span>
+          <span class="ska-cell done"><span class="n"></span>리포 탐색</span>
+          <span class="ska-cell now"><span class="n">5</span>전체 점검</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">컨텍스트가 모자라면, 컨텍스트를 여러 개 씁니다</h2>
-        <span class="pill">분업 요약 · Fan-out &amp; Summarize</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>모듈 12개 전체 보안 점검 — 아무리 아껴도 <b>한 컨텍스트에는 안 들어갑니다</b>. 절약(①~④)의 한계를 만나는 순간이 옵니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p>조율 스킬이 일을 조각으로 나누고, 조각마다 <b>깨끗한 컨텍스트</b>(서브에이전트 또는 새 세션)에 위임합니다. 반환은 정해진 10줄 양식만 — 부모는 원본이 아니라 요약들만 모아 종합합니다.</p>
-            <div class="fl"><span class="fl-node ag">조율 스킬</span><span class="fl-arr"><small>조각 위임</small>→</span><span class="fl-node">새 컨텍스트 ×N<small>각자 256k</small></span><span class="fl-arr ok"><small>10줄 보고</small>→</span><span class="fl-node file">output/audit/*.md</span></div></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>총 처리량이 1×256k에서 <b>N×256k</b>로 늘고, 부모 컨텍스트에는 요약만 들어옵니다. ①~④가 절약이라면 ⑤는 <b>확장</b> — 유일하게 총량을 늘리는 기법입니다.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>리포 전체 규모의 감사·마이그레이션이 가능해집니다.</p>
-            <div class="pills"><span class="pill green">총량 N×256k</span><span class="pill neutral">조각은 병렬 가능</span><span class="pill neutral">회수는 요약만</span></div></div>
+      <h2>아무리 아껴도, 한 번에 안 들어가는 일이 있습니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 릴리즈 전 전체 보안 점검 (①~④ 전부 적용한 상태)</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER</span>  "릴리즈 전에 모듈 12개 전부 보안 점검해줘"</div>
+              <div class="ska-log"><span class="sh-ok">SCAN</span>  모듈 1~3 — 지도 우선·범위 읽기로 절약 중 ✓</div>
+              <div class="ska-log"><span class="sh-ok">SCAN</span>  모듈 4~5 — 각 모듈 결과를 요약하며 진행 ✓</div>
+              <div class="ska-log"><span class="ska-danger">⚠ 모듈 6 — 절약해도 한도 도달</span> <span class="sh-dim">— 코드+결과 누적</span></div>
+              <div class="ska-log"><span class="ska-danger">모듈 1~2 점검 결과, 컴팩션으로 디테일 소실</span></div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "…앞 모듈들은 요약만 남아 재확인이 필요합니다"</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>"리포 전체 보안 점검해줘" — 모듈 12개가 각각 새 컨텍스트에서 점검되고, 10줄 보고 12장이 쌓입니다. <b>최종 종합은 120줄만 읽고</b> 씁니다.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/module-audit/</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">module-audit/</span>
+        <div class="scn-p bad" style="gap:0.75rem">
+          <span class="scn-tag">원인 분석</span>
+          <div class="g red afill" style="--w:100%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>작업 필요량</span><b>12모듈 코드+결과</b></div></div>
+          <div class="g afill" style="--w:22%; --dly:1.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>상한</span><b>1 × 256k 고정</b></div></div>
+          <p class="scn-cap">①~④는 <b>소비를 줄일 뿐</b>, 총량은 못 늘립니다.<br>작업이 상한을 넘으면 절약의 문제가 아니라 <b>구조의 문제</b>.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">절약술의 한계선입니다 — 여기부터는 <b>다른 종류의 답</b>이 필요합니다. 다음 장에서 해결합니다.</p>
+    </section>
+
+    <!-- 17 · 사건 ⑤ 해결 -->
+    <section data-sec="PART 1 · 사건 ⑤ — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 05 · 해결</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell done"><span class="n"></span>로그 50만</span>
+          <span class="ska-cell done"><span class="n"></span>3시간 작업</span>
+          <span class="ska-cell done"><span class="n"></span>리포 탐색</span>
+          <span class="ska-cell now"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2>쪼개서 위임하면, 컨텍스트는 곱해집니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 요청, 조율 스킬 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER</span>  "릴리즈 전에 모듈 12개 전부 보안 점검해줘"</div>
+              <div class="ska-log"><span class="sh-ok">PLAN</span>  output/audit/plan.md — 12조각으로 분할</div>
+              <div class="ska-log"><span class="sh-cmd">SPAWN</span> 워커 ×3 <span class="sh-dim">— 각자 깨끗한 256k에서 병렬 점검</span></div>
+              <div class="ska-log"><span class="sh-dim">      워커에게: "모듈 X만. 보고는 양식 10줄. 코드 원문 금지"</span></div>
+              <div class="ska-log"><span class="sh-ok">OUT</span>   output/audit/01~12.md — 10줄 보고 12장 도착</div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> 120줄만 읽고 종합 리포트 작성</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  총 처리량 ≈ 3 × 256k — 디테일 소실 0 ✓</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/module-audit/</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">module-audit/</span>
 ├─ <span class="t-key">SKILL.md</span>              <span class="t-out">← 조율자</span>
 └─ <span class="t-key">assets/</span>
    └─ report-form.md      <span class="t-out">← 조각 보고 양식 (10줄 고정)</span>
@@ -2150,17 +2553,22 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
 2. 모듈마다 <span class="t-hl">서브에이전트(또는 새 세션)</span>에 위임한다.
    지시: "모듈 X만 점검. 결과는 report-form.md 양식
    10줄로 <span class="t-str">output/audit/X.md</span> 저장. 코드 원문 금지."
-3. 조각이 모두 끝나면 <span class="t-str">output/audit/*.md</span> 만 읽어 종합한다.</div></div></div>
+3. 조각이 모두 끝나면 <span class="t-str">output/audit/*.md</span> 만 읽어
+   종합한다.</div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>쪼개면 컨텍스트는 곱해진다.</b></p>
+      <div class="tname p1">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑤ 분업 요약</span><span class="tn-en">Fan-out &amp; Summarize</span></div>
+        <p class="tn-one"><b>쪼개면 컨텍스트는 곱해진다.</b> ①~④가 절약이라면 ⑤는 확장 — 총량을 <b>1×256k에서 N×256k로</b> 늘리는 유일한 기법.</p>
+        <div class="pills"><span class="pill green">총량 N×256k</span><span class="pill neutral">회수는 요약만</span></div>
+      </div>
     </section>
 
-    <!-- 13 · PART 1 정리 -->
+    <!-- 18 · PART 1 정리 -->
     <section data-sec="PART 1 · 정리">
       <div><span class="chip">PART 1 · 정리</span></div>
-      <h2>다섯 기법의 공통 원리 — <span class="grad">원본은 밖에, 결론만 안에</span></h2>
-      <div class="cx autoshow fade-up">
+      <h2>다섯 해결의 공통 원리 — <span class="grad">원본은 밖에, 결론만 안에</span></h2>
+      <div class="cx autoshow fade-up" style="margin-top:1.6rem">
         <div class="cx-zone out">
           <span class="cx-label">컨텍스트 밖 — 크기 무제한</span>
           <div class="cx-item">규칙 30페이지<small>references/</small></div>
@@ -2185,116 +2593,187 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
           <div class="cx-item">보고 12×10줄</div>
         </div>
       </div>
-      <div class="term autoshow fade-up" style="margin-top:0.9rem">
-        <div class="term-bar"><span class="term-title">언제 무엇을 쓰나 — 미니 결정표</span></div>
-        <div class="term-body" style="padding:0.4rem 0.9rem">
-          <table class="wr-table">
-            <tr><th>모자란 것</th><th>기법</th><th>핵심 동작</th></tr>
-            <tr class="hl"><td>지식이 크다</td><td>① 레퍼런스 계층화</td><td>조건부 로드</td></tr>
-            <tr class="hl"><td>데이터가 크다</td><td>② 스크립트 위임</td><td>밖에서 집계</td></tr>
-            <tr class="hl"><td>시간이 길다</td><td>③ 외부 기억</td><td>상태 파일</td></tr>
-            <tr class="hl"><td>코드가 크다</td><td>④ 지도 우선 탐색</td><td>검색 후 범위 읽기</td></tr>
-            <tr class="hl"><td>전부 크다</td><td>⑤ 분업 요약</td><td>N×256k로 확장</td></tr>
-          </table>
-        </div>
-      </div>
-      <p class="note autoshow fade-up" style="margin-top:0.7rem">다음 문제 — 아낀 컨텍스트로 <b>여러 스킬을 하나의 프로세스</b>로 잇는 방법입니다.</p>
+      <p class="autoshow fade-up" style="font-size:1.3rem; margin-top:1.4rem; text-align:center">고를 때는 <b>모자란 것</b>에서 출발하면 됩니다 — 지식① · 데이터② · 시간③ · 코드④ · <b class="accent2">전부⑤</b>.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.9rem">다음 문제 — 아낀 컨텍스트로 <b>여러 스킬을 하나의 프로세스</b>로 잇는 방법입니다.</p>
     </section>
 
-    <!-- 14 · PART 2 간지 -->
+    <!-- 19 · PART 2 간지 -->
     <section class="section-opener" data-hero data-sec="PART 2 · 스킬 연계술">
-      <div class="autoshow fade-up"><span class="chip">PART 2 · 스킬 연계술 — 기법 ⑥~⑨</span></div>
+      <div class="autoshow fade-up"><span class="chip">PART 2 · 스킬 연계술 — 사건 ⑥~⑨</span></div>
       <h1 class="autoshow fade-up" style="font-size:3.9rem">부품이 되려면,<br><span class="grad">계약이 필요합니다</span></h1>
       <ul class="ol autoshow fade-up" style="margin-top:1.4rem; max-width:46rem; flex:none">
-        <li class="show"><span class="ix">기법 ⑥</span><span class="lb">산출물 계약 <span class="dim small">Artifact Contract — 스킬 간 인터페이스</span></span></li>
-        <li class="show"><span class="ix">기법 ⑦</span><span class="lb">파이프라인 스킬 <span class="dim small">Pipeline Orchestrator — 순서의 자산화</span></span></li>
-        <li class="show"><span class="ix">기법 ⑧</span><span class="lb">라우터 스킬 <span class="dim small">Router Skill — 접수 창구</span></span></li>
-        <li class="show"><span class="ix">기법 ⑨</span><span class="lb">게이트 체크 <span class="dim small">Stage Gate — 단계 사이의 문</span></span></li>
+        <li class="show"><span class="ix">사건 ⑥</span><span class="lb">스킬 A의 결과를, 스킬 B가 받지 못한다</span></li>
+        <li class="show"><span class="ix">사건 ⑦</span><span class="lb">프로세스가 시니어의 머릿속에만 있다</span></li>
+        <li class="show"><span class="ix">사건 ⑧</span><span class="lb">스킬 스무 개 — 엉뚱한 스킬이 발동한다</span></li>
+        <li class="show"><span class="ix">사건 ⑨</span><span class="lb">부실한 중간 산출물이 끝까지 흘러간다</span></li>
       </ul>
       <p class="autoshow fade-up" style="margin-top:1.2rem; font-size:1.2rem; color:var(--fg-soft) !important">공통 원리 — <b style="color:#fff">스킬은 대화가 아니라 파일로 협업한다.</b></p>
     </section>
 
-    <!-- 15 · 기법 ⑥ 산출물 계약 -->
-    <section data-sec="PART 2 · 기법 ⑥ 산출물 계약">
+    <!-- 20 · 사건 ⑥ 문제 -->
+    <section data-sec="PART 2 · 사건 ⑥ — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 2 · 스킬 연계술 — 기법 06 / 14</span></div>
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 06 · 문제</span></div>
         <div class="ska-track p2">
-          <span class="ska-cell now"><span class="n">6</span>계약</span>
-          <span class="ska-cell"><span class="n">7</span>파이프라인</span>
-          <span class="ska-cell"><span class="n">8</span>라우터</span>
-          <span class="ska-cell"><span class="n">9</span>게이트</span>
+          <span class="ska-cell now"><span class="n">6</span>전달 사고</span>
+          <span class="ska-cell"><span class="n">7</span>수동 지휘</span>
+          <span class="ska-cell"><span class="n">8</span>오발동</span>
+          <span class="ska-cell"><span class="n">9</span>부실 전파</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">스킬의 출력을, 다음 스킬의 입력으로 설계합니다</h2>
-        <span class="pill">산출물 계약 · Artifact Contract</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>로그 요약 스킬의 결과를 리포트 스킬이 이어받게 하고 싶은데, 결과가 <b>대화에 흘러가</b> 버립니다. 형식은 매번 다르고, 다음 스킬은 어디서 무엇을 읽어야 할지 모릅니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p>스킬 사이의 인터페이스를 <b>약속된 파일 경로 + 고정 형식</b>으로 명문화합니다. 생산자 스킬은 출력 계약을, 소비자 스킬은 입력 계약을 SKILL.md에 명시합니다 — 함수의 시그니처처럼.</p>
-            <div class="fl"><span class="fl-node sk">log-digest</span><span class="fl-arr"><small>출력 계약</small>→</span><span class="fl-node file">output/digest.md</span><span class="fl-arr"><small>입력 계약</small>→</span><span class="fl-node sk">incident-report</span></div></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>전달이 대화(휘발·비정형)에서 <b>파일(영속·정형)</b>로 바뀝니다. 형식이 고정되니 검증할 수 있고, 파일로 남으니 재실행과 중간 개입도 됩니다.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>스킬이 <b>부품</b>이 됩니다 — 어떤 조합으로도 끼워 맞출 수 있는.</p>
-            <div class="pills"><span class="pill green">조합 가능</span><span class="pill neutral">중간 산출물 검사 가능</span><span class="pill neutral">컨텍스트 부담 ↓</span></div></div>
+      <h2>스킬 A의 결과를, 스킬 B가 받지 못합니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 요약 스킬의 결과로 리포트 만들기</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER</span>  "아까 요약한 걸로 장애 리포트 만들어줘"</div>
+              <div class="ska-log"><span class="sh-cmd">RUN</span>   incident-report</div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "요약을 찾을 수 없습니다 — 어디에 있죠?"</div>
+              <div class="ska-log"><span class="sh-dim">      (요약은 대화 속에… 이미 컴팩션으로 일부 유실)</span></div>
+              <div class="ska-log"><span class="ska-danger">USER  스크롤 올려 복사 → 붙여넣기 — 수동 개입</span></div>
+              <div class="ska-log"><span class="ska-danger">CHECK 붙여넣은 요약이 어제 버전 — 구버전 리포트 발행</span></div>
+              <div class="ska-log"><span class="sh-dim">스킬은 둘 다 정상이었습니다 — 문제는 둘 "사이"입니다.</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>log-digest는 항상 <span class="mono" style="font-size:0.85em">output/digest.md</span>(형식 고정)를 만들고, incident-report는 그 파일만 근거로 씁니다. 사람이 중간에서 복사·붙여넣기 할 일이 사라집니다.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">두 스킬의 SKILL.md — 계약 부분 발췌</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">log-digest ▸ 출력 계약</span> <span class="t-out">(생산자)</span>
+        <div class="scn-p bad" style="gap:0.8rem">
+          <span class="scn-tag">원인 분석</span>
+          <div class="scn-row">
+            <span class="fl-node sk">log-digest</span>
+            <span class="blob agray" style="--dly:0.8s">대화 속 요약<small style="display:block; font-size:0.62rem">형식 제각각 · 버전 없음</small></span>
+            <span class="fl-node ghost">incident-report<small>어디서 읽어야 하지?</small></span>
+          </div>
+          <p class="scn-cap">결과가 <b>대화에만</b> 존재합니다 — 휘발되고, 비정형이고, 버전이 없습니다.<br>두 스킬 사이의 <b>인터페이스가 정의된 적이 없습니다</b>.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">함수라면 시그니처부터 정했을 텐데 — 스킬에는 그게 없었습니다. 다음 장에서 해결합니다.</p>
+    </section>
+
+    <!-- 21 · 사건 ⑥ 해결 -->
+    <section data-sec="PART 2 · 사건 ⑥ — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 06 · 해결</span></div>
+        <div class="ska-track p2">
+          <span class="ska-cell now"><span class="n">6</span>전달 사고</span>
+          <span class="ska-cell"><span class="n">7</span>수동 지휘</span>
+          <span class="ska-cell"><span class="n">8</span>오발동</span>
+          <span class="ska-cell"><span class="n">9</span>부실 전파</span>
+        </div>
+      </div>
+      <h2>약속된 파일과 형식으로, 스킬끼리 주고받게 합니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 요청, 입출력 계약을 명시한 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-cmd">RUN</span>   log-digest</div>
+              <div class="ska-log"><span class="sh-ok">WRITE</span> output/digest.md <span class="sh-dim">— 형식 고정 · 끝줄 DIGEST-VERSION: 1</span></div>
+              <div class="ska-log"><span class="sh-cmd">RUN</span>   incident-report</div>
+              <div class="ska-log"><span class="sh-ok">CHECK</span> output/digest.md 존재 · 규격 표시 확인 ✓</div>
+              <div class="ska-log"><span class="sh-ok">READ</span>  digest.md<b>만</b> 근거로 리포트 작성</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  복사·붙여넣기 0회 — 구버전 사고 원천 차단 ✓</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — 두 스킬의 SKILL.md, 계약 부분 발췌</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">log-digest ▸ 출력 계약</span> <span class="t-out">(생산자)</span>
 · 경로: <span class="t-str">output/digest.md</span> <span class="t-out">(고정)</span>
 · 형식: ## 요약 / ## 오류 Top 10 / ## 이상 징후
 · 마지막 줄: <span class="t-str">DIGEST-VERSION: 1</span>
 
 <span class="t-hl">incident-report ▸ 입력 계약</span> <span class="t-out">(소비자)</span>
 · <span class="t-str">output/digest.md</span> 가 있으면 <span class="t-hl">그것만</span> 근거로 쓴다.
-· 형식 표시(DIGEST-VERSION)가 없으면 소비하지 않는다.
+· 규격 표시(DIGEST-VERSION)가 없으면 소비하지 않는다.
 · 없으면 log-digest 실행을 안내하고 멈춘다.
-  <span class="t-out">(직접 로그를 읽지 않는다)</span></div></div></div>
+  <span class="t-out">(직접 로그를 읽지 않는다)</span></div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>계약이 있어야 부품이 된다.</b></p>
+      <div class="tname p2">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑥ 산출물 계약</span><span class="tn-en">Artifact Contract</span></div>
+        <p class="tn-one"><b>계약이 있어야 부품이 된다.</b> 전달을 대화(휘발·비정형)에서 <b>파일 + 규격</b>으로 — 함수의 시그니처처럼.</p>
+        <div class="pills"><span class="pill green">어떤 조합도 가능</span><span class="pill neutral">중간 산출물 검사 가능</span></div>
+      </div>
     </section>
 
-    <!-- 16 · 기법 ⑦ 파이프라인 스킬 -->
-    <section data-sec="PART 2 · 기법 ⑦ 파이프라인 스킬">
+    <!-- 22 · 사건 ⑦ 문제 -->
+    <section data-sec="PART 2 · 사건 ⑦ — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 2 · 스킬 연계술 — 기법 07 / 14</span></div>
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 07 · 문제</span></div>
         <div class="ska-track p2">
-          <span class="ska-cell done"><span class="n"></span>계약</span>
-          <span class="ska-cell now"><span class="n">7</span>파이프라인</span>
-          <span class="ska-cell"><span class="n">8</span>라우터</span>
-          <span class="ska-cell"><span class="n">9</span>게이트</span>
+          <span class="ska-cell done"><span class="n"></span>전달 사고</span>
+          <span class="ska-cell now"><span class="n">7</span>수동 지휘</span>
+          <span class="ska-cell"><span class="n">8</span>오발동</span>
+          <span class="ska-cell"><span class="n">9</span>부실 전파</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">순서를 아는 스킬 하나가, 전체를 지휘합니다</h2>
-        <span class="pill">파이프라인 스킬 · Pipeline Orchestrator</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>장애가 나면 "로그 요약해줘 → 이제 원인 분석 → 이제 리포트"… <b>사람이 매 단계를 지휘</b>합니다. 순서는 시니어 머릿속에만 있고, 한 단계를 빼먹으면 품질이 무너집니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p><b>단계 정의</b>(순서·담당 스킬·산출물·완료 조건)를 가진 조율 스킬을 둡니다. 사용자는 한 마디로 시작하고, 조율 스킬이 단계 스킬들을 차례로 진행시키며 산출물 계약(⑥)으로 연결합니다.</p></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>시니어의 암묵적 순서가 <b>명시적 자산</b>이 됩니다. 단계 산출물이 파일로 남으니 단계 사이에 컨텍스트를 비워도(새 세션으로 이어도) 프로세스는 계속됩니다 — <b>긴 프로세스와 256k가 공존</b>하는 방법.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>누가 시켜도 같은 순서, 같은 품질 — 프로세스가 조직의 자산이 됩니다.</p>
-            <div class="pills"><span class="pill green">시작은 한 마디</span><span class="pill neutral">단계 누락 없음</span><span class="pill neutral">단계별 재개 가능</span></div></div>
+      <h2>프로세스가, 시니어의 머릿속에만 있습니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 새벽 장애, 시니어 부재</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-dim">02:10</span> <span class="ska-danger">장애 발생</span> — 당직은 입사 3개월차</div>
+              <div class="ska-log"><span class="sh-req">USER</span>  "로그 요약해줘" → 완료</div>
+              <div class="ska-log"><span class="ska-danger">USER  "다음이… 뭐지? 일단 리포트 만들어줘"</span> <span class="sh-dim">← 분석 건너뜀</span></div>
+              <div class="ska-log"><span class="sh-ok">OUT</span>   원인 불명 리포트 발행</div>
+              <div class="ska-log"><span class="sh-dim">08:30</span> <span class="sh-req">시니어</span> "분석·검증 단계가 빠졌네요 — 다시 갑시다"</div>
+              <div class="ska-log"><span class="ska-danger">REWORK 전 단계 재작업 — 순서는 시니어 머릿속에만 있었다</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>"장애 대응 시작해줘" 한 마디 — 수집 → 분석 → 초안 → 검증이 순서대로 흐르고, 단계마다 산출물 경로가 한 줄씩 보고됩니다.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/incident-flow/SKILL.md</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">## 단계</span> <span class="t-out">— 순서 고정 · 산출물 없으면 다음 단계 금지</span>
+        <div class="scn-p bad" style="gap:0.8rem">
+          <span class="scn-tag">원인 분석</span>
+          <div class="scn-col" style="border:0.09rem dashed rgba(255,212,107,0.5); border-radius:0.7rem; padding:0.5rem 0.8rem; gap:0.25rem">
+            <span class="tiny mono" style="color:#FFE9AE !important">시니어 머릿속 (문서화된 적 없음)</span>
+            <span style="font-size:0.85rem; font-weight:700">수집 → 분석 → 초안 → 검증</span>
+          </div>
+          <div class="scn-row" style="gap:0.4rem">
+            <span class="fl-node sk" style="font-size:0.74rem">요약 스킬</span>
+            <span class="fl-node sk" style="font-size:0.74rem">분석 스킬</span>
+            <span class="fl-node sk" style="font-size:0.74rem">리포트 스킬</span>
+          </div>
+          <p class="scn-cap">각 스킬은 <b>자기 단계만</b> 압니다.<br>순서와 완료 조건은 <b>어디에도 적혀 있지 않습니다</b>.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">부품(⑥)은 갖췄는데 <b>조립 설명서</b>가 없습니다. 다음 장에서 해결합니다.</p>
+    </section>
+
+    <!-- 23 · 사건 ⑦ 해결 -->
+    <section data-sec="PART 2 · 사건 ⑦ — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 07 · 해결</span></div>
+        <div class="ska-track p2">
+          <span class="ska-cell done"><span class="n"></span>전달 사고</span>
+          <span class="ska-cell now"><span class="n">7</span>수동 지휘</span>
+          <span class="ska-cell"><span class="n">8</span>오발동</span>
+          <span class="ska-cell"><span class="n">9</span>부실 전파</span>
+        </div>
+      </div>
+      <h2>순서를 아는 스킬 하나가, 전체를 지휘합니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 새벽, 조율 스킬이 있는 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-dim">02:10</span> <span class="sh-req">USER</span> "장애 대응 시작해줘" <span class="sh-dim">— 한 마디가 전부</span></div>
+              <div class="ska-log"><span class="sh-cmd">FLOW</span>  incident-flow 발동 — 단계 정의 로드</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  1/4 수집 → output/digest.md</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  2/4 분석 → output/analysis.md</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  3/4 초안 → output/report.md</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  4/4 검증 → output/verdict.md</div>
+              <div class="ska-log"><span class="sh-ok">✓</span>     신입이 돌려도 같은 순서 — 02:10에도, 누구라도</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/incident-flow/SKILL.md</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">## 단계</span> <span class="t-out">— 순서 고정 · 산출물 없으면 다음 단계 금지</span>
 1. 수집   → log-digest 스킬        → <span class="t-str">output/digest.md</span>
 2. 분석   → root-cause 스킬        → <span class="t-str">output/analysis.md</span>
 3. 초안   → incident-report 스킬   → <span class="t-str">output/report.md</span>
@@ -2303,46 +2782,91 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
 <span class="t-hl">## 진행 규칙</span>
 · 각 단계 완료 시 <span class="t-hl">단계명과 산출물 경로만 한 줄</span> 보고.
 · 이전 단계 산출물이 없으면 그 단계부터 시작한다.
-  <span class="t-out">(중간부터 재개 가능 — 기법 ③의 원리)</span></div></div></div>
+  <span class="t-out">(중간부터 재개 가능 — 기법 ③의 원리)</span></div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>프로세스도 스킬이다.</b></p>
+      <div class="tname p2">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑦ 파이프라인 스킬</span><span class="tn-en">Pipeline Orchestrator</span></div>
+        <p class="tn-one"><b>프로세스도 스킬이다.</b> 시니어의 암묵적 순서가 <b>명시적 자산</b>으로 — 단계 산출물이 파일이라 중간 재개도 됩니다.</p>
+        <div class="pills"><span class="pill green">시작은 한 마디</span><span class="pill neutral">단계 누락 0</span></div>
+      </div>
     </section>
 
-    <!-- 17 · 기법 ⑧ 라우터 스킬 -->
-    <section data-sec="PART 2 · 기법 ⑧ 라우터 스킬">
+    <!-- 24 · 사건 ⑧ 문제 -->
+    <section data-sec="PART 2 · 사건 ⑧ — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 2 · 스킬 연계술 — 기법 08 / 14</span></div>
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 08 · 문제</span></div>
         <div class="ska-track p2">
-          <span class="ska-cell done"><span class="n"></span>계약</span>
-          <span class="ska-cell done"><span class="n"></span>파이프라인</span>
-          <span class="ska-cell now"><span class="n">8</span>라우터</span>
-          <span class="ska-cell"><span class="n">9</span>게이트</span>
+          <span class="ska-cell done"><span class="n"></span>전달 사고</span>
+          <span class="ska-cell done"><span class="n"></span>수동 지휘</span>
+          <span class="ska-cell now"><span class="n">8</span>오발동</span>
+          <span class="ska-cell"><span class="n">9</span>부실 전파</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">입구는 하나로, 전문 스킬은 여럿으로</h2>
-        <span class="pill">라우터 스킬 · Router Skill</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>스킬이 20개가 되자 새 문제가 생깁니다 — 비슷한 description끼리 경쟁해 <b>엉뚱한 스킬이 발동</b>하고, 사용자는 무슨 스킬이 있는지도 모릅니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p><b>접수 창구 스킬</b>을 둡니다 — 넓은 description으로 먼저 발동해, 요청을 분류표에 대조하고 알맞은 전문 스킬로 진행합니다. 전문 스킬들의 description은 오히려 좁고 정확하게 다듬습니다.</p>
-            <div class="fl"><span class="fl-node hum">모호한 요청</span><span class="fl-arr">→</span><span class="fl-node sk">qa-desk<small>분류표</small></span><span class="fl-arr"><small>선택</small>→</span><span class="fl-node sk">전문 스킬 ×N<small>좁은 description</small></span></div></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>발동 판단이 "description 사이의 눈치 경쟁"에서 <b>명시된 분류표</b>로 승격됩니다. 2편의 교통정리(description 다듬기)를 한 단계 위에서 구조화한 것입니다.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>스킬이 늘어도 진입점은 하나 — 오발동과 미발동이 함께 줄어듭니다.</p>
-            <div class="pills"><span class="pill green">진입점 1개</span><span class="pill neutral">분류 기준이 문서화</span><span class="pill neutral">모호하면 되묻기</span></div></div>
+      <h2>스킬이 스무 개가 되자, 엉뚱한 스킬이 발동합니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 팀 스킬 20개가 쌓인 뒤</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER</span>  "이 로그 좀 봐줘"</div>
+              <div class="ska-log"><span class="ska-danger">TRIGGER pdf-export 발동 ✕</span> <span class="sh-dim">— description "로그를 문서로…"와 유사</span></div>
+              <div class="ska-log"><span class="sh-req">USER</span>  "아니, 그거 말고… 로그 분석!"</div>
+              <div class="ska-log"><span class="sh-req">USER</span>  "리뷰 코멘트 정리해줘"</div>
+              <div class="ska-log"><span class="ska-danger">(미발동)</span> <span class="sh-dim">— review-summary의 description과 표현 불일치</span></div>
+              <div class="ska-log"><span class="sh-req">USER</span>  "우리 무슨 스킬이 있지? 목록 좀…" <span class="sh-dim">— 발견 실패</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>"이 로그 좀 봐줘"(모호) — qa-desk가 받아 분류표를 보고 log-digest로 진행합니다. 분류가 안 되면 <b>후보 2개를 제시하고 확인</b>을 받습니다.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/qa-desk/SKILL.md</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-key">description:</span> <span class="t-str">QA 업무 요청 전반의 접수 창구.
+        <div class="scn-p bad" style="gap:0.7rem">
+          <span class="scn-tag">원인 분석</span>
+          <div class="scn-row" style="gap:0">
+            <span class="fl-node sk" style="font-size:0.72rem">log-digest<small>"로그를…"</small></span>
+            <span class="fl-node sk" style="font-size:0.72rem; margin-left:-1.1rem; background:#1A2140">pdf-export<small>"로그를 문서로…"</small></span>
+            <span class="vlab fail" style="margin-left:0.5rem">겹침 → 오발동</span>
+          </div>
+          <div class="scn-row" style="gap:0.5rem">
+            <span class="fl-node ghost" style="font-size:0.72rem">…해당 표현 없음…</span>
+            <span class="vlab fail">구멍 → 미발동</span>
+          </div>
+          <p class="scn-cap">발동 판단이 description들의 <b>유사도 경쟁</b> —<br>스킬이 늘수록 <b>겹침과 구멍이 함께</b> 늘어납니다.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">2편의 교통정리(description 다듬기)로 버티다가, 스무 개에서 <b>구조의 한계</b>를 만났습니다. 다음 장에서 해결합니다.</p>
+    </section>
+
+    <!-- 25 · 사건 ⑧ 해결 -->
+    <section data-sec="PART 2 · 사건 ⑧ — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 08 · 해결</span></div>
+        <div class="ska-track p2">
+          <span class="ska-cell done"><span class="n"></span>전달 사고</span>
+          <span class="ska-cell done"><span class="n"></span>수동 지휘</span>
+          <span class="ska-cell now"><span class="n">8</span>오발동</span>
+          <span class="ska-cell"><span class="n">9</span>부실 전파</span>
+        </div>
+      </div>
+      <h2>입구를 하나로 세우면, 발동이 정리됩니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 요청, 접수 창구를 세운 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER</span>  "이 로그 좀 봐줘"</div>
+              <div class="ska-log"><span class="sh-cmd">ROUTE</span> qa-desk 발동 — 접수 창구 <span class="sh-dim">(넓은 description)</span></div>
+              <div class="ska-log"><span class="sh-ok">MATCH</span> 분류표: "로그·크래시·원인" → log-digest</div>
+              <div class="ska-log"><span class="sh-ok">RUN</span>   log-digest ✓</div>
+              <div class="ska-log"><span class="sh-req">USER</span>  "그… 지난주 그거 정리해줘" <span class="sh-dim">(모호)</span></div>
+              <div class="ska-log"><span class="sh-agent">ASK</span>   "리뷰 정리 / 주간 리포트 — 어느 쪽인가요?" <span class="sh-dim">— 짐작 금지</span></div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  오발동 0 · 미발동 0 — 입구는 하나 ✓</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/qa-desk/SKILL.md</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-key">description:</span> <span class="t-str">QA 업무 요청 전반의 접수 창구.
   로그·리포트·리뷰 요청이 모호할 때 우선 사용.</span>
 
 <span class="t-hl">## 분류표</span>
@@ -2353,46 +2877,86 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
 
 <span class="t-hl">## 분류 불가 시</span>
 후보 2개를 제시하고 사용자에게 확인받는다.
-<span class="t-out">(짐작으로 진행하지 않는다)</span></div></div></div>
+<span class="t-out">(짐작으로 진행하지 않는다)</span>
+<span class="t-out">※ 전문 스킬들의 description은 오히려 좁고 정확하게.</span></div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>전문가가 많을수록 접수 창구가 필요하다.</b></p>
+      <div class="tname p2">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑧ 라우터 스킬</span><span class="tn-en">Router Skill</span></div>
+        <p class="tn-one"><b>전문가가 많을수록 접수 창구가 필요하다.</b> 발동 판단을 눈치 경쟁에서 <b>명시된 분류표</b>로 승격합니다.</p>
+        <div class="pills"><span class="pill green">진입점 1개</span><span class="pill neutral">모호하면 질문</span></div>
+      </div>
     </section>
 
-    <!-- 18 · 기법 ⑨ 게이트 체크 -->
-    <section data-sec="PART 2 · 기법 ⑨ 게이트 체크">
+    <!-- 26 · 사건 ⑨ 문제 -->
+    <section data-sec="PART 2 · 사건 ⑨ — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 2 · 스킬 연계술 — 기법 09 / 14</span></div>
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 09 · 문제</span></div>
         <div class="ska-track p2">
-          <span class="ska-cell done"><span class="n"></span>계약</span>
-          <span class="ska-cell done"><span class="n"></span>파이프라인</span>
-          <span class="ska-cell done"><span class="n"></span>라우터</span>
-          <span class="ska-cell now"><span class="n">9</span>게이트</span>
+          <span class="ska-cell done"><span class="n"></span>전달 사고</span>
+          <span class="ska-cell done"><span class="n"></span>수동 지휘</span>
+          <span class="ska-cell done"><span class="n"></span>오발동</span>
+          <span class="ska-cell now"><span class="n">9</span>부실 전파</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">부실한 산출물은, 다음 단계에 들어올 수 없습니다</h2>
-        <span class="pill">게이트 체크 · Stage Gate</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>파이프라인이 돌긴 도는데, 2단계 분석이 부실한 채 3단계 리포트로 넘어갑니다. <b>쓰레기가 들어가면 쓰레기가 나오고</b> — 단계가 길수록 오염은 증폭됩니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p>단계 사이에 <b>통과 조건</b>을 세웁니다. 다음 단계 스킬은 시작 전에 이전 산출물을 게이트(스크립트 또는 체크리스트)로 검사하고, 미달이면 진행을 거부하고 이전 단계로 반려합니다.</p>
-            <div class="fl"><span class="fl-node file">analysis.md</span><span class="fl-arr">→</span><span class="fl-node gate">게이트<small>gate.py</small></span><span class="fl-arr ok"><small>PASS</small>→</span><span class="fl-node sk">다음 단계</span><span class="fl-arr bad"><small>FAIL 반려</small>↩</span></div></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>결함을 <b>가장 싼 단계에서 차단</b>합니다 — 뒤로 갈수록 수정 비용이 커지니까요. 3편 Harness의 게이트 개념을 스킬 프로세스 안에 옮겨 심은 것입니다.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>뒤 단계가 앞 단계를 의심할 필요가 없어집니다 — 신뢰 가능한 파이프라인.</p>
-            <div class="pills"><span class="pill green">부실은 그 자리에서 정지</span><span class="pill neutral">반려 사유 명시</span></div></div>
+      <h2>부실한 중간 산출물이, 끝까지 흘러갑니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 파이프라인(⑦)이 돌던 어느 날</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-ok">DONE</span>  2/4 분석 → analysis.md <span class="sh-dim">— '재현 절차' 섹션이 비어 있음</span></div>
+              <div class="ska-log"><span class="ska-danger">DONE  3/4 초안 — 부실한 분석을 그대로 근거로 작성</span></div>
+              <div class="ska-log"><span class="ska-danger">FAIL  4/4 검증 — "재현 절차가 없어 검증 불가"</span></div>
+              <div class="ska-log"><span class="sh-cmd">BACK</span>  2단계로 롤백 — 3·4단계 산출물 폐기</div>
+              <div class="ska-log"><span class="ska-danger">REWORK 재작업 비용 3배 — 결함은 2단계에서 태어나 4단계에서 발견</span></div>
+              <div class="ska-log"><span class="sh-dim">흐름(⑦)은 있는데, 흐름을 "믿을 장치"가 없다.</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p><span class="mono" style="font-size:0.85em">analysis.md</span>에 '재현 절차' 섹션이 없음 — 리포트 스킬이 <b>시작을 거부</b>하고 분석 단계로 되돌립니다. 부실은 그 자리에서 멈춥니다.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/incident-report/ — 게이트 도입부</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">incident-report/</span>
+        <div class="scn-p bad" style="gap:0.7rem">
+          <span class="scn-tag">원인 분석 — 발견이 늦을수록 비싸진다</span>
+          <div class="g afill" style="--w:14%; --dly:0.5s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>2단계에서 잡으면</span><b>수정 1×</b></div></div>
+          <div class="g afill" style="--w:42%; --dly:0.9s"><div class="g-bar" style="border-color:rgba(255,212,107,0.5)"><i style="width:0; background:linear-gradient(90deg,#FFD46B,#FF9F7C)"></i></div><div class="g-cap"><span>3단계에서 잡으면</span><b>수정 3×</b></div></div>
+          <div class="g red afill" style="--w:100%; --dly:1.3s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>4단계에서 잡으면</span><b>수정 9× + 폐기</b></div></div>
+          <p class="scn-cap">단계 사이에 <b>검문이 없으니</b> 결함이 흐르며 증폭됩니다 — 쓰레기가 들어가면 쓰레기가 나옵니다.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">각 스킬은 입력을 <b>신뢰</b>했습니다 — 신뢰를 만들 장치가 없었을 뿐. 다음 장에서 해결합니다.</p>
+    </section>
+
+    <!-- 27 · 사건 ⑨ 해결 -->
+    <section data-sec="PART 2 · 사건 ⑨ — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 09 · 해결</span></div>
+        <div class="ska-track p2">
+          <span class="ska-cell done"><span class="n"></span>전달 사고</span>
+          <span class="ska-cell done"><span class="n"></span>수동 지휘</span>
+          <span class="ska-cell done"><span class="n"></span>오발동</span>
+          <span class="ska-cell now"><span class="n">9</span>부실 전파</span>
+        </div>
+      </div>
+      <h2>단계 사이에 문을 세우면, 부실은 그 자리에서 멈춥니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 결함, 게이트를 세운 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-cmd">RUN</span>   incident-report <span class="sh-dim">(3단계 시작 시도)</span></div>
+              <div class="ska-log"><span class="sh-cmd">GATE</span>  python scripts/gate.py output/analysis.md</div>
+              <div class="ska-log"><span class="ska-danger">FAIL  '재현 절차' 섹션 없음 → 진행 거부</span></div>
+              <div class="ska-log"><span class="sh-ok">BACK</span>  분석 단계로 반려 — 부족 항목 명시</div>
+              <div class="ska-log"><span class="sh-ok">FIX</span>   분석 보완 → analysis.md v2</div>
+              <div class="ska-log"><span class="sh-ok">GATE</span>  PASS 2/2 → 리포트 진행 ✓</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  결함이 태어난 자리에서 소멸 — 3·4단계는 무사 ✓</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — incident-report의 게이트 도입부</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">incident-report/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">scripts/</span>
    └─ gate.py             <span class="t-out">← 이전 산출물 판정기</span>
@@ -2402,14 +2966,18 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
    검사: 필수 섹션(재현 절차·영향 범위) 존재 · TODO 없음
 2. <span class="t-hl">FAIL → 진행하지 않는다.</span> 부족 항목을 알리고
    분석 단계 스킬로 보완을 요청한다.
-3. PASS → 리포트 작성을 시작한다.</div></div></div>
+3. PASS → 리포트 작성을 시작한다.</div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>게이트가 있어야 흐름을 믿는다.</b></p>
+      <div class="tname p2">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑨ 게이트 체크</span><span class="tn-en">Stage Gate</span></div>
+        <p class="tn-one"><b>게이트가 있어야 흐름을 믿는다.</b> 결함을 <b>가장 싼 단계</b>에서 차단 — 3편 Harness의 게이트를 스킬 사이에 옮겨 심었습니다.</p>
+        <div class="pills"><span class="pill green">반려 사유 명시</span><span class="pill neutral">뒤 단계는 안심</span></div>
+      </div>
     </section>
 
-    <!-- 19 · PART 2 데모 · 파이프라인 시네마 -->
-    <section data-sec="PART 2 · 데모 · 파이프라인" data-layer="DEMO">
+    <!-- 28 · PART 2 데모 · 파이프라인 시네마 -->
+    <section data-sec="PART 2 · 데모 · 파이프라인">
       <div><span class="chip">데모</span> <span class="pill">동작 재현 <span class="tiny" style="font-weight:400">(기법 ⑥⑦⑧⑨ 결합)</span></span></div>
       <h2>네 기법이 연결되면, 프로세스가 <span class="grad">스스로 흐릅니다</span></h2>
       <div class="pp-scene sim" style="margin-top:0.8rem">
@@ -2444,53 +3012,88 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
       </div>
     </section>
 
-    <!-- 20 · PART 3 간지 -->
+    <!-- 29 · PART 3 간지 -->
     <section class="section-opener" data-hero data-sec="PART 3 · 검증·리뷰 하네스">
-      <div class="autoshow fade-up"><span class="chip">PART 3 · 검증·리뷰 하네스 — 기법 ⑩~⑬</span></div>
+      <div class="autoshow fade-up"><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 ⑩~⑬</span></div>
       <h1 class="autoshow fade-up" style="font-size:3.9rem">"됐습니다"를<br><span class="grad">"증명됐습니다"로</span> 바꿉니다</h1>
       <ul class="ol autoshow fade-up" style="margin-top:1.4rem; max-width:46rem; flex:none">
-        <li class="show"><span class="ix">기법 ⑩</span><span class="lb">자가 리뷰 루프 <span class="dim small">Self-Review Loop — 프레임 분리</span></span></li>
-        <li class="show"><span class="ix">기법 ⑪</span><span class="lb">반박 검증 <span class="dim small">Adversarial Check — 무너뜨려 보기</span></span></li>
-        <li class="show"><span class="ix">기법 ⑫</span><span class="lb">기계 채점 하네스 <span class="dim small">Script-Judged Gate — 판정은 코드가</span></span></li>
-        <li class="show"><span class="ix">기법 ⑬</span><span class="lb">증거 기반 완료 <span class="dim small">Evidence-based Done — 완료의 재정의</span></span></li>
+        <li class="show"><span class="ix">사건 ⑩</span><span class="lb">방금 쓴 에이전트에게 물으면, 항상 "괜찮다"고 한다</span></li>
+        <li class="show"><span class="ix">사건 ⑪</span><span class="lb">그럴듯한 결론이, 검증을 통과해 버린다</span></li>
+        <li class="show"><span class="ix">사건 ⑫</span><span class="lb">형식·합계 같은 기계적 실수가, 말로는 안 잡힌다</span></li>
+        <li class="show"><span class="ix">사건 ⑬</span><span class="lb">"이상 없습니다" 한 줄을, 사람이 다시 다 확인한다</span></li>
       </ul>
       <p class="autoshow fade-up" style="margin-top:1.2rem; font-size:1.2rem; color:var(--fg-soft) !important">3편에서 본 <b style="color:#fff">Validation · Record · Gate</b>를, 이번엔 스킬 안으로 가져옵니다.</p>
     </section>
 
-    <!-- 21 · 기법 ⑩ 자가 리뷰 루프 -->
-    <section data-sec="PART 3 · 기법 ⑩ 자가 리뷰 루프">
+    <!-- 30 · 사건 ⑩ 문제 -->
+    <section data-sec="PART 3 · 사건 ⑩ — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 기법 10 / 14</span></div>
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 10 · 문제</span></div>
         <div class="ska-track p3">
-          <span class="ska-cell now"><span class="n">10</span>자가 리뷰</span>
-          <span class="ska-cell"><span class="n">11</span>반박</span>
-          <span class="ska-cell"><span class="n">12</span>기계 채점</span>
-          <span class="ska-cell"><span class="n">13</span>증거</span>
+          <span class="ska-cell now"><span class="n">10</span>관대한 자평</span>
+          <span class="ska-cell"><span class="n">11</span>그럴듯한 오답</span>
+          <span class="ska-cell"><span class="n">12</span>기계적 실수</span>
+          <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">쓴 사람과 읽는 사람을 분리합니다</h2>
-        <span class="pill">자가 리뷰 루프 · Self-Review Loop</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>초안 품질이 들쭉날쭉합니다. 방금 쓴 에이전트에게 "괜찮아?"라고 물으면 대부분 "네" — <b>작성자 모드는 자기 결과에 관대</b>합니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p><b>작성 → 역할 전환 → 리뷰 → 반영</b>을 한 스킬의 절차로 고정합니다. 리뷰 단계는 "지금부터 리뷰어다, 결함만 찾아라"로 관점을 강제 전환하고, 기준은 references/ 체크리스트로 못 박습니다. 지적 0건까지 최대 N회.</p>
-            <div class="fl"><span class="fl-node ag">작성 모드</span><span class="fl-arr"><small>초안</small>→</span><span class="fl-node file">draft.md</span><span class="fl-arr"><small>역할 전환</small>→</span><span class="fl-node gate">리뷰 모드<small>체크리스트</small></span><span class="fl-arr bad"><small>지적 → 반영</small>↩</span></div></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>같은 모델도 <b>생성 프레임과 비판 프레임에서 다르게 동작</b>합니다 — 비판 관점에 체크리스트를 쥐여 주면 결함 탐지율이 뜁니다. 사람 페어 리뷰의 구조를 스킬로 옮긴 것.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>초안과 제출본의 품질 격차가 사라집니다 — 사람 리뷰에는 남은 것만 올라옵니다.</p>
-            <div class="pills"><span class="pill green">품질 균질화</span><span class="pill neutral">기준은 파일로 공유</span></div></div>
+      <h2>방금 쓴 에이전트에게 물으면, 항상 "괜찮다"고 합니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — PR 설명 초안</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER</span>  "PR 설명 초안 작성해줘" → 초안 완료</div>
+              <div class="ska-log"><span class="sh-req">USER</span>  "괜찮아? 빠진 거 없어?"</div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "네, 잘 정리되어 있습니다." <span class="sh-dim">— 자기 글 자기 평가</span></div>
+              <div class="ska-log"><span class="ska-danger">REVIEW(사람) 지적 3건 — 테스트 영향 누락 · 롤백 계획 없음 · 과장 표현</span></div>
+              <div class="ska-log"><span class="sh-dim">어제도 3건, 오늘도 3건 — 매번 사람 리뷰에서 잡힌다</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>PR 설명 초안 → 리뷰어 모드가 체크리스트로 <b>3건 지적</b>(테스트 영향 누락 등) → 반영 → 재리뷰 0건 → 제출.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/pr-desc/</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">pr-desc/</span>
+        <div class="scn-p bad" style="gap:0.7rem">
+          <span class="scn-tag">원인 분석</span>
+          <div class="scn-row">
+            <span class="fl-node ag">작성 프레임<small>방금 쓴 논리 그대로</small></span>
+            <span class="fl-arr">=</span>
+            <span class="fl-node ag">검토 프레임<small>같은 관점 · 기준 없음</small></span>
+          </div>
+          <p class="scn-cap">같은 컨텍스트, 같은 관점에서 물으면 <b>자기 출력을 정당화</b>하는 쪽으로 기웁니다.<br>기준 없는 검토는 <b>인상 평가</b>일 뿐입니다.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">사람도 자기 글의 오타는 못 봅니다 — 그래서 리뷰어를 <b>따로</b> 두죠. 다음 장에서 같은 구조를 만듭니다.</p>
+    </section>
+
+    <!-- 31 · 사건 ⑩ 해결 -->
+    <section data-sec="PART 3 · 사건 ⑩ — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 10 · 해결</span></div>
+        <div class="ska-track p3">
+          <span class="ska-cell now"><span class="n">10</span>관대한 자평</span>
+          <span class="ska-cell"><span class="n">11</span>그럴듯한 오답</span>
+          <span class="ska-cell"><span class="n">12</span>기계적 실수</span>
+          <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
+        </div>
+      </div>
+      <h2>역할을 갈라서, 리뷰어에게 체크리스트를 쥐여줍니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 초안, 리뷰 루프를 절차로 고정한 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-ok">DRAFT</span> output/draft.md 작성</div>
+              <div class="ska-log"><span class="sh-cmd">SWITCH</span> "지금부터 리뷰어다" — references/checklist.md 로드</div>
+              <div class="ska-log"><span class="ska-danger">FIND</span>  지적 3건 — #2 테스트 영향 · #5 롤백 계획 · #7 어조</div>
+              <div class="ska-log"><span class="sh-ok">FIX</span>   지적 반영</div>
+              <div class="ska-log"><span class="sh-ok">RE-CHECK</span> 재리뷰 — 지적 0건</div>
+              <div class="ska-log"><span class="sh-ok">SUBMIT</span> 사람 리뷰에는 남은 것만 올라간다 ✓</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/pr-desc/</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">pr-desc/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">references/</span>
    └─ review-checklist.md  <span class="t-out">← 지적 기준 (팀 공유)</span>
@@ -2501,45 +3104,92 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
    references/review-checklist.md 항목별로 <span class="t-hl">결함만</span> 찾는다.
    <span class="t-out">(칭찬 금지 · 지적은 항목 번호와 함께)</span>
 3. 지적을 반영해 고친다. 2~3을 <span class="t-hl">최대 2회</span> 반복.
-4. 마지막 리뷰에서 지적 0건이면 제출한다.</div></div></div>
+4. 마지막 리뷰에서 지적 0건이면 제출한다.</div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>작성자와 리뷰어는 같은 모델, 다른 프레임.</b></p>
+      <div class="tname p3">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑩ 자가 리뷰 루프</span><span class="tn-en">Self-Review Loop</span></div>
+        <p class="tn-one"><b>작성자와 리뷰어는 같은 모델, 다른 프레임.</b> 비판 프레임 + 체크리스트가 결함 탐지율을 끌어올립니다 — 페어 리뷰의 스킬화.</p>
+        <div class="pills"><span class="pill green">품질 균질화</span><span class="pill neutral">기준은 팀 공유 파일</span></div>
+      </div>
     </section>
 
-    <!-- 22 · 기법 ⑪ 반박 검증 -->
-    <section data-sec="PART 3 · 기법 ⑪ 반박 검증">
+    <!-- 32 · 사건 ⑪ 문제 -->
+    <section data-sec="PART 3 · 사건 ⑪ — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 기법 11 / 14</span></div>
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 11 · 문제</span></div>
         <div class="ska-track p3">
-          <span class="ska-cell done"><span class="n"></span>자가 리뷰</span>
-          <span class="ska-cell now"><span class="n">11</span>반박</span>
-          <span class="ska-cell"><span class="n">12</span>기계 채점</span>
-          <span class="ska-cell"><span class="n">13</span>증거</span>
+          <span class="ska-cell done"><span class="n"></span>관대한 자평</span>
+          <span class="ska-cell now"><span class="n">11</span>그럴듯한 오답</span>
+          <span class="ska-cell"><span class="n">12</span>기계적 실수</span>
+          <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">통과시키려 하지 말고, 무너뜨려 봅니다</h2>
-        <span class="pill">반박 검증 · Adversarial Check</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>리뷰를 시켜도 "전반적으로 타당합니다"라는 <b>관대한 통과</b>가 나옵니다. 결론을 지지하는 증거만 모으는 확증 편향은 리뷰어 모드에도 남습니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p>검증의 방향을 뒤집습니다 — <b>"이 결론은 틀렸다"를 전제로</b> 반례를 적극 탐색시키고, 정해진 반박 경로를 모두 시도해 실패했을 때만 채택합니다. 가능하면 깨끗한 컨텍스트(새 세션)에서 — 작성 과정의 편향까지 차단됩니다.</p></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>지지 증거는 아무리 쌓여도 확증이 안 되지만, <b>반례는 하나로 결정적</b>입니다 — 반증주의의 절차화. 검증자를 분리하면 "수험생이 채점하는" 구조도 깨집니다.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>그럴듯한 오답이 걸러집니다 — 보고의 신뢰도가 달라집니다.</p>
-            <div class="pills"><span class="pill green">거짓 확신 차단</span><span class="pill neutral">반박 시도가 기록으로</span></div></div>
+      <h2>그럴듯한 결론이, 검증을 통과해 버립니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 장애 원인 보고 (리뷰 루프 ⑩까지 통과한 상태)</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "원인은 8/12 배포입니다 — 배포 직후 오류 급증"</div>
+              <div class="ska-log"><span class="sh-ok">REVIEW</span> "근거 명확, 그래프 일치 — 타당합니다" <span class="sh-dim">— 리뷰도 통과</span></div>
+              <div class="ska-log"><span class="sh-cmd">ACTION</span> 롤백 실행</div>
+              <div class="ska-log"><span class="ska-danger">RESULT 오류 여전 — 원인이 아니었다</span></div>
+              <div class="ska-log"><span class="ska-danger">TRUTH  실제 원인: 8/10 인증서 만료 — 배포와 무관</span></div>
+              <div class="ska-log"><span class="sh-dim">지지 증거만 모았다 — 반례는 아무도 찾지 않았다</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>"원인은 8/12 배포" — 반박 모드가 배포 전 로그를 뒤져 <b>8/10에 같은 오류를 발견</b>, 결론 기각. 통과 모드였다면 그대로 보고됐을 오류입니다.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/refute-check/SKILL.md</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">## 절차</span> <span class="t-out">(결론 검증 요청 시)</span>
+        <div class="scn-p bad" style="gap:0.7rem">
+          <span class="scn-tag">원인 분석</span>
+          <div class="scn-row" style="align-items:stretch">
+            <div class="scn-col" style="gap:0.3rem">
+              <span class="tiny mono" style="color:#FF94AC !important">지지 증거 수집</span>
+              <span class="blob" style="border-style:solid">배포 후 급증 ✓</span>
+              <span class="blob" style="border-style:solid">시점 일치 ✓</span>
+            </div>
+            <div class="scn-col" style="gap:0.3rem">
+              <span class="tiny mono" style="color:#FF94AC !important">반례 탐색</span>
+              <span class="blob" style="min-height:3.6rem; display:flex; align-items:center">비어 있음 — 절차에 없음</span>
+            </div>
+          </div>
+          <p class="scn-cap"><b>확증 편향</b> — 지지 증거는 아무리 쌓여도 확증이 아니고,<br>반례는 <b>하나만 있어도 결정적</b>입니다.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">리뷰 프레임(⑩)도 "통과시킬 이유"를 찾습니다 — 방향 자체를 뒤집어야 합니다. 다음 장에서 해결합니다.</p>
+    </section>
+
+    <!-- 33 · 사건 ⑪ 해결 -->
+    <section data-sec="PART 3 · 사건 ⑪ — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 11 · 해결</span></div>
+        <div class="ska-track p3">
+          <span class="ska-cell done"><span class="n"></span>관대한 자평</span>
+          <span class="ska-cell now"><span class="n">11</span>그럴듯한 오답</span>
+          <span class="ska-cell"><span class="n">12</span>기계적 실수</span>
+          <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
+        </div>
+      </div>
+      <h2>통과시키려 하지 말고, 무너뜨려 봅니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 결론, 반박 절차를 통과시키는 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-cmd">CLAIM</span> "원인은 8/12 배포" — 반박 검증 시작</div>
+              <div class="ska-log"><span class="sh-cmd">REFUTE</span> 시간 반박: <span class="sh-dim">grep ERROR 8/09~8/12 로그</span></div>
+              <div class="ska-log"><span class="ska-danger">FOUND</span> 8/10에도 동일 오류 다수 — <b>배포 전!</b></div>
+              <div class="ska-log"><span class="sh-ok">REJECT</span> 결론 기각 — 반례 1건이 결정적</div>
+              <div class="ska-log"><span class="sh-cmd">RE-SEARCH</span> 대안 원인 조사 → 8/10 인증서 만료 확인</div>
+              <div class="ska-log"><span class="sh-ok">REPORT</span> 정정 보고 + 반박 기록 첨부 ✓ <span class="sh-dim">— 롤백 헛수고 없음</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/refute-check/SKILL.md</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">## 절차</span> <span class="t-out">(결론 검증 요청 시)</span>
 1. 결론을 한 문장으로 요약해 적는다.
 2. <span class="t-hl">입장 전환 — "이 결론은 틀렸다"</span>를 전제로,
    반례를 3가지 경로에서 찾는다:
@@ -2548,46 +3198,87 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
    · 대안 반박 — 같은 증상의 다른 원인 후보는
 3. 반례 발견 → <span class="t-hl">결론 기각</span>, 근거와 함께 보고.
 4. 3경로 모두 실패 → "반박 3회 실패"를 명시하고 채택.
-<span class="t-out">※ 가능하면 새 세션에서 실행 (작성 편향 차단)</span></div></div></div>
+<span class="t-out">※ 가능하면 새 세션에서 실행 (작성 편향 차단)</span></div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>반박에서 살아남은 결론만 결론이다.</b></p>
+      <div class="tname p3">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑪ 반박 검증</span><span class="tn-en">Adversarial Check</span></div>
+        <p class="tn-one"><b>반박에서 살아남은 결론만 결론이다.</b> 검증의 방향을 "통과 찾기"에서 <b>"반례 찾기"</b>로 — 반증주의의 절차화.</p>
+        <div class="pills"><span class="pill green">거짓 확신 차단</span><span class="pill neutral">반박 기록이 남는다</span></div>
+      </div>
     </section>
 
-    <!-- 23 · 기법 ⑫ 기계 채점 하네스 -->
-    <section data-sec="PART 3 · 기법 ⑫ 기계 채점 하네스">
+    <!-- 34 · 사건 ⑫ 문제 -->
+    <section data-sec="PART 3 · 사건 ⑫ — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 기법 12 / 14</span></div>
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 12 · 문제</span></div>
         <div class="ska-track p3">
-          <span class="ska-cell done"><span class="n"></span>자가 리뷰</span>
-          <span class="ska-cell done"><span class="n"></span>반박</span>
-          <span class="ska-cell now"><span class="n">12</span>기계 채점</span>
-          <span class="ska-cell"><span class="n">13</span>증거</span>
+          <span class="ska-cell done"><span class="n"></span>관대한 자평</span>
+          <span class="ska-cell done"><span class="n"></span>그럴듯한 오답</span>
+          <span class="ska-cell now"><span class="n">12</span>기계적 실수</span>
+          <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">판정은 코드가, 수정은 에이전트가 맡습니다</h2>
-        <span class="pill">기계 채점 하네스 · Script-Judged Gate</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>LLM이 LLM을 검증해도 마지막 불안은 남습니다 — <b>"됐다고 말하는 것"과 "된 것"은 다릅니다</b>. 형식·합계·필수 요소 같은 기계적 기준마저 말로 검증하고 있습니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p>산출물의 객관 기준을 scripts/ 채점기로 만들고, 절차에 <b>"채점 → FAIL이면 수정 → 재채점" 루프</b>를 명시합니다. PASS가 나올 때까지 — 판정은 결정적으로, 수정은 생성적으로.</p>
-            <div class="fl"><span class="fl-node ag">작성</span><span class="fl-arr">→</span><span class="fl-node scr">validate.py<small>결정적 판정</small></span><span class="fl-arr bad"><small>FAIL 수정</small>↩</span><span class="fl-arr ok"><small>PASS</small>→</span><span class="fl-node file">report.md + 채점 로그</span></div></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>판정을 확률(LLM)에서 <b>결정(코드)</b>으로 옮깁니다. 3편의 Validation 루프(검증 → 실패 → 재시도)를 스킬 안에 내장한 것 — 하네스가 없어도 <b>스킬이 하네스처럼</b> 동작합니다.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>"완료"가 채점 로그가 있는 사실이 됩니다 — 사람은 PASS만 확인합니다.</p>
-            <div class="pills"><span class="pill green">판정 재현 가능</span><span class="pill neutral">루프 상한 명시</span></div></div>
+      <h2>형식·합계 같은 기계적 실수가, 말로는 안 잡힙니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 주간 테스트 리포트</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "주간 리포트 완료했습니다."</div>
+              <div class="ska-log"><span class="ska-danger">REVIEW(사람) PASS 12 + FAIL 3 = 15 ≠ 전체 17 — 합계 불일치</span></div>
+              <div class="ska-log"><span class="sh-req">USER</span>  "다시 확인해줘"</div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "확인했습니다 — 문제없어 보입니다" <span class="sh-dim">— 말로 검증</span></div>
+              <div class="ska-log"><span class="ska-danger">REVIEW(사람) 이번엔 '환경' 섹션 누락 발견 — 재작업 2회째</span></div>
+              <div class="ska-log"><span class="sh-dim">사람이 매주 검산기 노릇을 하고 있다</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>리포트 합계 불일치 → validate.py FAIL(항목 명시) → 에이전트가 고침 → PASS. <b>2편 실습의 check.sh가 정확히 이 구조</b>였습니다 — 여러분은 이미 채점 루프를 겪었습니다.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/test-report/</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">test-report/</span>
+        <div class="scn-p bad" style="gap:0.7rem">
+          <span class="scn-tag">원인 분석 — 도구 불일치</span>
+          <div class="scn-row">
+            <span class="fl-node" style="border-color:rgba(190,200,224,0.5)">검사 대상<small>형식·합계 = 결정적 기준</small></span>
+            <span class="fl-arr bad">✕</span>
+            <span class="fl-node ag">검사 도구<small>LLM = 확률적 생성기</small></span>
+          </div>
+          <p class="scn-cap">결정적 기준을 확률 도구로 검사하면 <b>확률적으로 놓칩니다</b>.<br>능력 문제가 아니라 <b>도구 선택</b> 문제입니다.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">사건 ②와 같은 교훈이 검증에도 적용됩니다 — <b>세는 일은 코드의 몫</b>. 다음 장에서 해결합니다.</p>
+    </section>
+
+    <!-- 35 · 사건 ⑫ 해결 -->
+    <section data-sec="PART 3 · 사건 ⑫ — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 12 · 해결</span></div>
+        <div class="ska-track p3">
+          <span class="ska-cell done"><span class="n"></span>관대한 자평</span>
+          <span class="ska-cell done"><span class="n"></span>그럴듯한 오답</span>
+          <span class="ska-cell now"><span class="n">12</span>기계적 실수</span>
+          <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
+        </div>
+      </div>
+      <h2>채점기를 동봉하면, PASS까지 스스로 고칩니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 리포트, 채점 루프를 절차에 넣은 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-ok">WRITE</span> output/test-report.md 작성</div>
+              <div class="ska-log"><span class="sh-cmd">RUN</span>   python scripts/validate.py output/test-report.md</div>
+              <div class="ska-log"><span class="ska-danger">FAIL</span>  합계 15≠17 · '환경' 섹션 누락 <span class="sh-dim">— 항목 명시</span></div>
+              <div class="ska-log"><span class="sh-ok">FIX</span>   지적 항목 수정</div>
+              <div class="ska-log"><span class="sh-cmd">RUN</span>   validate.py → <span class="plv" style="font-weight:700">PASS</span> ✓</div>
+              <div class="ska-log"><span class="sh-ok">ATTACH</span> PASS 출력 원문을 리포트 끝에 첨부</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  사람은 PASS 로그만 확인 — 검산기 은퇴 ✓</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/test-report/</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">test-report/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">scripts/</span>
    └─ validate.py          <span class="t-out">← 채점기</span>
@@ -2598,45 +3289,85 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
    검사: 필수 섹션 · PASS+FAIL=전체 합계 · 금지 문구
 3. FAIL이면 지적 항목을 고치고 2를 다시 실행한다.
    <span class="t-hl">PASS가 나올 때까지 반복한다.</span> <span class="t-out">(최대 5회, 초과 시 보고)</span>
-4. PASS 출력 원문을 리포트 끝에 첨부한다.</div></div></div>
+4. PASS 출력 원문을 리포트 끝에 첨부한다.</div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>말로 통과하지 말고, 채점으로 통과하라.</b></p>
+      <div class="tname p3">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑫ 기계 채점 하네스</span><span class="tn-en">Script-Judged Gate</span></div>
+        <p class="tn-one"><b>말로 통과하지 말고, 채점으로 통과하라.</b> 3편 Validation 루프의 스킬 내장 — 그리고 <b>2편 실습의 check.sh가 바로 이 구조</b>였습니다.</p>
+        <div class="pills"><span class="pill green">판정 재현 가능</span><span class="pill neutral">루프 상한 명시</span></div>
+      </div>
     </section>
 
-    <!-- 24 · 기법 ⑬ 증거 기반 완료 -->
-    <section data-sec="PART 3 · 기법 ⑬ 증거 기반 완료">
+    <!-- 36 · 사건 ⑬ 문제 -->
+    <section data-sec="PART 3 · 사건 ⑬ — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 기법 13 / 14</span></div>
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 13 · 문제</span></div>
         <div class="ska-track p3">
-          <span class="ska-cell done"><span class="n"></span>자가 리뷰</span>
-          <span class="ska-cell done"><span class="n"></span>반박</span>
-          <span class="ska-cell done"><span class="n"></span>기계 채점</span>
-          <span class="ska-cell now"><span class="n">13</span>증거</span>
+          <span class="ska-cell done"><span class="n"></span>관대한 자평</span>
+          <span class="ska-cell done"><span class="n"></span>그럴듯한 오답</span>
+          <span class="ska-cell done"><span class="n"></span>기계적 실수</span>
+          <span class="ska-cell now"><span class="n">13</span>완료 한 줄</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">완료는 주장이 아니라, 증거입니다</h2>
-        <span class="pill">증거 기반 완료 · Evidence-based Done</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>"점검 완료했습니다" 한 줄 — 무엇을 실행해서 무엇을 봤다는 건지 없습니다. 결국 <b>사람이 처음부터 다시 확인</b>하고, 맡긴 의미가 사라집니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p>출력 규격을 바꿉니다 — 완료 선언에는 항목별 <b>실행한 명령 + 출력 원문 + 판정</b>의 증거표를 의무화하고, 실행 못 한 항목은 "미실행"으로 정직하게 남기게 합니다. 증거 없는 문장은 쓰지 못하게 금지.</p></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>완료의 정의를 주장에서 <b>검증 가능한 기록</b>으로 바꿉니다. 3편의 Record(기록) 개념을 산출물 쪽에 적용한 것 — 신뢰는 감시가 아니라 증거에서 나옵니다.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>사람의 재확인 비용이 사라지고, 문제가 생겨도 추적이 됩니다.</p>
-            <div class="pills"><span class="pill green">재검증 → 증거 훑기</span><span class="pill neutral">감사 추적 확보</span></div></div>
+      <h2>"이상 없습니다"라는 말은, 증거가 아닙니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 배포 전 점검</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "배포 전 점검 8항목 완료 — 이상 없습니다."</div>
+              <div class="ska-log"><span class="sh-cmd">DEPLOY</span> 배포 진행</div>
+              <div class="ska-log"><span class="sh-dim">02:40</span> <span class="ska-danger">장애 — DB 마이그레이션 미적용이 원인</span></div>
+              <div class="ska-log"><span class="ska-danger">POST-MORTEM 점검 4번 항목, 실은 권한 오류로 실행 실패했었음</span></div>
+              <div class="ska-log"><span class="sh-dim">"이상 없습니다"에는 실행 기록이 없다 — 확인도 반박도 불가</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>배포 전 점검 8항목 — 각 행에 실제 명령과 출력 3줄이 붙은 표가 옵니다. 사람 확인이 <b>"재검증 30분"에서 "증거 훑기 3분"으로</b> 줄어듭니다.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/release-check/</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">release-check/</span>
+        <div class="scn-p bad" style="gap:0.7rem">
+          <span class="scn-tag">원인 분석</span>
+          <div class="scn-col" style="gap:0.4rem">
+            <span class="blob" style="border-style:solid; font-size:0.9rem">"이상 없습니다" <b style="color:#FF94AC">— 증거 0줄</b></span>
+            <span class="fl-arr">▼</span>
+            <span class="fl-node hum">사람의 선택지<small>전부 재검증(30분) 또는 그냥 믿기</small></span>
+          </div>
+          <p class="scn-cap">완료 보고가 <b>주장문 형식</b>입니다 — 실행 여부·출력이 남지 않으니, 실패한 항목이 있어도 <b>낙관 쪽으로 뭉개져도 아무도 모릅니다</b>.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">신뢰가 무너진 건 에이전트 탓이 아니라 <b>보고 형식</b> 탓입니다. 다음 장에서 해결합니다.</p>
+    </section>
+
+    <!-- 37 · 사건 ⑬ 해결 -->
+    <section data-sec="PART 3 · 사건 ⑬ — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 13 · 해결</span></div>
+        <div class="ska-track p3">
+          <span class="ska-cell done"><span class="n"></span>관대한 자평</span>
+          <span class="ska-cell done"><span class="n"></span>그럴듯한 오답</span>
+          <span class="ska-cell done"><span class="n"></span>기계적 실수</span>
+          <span class="ska-cell now"><span class="n">13</span>완료 한 줄</span>
+        </div>
+      </div>
+      <h2>완료 선언에, 증거표를 의무로 붙입니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 점검, 증거표 규격 버전</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-cmd">CHECK</span> 8항목 — 각 행: 실행 명령 + 출력 3줄 + 판정</div>
+              <div class="ska-log"><span class="sh-ok">#1</span>    curl /health → 200 OK — <span class="plv" style="font-weight:700">PASS</span></div>
+              <div class="ska-log"><span class="sh-ok">#2~3</span>  디스크·백업 확인 — PASS <span class="sh-dim">(출력 첨부)</span></div>
+              <div class="ska-log"><span class="t-hl">#4</span>    migrate --check → 권한 오류 → <b style="color:#FFE08A">"미실행" 정직 표기</b></div>
+              <div class="ska-log"><span class="sh-ok">REPORT</span> 증거표 첨부해 완료 보고</div>
+              <div class="ska-log"><span class="sh-ok">HUMAN</span> 훑는 데 3분 — 미실행 1건만 조치 후 <span class="plv" style="font-weight:700">안전 배포</span> ✓</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/release-check/</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">release-check/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">assets/</span>
    └─ evidence-form.md     <span class="t-out">← 증거표 양식</span>
@@ -2647,79 +3378,124 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
   점검 항목 | 실행한 명령 | 출력 원문(3줄 이내) | 판정
 · 실행하지 않은 항목은 <span class="t-str">"미실행"</span> 으로 남긴다.
   <span class="t-out">(빈칸·추정 금지)</span>
-· 증거가 없는 주장은 리포트에 쓰지 않는다.</div></div></div>
+· 증거가 없는 주장은 리포트에 쓰지 않는다.</div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>증거가 없으면 완료가 아니다.</b></p>
+      <div class="tname p3">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑬ 증거 기반 완료</span><span class="tn-en">Evidence-based Done</span></div>
+        <p class="tn-one"><b>증거가 없으면 완료가 아니다.</b> 완료의 정의를 주장에서 <b>검증 가능한 기록</b>으로 — 3편 Record의 산출물 적용.</p>
+        <div class="pills"><span class="pill green">재확인 30분 → 3분</span><span class="pill neutral">감사 추적 확보</span></div>
+      </div>
     </section>
 
-    <!-- 25 · PART 3 정리 · 네 겹 그물 -->
+    <!-- 38 · PART 3 정리 · 네 겹 그물 -->
     <section data-sec="PART 3 · 정리">
       <div><span class="chip">PART 3 · 정리</span></div>
       <h2>네 겹의 그물이, <span class="grad">서로 다른 결함</span>을 잡습니다</h2>
-      <div class="net">
-        <div class="net-row n10 autoshow fade-up">
-          <div class="nt"><span class="tkb b3">⑩</span>자가 리뷰 루프</div>
-          <div class="nc">잡는 것 — <b>누락·모호함·형식 이탈</b> 같은 1차 결함</div>
-          <div class="nj">판정: 같은 세션의 리뷰 프레임 · 비용 최소</div>
+      <div class="netfall sim" style="margin-top:0.9rem; padding-top:2.1rem">
+        <span class="nf-chip amvy" style="left:8%; --t0:0rem; --t1:2.55rem; --dur:0.9s; --dly:0.3s; top:var(--t1)">누락·모호 발견</span>
+        <span class="nf-chip amvy" style="left:30%; --t0:0rem; --t1:5.95rem; --dur:1.2s; --dly:1.2s; top:var(--t1)">그럴듯한 오답</span>
+        <span class="nf-chip amvy" style="left:54%; --t0:0rem; --t1:9.35rem; --dur:1.5s; --dly:2.1s; top:var(--t1)">합계 불일치</span>
+        <span class="nf-chip okc amvy" style="left:76%; --t0:0rem; --t1:15.2rem; --dur:2.1s; --dly:3.1s; top:var(--t1)">검증된 결과 ✓</span>
+        <div class="net">
+          <div class="net-row n10 ahit" style="--dly:1.15s">
+            <div class="nt"><span class="tkb b3">⑩</span>자가 리뷰 루프</div>
+            <div class="nc">잡는 것 — <b>누락 · 모호함 · 형식 이탈</b></div>
+            <div class="nj">판정: 리뷰 프레임 · 비용 초 단위</div>
+          </div>
+          <div class="net-row n11 ahit" style="--dly:2.3s">
+            <div class="nt"><span class="tkb b3">⑪</span>반박 검증</div>
+            <div class="nc">잡는 것 — <b>그럴듯한 오답</b> (확증 편향)</div>
+            <div class="nj">판정: 반박 프레임 · 새 세션 권장</div>
+          </div>
+          <div class="net-row n12 ahit" style="--dly:3.5s">
+            <div class="nt"><span class="tkb b3">⑫</span>기계 채점 하네스</div>
+            <div class="nc">잡는 것 — <b>형식 · 수치 · 규칙 위반</b></div>
+            <div class="nj">판정: 코드 · 결정적 · 재현 가능</div>
+          </div>
+          <div class="net-row n13">
+            <div class="nt"><span class="tkb b3">⑬</span>증거 기반 완료</div>
+            <div class="nc">남기는 것 — <b>사람이 확인할 근거</b></div>
+            <div class="nj">판정: 사람 · 훑기 3분</div>
+          </div>
         </div>
-        <div class="net-row n11 autoshow fade-up">
-          <div class="nt"><span class="tkb b3">⑪</span>반박 검증</div>
-          <div class="nc">잡는 것 — <b>그럴듯한 오답</b>, 확증 편향이 만든 결론</div>
-          <div class="nj">판정: 반박 전담 프레임 · 새 세션 권장</div>
-        </div>
-        <div class="net-row n12 autoshow fade-up">
-          <div class="nt"><span class="tkb b3">⑫</span>기계 채점 하네스</div>
-          <div class="nc">잡는 것 — <b>형식·수치·규칙 위반</b>, 말로는 못 잡는 것</div>
-          <div class="nj">판정: 코드 · 결정적 · 재현 가능</div>
-        </div>
-        <div class="net-row n13 autoshow fade-up">
-          <div class="nt"><span class="tkb b3">⑬</span>증거 기반 완료</div>
-          <div class="nc">남기는 것 — <b>사람이 확인할 근거</b>, 최종 신뢰의 재료</div>
-          <div class="nj">판정: 사람 · 훑기만으로 승인 가능</div>
-        </div>
+        <div class="h0 ain" style="--dly:4.6s; margin-top:0.55rem; border:0.11rem dashed rgba(43,234,208,0.55); border-radius:0.75rem; padding:0.45rem 0.9rem; text-align:center; font-weight:800; color:#A9FFF0; background:rgba(43,234,208,0.05)">통과 — 증거와 함께 사람 승인 ✓</div>
+        <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
       </div>
-      <p class="autoshow fade-up" style="font-size:1.2rem; margin-top:1.0rem">아래로 갈수록 판정이 <b class="accent2">단단해지고</b>, 위로 갈수록 <b class="accent">싸고 빠릅니다</b> — 넷을 다 쓸 필요는 없습니다.</p>
-      <p class="note autoshow fade-up" style="margin-top:0.7rem"><b>산출물의 위험도만큼 겹칩니다</b> — 메모 정리는 ⑩ 하나로, 배포 점검은 ⑩⑫⑬을 함께.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.6rem">넷을 다 쓸 필요는 없습니다 — <b>산출물의 위험도만큼 겹칩니다.</b> 메모 정리는 ⑩ 하나로, 배포 점검은 ⑩⑫⑬을 함께.</p>
     </section>
 
-    <!-- 26 · PART 4 간지 -->
+    <!-- 39 · PART 4 간지 -->
     <section class="section-opener" data-hero data-sec="PART 4 · 확산">
-      <div class="autoshow fade-up"><span class="chip">PART 4 · 확산 — 기법 ⑭</span></div>
+      <div class="autoshow fade-up"><span class="chip">PART 4 · 확산 — 사건 ⑭</span></div>
       <h1 class="autoshow fade-up" style="font-size:3.9rem">기법은, <span class="grad">퍼져야 자산</span>이 됩니다</h1>
-      <p class="autoshow fade-up" style="margin-top:1.2rem; font-size:1.3rem; max-width:46rem">열세 가지 기법을 배워도, 팀원 각자의 SKILL.md가 제각각이면 조직의 자산이 아닙니다.<br>마지막 기법은 <b>기법을 퍼뜨리는 기법</b>입니다.</p>
+      <p class="autoshow fade-up" style="margin-top:1.2rem; font-size:1.3rem; max-width:46rem">열세 개의 사건을 해결했습니다.<br>마지막 사건은 — <b>이 해결책들이 팀에 퍼지지 않는 사건</b>입니다.</p>
     </section>
 
-    <!-- 27 · 기법 ⑭ 스킬 팩토리 -->
-    <section data-sec="PART 4 · 기법 ⑭ 스킬 팩토리">
+    <!-- 40 · 사건 ⑭ 문제 -->
+    <section data-sec="PART 4 · 사건 ⑭ — 문제">
       <div class="tk-top">
-        <div><span class="chip">PART 4 · 확산 — 기법 14 / 14</span></div>
+        <div><span class="chip">PART 4 · 확산 — 사건 14 · 문제</span></div>
         <div class="ska-track p4">
-          <span class="ska-cell now"><span class="n">14</span>스킬 팩토리</span>
+          <span class="ska-cell now"><span class="n">14</span>제각각 품질</span>
         </div>
       </div>
-      <div class="tk-head">
-        <h2 style="margin:0">스킬을 만드는 스킬이, 표준을 만듭니다</h2>
-        <span class="pill">스킬 팩토리 · Meta-skill</span>
-      </div>
-      <div class="tk-wrap">
-        <div class="tk-col">
-          <div class="tk prob o1"><div class="tk-h"><span class="tk-n">1</span>문제제기</div>
-            <p>기법을 배워도 팀에 퍼지지 않습니다 — 각자 만든 SKILL.md는 <b>품질이 제각각</b>이고, 잘 쓰는 사람의 노하우는 문서로 만들어도 읽히지 않습니다.</p></div>
-          <div class="tk how o2"><div class="tk-h"><span class="tk-n">2</span>기법설명</div>
-            <p>팀 표준(다섯 요소·금지 조항·검증 규칙)과 템플릿을 품은 <b>"스킬 제작 스킬"</b>을 만듭니다. 다섯 질문 인터뷰로 요구를 뽑아 표준 골격을 생성하고, 표준 체크리스트로 자가 점검(⑩) 후 발동 시험까지 안내합니다.</p></div>
-          <div class="tk why o5"><div class="tk-h"><span class="tk-n">5</span>문제극복 원리</div>
-            <p>모범 사례를 "읽는 문서"가 아니라 <b>"실행되는 생성기"</b>로 배포합니다 — 표준이 기본값이 되면, 표준을 지키는 것이 제일 쉬운 길이 됩니다.</p></div>
-          <div class="tk eff o6 grow"><div class="tk-h"><span class="tk-n">6</span>스킬효과</div>
-            <p>스킬 생태계의 확장 속도와 품질을 동시에 확보합니다 — 오늘의 13기법도 이 스킬에 담아 배포할 수 있습니다.</p>
-            <div class="pills"><span class="pill green">신입도 첫 스킬이 표준</span><span class="pill neutral">표준 개정 = 파일 교체</span></div></div>
+      <h2>기법을 배워도, 팀의 스킬은 제각각입니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">문제 재현 — 세미나 2주 뒤</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="ska-danger">A의 스킬</span> — description 모호 → 미발동 <span class="sh-dim">(2편 이론② 위반)</span></div>
+              <div class="ska-log"><span class="ska-danger">B의 스킬</span> — 금지 조항 없음 → 리포트에 git 로그까지 수집</div>
+              <div class="ska-log"><span class="sh-req">C</span>      "만들다 말았어요 — 뭐부터 적을지 몰라서"</div>
+              <div class="ska-log"><span class="sh-cmd">SHARE</span> "SKILL.md 작성 가이드 v2" 문서 공유</div>
+              <div class="ska-log"><span class="ska-danger">READ  조회수 3 — 아무도 읽지 않는다</span></div>
+              <div class="ska-log"><span class="sh-dim">잘 쓰는 사람의 노하우가, 그 사람 밖으로 나가지 못한다</span></div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="tk-col">
-          <div class="tk ex o3"><div class="tk-h"><span class="tk-n">3</span>예제</div>
-            <p>"회의록 정리 스킬 만들어줘" — 인터뷰 5문답 → 표준 골격의 SKILL.md 생성 → 자가 점검 통과 → 발동 시험 문장 3개 안내.</p></div>
-          <div class="tk comp o4 grow"><div class="tk-h"><span class="tk-n">4</span>스킬구성</div>
-            <div class="term"><div class="term-bar"><span class="term-title">.opencode/skills/skill-factory/</span></div>
-            <div class="term-body" style="white-space:pre-wrap"><span class="t-hl">skill-factory/</span>
+        <div class="scn-p bad" style="gap:0.8rem">
+          <span class="scn-tag">원인 분석</span>
+          <div class="scn-row" style="gap:0.9rem">
+            <div class="doc coral" style="transform:rotate(-5deg); min-width:0"><span class="dt">A의 SKILL.md</span><span class="dl" style="width:40%"></span></div>
+            <div class="doc coral" style="transform:rotate(3deg); min-width:0"><span class="dt">B의 SKILL.md</span><span class="dl"></span><span class="dl"></span><span class="dl" style="width:85%"></span></div>
+            <div class="doc" style="border-style:dashed; min-width:0"><span class="dt">C의 — 미완성</span></div>
+          </div>
+          <p class="scn-cap">표준이 <b>"읽어야 하는 문서"</b>로만 존재합니다.<br>적용 비용은 각자에게 있고, 품질은 <b>개인 숙련도에 비례</b>합니다.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:0.55rem">문서는 배포가 아닙니다 — <b>기본값이 배포</b>입니다. 다음 장, 마지막 해결입니다.</p>
+    </section>
+
+    <!-- 41 · 사건 ⑭ 해결 -->
+    <section data-sec="PART 4 · 사건 ⑭ — 해결">
+      <div class="tk-top">
+        <div><span class="chip">PART 4 · 확산 — 사건 14 · 해결</span></div>
+        <div class="ska-track p4">
+          <span class="ska-cell now"><span class="n">14</span>제각각 품질</span>
+        </div>
+      </div>
+      <h2>스킬을 만드는 스킬이, 표준을 기본값으로 만듭니다</h2>
+      <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
+        <div>
+          <div class="term shell">
+            <div class="term-bar"><span class="term-title">해결 리플레이 — 신입 C의 첫 스킬 제작</span></div>
+            <div class="term-body" style="line-height:1.95; font-size:0.95rem">
+              <div class="ska-log"><span class="sh-req">USER(C)</span> "회의록 정리 스킬 만들어줘"</div>
+              <div class="ska-log"><span class="sh-agent">ASK</span>   다섯 질문 — 언제 발동? 입력? 출력? 금지? 검증?</div>
+              <div class="ska-log"><span class="sh-ok">GEN</span>   .opencode/skills/meeting-notes/SKILL.md <span class="sh-dim">— 표준 골격</span></div>
+              <div class="ska-log"><span class="sh-ok">SELF-CHECK</span> references/skill-standard.md 통과 ✓ <span class="sh-dim">(자가 리뷰 ⑩)</span></div>
+              <div class="ska-log"><span class="sh-ok">GUIDE</span> 발동 시험 문장 3개 + 재시작 안내</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  신입의 첫 스킬 = 팀 표준 품질 ✓</div>
+            </div>
+          </div>
+          <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+        </div>
+        <div class="term" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/skill-factory/</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">skill-factory/</span>
 ├─ <span class="t-key">SKILL.md</span>
 ├─ <span class="t-key">references/</span>
 │  └─ skill-standard.md   <span class="t-out">← 팀 표준 (5요소·금지·검증)</span>
@@ -2732,13 +3508,17 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
 2. 답을 assets/skill-template.md 골격에 채워
    <span class="t-str">.opencode/skills/&lt;이름&gt;/SKILL.md</span> 초안 생성.
 3. references/skill-standard.md 로 자가 점검한다.
-4. 발동 시험 문장 3개를 만들어, 재시작 후 시험을 안내한다.</div></div></div>
+4. 발동 시험 문장 3개를 만들어, 재시작 후 시험을 안내한다.</div>
         </div>
       </div>
-      <p class="note" style="margin-top:0.5rem">★ 외우는 한 줄 — <b>표준은 문서가 아니라 기본값으로 배포한다.</b></p>
+      <div class="tname p4">
+        <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑭ 스킬 팩토리</span><span class="tn-en">Meta-skill</span></div>
+        <p class="tn-one"><b>표준은 문서가 아니라 기본값으로 배포한다.</b> 오늘의 13기법도 이 스킬에 담아 팀에 퍼뜨릴 수 있습니다.</p>
+        <div class="pills"><span class="pill green">첫 스킬 = 표준</span><span class="pill neutral">표준 개정 = 파일 교체</span></div>
+      </div>
     </section>
 
-    <!-- 28 · 기법 선택 지도 -->
+    <!-- 42 · 기법 선택 지도 -->
     <section data-sec="종합 · 기법 선택 지도">
       <div><span class="chip">종합 ① · 기법 선택 지도</span></div>
       <h2>문제에서 출발하면, 기법은 저절로 골라집니다</h2>
@@ -2785,7 +3565,7 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
       <p class="note autoshow fade-up" style="margin-top:0.9rem">순서 제안 — <b>①~④는 오늘부터</b>, ⑥⑫는 첫 파이프라인을 만들 때, ⑤⑪은 걸린 일이 커졌을 때.</p>
     </section>
 
-    <!-- 29 · 종합 사례 -->
+    <!-- 43 · 종합 사례 -->
     <section data-sec="종합 · 사례">
       <div><span class="chip">종합 ② · 사례 — 주간 리그레션 리포트</span></div>
       <h2>실전에서는, 기법이 <span class="grad">겹쳐서</span> 쓰입니다</h2>
@@ -2809,14 +3589,14 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
       <p class="note autoshow fade-up" style="margin-top:0.8rem">한 업무에 기법 <b>일곱</b>이 겹쳤습니다 — 그리고 이 소재, <b class="accent2">2편 실습 리포의 데이터 그대로</b>입니다.</p>
     </section>
 
-    <!-- 30 · 실습 예고 -->
+    <!-- 44 · 실습 예고 -->
     <section data-sec="실습 예고">
       <div><span class="chip">실습 예고</span></div>
       <h2>다음은 여러분 차례 — <span class="grad">SKILL QUEST, 심화 시즌</span></h2>
       <div class="grid-2" style="margin-top:1.0rem; align-items:stretch">
         <div class="panel autoshow fade-left">
           <div class="phead">오늘 — 이론편</div>
-          <p style="font-size:1.08rem; line-height:1.7">14기법을 <b>고정 카드</b>로 정리했습니다.<br>각 카드의 <b class="accent">④ 스킬구성</b>은 그대로 실습 미션의 골격이 됩니다.</p>
+          <p style="font-size:1.08rem; line-height:1.7">14개의 사건을 <b>[문제 → 해결]</b>로 풀었습니다.<br>각 해결 장의 <b class="accent">스킬구성</b>은 그대로 실습 미션의 골격이 됩니다.</p>
           <p class="small dim" style="margin-top:0.6rem">슬라이드는 리포에 상시 공개 — 실습 전 다시 펼쳐보게 됩니다.</p>
         </div>
         <div class="panel autoshow fade-right" style="border-color:rgba(43,234,208,0.4)">
@@ -2832,50 +3612,50 @@ section.present .fin3 .f3 { animation:asFadeUp .6s ease 1.6s both; }
       <p class="note autoshow fade-up" style="margin-top:1.0rem">기초편이 "스킬 <b>하나</b>를 만드는 퀘스트"였다면, 심화편은 "스킬 <b>시스템</b>을 조립하는 퀘스트"가 됩니다.</p>
     </section>
 
-    <!-- 31 · 마무리 -->
+    <!-- 45 · 마무리 -->
     <section class="section-opener" data-hero data-sec="마무리">
       <div class="autoshow fade-up"><span class="chip">마무리</span></div>
       <div class="fin3">
-        <p class="f f1">컨텍스트에는 <span class="accent2">결론만</span> 들여보낸다 <span class="dim" style="font-size:1.1rem">— 기법 ①~⑤</span></p>
-        <p class="f f2">스킬 사이에는 <span class="accent" style="color:#AFC3FF !important">계약</span>을 세운다 <span class="dim" style="font-size:1.1rem">— 기법 ⑥~⑨</span></p>
-        <p class="f f3">완료에는 <span class="accent3">증거</span>를 붙인다 <span class="dim" style="font-size:1.1rem">— 기법 ⑩~⑬</span></p>
+        <p class="f f1">컨텍스트에는 <span class="accent2">결론만</span> 들여보낸다 <span class="dim" style="font-size:1.1rem">— 사건 ①~⑤</span></p>
+        <p class="f f2">스킬 사이에는 <span class="accent" style="color:#AFC3FF !important">계약</span>을 세운다 <span class="dim" style="font-size:1.1rem">— 사건 ⑥~⑨</span></p>
+        <p class="f f3">완료에는 <span class="accent3">증거</span>를 붙인다 <span class="dim" style="font-size:1.1rem">— 사건 ⑩~⑬</span></p>
       </div>
       <p class="quote autoshow fade-up" style="margin-top:1.6rem; font-size:1.5rem; max-width:52rem">스킬 하나는 절차를 담고, 스킬 시스템은 한계를 설계합니다.<br><b>256k는 벽이 아니라, 설계 조건입니다.</b></p>
     </section>
 
-    <!-- 32 · Q&A -->
+    <!-- 46 · Q&A -->
     <section class="section-opener" data-hero data-sec="Q&amp;A">
       <div style="display:flex; align-items:center; gap:3rem; margin-top:1.5rem">
         <div class="qa-mark grad autoshow fade-up">Q&amp;A</div>
         <div class="autoshow fade-up">
-          <p style="font-size:1.5rem; line-height:1.7; font-weight:700">우리 팀에 <span class="accent2">먼저 필요한 카드</span>는 무엇일까요?<br><span class="dim" style="font-weight:500; font-size:1.15rem">지금 반복하고 있는 일 하나를 떠올리며 골라보세요.</span></p>
-          <p class="mode-links" style="margin-top:1.3rem">전체 자료 모드에는 <b>부록 · 14기법 요약표</b>가 있습니다 — 유인물로 쓰세요.</p>
+          <p style="font-size:1.5rem; line-height:1.7; font-weight:700">우리 팀에 <span class="accent2">먼저 필요한 해결책</span>은 무엇일까요?<br><span class="dim" style="font-weight:500; font-size:1.15rem">지금 반복하고 있는 일 하나를 떠올리며 골라보세요.</span></p>
+          <p class="mode-links" style="margin-top:1.3rem">다음 장 — <b>14기법 요약표</b>가 있습니다. 유인물로 쓰세요.</p>
         </div>
       </div>
     </section>
 
-    <!-- 33 · 부록 · 14기법 요약표 -->
-    <section data-sec="부록 · 요약표" data-layer="APPENDIX" class="apx">
-      <div><span class="chip">APPENDIX · 14기법 요약표</span></div>
+    <!-- 47 · 부록 · 14기법 요약표 -->
+    <section data-sec="부록 · 요약표" class="apx">
+      <div><span class="chip">부록 · 14기법 요약표</span></div>
       <h2 style="font-size:2.1rem">한 장 요약 — 문제가 보이면, 기법이 보입니다</h2>
       <table class="risk-table" style="margin-top:0.6rem; width:100%">
-        <tr class="rh"><th style="width:2.4rem">#</th><th style="width:15rem">기법</th><th>이런 문제에</th><th>극복 원리</th><th style="width:16rem">외우는 한 줄</th></tr>
-        <tr><td>①</td><td>레퍼런스 계층화</td><td>지식 전부가 발동마다 실린다</td><td>상주는 한 줄, 지식은 조건부 로드</td><td class="one">목차만 상주, 지식은 문 뒤에</td></tr>
-        <tr><td>②</td><td>스크립트 위임</td><td>큰 데이터는 못 읽고, 세면 틀린다</td><td>집계는 밖의 코드, 판단만 모델</td><td class="one">세는 일은 코드가</td></tr>
-        <tr><td>③</td><td>외부 기억</td><td>긴 작업의 기억 유실·세션 단절</td><td>기억을 대화에서 파일로 이동</td><td class="one">파일은 남는다</td></tr>
-        <tr><td>④</td><td>지도 우선 탐색</td><td>통째 읽기로 컨텍스트 파산</td><td>소비가 질문 크기에 비례</td><td class="one">읽기는 검색의 결과</td></tr>
-        <tr><td>⑤</td><td>분업 요약</td><td>한 컨텍스트에 안 들어가는 일</td><td>N×256k로 확장, 회수는 요약만</td><td class="one">쪼개면 곱해진다</td></tr>
-        <tr><td>⑥</td><td>산출물 계약</td><td>스킬 결과가 대화에 흘러 유실</td><td>약속된 경로+형식 = 인터페이스</td><td class="one">계약이 있어야 부품</td></tr>
-        <tr><td>⑦</td><td>파이프라인 스킬</td><td>다단계 업무를 사람이 지휘</td><td>순서를 명시적 자산으로</td><td class="one">프로세스도 스킬이다</td></tr>
-        <tr><td>⑧</td><td>라우터 스킬</td><td>스킬 난립 — 오발동·미발동</td><td>발동 판단을 분류표로 승격</td><td class="one">접수 창구를 세워라</td></tr>
-        <tr><td>⑨</td><td>게이트 체크</td><td>부실 산출물이 뒤로 흘러 오염</td><td>가장 싼 단계에서 차단</td><td class="one">게이트가 흐름을 지킨다</td></tr>
-        <tr><td>⑩</td><td>자가 리뷰 루프</td><td>작성자 모드의 관대함</td><td>생성·비판 프레임 분리</td><td class="one">같은 모델, 다른 프레임</td></tr>
-        <tr><td>⑪</td><td>반박 검증</td><td>그럴듯한 통과 (확증 편향)</td><td>반례 하나가 결정적 — 반증주의</td><td class="one">무너뜨려 보라</td></tr>
-        <tr><td>⑫</td><td>기계 채점 하네스</td><td>"됐다"와 "된 것"의 간극</td><td>판정을 확률에서 결정으로</td><td class="one">채점으로 통과하라</td></tr>
-        <tr><td>⑬</td><td>증거 기반 완료</td><td>완료 한 줄 — 사람이 재확인</td><td>완료 = 검증 가능한 기록</td><td class="one">증거 없으면 미완료</td></tr>
+        <tr class="rh"><th style="width:2.4rem">#</th><th style="width:15rem">기법</th><th>이런 사건에</th><th>극복 원리</th><th style="width:16rem">외우는 한 줄</th></tr>
+        <tr><td>①</td><td>레퍼런스 계층화</td><td>발동마다 규칙 30페이지가 실린다</td><td>상주는 한 줄, 지식은 조건부 로드</td><td class="one">목차만 상주, 지식은 문 뒤에</td></tr>
+        <tr><td>②</td><td>스크립트 위임</td><td>로그 50만 줄 — 못 읽고, 세면 틀린다</td><td>집계는 밖의 코드, 판단만 모델</td><td class="one">세는 일은 코드가</td></tr>
+        <tr><td>③</td><td>외부 기억</td><td>3시간 작업이 첫 결정을 잊는다</td><td>기억을 대화에서 파일로 이동</td><td class="one">파일은 남는다</td></tr>
+        <tr><td>④</td><td>지도 우선 탐색</td><td>설명 하나에 리포 절반을 읽는다</td><td>소비가 질문 크기에 비례</td><td class="one">읽기는 검색의 결과</td></tr>
+        <tr><td>⑤</td><td>분업 요약</td><td>아무리 아껴도 한 번에 안 들어간다</td><td>N×256k로 확장, 회수는 요약만</td><td class="one">쪼개면 곱해진다</td></tr>
+        <tr><td>⑥</td><td>산출물 계약</td><td>스킬 A의 결과를 B가 못 받는다</td><td>약속된 경로+형식 = 인터페이스</td><td class="one">계약이 있어야 부품</td></tr>
+        <tr><td>⑦</td><td>파이프라인 스킬</td><td>순서가 시니어 머릿속에만 있다</td><td>순서를 명시적 자산으로</td><td class="one">프로세스도 스킬이다</td></tr>
+        <tr><td>⑧</td><td>라우터 스킬</td><td>스킬 20개 — 오발동·미발동</td><td>발동 판단을 분류표로 승격</td><td class="one">접수 창구를 세워라</td></tr>
+        <tr><td>⑨</td><td>게이트 체크</td><td>부실 산출물이 끝까지 흘러간다</td><td>가장 싼 단계에서 차단</td><td class="one">게이트가 흐름을 지킨다</td></tr>
+        <tr><td>⑩</td><td>자가 리뷰 루프</td><td>물으면 항상 "괜찮다"고 한다</td><td>생성·비판 프레임 분리</td><td class="one">같은 모델, 다른 프레임</td></tr>
+        <tr><td>⑪</td><td>반박 검증</td><td>그럴듯한 결론이 통과해 버린다</td><td>반례 하나가 결정적 — 반증주의</td><td class="one">무너뜨려 보라</td></tr>
+        <tr><td>⑫</td><td>기계 채점 하네스</td><td>형식·합계 실수가 말로는 안 잡힌다</td><td>판정을 확률에서 결정으로</td><td class="one">채점으로 통과하라</td></tr>
+        <tr><td>⑬</td><td>증거 기반 완료</td><td>"이상 없습니다"를 사람이 재확인</td><td>완료 = 검증 가능한 기록</td><td class="one">증거 없으면 미완료</td></tr>
         <tr><td>⑭</td><td>스킬 팩토리</td><td>팀마다 제각각인 스킬 품질</td><td>표준을 실행되는 생성기로 배포</td><td class="one">표준은 기본값으로</td></tr>
       </table>
-      <p class="note" style="margin-top:0.7rem">발표 모드(?mode=presentation)에서는 이 장이 제외됩니다 — 전체 자료 모드·인쇄용.</p>
+      <p class="note" style="margin-top:0.7rem">유인물·복습용 한 장 — 각 기법의 상세는 해당 사건의 [문제 → 해결] 두 장에 있습니다.</p>
     </section>
 
   </div>
