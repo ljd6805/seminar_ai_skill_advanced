@@ -1924,23 +1924,25 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
 .pv-part.pp4 { border-color:rgba(255,212,107,0.6); background:rgba(255,212,107,0.07); }
 .reveal section .pv-part.pp4 .pn { color:#FFE08A; }
 
-/* 2편 다섯 이론 복습 카드 */
-.th5 { display:grid; grid-template-columns:repeat(5,1fr); gap:0.7rem; margin-top:1.1rem; align-items:stretch; }
+/* 2편 다섯 이론 복습 카드 — 2행 × 3열, 여섯째 칸은 오늘의 예고 */
+.th5 { display:grid; grid-template-columns:repeat(3,1fr); gap:0.85rem; margin-top:1.0rem; align-items:stretch; }
 .th5 .t5 {
   border:0.0625rem solid rgba(190,200,224,0.28); border-radius:0.95rem;
-  padding:0.75rem 0.75rem 0.8rem; background:rgba(255,255,255,0.02);
-  display:flex; flex-direction:column; gap:0.6rem; align-items:center; text-align:center;
+  padding:0.85rem 1.0rem 0.9rem; background:rgba(255,255,255,0.02);
+  display:flex; flex-direction:column; gap:0.65rem; align-items:center; text-align:center;
 }
-.th5 .t5h { display:flex; align-items:center; gap:0.5rem; font-weight:800; font-size:1.05rem; white-space:nowrap; }
+.th5 .t5h { display:flex; align-items:center; gap:0.55rem; font-weight:800; font-size:1.28rem; white-space:nowrap; }
 .th5 .t5g {
-  flex:1; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.35rem;
-  border:0.0625rem dashed rgba(190,200,224,0.22); border-radius:0.7rem; padding:0.55rem 0.4rem;
+  flex:1; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.45rem;
+  border:0.0625rem dashed rgba(190,200,224,0.22); border-radius:0.7rem; padding:0.65rem 0.5rem;
   background:rgba(11,14,26,0.45);
 }
-.th5 .t5g .m { font-family:var(--mono); font-size:0.7rem; line-height:1.6; color:#C7CFE8 !important; }
-.th5 .t5d { font-size:0.8rem; color:var(--fg-soft) !important; line-height:1.5; word-break:keep-all; }
+.th5 .t5g .m { font-family:var(--mono); font-size:0.84rem; line-height:1.65; color:#C7CFE8 !important; }
+.th5 .t5d { font-size:0.95rem; color:var(--fg-soft) !important; line-height:1.55; word-break:keep-all; }
 .th5 .t5d b { color:#E8ECF5; }
-.reveal section .th5 .w5 { font-weight:800; font-size:0.86rem; }
+.reveal section .th5 .w5 { font-weight:800; font-size:1.02rem; }
+.th5 .t5.t5plus { border-style:dashed; border-color:rgba(43,234,208,0.5); background:rgba(43,234,208,0.04); }
+.th5 .t5plus .t5g { border-style:solid; border-color:rgba(43,234,208,0.3); }
 
 /* 리플레이 로그용 전역 판정색 (pp-log 밖에서도) */
 .reveal section .plv { color:#9FF5E6; }
@@ -1998,7 +2000,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
     <!-- 2 · 지난 여정 -->
     <section data-sec="도입">
       <div><span class="chip">지난 여정</span></div>
-      <h2>여러분은 이미, 스킬을 만들 줄 압니다</h2>
+      <h2>여러분은 이미 스킬을 만들 줄 압니다</h2>
       <div class="flow-lane autoshow fade-up" style="margin-top:1.1rem; gap:0.6rem">
         <div class="flow-step neutral"><span>1편 · 개념</span><small>Agent · Skill · MCP · Harness</small></div>
         <span class="flow-arrow">→</span>
@@ -2032,7 +2034,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="t5g">
             <span class="m"><span class="t-hl">.opencode/skills/</span><br>└ <span class="t-str">&lt;이름&gt;</span>/<br>&nbsp;&nbsp;└ <span class="t-key">SKILL.md</span></span>
           </div>
-          <span class="t5d">폴더 하나 + 파일 하나.<br><b>폴더명 = 스킬 이름</b>, 파일명은 반드시 SKILL.md.</span>
+          <span class="t5d">폴더 하나에 파일 하나.<br><b>폴더 이름이 곧 스킬 이름</b>이고, 파일 이름은 반드시 SKILL.md.</span>
         </div>
         <div class="t5 autoshow fade-up">
           <div class="t5h"><span class="tk-n">2</span>트리거링</div>
@@ -2041,7 +2043,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
             <span class="fl-arr" style="font-size:0.8rem">요청과 대조 ▼</span>
             <span class="vlab pass" style="font-size:0.7rem">발동</span>
           </div>
-          <span class="t5d"><b>description이 발동</b>을 결정하고,<br>본문이 결과 품질을 결정한다.</span>
+          <span class="t5d"><b>발동 여부는 description이</b>,<br>결과 품질은 본문이 정한다.</span>
         </div>
         <div class="t5 autoshow fade-up">
           <div class="t5h"><span class="tk-n">3</span>5요소 본문</div>
@@ -2052,7 +2054,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
             <span class="w5" style="color:#FF94AC">금지</span>
             <span class="w5" style="color:#AFC3FF">검증</span>
           </div>
-          <span class="t5d">좋은 본문은 이 <b>다섯 가지가 선명</b>하다.</span>
+          <span class="t5d">좋은 본문은 이 <b>다섯 가지가 또렷</b>하다.</span>
         </div>
         <div class="t5 autoshow fade-up">
           <div class="t5h"><span class="tk-n">4</span>교통정리</div>
@@ -2068,10 +2070,18 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="t5g">
             <span class="m"><span class="t-key">SKILL.md</span> <span class="t-out">← 절차</span><br><span class="t-key">references/</span><br>&nbsp;&nbsp;└ <span class="t-str">quality-bar.md</span> <span class="t-out">← 기준</span></span>
           </div>
-          <span class="t5d"><b>기준은 파일로 동봉</b> —<br>바뀌면 파일만 교체한다.</span>
+          <span class="t5d"><b>기준은 파일로 동봉한다</b> —<br>기준이 바뀌면 파일만 바꾸면 된다.</span>
+        </div>
+        <div class="t5 t5plus autoshow fade-up">
+          <div class="t5h" style="color:#7FE8D8">＋&nbsp; 오늘 — 심화</div>
+          <div class="t5g">
+            <span class="tkb-row" style="justify-content:center"><span class="tkb b1">①~⑤</span><span class="tkb b2">⑥~⑨</span><span class="tkb b3">⑩~⑬</span><span class="tkb b4">⑭</span></span>
+            <span class="m" style="color:#A9FFF0 !important; font-weight:700">14가지 기법 · 4개 파트</span>
+          </div>
+          <span class="t5d">이 문법 위에 <b>컨텍스트 · 연계 · 검증</b>의<br>기법들을 조립합니다.</span>
         </div>
       </div>
-      <p class="note autoshow fade-up" style="margin-top:1.1rem">이 다섯이 오늘의 <b>문법</b>입니다 — 심화 14기법은 전부 이 위에서 조립됩니다. 이제, 이 문법으로도 막히는 사건들을 보겠습니다.</p>
+      <p class="note autoshow fade-up" style="margin-top:1.1rem">이 다섯이 오늘의 <b>문법</b>입니다 — 심화 14기법은 전부 이 위에서 만들어집니다. 이제 이 문법으로도 막히는 순간들을 보겠습니다.</p>
     </section>
 
     <!-- 4 · 목격 — 3분할 터미널 -->
@@ -2166,7 +2176,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
     <!-- 5 · 256k 가계부 -->
     <section data-sec="도입 · 컨텍스트 예산">
       <div><span class="chip">256k의 현실</span></div>
-      <h2>컨텍스트는 <span class="grad">예산</span>입니다 — 차면, 앞부터 잊습니다</h2>
+      <h2>컨텍스트는 <span class="grad">예산</span>입니다 — 가득 차면, 오래된 기억부터 사라집니다</h2>
       <div class="grid-2" style="margin-top:0.9rem; grid-template-columns:1.15fr 0.85fr; align-items:stretch">
         <div class="sim autoshow fade-left">
           <div class="ctx-win">
@@ -2179,20 +2189,20 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
             <span class="ctx-chip k7">지금 질문 + 답변 여유분</span>
           </div>
           <div class="ctx-gauge"><span>0</span><span class="cg-bar"><i></i></span><span>256k</span></div>
-          <p class="sim-cap ctx-cap">가득 차면 <b style="color:#FF94AC">오래된 것부터 요약·유실</b>됩니다 — 초반의 결정과 열심히 읽은 파일이 먼저 사라집니다.</p>
+          <p class="sim-cap ctx-cap">한도에 가까워지면 <b style="color:#FF94AC">오래된 내용부터 요약되거나 지워집니다</b> — 초반에 정한 규칙과 애써 읽어 둔 파일이 가장 먼저 희미해집니다.</p>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="panel autoshow fade-right" style="justify-content:center; gap:0.7rem">
-          <div class="phead">이 그림이 강요하는 세 가지 태도</div>
+          <div class="phead">이 그림이 말해 주는 세 가지 원칙</div>
           <ul class="ol" style="flex:none">
-            <li class="show"><span class="ix">태도 1</span><span class="lb"><b>상주를 줄인다</b> — 스킬은 목차만 남긴다</span></li>
-            <li class="show"><span class="ix">태도 2</span><span class="lb"><b>원본은 밖에서</b> — 큰 데이터는 컨텍스트 밖에서 처리</span></li>
-            <li class="show"><span class="ix">태도 3</span><span class="lb"><b>기억은 파일로</b> — 대화에 맡기지 않는다</span></li>
+            <li class="show"><span class="ix">원칙 1</span><span class="lb"><b>기본 점유를 줄인다</b> — 스킬은 목차만 남긴다</span></li>
+            <li class="show"><span class="ix">원칙 2</span><span class="lb"><b>원본은 밖에서 처리한다</b> — 큰 데이터는 컨텍스트에 넣지 않는다</span></li>
+            <li class="show"><span class="ix">원칙 3</span><span class="lb"><b>기억은 파일에 남긴다</b> — 대화에 맡기지 않는다</span></li>
           </ul>
-          <p class="small dim" style="margin-top:0.2rem">PART 1의 다섯 사건이 이 세 태도로 해결됩니다.</p>
+          <p class="small dim" style="margin-top:0.2rem">PART 1의 다섯 사건이 모두 이 세 원칙으로 풀립니다.</p>
         </div>
       </div>
-      <p class="note autoshow fade-up" style="margin-top:0.8rem">256k 토큰이면 한글 문서로는 수백 페이지지만, <b>코드와 로그는 순식간에</b> 채웁니다 — 비율은 개념도이며 환경마다 다릅니다.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.8rem">256k 토큰은 한글 문서로 치면 수백 페이지 분량이지만, <b>코드와 로그는 이 공간을 순식간에</b> 채웁니다. 칸의 비율은 이해를 돕기 위한 그림이며, 실제 구성은 환경마다 다릅니다.</p>
     </section>
 
     <!-- 6 · 진행 방식 -->
@@ -2217,7 +2227,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </ul>
         </div>
       </div>
-      <p class="autoshow fade-up" style="font-size:1.25rem; margin-top:1.1rem; text-align:center">기법을 외우러 가지 않습니다 — <b>사건을 해결하다 보면 카탈로그가 완성됩니다.</b></p>
+      <p class="autoshow fade-up" style="font-size:1.25rem; margin-top:1.1rem; text-align:center">기법을 외우면서 가지 않습니다 — <b>사건을 하나씩 해결하다 보면, 카탈로그가 저절로 완성됩니다.</b></p>
       <p class="note autoshow fade-up" style="margin-top:0.9rem">색 언어는 시리즈 그대로 — <span class="accent3">코랄=문제·원인</span> · <span class="accent">보라=Agent</span> · <span style="color:#AFC3FF; font-weight:700">청보라=스킬 구성</span> · <span class="accent2">민트=해결·효과</span> · <span class="accent4">앰버=사람·원리</span>.</p>
     </section>
 
@@ -2267,10 +2277,10 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="scn-tag">원인 분석</span>
           <div class="g red afill" style="--w:95%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>발동 시 로드</span><b>본문 전체 38k</b></div></div>
           <div class="g afill" style="--w:6%; --dly:1.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>실제 필요량</span><b>규칙 1편 ≈ 2k</b></div></div>
-          <p class="scn-cap">2편 로드 사이클 — <b>발동하면 본문 전체가 로드</b>됩니다.<br>지식과 절차가 한 파일이면, 로드 단위는 <b>전부 아니면 전무</b>.</p>
+          <p class="scn-cap">2편에서 배운 로드 사이클 — <b>발동하면 본문 전체가 로드</b>됩니다.<br>지식과 절차가 한 파일에 있으면, 로드 단위는 <b>전부 아니면 전무</b>입니다.</p>
         </div>
       </div>
-      <p class="note" style="margin-top:0.55rem">쓴 것은 5%인데 낸 값은 100% — <b>지식의 담는 위치</b>가 문제입니다. 다음 장에서 이 사건을 해결합니다.</p>
+      <p class="note" style="margin-top:0.55rem">쓴 것은 5%인데 치른 값은 100%입니다 — <b>지식을 담아 둔 위치</b>가 문제입니다. 다음 장에서 이 사건을 해결합니다.</p>
     </section>
 
     <!-- 9 · 사건 ① 해결 -->
@@ -2321,8 +2331,8 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
       <div class="tname p1">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ① 레퍼런스 계층화</span><span class="tn-en">Progressive Disclosure</span></div>
-        <p class="tn-one"><b>목차만 상주, 지식은 문 뒤에.</b> 지식 비용이 보유량이 아니라 <b>이번 작업 관련량</b>에 비례하게 됩니다.</p>
-        <div class="pills"><span class="pill green">상주 ≈ 수십 토큰</span><span class="pill neutral">기준 개정 = 파일 교체</span></div>
+        <p class="tn-one"><b>목차만 싣고, 지식은 문 뒤에.</b> 지식 비용이 보유한 전체 분량이 아니라 <b>이번 작업에 쓰인 분량</b>에 비례하게 됩니다.</p>
+        <div class="pills"><span class="pill green">기본 점유 ≈ 수십 토큰</span><span class="pill neutral">기준 개정 = 파일 교체</span></div>
       </div>
     </section>
 
@@ -2349,7 +2359,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
               <div class="ska-log"><span class="ska-danger">⚠ 컨텍스트 한도 초과 — 12% 지점에서 읽기 중단</span></div>
               <div class="ska-log"><span class="sh-agent">AGENT</span> "TimeoutError가 가장 많아 보입니다" <span class="sh-dim">— 읽은 범위 기준 추정</span></div>
               <div class="ska-log"><span class="ska-danger">실제 1위는 AssertionError 1,842건 — 오답</span></div>
-              <div class="ska-log"><span class="sh-dim">읽은 부분조차, 세어 보면 건수가 매번 다르다</span></div>
+              <div class="ska-log"><span class="sh-dim">읽은 범위조차 셀 때마다 건수가 달라진다</span></div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
@@ -2410,7 +2420,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
       <div class="tname p1">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ② 스크립트 위임</span><span class="tn-en">Script Offloading</span></div>
-        <p class="tn-one"><b>세는 일은 코드가, 뜻을 읽는 일은 모델이.</b> 원본은 끝까지 밖 — 들어오는 것은 결정적으로 계산된 결과뿐.</p>
+        <p class="tn-one"><b>세는 일은 코드가, 뜻을 읽는 일은 모델이.</b> 원본은 끝까지 밖에 두고, 컨텍스트에는 계산이 끝난 결과만 들입니다.</p>
         <div class="pills"><span class="pill green">50만 줄 → 30줄</span><span class="pill neutral">수치 정확도 100%</span></div>
       </div>
     </section>
@@ -2451,10 +2461,10 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
             <span class="blob">최근 대화</span>
           </div>
           <span class="vlab fail h0 ain" style="--dly:1.5s">세션 종료 = 전체 삭제</span>
-          <p class="scn-cap">기억이 <b>대화에만</b> 있습니다.<br>컴팩션은 <b>앞(오래된 결정)부터</b> 지우고, 세션 종료는 <b>전부</b> 지웁니다.</p>
+          <p class="scn-cap">기억이 <b>대화에만</b> 있습니다.<br>한도가 차면 <b>오래된 결정부터</b> 지워지고, 세션이 끝나면 <b>전부</b> 지워집니다.</p>
         </div>
       </div>
-      <p class="note" style="margin-top:0.55rem">성실히 일할수록 대화가 길어지고, 길어질수록 먼저 잊습니다 — <b>기억의 저장소</b>가 문제입니다. 다음 장에서 해결합니다.</p>
+      <p class="note" style="margin-top:0.55rem">성실히 일할수록 대화가 길어지고, 길어질수록 더 빨리 잊습니다 — <b>기억을 두는 곳</b>이 문제입니다. 다음 장에서 해결합니다.</p>
     </section>
 
     <!-- 13 · 사건 ③ 해결 -->
@@ -2504,7 +2514,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
       <div class="tname p1">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ③ 외부 기억</span><span class="tn-en">External Memory</span></div>
-        <p class="tn-one"><b>대화는 흘러가고, 파일은 남는다.</b> 기억을 휘발(컨텍스트)에서 영속(파일)으로 — 컴팩션·세션 종료가 더는 사고가 아닙니다.</p>
+        <p class="tn-one"><b>대화는 흘러가고, 파일은 남는다.</b> 기억을 휘발되는 컨텍스트에서 영속되는 파일로 — 세션이 끊겨도 더는 사고가 아닙니다.</p>
         <div class="pills"><span class="pill green">세션 무관 재개</span><span class="pill neutral">인수인계 문서 겸용</span></div>
       </div>
     </section>
@@ -2521,7 +2531,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="ska-cell"><span class="n">5</span>전체 점검</span>
         </div>
       </div>
-      <h2>설명 하나 듣자고, 리포 절반을 읽게 하고 있습니다</h2>
+      <h2>설명 하나를 들으려고, 리포 절반을 읽히고 있습니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
@@ -2541,10 +2551,10 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="scn-tag">원인 분석</span>
           <div class="g red afill" style="--w:97%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>읽은 양</span><b>∝ 리포 크기 (수만 줄)</b></div></div>
           <div class="g afill" style="--w:5%; --dly:1.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>답에 필요한 양</span><b>≈ 300줄</b></div></div>
-          <p class="scn-cap">탐색 전략이 없으면 <b>"무엇을 읽을지"를 읽으면서</b> 찾게 됩니다 — 읽기가 검색을 대신하는 구조.</p>
+          <p class="scn-cap">탐색 전략이 없으면 <b>"무엇을 읽을지"를 읽으면서</b> 찾게 됩니다 — 읽기가 검색을 대신하는 구조입니다.</p>
         </div>
       </div>
-      <p class="note" style="margin-top:0.55rem">질문은 300줄짜리인데 비용은 리포 크기 — <b>비례 관계</b>가 잘못됐습니다. 다음 장에서 해결합니다.</p>
+      <p class="note" style="margin-top:0.55rem">질문의 답은 300줄이면 되는데 비용은 리포 크기를 따라갑니다 — <b>비례의 방향</b>이 잘못됐습니다. 다음 장에서 해결합니다.</p>
     </section>
 
     <!-- 15 · 사건 ④ 해결 -->
@@ -2591,7 +2601,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
       <div class="tname p1">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ④ 지도 우선 탐색</span><span class="tn-en">Map-first Navigation</span></div>
-        <p class="tn-one"><b>읽기는 검색의 결과여야 한다.</b> 소비가 리포 크기가 아니라 <b>질문 크기에 비례</b> — 같은 256k로 열 배 큰 리포를 다룹니다.</p>
+        <p class="tn-one"><b>읽기는 검색의 결과여야 한다.</b> 소비가 리포 크기가 아니라 <b>질문 크기에 비례</b>하게 됩니다 — 같은 256k로 열 배 큰 리포를 다룰 수 있습니다.</p>
         <div class="pills"><span class="pill green">297줄로 완료</span><span class="pill neutral">근거는 파일:줄</span></div>
       </div>
     </section>
@@ -2628,7 +2638,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="scn-tag">원인 분석</span>
           <div class="g red afill" style="--w:100%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>작업 필요량</span><b>12모듈 코드+결과</b></div></div>
           <div class="g afill" style="--w:22%; --dly:1.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>상한</span><b>1 × 256k 고정</b></div></div>
-          <p class="scn-cap">①~④는 <b>소비를 줄일 뿐</b>, 총량은 못 늘립니다.<br>작업이 상한을 넘으면 절약의 문제가 아니라 <b>구조의 문제</b>.</p>
+          <p class="scn-cap">①~④는 <b>소비를 줄일 뿐</b>, 총량은 못 늘립니다.<br>작업이 상한을 넘으면 절약의 문제가 아니라 <b>구조의 문제</b>입니다.</p>
         </div>
       </div>
       <p class="note" style="margin-top:0.55rem">절약술의 한계선입니다 — 여기부터는 <b>다른 종류의 답</b>이 필요합니다. 다음 장에서 해결합니다.</p>
@@ -2681,7 +2691,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
       <div class="tname p1">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑤ 분업 요약</span><span class="tn-en">Fan-out &amp; Summarize</span></div>
-        <p class="tn-one"><b>쪼개면 컨텍스트는 곱해진다.</b> ①~④가 절약이라면 ⑤는 확장 — 총량을 <b>1×256k에서 N×256k로</b> 늘리는 유일한 기법.</p>
+        <p class="tn-one"><b>쪼개면 컨텍스트는 곱해진다.</b> ①~④가 절약이라면 ⑤는 확장 — 총량을 <b>1×256k에서 N×256k로</b> 늘리는 유일한 기법입니다.</p>
         <div class="pills"><span class="pill green">총량 N×256k</span><span class="pill neutral">회수는 요약만</span></div>
       </div>
     </section>
@@ -2715,7 +2725,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="cx-item">보고 12×10줄</div>
         </div>
       </div>
-      <p class="autoshow fade-up" style="font-size:1.3rem; margin-top:1.4rem; text-align:center">고를 때는 <b>모자란 것</b>에서 출발하면 됩니다 — 지식① · 데이터② · 시간③ · 코드④ · <b class="accent2">전부⑤</b>.</p>
+      <p class="autoshow fade-up" style="font-size:1.3rem; margin-top:1.4rem; text-align:center">무엇을 쓸지는 <b>모자란 것</b>에서 출발하면 됩니다 — 지식이 크면 ①, 데이터가 크면 ②, 시간이 길면 ③, 코드가 크면 ④, <b class="accent2">전부 크면 ⑤</b>.</p>
       <p class="note autoshow fade-up" style="margin-top:0.9rem">다음 문제 — 아낀 컨텍스트로 <b>여러 스킬을 하나의 프로세스</b>로 잇는 방법입니다.</p>
     </section>
 
@@ -2743,7 +2753,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="ska-cell"><span class="n">9</span>부실 전파</span>
         </div>
       </div>
-      <h2>스킬 A의 결과를, 스킬 B가 받지 못합니다</h2>
+      <h2>스킬 A의 결과를 스킬 B가 받지 못합니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
@@ -2767,7 +2777,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
             <span class="blob agray" style="--dly:0.8s">대화 속 요약<small style="display:block; font-size:0.62rem">형식 제각각 · 버전 없음</small></span>
             <span class="fl-node ghost">incident-report<small>어디서 읽어야 하지?</small></span>
           </div>
-          <p class="scn-cap">결과가 <b>대화에만</b> 존재합니다 — 휘발되고, 비정형이고, 버전이 없습니다.<br>두 스킬 사이의 <b>인터페이스가 정의된 적이 없습니다</b>.</p>
+          <p class="scn-cap">결과가 <b>대화 속에만</b> 있습니다 — 날아가고, 형식이 없고, 버전도 없습니다.<br>두 스킬 사이의 <b>인터페이스를 정한 적이 없기 때문</b>입니다.</p>
         </div>
       </div>
       <p class="note" style="margin-top:0.55rem">함수라면 시그니처부터 정했을 텐데 — 스킬에는 그게 없었습니다. 다음 장에서 해결합니다.</p>
@@ -2816,7 +2826,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
       <div class="tname p2">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑥ 산출물 계약</span><span class="tn-en">Artifact Contract</span></div>
-        <p class="tn-one"><b>계약이 있어야 부품이 된다.</b> 전달을 대화(휘발·비정형)에서 <b>파일 + 규격</b>으로 — 함수의 시그니처처럼.</p>
+        <p class="tn-one"><b>계약이 있어야 부품이 된다.</b> 전달 통로를 대화에서 <b>약속된 파일과 규격</b>으로 — 함수의 시그니처와 같은 역할입니다.</p>
         <div class="pills"><span class="pill green">어떤 조합도 가능</span><span class="pill neutral">중간 산출물 검사 가능</span></div>
       </div>
     </section>
@@ -2832,7 +2842,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="ska-cell"><span class="n">9</span>부실 전파</span>
         </div>
       </div>
-      <h2>프로세스가, 시니어의 머릿속에만 있습니다</h2>
+      <h2>프로세스가 시니어의 머릿속에만 있습니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
@@ -2876,7 +2886,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="ska-cell"><span class="n">9</span>부실 전파</span>
         </div>
       </div>
-      <h2>순서를 아는 스킬 하나가, 전체를 지휘합니다</h2>
+      <h2>순서를 아는 스킬 하나가 전체를 지휘합니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
@@ -2909,7 +2919,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
       <div class="tname p2">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑦ 파이프라인 스킬</span><span class="tn-en">Pipeline Orchestrator</span></div>
-        <p class="tn-one"><b>프로세스도 스킬이다.</b> 시니어의 암묵적 순서가 <b>명시적 자산</b>으로 — 단계 산출물이 파일이라 중간 재개도 됩니다.</p>
+        <p class="tn-one"><b>프로세스도 스킬이다.</b> 시니어의 머릿속 순서가 <b>기록된 자산</b>이 됩니다 — 단계 산출물이 파일로 남아 중간부터 다시 시작할 수도 있습니다.</p>
         <div class="pills"><span class="pill green">시작은 한 마디</span><span class="pill neutral">단계 누락 0</span></div>
       </div>
     </section>
@@ -2952,7 +2962,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
             <span class="fl-node ghost" style="font-size:0.72rem">…해당 표현 없음…</span>
             <span class="vlab fail">구멍 → 미발동</span>
           </div>
-          <p class="scn-cap">발동 판단이 description들의 <b>유사도 경쟁</b> —<br>스킬이 늘수록 <b>겹침과 구멍이 함께</b> 늘어납니다.</p>
+          <p class="scn-cap">발동 판단이 description끼리의 <b>유사도 경쟁</b>이 됩니다 —<br>스킬이 늘수록 <b>겹침과 빈틈이 함께</b> 늘어납니다.</p>
         </div>
       </div>
       <p class="note" style="margin-top:0.55rem">2편의 교통정리(description 다듬기)로 버티다가, 스무 개에서 <b>구조의 한계</b>를 만났습니다. 다음 장에서 해결합니다.</p>
@@ -2969,7 +2979,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="ska-cell"><span class="n">9</span>부실 전파</span>
         </div>
       </div>
-      <h2>입구를 하나로 세우면, 발동이 정리됩니다</h2>
+      <h2>입구를 하나로 모으면, 발동이 깔끔해집니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
@@ -3005,7 +3015,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
       <div class="tname p2">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑧ 라우터 스킬</span><span class="tn-en">Router Skill</span></div>
-        <p class="tn-one"><b>전문가가 많을수록 접수 창구가 필요하다.</b> 발동 판단을 눈치 경쟁에서 <b>명시된 분류표</b>로 승격합니다.</p>
+        <p class="tn-one"><b>전문가가 많을수록 접수 창구가 필요하다.</b> 발동 판단을 유사도 경쟁에서 <b>명시된 분류표</b>로 끌어올립니다.</p>
         <div class="pills"><span class="pill green">진입점 1개</span><span class="pill neutral">모호하면 질문</span></div>
       </div>
     </section>
@@ -3021,7 +3031,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="ska-cell now"><span class="n">9</span>부실 전파</span>
         </div>
       </div>
-      <h2>부실한 중간 산출물이, 끝까지 흘러갑니다</h2>
+      <h2>부실한 중간 산출물이 끝까지 흘러갑니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
@@ -3045,7 +3055,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <p class="scn-cap">단계 사이에 <b>검문이 없으니</b> 결함이 흐르며 증폭됩니다 — 쓰레기가 들어가면 쓰레기가 나옵니다.</p>
         </div>
       </div>
-      <p class="note" style="margin-top:0.55rem">각 스킬은 입력을 <b>신뢰</b>했습니다 — 신뢰를 만들 장치가 없었을 뿐. 다음 장에서 해결합니다.</p>
+      <p class="note" style="margin-top:0.55rem">각 스킬은 입력을 <b>신뢰</b>했습니다 — 신뢰를 만들 장치가 없었을 뿐입니다. 다음 장에서 해결합니다.</p>
     </section>
 
     <!-- 27 · 사건 ⑨ 해결 -->
@@ -3180,10 +3190,10 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
             <span class="fl-arr">=</span>
             <span class="fl-node ag">검토 프레임<small>같은 관점 · 기준 없음</small></span>
           </div>
-          <p class="scn-cap">같은 컨텍스트, 같은 관점에서 물으면 <b>자기 출력을 정당화</b>하는 쪽으로 기웁니다.<br>기준 없는 검토는 <b>인상 평가</b>일 뿐입니다.</p>
+          <p class="scn-cap">같은 컨텍스트에서 같은 관점으로 물으면, <b>방금 쓴 글을 정당화</b>하는 쪽으로 기웁니다.<br>기준 없는 검토는 <b>인상 비평</b>에 그칩니다.</p>
         </div>
       </div>
-      <p class="note" style="margin-top:0.55rem">사람도 자기 글의 오타는 못 봅니다 — 그래서 리뷰어를 <b>따로</b> 두죠. 다음 장에서 같은 구조를 만듭니다.</p>
+      <p class="note" style="margin-top:0.55rem">사람도 자기 글의 오타는 잘 못 봅니다 — 그래서 리뷰어를 <b>따로</b> 둡니다. 다음 장에서 같은 구조를 스킬 안에 만듭니다.</p>
     </section>
 
     <!-- 31 · 사건 ⑩ 해결 -->
@@ -3197,7 +3207,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
         </div>
       </div>
-      <h2>역할을 갈라서, 리뷰어에게 체크리스트를 쥐여줍니다</h2>
+      <h2>역할을 나누고, 리뷰어에게 체크리스트를 쥐여 줍니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
@@ -3231,7 +3241,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
       <div class="tname p3">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑩ 자가 리뷰 루프</span><span class="tn-en">Self-Review Loop</span></div>
-        <p class="tn-one"><b>작성자와 리뷰어는 같은 모델, 다른 프레임.</b> 비판 프레임 + 체크리스트가 결함 탐지율을 끌어올립니다 — 페어 리뷰의 스킬화.</p>
+        <p class="tn-one"><b>작성자와 리뷰어는 같은 모델, 다른 프레임.</b> 비판 프레임과 체크리스트가 결함 탐지율을 끌어올립니다 — 사람의 페어 리뷰를 스킬로 옮긴 것입니다.</p>
         <div class="pills"><span class="pill green">품질 균질화</span><span class="pill neutral">기준은 팀 공유 파일</span></div>
       </div>
     </section>
@@ -3247,7 +3257,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
         </div>
       </div>
-      <h2>그럴듯한 결론이, 검증을 통과해 버립니다</h2>
+      <h2>그럴듯한 결론이 검증을 통과해 버립니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
@@ -3325,7 +3335,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
       <div class="tname p3">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑪ 반박 검증</span><span class="tn-en">Adversarial Check</span></div>
-        <p class="tn-one"><b>반박에서 살아남은 결론만 결론이다.</b> 검증의 방향을 "통과 찾기"에서 <b>"반례 찾기"</b>로 — 반증주의의 절차화.</p>
+        <p class="tn-one"><b>반박에서 살아남은 결론만 결론이다.</b> 검증의 방향을 "통과 찾기"에서 <b>"반례 찾기"</b>로 뒤집습니다 — 반증주의를 절차로 만든 것입니다.</p>
         <div class="pills"><span class="pill green">거짓 확신 차단</span><span class="pill neutral">반박 기록이 남는다</span></div>
       </div>
     </section>
@@ -3341,7 +3351,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
         </div>
       </div>
-      <h2>형식·합계 같은 기계적 실수가, 말로는 안 잡힙니다</h2>
+      <h2>형식·합계 같은 기계적 실수는 말로 잡히지 않습니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
@@ -3364,10 +3374,10 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
             <span class="fl-arr bad">✕</span>
             <span class="fl-node ag">검사 도구<small>LLM = 확률적 생성기</small></span>
           </div>
-          <p class="scn-cap">결정적 기준을 확률 도구로 검사하면 <b>확률적으로 놓칩니다</b>.<br>능력 문제가 아니라 <b>도구 선택</b> 문제입니다.</p>
+          <p class="scn-cap">결정적인 기준을 확률적인 도구로 검사하면 <b>확률적으로 놓치게 됩니다</b>.<br>능력의 문제가 아니라 <b>도구를 잘못 고른</b> 문제입니다.</p>
         </div>
       </div>
-      <p class="note" style="margin-top:0.55rem">사건 ②와 같은 교훈이 검증에도 적용됩니다 — <b>세는 일은 코드의 몫</b>. 다음 장에서 해결합니다.</p>
+      <p class="note" style="margin-top:0.55rem">사건 ②와 같은 교훈이 검증에도 적용됩니다 — <b>세는 일은 코드의 몫</b>입니다. 다음 장에서 해결합니다.</p>
     </section>
 
     <!-- 35 · 사건 ⑫ 해결 -->
@@ -3416,7 +3426,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
       <div class="tname p3">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑫ 기계 채점 하네스</span><span class="tn-en">Script-Judged Gate</span></div>
-        <p class="tn-one"><b>말로 통과하지 말고, 채점으로 통과하라.</b> 3편 Validation 루프의 스킬 내장 — 그리고 <b>2편 실습의 check.sh가 바로 이 구조</b>였습니다.</p>
+        <p class="tn-one"><b>말로 통과하지 말고, 채점으로 통과하라.</b> 3편의 Validation 루프를 스킬 안에 넣은 것 — 그리고 <b>2편 실습의 check.sh가 바로 이 구조</b>였습니다.</p>
         <div class="pills"><span class="pill green">판정 재현 가능</span><span class="pill neutral">루프 상한 명시</span></div>
       </div>
     </section>
@@ -3432,7 +3442,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="ska-cell now"><span class="n">13</span>완료 한 줄</span>
         </div>
       </div>
-      <h2>"이상 없습니다"라는 말은, 증거가 아닙니다</h2>
+      <h2>"이상 없습니다"라는 말은 증거가 아닙니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
@@ -3454,7 +3464,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
             <span class="fl-arr">▼</span>
             <span class="fl-node hum">사람의 선택지<small>전부 재검증(30분) 또는 그냥 믿기</small></span>
           </div>
-          <p class="scn-cap">완료 보고가 <b>주장문 형식</b>입니다 — 실행 여부·출력이 남지 않으니, 실패한 항목이 있어도 <b>낙관 쪽으로 뭉개져도 아무도 모릅니다</b>.</p>
+          <p class="scn-cap">완료 보고가 <b>주장문 형식</b>입니다 — 실행 여부와 출력이 남지 않으니, 실패한 항목이 <b>낙관적으로 뭉개져도 알아챌 방법이 없습니다</b>.</p>
         </div>
       </div>
       <p class="note" style="margin-top:0.55rem">신뢰가 무너진 건 에이전트 탓이 아니라 <b>보고 형식</b> 탓입니다. 다음 장에서 해결합니다.</p>
@@ -3471,7 +3481,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <span class="ska-cell now"><span class="n">13</span>완료 한 줄</span>
         </div>
       </div>
-      <h2>완료 선언에, 증거표를 의무로 붙입니다</h2>
+      <h2>완료 선언에는 증거표를 반드시 붙입니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
@@ -3505,7 +3515,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
       <div class="tname p3">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑬ 증거 기반 완료</span><span class="tn-en">Evidence-based Done</span></div>
-        <p class="tn-one"><b>증거가 없으면 완료가 아니다.</b> 완료의 정의를 주장에서 <b>검증 가능한 기록</b>으로 — 3편 Record의 산출물 적용.</p>
+        <p class="tn-one"><b>증거가 없으면 완료가 아니다.</b> 완료의 정의를 주장에서 <b>검증 가능한 기록</b>으로 바꿉니다 — 3편 Record 개념을 산출물에 적용한 것입니다.</p>
         <div class="pills"><span class="pill green">재확인 30분 → 3분</span><span class="pill neutral">감사 추적 확보</span></div>
       </div>
     </section>
@@ -3544,13 +3554,13 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
         <div class="h0 ain" style="--dly:4.6s; margin-top:0.55rem; border:0.11rem dashed rgba(43,234,208,0.55); border-radius:0.75rem; padding:0.45rem 0.9rem; text-align:center; font-weight:800; color:#A9FFF0; background:rgba(43,234,208,0.05)">통과 — 증거와 함께 사람 승인 ✓</div>
         <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
       </div>
-      <p class="note autoshow fade-up" style="margin-top:0.6rem">넷을 다 쓸 필요는 없습니다 — <b>산출물의 위험도만큼 겹칩니다.</b> 메모 정리는 ⑩ 하나로, 배포 점검은 ⑩⑫⑬을 함께.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.6rem">넷을 다 쓸 필요는 없습니다 — <b>산출물의 위험도에 맞춰 겹쳐 씁니다.</b> 메모 정리는 ⑩ 하나면 되고, 배포 점검은 ⑩⑫⑬을 함께 씁니다.</p>
     </section>
 
     <!-- 39 · PART 4 간지 -->
     <section class="section-opener" data-hero data-sec="PART 4 · 확산">
       <div class="autoshow fade-up"><span class="chip">PART 4 · 확산 — 사건 ⑭</span></div>
-      <h1 class="autoshow fade-up" style="font-size:3.9rem">기법은, <span class="grad">퍼져야 자산</span>이 됩니다</h1>
+      <h1 class="autoshow fade-up" style="font-size:3.9rem">기법은 <span class="grad">퍼져야 자산</span>이 됩니다</h1>
       <p class="autoshow fade-up" style="margin-top:1.2rem; font-size:1.3rem; max-width:46rem">열세 개의 사건을 해결했습니다.<br>마지막 사건은 — <b>이 해결책들이 팀에 퍼지지 않는 사건</b>입니다.</p>
     </section>
 
@@ -3585,7 +3595,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
             <div class="doc coral" style="transform:rotate(3deg); min-width:0"><span class="dt">B의 SKILL.md</span><span class="dl"></span><span class="dl"></span><span class="dl" style="width:85%"></span></div>
             <div class="doc" style="border-style:dashed; min-width:0"><span class="dt">C의 — 미완성</span></div>
           </div>
-          <p class="scn-cap">표준이 <b>"읽어야 하는 문서"</b>로만 존재합니다.<br>적용 비용은 각자에게 있고, 품질은 <b>개인 숙련도에 비례</b>합니다.</p>
+          <p class="scn-cap">표준이 <b>"읽어야 하는 문서"</b>로만 있습니다.<br>적용하는 수고는 각자의 몫이고, 품질은 <b>개인의 숙련도를 따라갑니다</b>.</p>
         </div>
       </div>
       <p class="note" style="margin-top:0.55rem">문서는 배포가 아닙니다 — <b>기본값이 배포</b>입니다. 다음 장, 마지막 해결입니다.</p>
@@ -3646,7 +3656,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       <h2>문제에서 출발하면, 기법은 저절로 골라집니다</h2>
       <div class="pick" style="margin-top:0.9rem">
         <div class="pick-row autoshow fade-up" style="border-color:rgba(43,234,208,0.4)">
-          <div class="pick-q">컨텍스트가 모자란가?<small>읽다 끊기거나, 초반을 잊는다</small></div>
+          <div class="pick-q">컨텍스트가 모자란가?<small>읽다가 끊기거나 초반 내용을 잊는다</small></div>
           <span class="pick-arr">→</span>
           <div class="pick-a">
             <span class="pa"><span class="tkb b1">①</span>지식이 크다</span>
@@ -3684,7 +3694,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
         </div>
       </div>
-      <p class="note autoshow fade-up" style="margin-top:0.9rem">순서 제안 — <b>①~④는 오늘부터</b>, ⑥⑫는 첫 파이프라인을 만들 때, ⑤⑪은 걸린 일이 커졌을 때.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.9rem">순서 제안 — <b>①~④는 오늘부터</b>, ⑥⑫는 첫 파이프라인을 만들 때, ⑤⑪은 맡기는 일이 커졌을 때.</p>
     </section>
 
     <!-- 43 · 종합 사례 -->
@@ -3708,7 +3718,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
         <div class="case-arr autoshow fade-in">▼</div>
         <div class="case-row autoshow fade-up"><div class="case-node"><span class="tkb b3">⑬</span>완료 — 증거표(명령·출력·판정) 첨부해 보고</div><span class="case-out dim2">사람은 훑고 승인</span></div>
       </div>
-      <p class="note autoshow fade-up" style="margin-top:0.8rem">한 업무에 기법 <b>일곱</b>이 겹쳤습니다 — 그리고 이 소재, <b class="accent2">2편 실습 리포의 데이터 그대로</b>입니다.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.8rem">한 업무에 기법 <b>일곱 개</b>가 겹쳐 쓰였습니다 — 그리고 이 소재는 <b class="accent2">2편 실습 리포의 데이터 그대로</b>입니다.</p>
     </section>
 
     <!-- 44 · 실습 예고 -->
@@ -3727,7 +3737,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
             <li class="show"><span class="ix">무대</span><span class="lb">기존 <b>skill quest 리포</b> — 데이터·채점기·보드 재사용</span></li>
             <li class="show"><span class="ix">방식</span><span class="lb">심화 미션 트랙을 얹습니다 <span class="dim small">(구성·일정은 확정 후 공지)</span></span></li>
             <li class="show"><span class="ix">후보</span><span class="lb">② 스크립트 위임 · ⑥⑦ 계약과 파이프라인 · ⑫ 채점 루프 · ⑪ 반박 검증</span></li>
-            <li class="show"><span class="ix">준비</span><span class="lb">2편 수료(Lv.6) + opencode 환경 — 그거면 됩니다</span></li>
+            <li class="show"><span class="ix">준비</span><span class="lb">2편 수료(Lv.6) + opencode 환경 — 이 두 가지면 충분합니다</span></li>
           </ul>
         </div>
       </div>
@@ -3762,7 +3772,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       <h2 style="font-size:2.1rem">한 장 요약 — 문제가 보이면, 기법이 보입니다</h2>
       <table class="risk-table" style="margin-top:0.6rem; width:100%">
         <tr class="rh"><th style="width:2.4rem">#</th><th style="width:15rem">기법</th><th>이런 사건에</th><th>극복 원리</th><th style="width:16rem">외우는 한 줄</th></tr>
-        <tr><td>①</td><td>레퍼런스 계층화</td><td>발동마다 규칙 30페이지가 실린다</td><td>상주는 한 줄, 지식은 조건부 로드</td><td class="one">목차만 상주, 지식은 문 뒤에</td></tr>
+        <tr><td>①</td><td>레퍼런스 계층화</td><td>발동마다 규칙 30페이지가 실린다</td><td>기본 점유는 한 줄, 지식은 조건부 로드</td><td class="one">목차만 싣고, 지식은 문 뒤에</td></tr>
         <tr><td>②</td><td>스크립트 위임</td><td>로그 50만 줄 — 못 읽고, 세면 틀린다</td><td>집계는 밖의 코드, 판단만 모델</td><td class="one">세는 일은 코드가</td></tr>
         <tr><td>③</td><td>외부 기억</td><td>3시간 작업이 첫 결정을 잊는다</td><td>기억을 대화에서 파일로 이동</td><td class="one">파일은 남는다</td></tr>
         <tr><td>④</td><td>지도 우선 탐색</td><td>설명 하나에 리포 절반을 읽는다</td><td>소비가 질문 크기에 비례</td><td class="one">읽기는 검색의 결과</td></tr>
