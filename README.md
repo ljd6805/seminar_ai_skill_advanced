@@ -27,7 +27,7 @@ AI Agent 팀 세미나 시리즈 **4편 — SKILL 심화** 의 발표 자료 저
 | 문서 | 설명 |
 |---|---|
 | [`docs/seminar-synopsis.md`](docs/seminar-synopsis.md) | 이론편 시놉시스 v0.3 — 핵심 메시지, 전개 원칙(사건 서사), 사건 카탈로그(문제 예시→원인→해결), 장별 구성, 시간 배분, 실습 연계 계획, 결정 기록. **슬라이드 작성의 기준 문서** |
-| [`slides/index.html`](slides/index.html) | 이론편 슬라이드 v0.3 (47장, 단일 흐름) — reveal.js 자립형(오프라인 동작), 1·2·3편과 동일한 테마 상속(Wanted Sans Variable + JetBrains Mono 임베드). 사건마다 문제·해결 리플레이 애니메이션과 원인 차트 포함 |
+| [`slides/index.html`](slides/index.html) | 이론편 슬라이드 v0.3 (48장, 단일 흐름) — reveal.js 자립형(오프라인 동작), 1·2·3편과 동일한 테마 상속(Wanted Sans Variable + JetBrains Mono 임베드). 사건마다 문제·해결 리플레이 애니메이션과 원인 차트 포함 |
 
 GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced/slides/`
 
@@ -36,7 +36,7 @@ GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced
 - [x] 주제 선정 및 기법 카탈로그 확정 (14기법 · 4파트)
 - [x] 이론편 논리 구조 확정 (문제 주도형 사건 서사 — 문제예시→문제제기→원인분석→해결→기술소개)
 - [x] 시놉시스 v0.3
-- [x] 이론편 슬라이드 v0.3 (47장 — 사건 14건 × [문제·해결] 리플레이, 256k 가계부·파이프라인 시네마·결함 낙하 그물 애니메이션, 선택 지도·종합 사례·부록 요약표)
+- [x] 이론편 슬라이드 v0.3 (48장 — 2편 5이론 복습 · 사건 14건 × [문제·해결] 리플레이, 256k 가계부·파이프라인 시네마·결함 낙하 그물 애니메이션, 선택 지도·종합 사례·부록 요약표)
 - [ ] 슬라이드 검토·보강 ← **다음 단계**
 - [ ] 리허설 및 시간 조정
 - [ ] 실습편 (Skill Quest 심화 시즌) 기획 — 미션 구성·레벨 체계·일정

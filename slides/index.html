@@ -1892,9 +1892,55 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
 .cap3 .c3.why { border-color:#FFD46B; } .reveal section .c3.why .c3t { color:#FFE08A !important; }
 .cap3 .c3.eff { border-color:#2BEAD0; } .reveal section .c3.eff .c3t { color:#5BFFE0 !important; }
 
-/* 4장 문제 목격 미니 씬 (정적 glyph) */
-.pv { display:flex; flex-direction:column; gap:0.55rem; align-items:center; }
-.pv .pv-arr { color:var(--fg-soft) !important; font-weight:800; font-size:0.85rem; }
+/* 문제 정의 미니 씬 (정적 glyph) */
+.pv { display:flex; flex-direction:column; gap:0.7rem; align-items:center; }
+.pv .pv-arr { color:var(--fg-soft) !important; font-weight:800; font-size:0.95rem; }
+
+/* 문제 정의 장 — 확대 오버라이드 (.pdefs) */
+.pdefs .scn-p { min-height:15.5rem; }
+.pdefs .scn-tag { font-size:0.82rem; }
+.pdefs .blob { font-size:1.04rem; padding:0.52rem 1.0rem; }
+.pdefs .doc { font-size:0.78rem; min-width:15.5rem; }
+.pdefs .doc .dt { font-size:0.9rem; }
+.pdefs .g { max-width:17rem; }
+.pdefs .g .g-bar { height:0.95rem; }
+.pdefs .g .g-cap { font-size:0.76rem; }
+.reveal section .pdefs .vlab { font-size:0.95rem; }
+
+/* 파트 안내 스택 라벨 — PART 이름(강조) / 사건 범위(줄바꿈) */
+.pv-part {
+  display:inline-block; text-align:center;
+  border:0.1rem solid rgba(190,200,224,0.4); border-radius:0.85rem;
+  padding:0.5rem 1.35rem 0.55rem; background:rgba(255,255,255,0.02);
+}
+.pv-part .pn { display:block; font-weight:800; font-size:1.22rem; line-height:1.25; white-space:nowrap; }
+.pv-part .pr { display:block; font-family:var(--mono); font-size:0.76rem; color:var(--fg-soft) !important; margin-top:0.16rem; letter-spacing:0.06em; }
+.pv-part.pp1 { border-color:rgba(43,234,208,0.6); background:rgba(43,234,208,0.07); }
+.reveal section .pv-part.pp1 .pn { color:#7FE8D8; }
+.pv-part.pp2 { border-color:rgba(143,168,255,0.6); background:rgba(143,168,255,0.08); }
+.reveal section .pv-part.pp2 .pn { color:#AFC3FF; }
+.pv-part.pp3 { border-color:rgba(255,122,149,0.6); background:rgba(255,122,149,0.08); }
+.reveal section .pv-part.pp3 .pn { color:#FF94AC; }
+.pv-part.pp4 { border-color:rgba(255,212,107,0.6); background:rgba(255,212,107,0.07); }
+.reveal section .pv-part.pp4 .pn { color:#FFE08A; }
+
+/* 2편 다섯 이론 복습 카드 */
+.th5 { display:grid; grid-template-columns:repeat(5,1fr); gap:0.7rem; margin-top:1.1rem; align-items:stretch; }
+.th5 .t5 {
+  border:0.0625rem solid rgba(190,200,224,0.28); border-radius:0.95rem;
+  padding:0.75rem 0.75rem 0.8rem; background:rgba(255,255,255,0.02);
+  display:flex; flex-direction:column; gap:0.6rem; align-items:center; text-align:center;
+}
+.th5 .t5h { display:flex; align-items:center; gap:0.5rem; font-weight:800; font-size:1.05rem; white-space:nowrap; }
+.th5 .t5g {
+  flex:1; width:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.35rem;
+  border:0.0625rem dashed rgba(190,200,224,0.22); border-radius:0.7rem; padding:0.55rem 0.4rem;
+  background:rgba(11,14,26,0.45);
+}
+.th5 .t5g .m { font-family:var(--mono); font-size:0.7rem; line-height:1.6; color:#C7CFE8 !important; }
+.th5 .t5d { font-size:0.8rem; color:var(--fg-soft) !important; line-height:1.5; word-break:keep-all; }
+.th5 .t5d b { color:#E8ECF5; }
+.reveal section .th5 .w5 { font-weight:800; font-size:0.86rem; }
 
 /* 리플레이 로그용 전역 판정색 (pp-log 밖에서도) */
 .reveal section .plv { color:#9FF5E6; }
@@ -1973,71 +2019,147 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
         </div>
       </div>
       <p class="autoshow fade-up" style="font-size:1.32rem; margin-top:1.2rem">오늘은 이 다섯 이론 위에 <b class="accent">열네 가지 기법</b>을 쌓습니다 — 스킬 <b>하나</b>가 아니라 스킬 <b>시스템</b>의 이야기입니다.</p>
-      <p class="note autoshow fade-up" style="margin-top:0.9rem">잘 만든 스킬 하나가 어디서 막히는지부터, 직접 보겠습니다.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.9rem">먼저 그 다섯 이론을 <b>1분 복습</b>하고 출발하겠습니다.</p>
     </section>
 
-    <!-- 3 · 목격 -->
-    <section data-sec="도입 · 목격">
-      <div><span class="chip">목격</span> <span class="pill">실행 상황 재현 <span class="tiny" style="font-weight:400">(설명을 위해 구성한 예시)</span></span></div>
-      <h2>잘 만든 스킬도, 여기서 막힙니다</h2>
-      <div class="term shell sim" style="margin-top:0.7rem">
-        <div class="term-bar"><span class="term-title">실행 화면 — 2편에서 만든 스킬들, 실전 투입 첫 주</span><span class="win-btns"><span>–</span><span class="wb-sq"></span><span>×</span></span></div>
-        <div class="term-body" style="line-height:1.98; padding:0.8rem 1.1rem; font-size:0.98rem">
-          <div class="ska-log"><span class="sh-dim"># 장면 1 — "지난밤 regression.log, 원인 분석해줘"</span></div>
-          <div class="ska-log"><span class="sh-ok">READ</span>  logs/regression.log <span class="sh-dim">— 500,000줄</span></div>
-          <div class="ska-log"><span class="ska-danger">⚠ 컨텍스트 한도 초과 — 앞부분만 읽고 중단</span>   <span class="sh-dim">← 문제 ①</span></div>
-          <div class="ska-log"><span class="sh-dim"># 장면 2 — 로그 요약 스킬 · 분석 스킬 · 리포트 스킬은 각각 잘 동작하는데…</span></div>
-          <div class="ska-log"><span class="sh-req">USER</span>  "요약 됐지? 이제 원인 분석 시작해줘"</div>
-          <div class="ska-log"><span class="sh-req">USER</span>  "분석 끝났네. 이제 리포트로 만들어줘"</div>
-          <div class="ska-log"><span class="ska-danger">USER  "리포트 됐고… 다음이 뭐였지?"</span>   <span class="sh-dim">← 문제 ② 순서를 아는 건 사람뿐</span></div>
-          <div class="ska-log"><span class="sh-dim"># 장면 3 — 30분 뒤</span></div>
-          <div class="ska-log"><span class="sh-agent">AGENT</span> "리포트 작성 완료했습니다."</div>
-          <div class="ska-log"><span class="ska-danger">CHECK 필수 섹션 '재현 절차' 누락</span></div>
-          <div class="ska-log"><span class="ska-danger">CHECK PASS 12 + FAIL 3 = 15 ≠ 전체 17 — 합계 불일치</span>   <span class="sh-dim">← 문제 ③</span></div>
-          <div class="ska-log"><span class="sh-dim">… 스킬은 절차대로 움직였습니다. 무너진 곳은 스킬 바깥입니다.</span></div>
+    <!-- 3 · 2편 복습 — 다섯 이론 -->
+    <section data-sec="도입 · 2편 복습">
+      <div><span class="chip">2편 복습 · 다섯 이론</span></div>
+      <h2>다섯 이론, 한 장으로 복습합니다</h2>
+      <div class="th5">
+        <div class="t5 autoshow fade-up">
+          <div class="t5h"><span class="tk-n">1</span>최소 구성</div>
+          <div class="t5g">
+            <span class="m"><span class="t-hl">.opencode/skills/</span><br>└ <span class="t-str">&lt;이름&gt;</span>/<br>&nbsp;&nbsp;└ <span class="t-key">SKILL.md</span></span>
+          </div>
+          <span class="t5d">폴더 하나 + 파일 하나.<br><b>폴더명 = 스킬 이름</b>, 파일명은 반드시 SKILL.md.</span>
+        </div>
+        <div class="t5 autoshow fade-up">
+          <div class="t5h"><span class="tk-n">2</span>트리거링</div>
+          <div class="t5g">
+            <span class="m"><span class="t-key">description:</span> <span class="t-str">…요청 시 사용</span></span>
+            <span class="fl-arr" style="font-size:0.8rem">요청과 대조 ▼</span>
+            <span class="vlab pass" style="font-size:0.7rem">발동</span>
+          </div>
+          <span class="t5d"><b>description이 발동</b>을 결정하고,<br>본문이 결과 품질을 결정한다.</span>
+        </div>
+        <div class="t5 autoshow fade-up">
+          <div class="t5h"><span class="tk-n">3</span>5요소 본문</div>
+          <div class="t5g">
+            <span class="w5" style="color:#B7A5FF">입력</span>
+            <span class="w5" style="color:#FFE08A">출력</span>
+            <span class="w5" style="color:#7FE8D8">절차</span>
+            <span class="w5" style="color:#FF94AC">금지</span>
+            <span class="w5" style="color:#AFC3FF">검증</span>
+          </div>
+          <span class="t5d">좋은 본문은 이 <b>다섯 가지가 선명</b>하다.</span>
+        </div>
+        <div class="t5 autoshow fade-up">
+          <div class="t5h"><span class="tk-n">4</span>교통정리</div>
+          <div class="t5g">
+            <span class="m" style="border:0.0625rem solid rgba(155,130,255,0.5); border-radius:0.4rem; padding:0.12rem 0.5rem">스킬 A — "로그 요약…"</span>
+            <span class="m" style="border:0.0625rem solid rgba(43,234,208,0.5); border-radius:0.4rem; padding:0.12rem 0.5rem">스킬 B — "PDF 변환…"</span>
+            <span class="tiny faint">겹치지 않게, 빈틈 없게</span>
+          </div>
+          <span class="t5d">스킬이 여럿이면 <b>description이 경계</b>를 긋는다.</span>
+        </div>
+        <div class="t5 autoshow fade-up">
+          <div class="t5h"><span class="tk-n">5</span>레퍼런스 번들</div>
+          <div class="t5g">
+            <span class="m"><span class="t-key">SKILL.md</span> <span class="t-out">← 절차</span><br><span class="t-key">references/</span><br>&nbsp;&nbsp;└ <span class="t-str">quality-bar.md</span> <span class="t-out">← 기준</span></span>
+          </div>
+          <span class="t5d"><b>기준은 파일로 동봉</b> —<br>바뀌면 파일만 교체한다.</span>
         </div>
       </div>
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem">
-        <p class="note" style="margin:0; border-top:none; padding-top:0">컨텍스트가 모자라고 · 프로세스가 사람 손에 있고 · "완료"를 믿을 수 없습니다.</p>
+      <p class="note autoshow fade-up" style="margin-top:1.1rem">이 다섯이 오늘의 <b>문법</b>입니다 — 심화 14기법은 전부 이 위에서 조립됩니다. 이제, 이 문법으로도 막히는 사건들을 보겠습니다.</p>
+    </section>
+
+    <!-- 4 · 목격 — 3분할 터미널 -->
+    <section data-sec="도입 · 목격">
+      <div><span class="chip">목격</span> <span class="pill">실행 상황 재현 <span class="tiny" style="font-weight:400">(설명을 위해 구성한 예시)</span></span></div>
+      <h2>잘 만든 스킬도, 세 곳에서 막힙니다</h2>
+      <div class="grid-3 sim" style="margin-top:0.8rem; gap:0.85rem; align-items:stretch">
+        <div style="display:flex; flex-direction:column; gap:0.55rem">
+          <div class="term shell" style="flex:1">
+            <div class="term-bar"><span class="term-title">문제 ① — 컨텍스트</span></div>
+            <div class="term-body" style="line-height:1.9; font-size:0.8rem; padding:0.75rem 0.9rem">
+              <div class="ska-log"><span class="sh-req">USER</span> "regression.log 원인 분석해줘"</div>
+              <div class="ska-log"><span class="sh-ok">READ</span> logs/regression.log <span class="sh-dim">— 50만 줄</span></div>
+              <div class="ska-log"><span class="ska-danger">⚠ 한도 초과 — 12%에서 중단</span></div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "Timeout이 많아 보입니다" <span class="sh-dim">(추정)</span></div>
+              <div class="ska-log"><span class="ska-danger">실제 1위는 Assertion — 오답</span></div>
+            </div>
+          </div>
+          <div style="text-align:center"><span class="pill green">→ 컨텍스트가 모자라다</span></div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.55rem">
+          <div class="term shell" style="flex:1">
+            <div class="term-bar"><span class="term-title">문제 ② — 프로세스</span></div>
+            <div class="term-body" style="line-height:1.9; font-size:0.8rem; padding:0.75rem 0.9rem">
+              <div class="ska-log"><span class="sh-req">USER</span> "요약 됐지? 분석 시작해줘"</div>
+              <div class="ska-log"><span class="sh-req">USER</span> "이제 리포트로 만들어줘"</div>
+              <div class="ska-log"><span class="ska-danger">USER "다음이… 뭐였지?"</span></div>
+              <div class="ska-log"><span class="ska-danger">(검증 단계 누락된 채 발행)</span></div>
+              <div class="ska-log"><span class="sh-dim">순서를 아는 건 사람뿐</span></div>
+            </div>
+          </div>
+          <div style="text-align:center"><span class="pill" style="border-color:rgba(143,168,255,0.8); background:#1A2140; color:#C4D2FF !important">→ 프로세스가 사람 손에 있다</span></div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.55rem">
+          <div class="term shell" style="flex:1">
+            <div class="term-bar"><span class="term-title">문제 ③ — 신뢰</span></div>
+            <div class="term-body" style="line-height:1.9; font-size:0.8rem; padding:0.75rem 0.9rem">
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "리포트 완료했습니다."</div>
+              <div class="ska-log"><span class="ska-danger">CHECK '재현 절차' 누락</span></div>
+              <div class="ska-log"><span class="ska-danger">CHECK 12+3=15 ≠ 17 — 합계 불일치</span></div>
+              <div class="ska-log"><span class="sh-req">USER</span> 결국 처음부터 재확인…</div>
+              <div class="ska-log"><span class="sh-dim">"완료"라는 말만 남았다</span></div>
+            </div>
+          </div>
+          <div style="text-align:center"><span class="pill pink">→ "완료"를 믿을 수 없다</span></div>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.7rem">
+        <p class="note" style="margin:0; border-top:none; padding-top:0">스킬은 절차대로 움직였습니다 — <b>무너진 곳은 스킬 바깥</b>입니다.</p>
         <button class="pill" onclick="simReplay(this)" style="cursor:pointer">↻ 다시 재생</button>
       </div>
     </section>
 
-    <!-- 4 · 문제 정의 -->
-    <section data-sec="도입 · 문제 정의">
+    <!-- 5 · 문제 정의 -->
+    <section data-sec="도입 · 문제 정의" class="pdefs">
       <div><span class="chip">문제 정의</span></div>
       <h2>세 가지 문제를, <span class="grad">열네 개의 사건</span>으로 풉니다</h2>
-      <div class="grid-3" style="margin-top:1.3rem; align-items:stretch">
-        <div class="scn-p bad autoshow zoom-in" style="min-height:13.5rem">
+      <div class="grid-3" style="margin-top:1.4rem; align-items:stretch">
+        <div class="scn-p bad autoshow zoom-in">
           <span class="scn-tag">문제 ① — 컨텍스트</span>
           <div class="pv" style="width:100%">
             <div class="doc coral"><span class="dt">regression.log — 500,000줄</span><span class="dl"></span><span class="dl" style="width:84%"></span></div>
             <div class="g red" style="--w:100%"><div class="g-bar"><i></i></div><div class="g-cap"><span>읽다가</span><b>한도 초과 · 중단</b></div></div>
             <span class="pv-arr">▼</span>
-            <span class="pill green">PART 1 · 절약술 <span class="tiny" style="font-weight:400">사건 ①~⑤</span></span>
+            <div class="pv-part pp1"><span class="pn">PART 1 · 절약술</span><span class="pr">사건 ①~⑤</span></div>
           </div>
         </div>
-        <div class="scn-p bad autoshow zoom-in" style="min-height:13.5rem">
+        <div class="scn-p bad autoshow zoom-in">
           <span class="scn-tag">문제 ② — 프로세스</span>
           <div class="pv" style="width:100%">
             <span class="blob">"요약해줘"</span>
-            <span class="blob">"이제 분석해줘"</span>
             <span class="blob" style="border-color:rgba(255,122,149,0.6)">"…다음이 뭐였지?"</span>
+            <span class="vlab fail">검증 단계 누락</span>
             <span class="pv-arr">▼</span>
-            <span class="pill" style="border-color:rgba(143,168,255,0.8); background:#1A2140; color:#C4D2FF !important">PART 2 · 연계술 <span class="tiny" style="font-weight:400">사건 ⑥~⑨</span></span>
+            <div class="pv-part pp2"><span class="pn">PART 2 · 연계술</span><span class="pr">사건 ⑥~⑨</span></div>
           </div>
         </div>
-        <div class="scn-p bad autoshow zoom-in" style="min-height:13.5rem">
+        <div class="scn-p bad autoshow zoom-in">
           <span class="scn-tag">문제 ③ — 신뢰</span>
           <div class="pv" style="width:100%">
             <span class="blob">"리포트 완료했습니다."</span>
             <span class="vlab fail">CHECK — 합계 불일치</span>
             <span class="pv-arr">▼</span>
-            <span class="pill pink">PART 3 · 검증술 <span class="tiny" style="font-weight:400">사건 ⑩~⑬</span></span>
+            <div class="pv-part pp3"><span class="pn">PART 3 · 검증술</span><span class="pr">사건 ⑩~⑬</span></div>
           </div>
         </div>
       </div>
-      <p class="autoshow fade-up" style="font-size:1.15rem; margin-top:1.1rem; text-align:center">그리고 하나 더 — 이걸 <b>팀의 기본값</b>으로 만드는 문제 <span class="pill amber" style="margin-left:0.4rem">PART 4 · 확산 <span class="tiny" style="font-weight:400">사건 ⑭</span></span></p>
+      <p class="autoshow fade-up" style="font-size:1.3rem; margin-top:1.2rem; text-align:center; display:flex; align-items:center; justify-content:center; gap:0.9rem; flex-wrap:wrap">그리고 하나 더 — 이걸 <b>팀의 기본값</b>으로 만드는 문제 <span class="pv-part pp4" style="padding:0.4rem 1.1rem 0.45rem"><span class="pn" style="font-size:1.1rem">PART 4 · 확산</span><span class="pr">사건 ⑭</span></span></p>
       <p class="note autoshow fade-up" style="margin-top:0.9rem">이 그림이 오늘의 <b>로드맵</b>입니다. 그 전에, 문제 ①의 무대인 <b class="accent">256k</b>부터 체감해 보겠습니다.</p>
     </section>
 
