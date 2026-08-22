@@ -1955,6 +1955,16 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
 .badsk .term-body { font-size:0.78rem; line-height:1.66; white-space:pre-wrap; flex:1; }
 .reveal section .bx { color:#FF94AC; font-weight:700; }
 
+/* --- 개조 명세 스프레드: Before(코랄) / After(민트) 전문 대조 --- */
+.term.fixsk { border-color:rgba(43,234,208,0.5); display:flex; flex-direction:column; }
+.fixsk .term-bar { border-bottom-color:rgba(43,234,208,0.3); }
+.reveal section .fixsk .term-title { color:#7FE8D8; }
+.fixsk .term-body { font-size:0.7rem; line-height:1.58; white-space:pre-wrap; flex:1; }
+.spread .badsk .term-body { font-size:0.7rem; line-height:1.58; }
+.reveal section .padd { color:#5BFFE0; font-weight:800; }
+.diffbar { display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap; margin-top:0.65rem; }
+.reveal section .diffbar .dl2 { font-family:var(--mono); font-size:0.66rem; font-weight:700; letter-spacing:0.12em; color:var(--fg-soft); margin-right:0.3rem; }
+
 /* --- 원인 분석 가로 스트립 (문제 장 하단) --- */
 .causebar {
   flex-direction:row; align-items:center; justify-content:flex-start;
@@ -2225,7 +2235,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
     <!-- 6 · 진행 방식 -->
     <section data-sec="도입 · 진행 방식">
       <div><span class="chip">진행 방식</span></div>
-      <h2>사건 하나에 두 장 — <span class="grad">문제 장, 해결 장</span></h2>
+      <h2>사건 하나에 세 장 — <span class="grad">문제 · 해결 · 개조 명세</span></h2>
       <div class="grid-2" style="margin-top:1.0rem; align-items:stretch">
         <div class="panel autoshow fade-left" style="gap:0.55rem; border-color:rgba(255,122,149,0.4)">
           <div class="phead bad">문제 장 — 사건을 목격합니다</div>
@@ -2241,6 +2251,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
             <li class="show"><span class="ix">해결</span><span class="lb"><b>해결 리플레이</b> — 같은 요청이 단계별로 풀리는 과정</span></li>
             <li class="show"><span class="ix">구성</span><span class="lb"><b>스킬구성</b> — 이 해결을 만드는 SKILL.md 발췌</span></li>
             <li class="show"><span class="ix">명명</span><span class="lb"><b>기술소개</b> — 이름은 마지막에, 답으로서 등장</span></li>
+            <li class="show"><span class="ix">명세</span><span class="lb"><b>개조 명세</b> — Before / After 스킬 전문 대조 (스킬북 본편)</span></li>
           </ul>
         </div>
       </div>
@@ -2368,6 +2379,79 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
     </section>
 
+    <!-- 사건 01 · 개조 명세 -->
+    <section data-sec="PART 1 · 사건 ① — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 01 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell now"><span class="n">1</span>규칙 30p</span>
+          <span class="ska-cell"><span class="n">2</span>로그 50만</span>
+          <span class="ska-cell"><span class="n">3</span>3시간 작업</span>
+          <span class="ska-cell"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">규칙 30페이지를, <span class="grad">목차 40줄 + 참조 파일 3개</span>로</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — convention-review/SKILL.md (문제 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">convention-review</span>
+<span class="t-key">description:</span> <span class="t-str">코드 컨벤션 리뷰 요청 시 사용</span>
+<span class="t-out">---</span>
+# Convention Review
+
+<span class="t-hl">## 절차</span>
+1. 변경된 diff를 읽는다.
+2. 아래 규칙에 따라 위반을 지적한다.
+
+<span class="t-hl">## 규칙 — 전체 수록</span> <span class="t-out">(30페이지)</span>
+<span class="t-hl">### 1. 네이밍 규칙</span>
+- 클래스는 PascalCase, 함수는 camelCase, 상수는 …
+<span class="t-out">  (이하 8쪽 분량, 원문 그대로) …</span>
+<span class="t-hl">### 2. 예외 처리 규칙</span>
+- 모든 예외는 도메인 오류 코드로 변환하고 …
+<span class="t-out">  (이하 11쪽 분량) …</span>
+<span class="t-hl">### 3. 동시성 규칙</span>
+- 공유 상태 접근은 lock 범위를 명시하고 …
+<span class="t-out">  (이하 11쪽 분량) …</span>
+
+<span class="bx">✕ 발동하면 이 전부(+38k 토큰)가 통째로 로드된다</span>
+<span class="bx">✕ 규칙이 개정될 때마다 스킬 본문을 수정해야 한다</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — convention-review/SKILL.md (해결 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">convention-review</span>
+<span class="t-key">description:</span> <span class="t-str">diff·코드의 컨벤션 리뷰, 규칙 위반 점검 요청 시 사용</span>
+<span class="t-out">---</span>
+# Convention Review
+
+<span class="t-hl">## 절차</span>
+1. diff에서 파일 유형·키워드만 훑는다. <span class="t-out">(전체 정독 금지)</span>
+<span class="padd">＋</span> 2. 해당하는 규칙 파일<b>만</b> 골라 읽는다:
+   · 이름·구조 지적 필요    → <span class="t-str">references/naming.md</span>
+   · try/except·오류 코드   → <span class="t-str">references/error-handling.md</span>
+   · thread·mutex·async    → <span class="t-str">references/concurrency.md</span>
+3. 읽은 규칙의 조항 번호를 근거로 지적한다. <span class="t-out">(예: concurrency §3)</span>
+<span class="padd">＋</span> 4. 읽지 않은 규칙으로는 지적하지 않는다.
+
+<span class="t-hl">## 금지</span>
+<span class="padd">＋</span> · references/ 전체를 한 번에 읽는 행위
+· 규칙 원문을 본문에 복사해 두는 행위
+
+<span class="t-hl">## 출력</span>
+· 지적마다: 파일:줄 · 위반 조항 · 수정 제안 1줄
+
+<span class="t-hl">## 폴더 구성</span>
+convention-review/
+├─ SKILL.md              <span class="t-out">← 이 파일 (절차 40줄)</span>
+└─ references/  naming.md · error-handling.md · concurrency.md</div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">규칙 → references/ 3파일 분리</span><span class="pill green">본문에 참조 조건 명시</span><span class="pill green">읽지 않은 규칙 지적 금지</span></div>
+    </section>
+
     <!-- 10 · 사건 ② 문제 -->
     <section data-sec="PART 1 · 사건 ② — 문제">
       <div class="tk-top">
@@ -2471,6 +2555,71 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
     </section>
 
+    <!-- 사건 02 · 개조 명세 -->
+    <section data-sec="PART 1 · 사건 ② — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 02 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell now"><span class="n">2</span>로그 50만</span>
+          <span class="ska-cell"><span class="n">3</span>3시간 작업</span>
+          <span class="ska-cell"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">"읽고 세는 절차"를, <span class="grad">스크립트 실행 절차</span>로</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — log-digest/SKILL.md (문제 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">log-digest</span>
+<span class="t-key">description:</span> <span class="t-str">로그 요약·원인 분석 요청 시 사용</span>
+<span class="t-out">---</span>
+# Log Digest
+
+<span class="t-hl">## 절차</span>
+1. 대상 로그 파일을 연다.
+   <span class="bx">✕ 50만 줄을 모델이 직접 READ — 12%에서 한도</span>
+2. 오류 메시지를 유형별로 분류한다.
+3. 유형별 건수를 세어 표로 만든다.
+   <span class="bx">✕ '세기'는 확률 모델의 구조적 약점 — 매번 다른 값</span>
+4. 가장 많은 유형부터 원인 후보를 적는다.
+5. output/digest.md 로 저장한다.
+
+<span class="t-out">(scripts/ 없음 — 읽기·집계·판단을 전부 모델이 수행)</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — log-digest/SKILL.md (해결 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">log-digest</span>
+<span class="t-key">description:</span> <span class="t-str">리그레션·크래시 로그의 요약, 오류 집계, 원인 분석 요청 시 사용</span>
+<span class="t-out">---</span>
+# Log Digest
+
+<span class="t-hl">## 절차</span>
+<span class="padd">＋</span> 1. 로그 파일을 <b>직접 읽지 않는다</b>. <span class="t-out">(1,000줄 초과 시 반드시)</span>
+<span class="padd">＋</span> 2. <span class="t-str">python scripts/digest.py &lt;로그경로&gt;</span> 를 실행한다.
+   <span class="t-out">출력: 유형별 건수 · 첫 급증 시각 · 대표 스택 20건 (약 30줄)</span>
+3. 스크립트 출력만 근거로 원인 후보를 2~3개 적는다.
+<span class="padd">＋</span> 4. 수치는 출력의 숫자를 그대로 인용한다. <span class="t-out">(직접 세지 않는다)</span>
+5. <span class="t-str">output/digest.md</span> 로 저장한다. 끝줄: <span class="t-str">DIGEST-VERSION: 1</span>
+
+<span class="t-hl">## 금지</span>
+· 원본 로그의 READ, 부분 발췌 붙여넣기
+· 스크립트 출력에 없는 수치의 사용
+
+<span class="t-hl">## 검증</span>
+<span class="padd">＋</span> · digest.md 의 유형별 건수 합 = 스크립트 TOTAL 값
+
+<span class="t-hl">## 폴더 구성</span>
+log-digest/
+├─ SKILL.md
+└─ scripts/digest.py     <span class="t-out">← 집계·통계 (컨텍스트 밖에서 실행)</span></div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">READ → 스크립트 실행으로 교체</span><span class="pill green">원본 읽기를 금지 조항으로</span><span class="pill green">수치는 코드 계산값만 인용</span></div>
+    </section>
+
     <!-- 12 · 사건 ③ 문제 -->
     <section data-sec="PART 1 · 사건 ③ — 문제">
       <div class="tk-top">
@@ -2571,6 +2720,69 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
         <p class="tn-one"><b>대화는 흘러가고, 파일은 남는다.</b> 기억을 휘발되는 컨텍스트에서 영속되는 파일로 — 세션이 끊겨도 더는 사고가 아닙니다.</p>
         <div class="pills"><span class="pill green">세션 무관 재개</span><span class="pill neutral">인수인계 문서 겸용</span></div>
       </div>
+    </section>
+
+    <!-- 사건 03 · 개조 명세 -->
+    <section data-sec="PART 1 · 사건 ③ — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 03 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell done"><span class="n"></span>로그 50만</span>
+          <span class="ska-cell now"><span class="n">3</span>3시간 작업</span>
+          <span class="ska-cell"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">머릿속 진행 기억을, <span class="grad">state.md 갱신 절차</span>로</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — api-migration/SKILL.md (문제 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">api-migration</span>
+<span class="t-key">description:</span> <span class="t-str">API 마이그레이션 작업 시 사용</span>
+<span class="t-out">---</span>
+# API Migration
+
+<span class="t-hl">## 절차</span>
+1. 모듈을 순서대로 v2 규칙에 맞춰 수정한다.
+2. 진행 상황을 기억해 두고 이어서 한다.
+   <span class="bx">✕ '기억'을 둘 곳을 정하지 않았다 — 대화가 유일한 저장소</span>
+3. 전 모듈이 끝나면 결과를 보고한다.
+
+<span class="bx">✕ 세션이 끊기면 진행 기록 전체가 사라진다</span>
+<span class="bx">✕ 대화가 길어지면 초반 결정(v2 통일)부터 잊는다</span>
+<span class="t-out">(상태 파일 규정 없음)</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — api-migration/SKILL.md (해결 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">api-migration</span>
+<span class="t-key">description:</span> <span class="t-str">모듈 API 마이그레이션(v1→v2) 작업·재개 요청 시 사용</span>
+<span class="t-out">---</span>
+# API Migration
+
+<span class="t-hl">## 절차</span>
+<span class="padd">＋</span> 1. 시작할 때 <span class="t-str">output/state.md</span> 가 있으면 <b>먼저 읽고 이어서</b> 한다.
+   없으면 <span class="t-str">assets/state-template.md</span> 를 복사해 만든다.
+2. 이번에 다룰 모듈 하나를 정하고, 규칙(state.md 상단)을 확인한다.
+3. 모듈을 v2 규칙으로 수정한다.
+<span class="padd">＋</span> 4. 끝나는 즉시 state.md 를 갱신한다:
+   · 해당 줄 [ ] → [x]
+   · 특이 사항은 "메모" 절에 1줄
+<span class="padd">＋</span> 5. 대화가 길어지면 <b>대화가 아니라 state.md 를 기준</b>으로 삼는다.
+
+<span class="t-hl">## 금지</span>
+· state.md 갱신 없이 다음 모듈로 넘어가는 행위
+· "아까 정한 규칙"처럼 대화 기억에 기대는 표현
+
+<span class="t-hl">## state.md 형식</span> <span class="t-out">(assets/state-template.md)</span>
+규칙: v2 통일 · 예외는 메모에 기록
+[x] 모듈 01 · [x] 02 · … · [ ] 모듈 40
+메모: 03에서 API 시그니처 변경 확인</div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">상태 파일을 시작 조건으로</span><span class="pill green">모듈마다 즉시 갱신 의무</span><span class="pill green">기준을 대화 → 파일로 전환</span></div>
     </section>
 
     <!-- 14 · 사건 ④ 문제 -->
@@ -2676,6 +2888,67 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
     </section>
 
+    <!-- 사건 04 · 개조 명세 -->
+    <section data-sec="PART 1 · 사건 ④ — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 04 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell done"><span class="n"></span>로그 50만</span>
+          <span class="ska-cell done"><span class="n"></span>3시간 작업</span>
+          <span class="ska-cell now"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">"관련 파일을 읽는다"를, <span class="grad">3단 탐색 절차</span>로</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — repo-scout/SKILL.md (문제 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">repo-scout</span>
+<span class="t-key">description:</span> <span class="t-str">코드 구조·동작 설명 요청 시 사용</span>
+<span class="t-out">---</span>
+# Repo Scout
+
+<span class="t-hl">## 절차</span>
+1. 관련 파일을 읽고 구조를 파악한다.
+   <span class="bx">✕ '관련'의 기준이 없다 — 무엇을 읽을지 정해지지 않음</span>
+   <span class="bx">✕ 읽는 범위 제한도 없다 — 파일을 통째로 READ</span>
+2. 흐름을 정리해 설명한다.
+
+<span class="bx">✕ 결국 눈에 띄는 파일부터 순서대로 통째 읽기</span>
+<span class="bx">✕ 9파일째에서 한도 — 앞 파일 내용은 유실</span>
+<span class="t-out">(탐색 순서·금지 조항 없음)</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — repo-scout/SKILL.md (해결 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">repo-scout</span>
+<span class="t-key">description:</span> <span class="t-str">코드 구조·동작 설명, 심볼 위치 추적 요청 시 사용</span>
+<span class="t-out">---</span>
+# Repo Scout
+
+<span class="t-hl">## 절차 — 넓게 → 좁게 → 깊게</span>
+<span class="padd">＋</span> 1. <span class="t-str">tree -L 2</span> 로 구조만 파악한다. <span class="t-out">(파일 내용 열람 금지)</span>
+<span class="padd">＋</span> 2. <span class="t-str">grep -rn "&lt;심볼&gt;"</span> 로 후보 위치를 찾는다.
+   <span class="t-out">심볼을 모르면: 요청의 명사로 grep → 후보 파일명 확보</span>
+<span class="padd">＋</span> 3. 후보 파일은 해당 함수 <b>±50줄만</b> 읽는다.
+4. 부족하면 호출부를 grep 으로 따라가며 2~3을 반복한다.
+5. 근거는 <span class="t-str">파일경로:줄번호</span> 형식으로 남긴다.
+
+<span class="t-hl">## 금지</span>
+· 폴더를 순회하며 파일 전체를 읽는 행위
+· 1,000줄 넘는 파일의 통째 읽기 <span class="t-out">(필요 범위만)</span>
+· grep 없이 "일단 열어 보는" 읽기
+
+<span class="t-hl">## 출력</span>
+· 흐름 설명 + 단계별 근거 (파일:줄)
+· 읽은 총량을 마지막에 한 줄로 보고 <span class="t-out">(예: 총 297줄)</span></div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">tree → grep → ±50줄 순서 강제</span><span class="pill green">통째 읽기 금지 조항</span><span class="pill green">근거는 파일:줄로 남김</span></div>
+    </section>
+
     <!-- 16 · 사건 ⑤ 문제 -->
     <section data-sec="PART 1 · 사건 ⑤ — 문제">
       <div class="tk-top">
@@ -2776,6 +3049,66 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
         <p class="tn-one"><b>쪼개면 컨텍스트는 곱해진다.</b> ①~④가 절약이라면 ⑤는 확장 — 총량을 <b>1×256k에서 N×256k로</b> 늘리는 유일한 기법입니다.</p>
         <div class="pills"><span class="pill green">총량 N×256k</span><span class="pill neutral">회수는 요약만</span></div>
       </div>
+    </section>
+
+    <!-- 사건 05 · 개조 명세 -->
+    <section data-sec="PART 1 · 사건 ⑤ — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 05 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell done"><span class="n"></span>로그 50만</span>
+          <span class="ska-cell done"><span class="n"></span>3시간 작업</span>
+          <span class="ska-cell done"><span class="n"></span>리포 탐색</span>
+          <span class="ska-cell now"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">"전부 점검한다"를, <span class="grad">분할 · 위임 · 회수 절차</span>로</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — security-audit/SKILL.md (문제 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">security-audit</span>
+<span class="t-key">description:</span> <span class="t-str">보안 점검 요청 시 사용</span>
+<span class="t-out">---</span>
+# Security Audit
+
+<span class="t-hl">## 절차</span>
+1. 모든 모듈을 차례로 점검한다.
+   <span class="bx">✕ 12개 모듈의 코드+결과를 한 세션이 전부 떠안는다</span>
+2. 발견 사항을 모아 보고서를 쓴다.
+   <span class="bx">✕ 6번째 모듈에서 한도 — 앞 모듈 결과가 뭉개짐</span>
+
+<span class="t-out">(분할·위임 규정 없음 — 절약술 ①~④를 써도 총량이 초과)</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — security-audit/SKILL.md (해결 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">security-audit</span>
+<span class="t-key">description:</span> <span class="t-str">리포 전체·다수 모듈의 보안 점검 요청 시 사용</span>
+<span class="t-out">---</span>
+# Security Audit
+
+<span class="t-hl">## 절차</span>
+<span class="padd">＋</span> 1. 대상 모듈 목록을 <span class="t-str">output/audit/plan.md</span> 에 적는다.
+<span class="padd">＋</span> 2. 모듈마다 <b>서브에이전트(또는 새 세션)</b>에 위임한다.
+   위임 지시문 <span class="t-out">(그대로 사용)</span>:
+   "모듈 X만 점검하라. 결과는 assets/report-form.md 양식
+    10줄로 output/audit/X.md 에 저장. 코드 원문 인용 금지."
+<span class="padd">＋</span> 3. 위임이 모두 끝나면 <span class="t-str">output/audit/*.md</span> <b>만</b> 읽고 종합한다.
+4. 종합 리포트에 모듈별 보고 파일 경로를 남긴다.
+
+<span class="t-hl">## 금지</span>
+· 부모 세션에서 모듈 코드를 직접 여는 행위
+· 10줄 양식을 벗어난 보고의 수용 <span class="t-out">(반려하고 재위임)</span>
+
+<span class="t-hl">## 보고 양식</span> <span class="t-out">(assets/report-form.md · 10줄 고정)</span>
+모듈: · 위험도(상/중/하):
+발견 1~3: <span class="t-out">(각 1줄)</span>
+근거: 파일:줄 · 제안: <span class="t-out">(1줄)</span></div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">계획 파일로 조각 분할</span><span class="pill green">위임 지시문을 스킬에 내장</span><span class="pill green">회수는 10줄 양식만</span></div>
     </section>
 
     <!-- 18 · PART 1 정리 -->
@@ -2921,6 +3254,59 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
     </section>
 
+    <!-- 사건 06 · 개조 명세 -->
+    <section data-sec="PART 2 · 사건 ⑥ — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 06 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p2">
+          <span class="ska-cell now"><span class="n">6</span>전달 사고</span>
+          <span class="ska-cell"><span class="n">7</span>수동 지휘</span>
+          <span class="ska-cell"><span class="n">8</span>오발동</span>
+          <span class="ska-cell"><span class="n">9</span>부실 전파</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">"보여준다"를, <span class="grad">경로·형식·버전이 있는 계약</span>으로</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — 두 스킬 (문제 시점) — 전달 규정 없음</span></div>
+          <div class="term-body"><span class="t-hl">log-digest/SKILL.md</span>
+<span class="t-hl">## 절차</span>
+1. 로그를 요약한다.
+2. 결과를 표로 정리한다.
+3. 요약 결과를 사용자에게 보여준다.
+   <span class="bx">✕ 결과가 대화로만 나가고 끝 — 파일로 남지 않음</span>
+
+<span class="t-hl">incident-report/SKILL.md</span>
+<span class="t-hl">## 절차</span>
+1. 로그 요약을 근거로 리포트를 쓴다.
+   <span class="bx">✕ 그 '요약'이 어디 있는지 정한 적 없음</span>
+2. 형식을 갖춰 정리한다.
+
+<span class="bx">✕ 같은 "요약"을 말하지만 경로도 형식도 버전도 없다</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — 두 스킬 (해결 시점) — 입출력 계약 명시</span></div>
+          <div class="term-body"><span class="t-hl">log-digest/SKILL.md ▸ 출력 계약</span> <span class="t-out">(생산자)</span>
+<span class="padd">＋</span> 3. 결과를 <span class="t-str">output/digest.md</span> 로 저장한다. <span class="t-out">(경로 고정)</span>
+<span class="padd">＋</span> 4. 형식을 지킨다: <span class="t-str">## 요약 / ## 오류 Top 10 / ## 이상 징후</span>
+<span class="padd">＋</span> 5. 마지막 줄에 <span class="t-str">DIGEST-VERSION: 1</span> 을 남긴다.
+6. 사용자에게는 경로만 한 줄로 알린다.
+
+<span class="t-hl">incident-report/SKILL.md ▸ 입력 계약</span> <span class="t-out">(소비자)</span>
+<span class="padd">＋</span> 1. <span class="t-str">output/digest.md</span> 가 있으면 <b>그것만</b> 근거로 쓴다.
+<span class="padd">＋</span> 2. 규격 표시(DIGEST-VERSION)가 없으면 소비하지 않는다.
+   <span class="t-out">→ "형식이 다릅니다. log-digest를 먼저 실행해 주세요."</span>
+<span class="padd">＋</span> 3. 파일이 없으면 log-digest 실행을 안내하고 <b>멈춘다</b>.
+4. 직접 로그를 읽지 않는다.
+
+<span class="t-hl">## 이 계약이 보장하는 것</span>
+· 사람의 복사·붙여넣기 0회 · 구버전 사고 차단
+· 중간 산출물을 파일로 검사 가능</div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">출력: 경로+형식+버전 고정</span><span class="pill green">입력: 규격 확인 후 소비</span><span class="pill green">부재 시 행동까지 규정</span></div>
+    </section>
+
     <!-- 22 · 사건 ⑦ 문제 -->
     <section data-sec="PART 2 · 사건 ⑦ — 문제">
       <div class="tk-top">
@@ -3019,6 +3405,61 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
         <p class="tn-one"><b>프로세스도 스킬이다.</b> 시니어의 머릿속 순서가 <b>기록된 자산</b>이 됩니다 — 단계 산출물이 파일로 남아 중간부터 다시 시작할 수도 있습니다.</p>
         <div class="pills"><span class="pill green">시작은 한 마디</span><span class="pill neutral">단계 누락 0</span></div>
       </div>
+    </section>
+
+    <!-- 사건 07 · 개조 명세 -->
+    <section data-sec="PART 2 · 사건 ⑦ — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 07 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p2">
+          <span class="ska-cell done"><span class="n"></span>전달 사고</span>
+          <span class="ska-cell now"><span class="n">7</span>수동 지휘</span>
+          <span class="ska-cell"><span class="n">8</span>오발동</span>
+          <span class="ska-cell"><span class="n">9</span>부실 전파</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">지휘자 없는 폴더에, <span class="grad">단계 정의 스킬</span>을 추가</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — 스킬 폴더 (문제 시점) — 부품만 존재</span></div>
+          <div class="term-body"><span class="t-hl">.opencode/skills/</span>
+├─ <span class="t-key">log-digest/</span>        <span class="t-out">← 수집만 안다</span>
+├─ <span class="t-key">root-cause/</span>        <span class="t-out">← 분석만 안다</span>
+├─ <span class="t-key">incident-report/</span>   <span class="t-out">← 초안만 안다</span>
+└─ <span class="t-key">report-check/</span>      <span class="t-out">← 검증만 안다</span>
+
+<span class="bx">✕ 순서와 완료 조건을 적은 파일이 없다</span>
+<span class="bx">✕ 새벽 2시의 신입은 다음 단계를 모른다</span>
+
+<span class="t-out">— 각 스킬은 훌륭한 부품이지만,</span>
+<span class="t-out">  조립 설명서는 시니어의 머릿속에만 있다.</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — incident-flow/SKILL.md (해결 시점 — 새로 추가)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">incident-flow</span>
+<span class="t-key">description:</span> <span class="t-str">"장애 대응 시작" 요청 시 아래 단계 전체를 지휘</span>
+<span class="t-out">---</span>
+# Incident Flow <span class="t-out">— 조율 스킬 (지휘자)</span>
+
+<span class="t-hl">## 단계</span> <span class="t-out">— 순서 고정 · 산출물 없으면 다음 단계 금지</span>
+<span class="padd">＋</span> 1. 수집  → log-digest 스킬      → <span class="t-str">output/digest.md</span>
+<span class="padd">＋</span> 2. 분석  → root-cause 스킬      → <span class="t-str">output/analysis.md</span>
+<span class="padd">＋</span> 3. 초안  → incident-report 스킬 → <span class="t-str">output/report.md</span>
+<span class="padd">＋</span> 4. 검증  → report-check 스킬    → <span class="t-str">output/verdict.md</span>
+
+<span class="t-hl">## 진행 규칙</span>
+· 각 단계 완료 시 <b>단계명과 산출물 경로만 한 줄</b> 보고.
+<span class="padd">＋</span> · 이전 단계 산출물이 이미 있으면 그 단계는 건너뛴다.
+  <span class="t-out">(중간부터 재개 가능 — 사건 ③의 원리)</span>
+· 단계 실패 시: 실패 지점과 사유를 보고하고 멈춘다.
+
+<span class="t-hl">## 금지</span>
+· 단계 건너뛰기 · 순서 변경
+· 산출물 없이 "완료" 보고</div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">단계·순서·산출물을 파일로</span><span class="pill green">시작은 한 마디로</span><span class="pill green">중간 재개 규칙 내장</span></div>
     </section>
 
     <!-- 24 · 사건 ⑧ 문제 -->
@@ -3121,6 +3562,63 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
     </section>
 
+    <!-- 사건 08 · 개조 명세 -->
+    <section data-sec="PART 2 · 사건 ⑧ — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 08 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p2">
+          <span class="ska-cell done"><span class="n"></span>전달 사고</span>
+          <span class="ska-cell done"><span class="n"></span>수동 지휘</span>
+          <span class="ska-cell now"><span class="n">8</span>오발동</span>
+          <span class="ska-cell"><span class="n">9</span>부실 전파</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">겹치는 description들 위에, <span class="grad">분류표를 가진 창구</span>를</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — description들 (문제 시점) — 겹침과 빈틈</span></div>
+          <div class="term-body"><span class="t-hl">pdf-export/SKILL.md</span>
+<span class="t-key">description:</span> <span class="t-str">로그·문서를 PDF로 정리해 변환할 때 사용</span>
+   <span class="bx">✕ "로그"가 log-digest 와 겹친다 → 오발동</span>
+
+<span class="t-hl">log-digest/SKILL.md</span>
+<span class="t-key">description:</span> <span class="t-str">로그 파일을 요약할 때 사용</span>
+
+<span class="t-hl">review-summary/SKILL.md</span>
+<span class="t-key">description:</span> <span class="t-str">Summarize review comments…</span>
+   <span class="bx">✕ 사용자가 실제로 칠 한글 표현이 없다 → 미발동</span>
+
+<span class="bx">✕ 스킬 20개의 전체 지도를 가진 파일: 없음</span>
+<span class="t-out">(발동이 description끼리의 유사도 경쟁에 맡겨져 있다)</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — qa-desk/SKILL.md (해결 시점 — 새로 추가)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">qa-desk</span>
+<span class="t-key">description:</span> <span class="t-str">QA 업무 요청 전반의 접수 창구. 로그·리포트·리뷰 요청이 모호할 때 우선 사용</span>
+<span class="t-out">---</span>
+# QA Desk <span class="t-out">— 라우터 스킬 (접수 창구)</span>
+
+<span class="t-hl">## 분류표</span>
+<span class="padd">＋</span> | 요청에 이런 말이 있으면 | 이 스킬로 진행    |
+<span class="padd">＋</span> | 로그 · 크래시 · 원인     | log-digest       |
+<span class="padd">＋</span> | 리포트 · 집계 · 주간     | test-report      |
+<span class="padd">＋</span> | 리뷰 · 코멘트 정리       | review-summary   |
+<span class="padd">＋</span> | PDF · 문서 변환          | pdf-export       |
+
+<span class="t-hl">## 분류 불가 시</span>
+<span class="padd">＋</span> · 후보 2개를 제시하고 사용자에게 확인받는다.
+· 짐작으로 진행하지 않는다.
+
+<span class="t-hl">## 운영 규칙</span> <span class="t-out">(전문 스킬 쪽에도 적용)</span>
+<span class="padd">＋</span> · 전문 스킬의 description은 <b>좁고 정확하게</b> 다듬는다.
+  <span class="t-out">예: pdf-export → "완성된 문서의 PDF 변환" (로그 언급 삭제)</span>
+<span class="padd">＋</span> · 새 스킬 추가 시 이 분류표에 한 줄을 함께 추가한다.</div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">넓은 창구 + 좁은 전문가</span><span class="pill green">발동 기준을 표로 명문화</span><span class="pill green">신규 스킬 등록 규칙까지</span></div>
+    </section>
+
     <!-- 26 · 사건 ⑨ 문제 -->
     <section data-sec="PART 2 · 사건 ⑨ — 문제">
       <div class="tk-top">
@@ -3219,6 +3717,65 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
         <p class="tn-one"><b>게이트가 있어야 흐름을 믿는다.</b> 결함을 <b>가장 싼 단계</b>에서 차단 — 3편 Harness의 게이트를 스킬 사이에 옮겨 심었습니다.</p>
         <div class="pills"><span class="pill green">반려 사유 명시</span><span class="pill neutral">뒤 단계는 안심</span></div>
       </div>
+    </section>
+
+    <!-- 사건 09 · 개조 명세 -->
+    <section data-sec="PART 2 · 사건 ⑨ — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 09 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p2">
+          <span class="ska-cell done"><span class="n"></span>전달 사고</span>
+          <span class="ska-cell done"><span class="n"></span>수동 지휘</span>
+          <span class="ska-cell done"><span class="n"></span>오발동</span>
+          <span class="ska-cell now"><span class="n">9</span>부실 전파</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">"신뢰하고 시작"을, <span class="grad">"검사하고 시작"</span>으로</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — incident-report/SKILL.md (문제 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">incident-report</span>
+<span class="t-key">description:</span> <span class="t-str">장애 리포트 작성 시 사용</span>
+<span class="t-out">---</span>
+# Incident Report
+
+<span class="t-hl">## 절차</span>
+1. <span class="t-str">output/analysis.md</span> 를 근거로 리포트를 쓴다.
+   <span class="bx">✕ 입력을 무조건 신뢰 — 검사 없이 시작</span>
+2. 재현 절차·영향 범위·원인을 정리한다.
+   <span class="bx">✕ 입력에 없는 섹션은 빈칸이 되거나 지어내게 된다</span>
+3. <span class="t-str">output/report.md</span> 로 저장한다.
+
+<span class="t-out">(부실한 입력도 그대로 다음 단계의 산출물이 된다)</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — incident-report/SKILL.md (해결 시점 — 게이트 내장)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">incident-report</span>
+<span class="t-key">description:</span> <span class="t-str">장애 리포트 작성 시 사용 (분석 산출물 게이트 포함)</span>
+<span class="t-out">---</span>
+# Incident Report
+
+<span class="t-hl">## 절차</span>
+<span class="padd">＋</span> 1. 시작 전에 <span class="t-str">python scripts/gate.py output/analysis.md</span> 실행.
+   <span class="t-out">검사 항목:</span>
+   <span class="t-out">· 필수 섹션 존재 — 재현 절차 · 영향 범위 · 원인 후보</span>
+   <span class="t-out">· TODO / TBD / "추정" 단독 문장 없음</span>
+   <span class="t-out">· 오류 건수 인용이 digest.md 수치와 일치</span>
+<span class="padd">＋</span> 2. <b>FAIL → 진행하지 않는다.</b>
+   부족 항목을 그대로 알리고 분석 단계로 반려한다.
+   <span class="t-out">반려 형식: "GATE FAIL — [항목]. 분석 보완 후 재시도."</span>
+<span class="padd">＋</span> 3. PASS 2/2 → 리포트 작성을 시작한다.
+4. <span class="t-str">output/report.md</span> 저장 · PASS 로그를 리포트 끝에 첨부.
+
+<span class="t-hl">## 폴더 구성</span>
+incident-report/
+├─ SKILL.md
+└─ scripts/gate.py       <span class="t-out">← 이전 산출물 판정기 (결정적)</span></div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">도입부에 게이트 실행 의무</span><span class="pill green">FAIL 시 진행 거부·반려</span><span class="pill green">반려 사유 형식까지 규정</span></div>
     </section>
 
     <!-- 28 · PART 2 데모 · 파이프라인 시네마 -->
@@ -3367,6 +3924,66 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
     </section>
 
+    <!-- 사건 10 · 개조 명세 -->
+    <section data-sec="PART 3 · 사건 ⑩ — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 10 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p3">
+          <span class="ska-cell now"><span class="n">10</span>관대한 자평</span>
+          <span class="ska-cell"><span class="n">11</span>그럴듯한 오답</span>
+          <span class="ska-cell"><span class="n">12</span>기계적 실수</span>
+          <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">"쓰고 끝"을, <span class="grad">"쓰고 → 리뷰어로 전환 → 재검"</span>으로</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — pr-desc/SKILL.md (문제 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">pr-desc</span>
+<span class="t-key">description:</span> <span class="t-str">PR 설명 작성 요청 시 사용</span>
+<span class="t-out">---</span>
+# PR Description
+
+<span class="t-hl">## 절차</span>
+1. diff를 읽고 변경 요지를 뽑는다.
+2. PR 설명 초안을 작성한다.
+3. 사용자에게 보여준다.
+   <span class="bx">✕ 검토 단계가 아예 없다</span>
+
+<span class="bx">✕ "괜찮아?"라고 물어도 작성 프레임 그대로 답한다</span>
+<span class="t-out">(기준 파일 없음 — 무엇을 점검할지 정의된 적 없음)</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — pr-desc/SKILL.md (해결 시점 — 리뷰 루프 내장)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">pr-desc</span>
+<span class="t-key">description:</span> <span class="t-str">PR 설명 작성 요청 시 사용 (자가 리뷰 루프 포함)</span>
+<span class="t-out">---</span>
+# PR Description
+
+<span class="t-hl">## 절차</span>
+1. 초안을 <span class="t-str">output/draft.md</span> 에 작성한다.
+<span class="padd">＋</span> 2. <b>역할 전환 — "지금부터 리뷰어다."</b>
+   <span class="t-str">references/review-checklist.md</span> 를 로드하고,
+   항목별로 <b>결함만</b> 찾는다. <span class="t-out">(칭찬 금지 · 항목 번호 필수)</span>
+<span class="padd">＋</span> 3. 지적을 반영해 고친다. 2~3을 <b>최대 2회</b> 반복.
+<span class="padd">＋</span> 4. 마지막 리뷰에서 지적 0건이면 제출한다.
+   0건이 안 되면: 남은 지적을 정리해 사용자 판단에 넘긴다.
+
+<span class="t-hl">## 금지</span>
+· 체크리스트 없이 "전반적으로 좋다"식 검토
+· 리뷰 단계를 건너뛴 제출
+
+<span class="t-hl">## checklist.md 발췌</span> <span class="t-out">(references/ · 팀 공유)</span>
+#2 테스트 영향이 적혀 있는가
+#5 롤백 계획이 있는가
+#7 과장·모호 표현이 없는가 <span class="t-out">("완벽히", "아마" 등)</span></div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">역할 전환을 절차로 강제</span><span class="pill green">기준은 checklist 파일로</span><span class="pill green">반복 상한·탈출 조건 명시</span></div>
+    </section>
+
     <!-- 32 · 사건 ⑪ 문제 -->
     <section data-sec="PART 3 · 사건 ⑪ — 문제">
       <div class="tk-top">
@@ -3463,6 +4080,62 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
         <p class="tn-one"><b>반박에서 살아남은 결론만 결론이다.</b> 검증의 방향을 "통과 찾기"에서 <b>"반례 찾기"</b>로 뒤집습니다 — 반증주의를 절차로 만든 것입니다.</p>
         <div class="pills"><span class="pill green">거짓 확신 차단</span><span class="pill neutral">반박 기록이 남는다</span></div>
       </div>
+    </section>
+
+    <!-- 사건 11 · 개조 명세 -->
+    <section data-sec="PART 3 · 사건 ⑪ — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 11 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p3">
+          <span class="ska-cell done"><span class="n"></span>관대한 자평</span>
+          <span class="ska-cell now"><span class="n">11</span>그럴듯한 오답</span>
+          <span class="ska-cell"><span class="n">12</span>기계적 실수</span>
+          <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">"증거 수집"을, <span class="grad">"반례 탐색"</span>으로 뒤집기</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — root-cause/SKILL.md (문제 시점 · 검증 부분)</span></div>
+          <div class="term-body"><span class="t-hl">root-cause/SKILL.md ▸ 검증 부분</span>
+
+<span class="t-hl">## 절차</span>
+1. 증상과 시각을 정리한다.
+2. 원인 후보를 세운다.
+3. 후보를 <b>뒷받침하는</b> 증거를 모은다.
+   <span class="bx">✕ 지지 증거만 모으는 방향 — 배포 후 급증 그래프 등</span>
+4. 증거가 충분하면 결론으로 보고한다.
+   <span class="bx">✕ 반례를 찾는 단계가 없다</span>
+
+<span class="t-out">(많이 모을수록 확신만 커진다 — 확증 편향의 절차화)</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — refute-check/SKILL.md (해결 시점 — 새로 추가)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">refute-check</span>
+<span class="t-key">description:</span> <span class="t-str">원인·결론 보고의 검증, 채택 전 확인 요청 시 사용</span>
+<span class="t-out">---</span>
+# Refute Check <span class="t-out">— 반박 검증 스킬</span>
+
+<span class="t-hl">## 절차</span>
+1. 검증할 결론을 한 문장으로 적는다.
+<span class="padd">＋</span> 2. <b>입장 전환 — "이 결론은 틀렸다"</b>를 전제로,
+   반례를 3가지 경로에서 찾는다:
+<span class="padd">＋</span>    · 시간 반박 — 원인 시점 <b>이전</b>에도 증상이 있었나
+     <span class="t-out">(예: grep ERROR 8/09~8/12 — 배포 전 로그 확인)</span>
+<span class="padd">＋</span>    · 사례 반박 — 조건이 같은데 증상 없는 곳은 없나
+<span class="padd">＋</span>    · 대안 반박 — 같은 증상을 내는 다른 원인 후보는
+3. 반례 발견 → <b>결론 기각</b>. 근거를 첨부해 보고한다.
+4. 3경로 모두 실패 → "반박 3회 실패"를 명시하고 채택한다.
+
+<span class="t-hl">## 기록</span>
+<span class="padd">＋</span> · 시도한 반박 경로·명령·결과를 보고에 그대로 남긴다.
+
+<span class="t-hl">## 권장</span>
+<span class="padd">＋</span> · 가능하면 <b>새 세션</b>에서 실행 <span class="t-out">(작성 편향 차단)</span></div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">방향을 지지→반박으로 반전</span><span class="pill green">3경로를 명령 수준으로</span><span class="pill green">반박 기록을 보고에 첨부</span></div>
     </section>
 
     <!-- 34 · 사건 ⑫ 문제 -->
@@ -3564,6 +4237,67 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
     </section>
 
+    <!-- 사건 12 · 개조 명세 -->
+    <section data-sec="PART 3 · 사건 ⑫ — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 12 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p3">
+          <span class="ska-cell done"><span class="n"></span>관대한 자평</span>
+          <span class="ska-cell done"><span class="n"></span>그럴듯한 오답</span>
+          <span class="ska-cell now"><span class="n">12</span>기계적 실수</span>
+          <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">"스스로 검토"를, <span class="grad">"채점기 PASS까지 루프"</span>로</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — test-report/SKILL.md (문제 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">test-report</span>
+<span class="t-key">description:</span> <span class="t-str">주간 테스트 리포트 작성 시 사용</span>
+<span class="t-out">---</span>
+# Test Report
+
+<span class="t-hl">## 절차</span>
+1. <span class="t-str">data/test_results.csv</span> 를 집계한다.
+2. 리포트를 작성한다.
+3. 작성한 리포트를 스스로 한 번 검토한다.
+   <span class="bx">✕ 형식·합계를 '말로' 검증 — 확률적으로 놓친다</span>
+4. 완료를 보고한다.
+   <span class="bx">✕ "문제없어 보입니다" — 그러나 합계 불일치</span>
+
+<span class="t-out">(scripts/validate.py 없음 — 채점기 부재)</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — test-report/SKILL.md (해결 시점 — 채점 루프 내장)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">test-report</span>
+<span class="t-key">description:</span> <span class="t-str">테스트 결과 집계·주간 리포트 작성 시 사용 (기계 채점 포함)</span>
+<span class="t-out">---</span>
+# Test Report
+
+<span class="t-hl">## 절차</span>
+1. 리포트를 <span class="t-str">output/test-report.md</span> 로 작성한다.
+<span class="padd">＋</span> 2. <span class="t-str">python scripts/validate.py output/test-report.md</span> 실행.
+   <span class="t-out">검사 항목:</span>
+   <span class="t-out">· 필수 섹션 — 요약 · 환경 · 결과표 · 특이사항</span>
+   <span class="t-out">· PASS + FAIL = 전체 합계 일치</span>
+   <span class="t-out">· 금지 문구 — "아마" · "대략" · 빈 셀</span>
+<span class="padd">＋</span> 3. FAIL → 지적 항목을 고치고 2를 다시 실행한다.
+   <b>PASS가 나올 때까지 반복한다.</b> <span class="t-out">(최대 5회)</span>
+<span class="padd">＋</span> 4. 5회 초과 시: 남은 FAIL 항목을 그대로 보고하고 멈춘다.
+<span class="padd">＋</span> 5. PASS 출력 원문을 리포트 끝에 첨부한다.
+
+<span class="t-hl">## 금지</span>
+· 채점 없이 "완료" 보고 · 채점기 수정으로 통과 시도
+
+<span class="t-hl">## 폴더 구성</span>
+test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">판정을 코드로 이관</span><span class="pill green">FAIL→수정 루프 + 상한</span><span class="pill green">PASS 로그 첨부 의무</span></div>
+    </section>
+
     <!-- 36 · 사건 ⑬ 문제 -->
     <section data-sec="PART 3 · 사건 ⑬ — 문제">
       <div class="tk-top">
@@ -3659,6 +4393,65 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
         <p class="tn-one"><b>증거가 없으면 완료가 아니다.</b> 완료의 정의를 주장에서 <b>검증 가능한 기록</b>으로 바꿉니다 — 3편 Record 개념을 산출물에 적용한 것입니다.</p>
         <div class="pills"><span class="pill green">재확인 30분 → 3분</span><span class="pill neutral">감사 추적 확보</span></div>
       </div>
+    </section>
+
+    <!-- 사건 13 · 개조 명세 -->
+    <section data-sec="PART 3 · 사건 ⑬ — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 13 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p3">
+          <span class="ska-cell done"><span class="n"></span>관대한 자평</span>
+          <span class="ska-cell done"><span class="n"></span>그럴듯한 오답</span>
+          <span class="ska-cell done"><span class="n"></span>기계적 실수</span>
+          <span class="ska-cell now"><span class="n">13</span>완료 한 줄</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">"이상 없습니다"를, <span class="grad">증거표 의무 규정</span>으로</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — release-check/SKILL.md (문제 시점)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">release-check</span>
+<span class="t-key">description:</span> <span class="t-str">배포 전 점검 요청 시 사용</span>
+<span class="t-out">---</span>
+# Release Check
+
+<span class="t-hl">## 절차</span>
+1. 점검 목록의 8개 항목을 순서대로 확인한다.
+2. 끝나면 한 줄로 보고한다:
+   "점검 완료 — 이상 없습니다"
+   <span class="bx">✕ 실행한 명령·출력을 남기라는 규정이 없다</span>
+
+<span class="bx">✕ 실패한 항목을 구분해 적을 칸조차 없다</span>
+<span class="bx">✕ 애매하면 낙관 쪽으로 뭉개져도 아무도 모른다</span>
+<span class="t-out">(증거 양식 없음)</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — release-check/SKILL.md (해결 시점 — 증거표 의무)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">release-check</span>
+<span class="t-key">description:</span> <span class="t-str">배포 전 점검 요청 시 사용 (증거표 첨부 의무)</span>
+<span class="t-out">---</span>
+# Release Check
+
+<span class="t-hl">## 출력 규칙</span>
+<span class="padd">＋</span> · <b>"완료" 선언은 증거표가 채워진 경우에만</b> 허용한다.
+<span class="padd">＋</span> · 증거표 각 행 <span class="t-out">(assets/evidence-form.md)</span>:
+  점검 항목 | 실행한 명령 | 출력 원문(3줄 이내) | 판정
+<span class="padd">＋</span> · 실행하지 못한 항목은 판정을 <span class="t-str">"미실행"</span> + 사유로 남긴다.
+  <span class="t-out">(빈칸·추정 금지 — 미실행은 부끄러운 게 아니라 정보다)</span>
+· 증거가 없는 문장은 리포트에 쓰지 않는다.
+
+<span class="t-hl">## 증거표 작성 예</span>
+#1 헬스체크 | curl -s /health | 200 OK        | PASS
+#4 DB 준비  | migrate --check | 권한 오류(코드 13) | <b>미실행</b>
+
+<span class="t-hl">## 사람의 확인</span>
+<span class="padd">＋</span> · 검토자는 증거표만 훑는다. <span class="t-out">(재검증 30분 → 훑기 3분)</span>
+· "미실행" 행만 조치 대상으로 넘긴다.</div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">완료 선언에 증거표 조건</span><span class="pill green">미실행 정직 표기 규정</span><span class="pill green">행 형식을 예시로 고정</span></div>
     </section>
 
     <!-- 38 · PART 3 정리 · 네 겹 그물 -->
@@ -3797,6 +4590,61 @@ C의 스킬 — 미완성 <span class="bx">✕ 포기</span>
         <p class="tn-one"><b>표준은 문서가 아니라 기본값으로 배포한다.</b> 오늘의 13기법도 이 스킬에 담아 팀에 퍼뜨릴 수 있습니다.</p>
         <div class="pills"><span class="pill green">첫 스킬 = 표준</span><span class="pill neutral">표준 개정 = 파일 교체</span></div>
       </div>
+    </section>
+
+    <!-- 사건 14 · 개조 명세 -->
+    <section data-sec="PART 4 · 사건 ⑭ — 개조 명세" class="spread">
+      <div class="tk-top">
+        <div><span class="chip">PART 4 · 확산 — 사건 14 · 개조 명세 (Before → After)</span></div>
+        <div class="ska-track p4">
+          <span class="ska-cell now"><span class="n">14</span>제각각 품질</span>
+        </div>
+      </div>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">"가이드 문서"를, <span class="grad">"생성하는 스킬"</span>로</h2>
+      <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
+        <div class="term badsk">
+          <div class="term-bar"><span class="term-title">Before — 배포 방식 (문제 시점) — 문서와 구두 전파</span></div>
+          <div class="term-body"><span class="t-hl">팀 위키 ▸ "SKILL.md 작성 가이드 v2"</span>
+· 좋은 description 쓰는 법 … <span class="t-out">(7절 분량)</span>
+· 5요소를 갖추는 법 …
+· 금지 조항 예시 …
+   <span class="bx">✕ 조회수 3 — 아무도 읽지 않는다</span>
+
+<span class="t-hl">2주 뒤의 팀 스킬 폴더</span>
+A의 스킬 — description 이 한 단어      <span class="bx">✕ 미발동</span>
+B의 스킬 — 금지 조항 없음              <span class="bx">✕ 리포트에 git 로그까지</span>
+C의 스킬 — 미완성                      <span class="bx">✕ "뭐부터 적을지 몰라서"</span>
+
+<span class="t-out">(표준을 적용해 주는 도구 없음 — 각자 맨손으로 작성)</span></div>
+        </div>
+        <div class="term fixsk">
+          <div class="term-bar"><span class="term-title">After — skill-factory/SKILL.md (해결 시점 — 새로 추가)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">skill-factory</span>
+<span class="t-key">description:</span> <span class="t-str">"스킬 만들어줘"·새 스킬 제작 요청 시 사용</span>
+<span class="t-out">---</span>
+# Skill Factory <span class="t-out">— 스킬을 만드는 스킬</span>
+
+<span class="t-hl">## 절차</span>
+<span class="padd">＋</span> 1. <b>인터뷰 — 다섯 질문</b>을 한 번에 하나씩 묻는다:
+   ① 언제 발동하나요? <span class="t-out">(사용자가 실제로 칠 문장으로)</span>
+   ② 입력은 무엇인가요? ③ 출력은 무엇인가요?
+   ④ 해서는 안 되는 일은? ⑤ 무엇으로 검증하나요?
+<span class="padd">＋</span> 2. 답을 <span class="t-str">assets/skill-template.md</span> 골격에 채워
+   <span class="t-str">.opencode/skills/&lt;이름&gt;/SKILL.md</span> 초안을 생성한다.
+<span class="padd">＋</span> 3. <span class="t-str">references/skill-standard.md</span> 체크리스트로 자가 점검한다.
+   <span class="t-out">· description에 사용자 표현이 있는가</span>
+   <span class="t-out">· 5요소(입력·출력·절차·금지·검증)가 있는가</span>
+   <span class="t-out">· 금지 조항이 최소 1개 있는가</span>
+4. 발동 시험 문장 3개를 만들어 주고, 재시작 후
+   시험해 보도록 안내한다.
+
+<span class="t-hl">## 효과</span>
+<span class="padd">＋</span> · 신입의 첫 스킬 = 팀 표준 품질
+· 표준 개정 = references/skill-standard.md 교체</div>
+        </div>
+      </div>
+      <div class="diffbar autoshow fade-up"><span class="dl2">핵심 변경</span><span class="pill green">가이드 → 인터뷰 절차로</span><span class="pill green">표준 골격 자동 생성</span><span class="pill green">자가 점검 + 발동 시험</span></div>
     </section>
 
     <!-- 42 · 기법 선택 지도 -->
