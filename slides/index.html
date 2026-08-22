@@ -2327,7 +2327,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
       <ul class="ol autoshow fade-up" style="margin-top:1.4rem; max-width:46rem; flex:none">
         <li class="show"><span class="ix">사건 ①</span><span class="lb">스킬을 부를 때마다 규칙 30페이지가 실린다</span></li>
         <li class="show"><span class="ix">사건 ②</span><span class="lb">로그 50만 줄은 읽지도, 세지도 못한다</span></li>
-        <li class="show"><span class="ix">사건 ③</span><span class="lb">3시간짜리 작업이 첫 결정을 잊는다</span></li>
+        <li class="show"><span class="ix">사건 ③</span><span class="lb">작업 3시간째, 에이전트가 첫 결정을 잊는다</span></li>
         <li class="show"><span class="ix">사건 ④</span><span class="lb">설명 하나에 리포 절반을 읽는다</span></li>
         <li class="show"><span class="ix">사건 ⑤</span><span class="lb">아무리 아껴도 한 번에 안 들어간다</span></li>
       </ul>
@@ -2452,7 +2452,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
           <span class="ska-cell"><span class="n">5</span>전체 점검</span>
         </div>
       </div>
-      <h2><span class="tkb b1" style="margin-right:0.5rem">①</span>레퍼런스 계층화 — <span class="grad">목차는 늘, 서랍은 그때만</span></h2>
+      <h2><span class="tkb b1" style="margin-right:0.5rem">①</span>레퍼런스 계층화 — <span class="grad">목차는 늘, 본문은 그때만</span></h2>
       <div class="scn sim mech" style="grid-template-columns:0.88fr 1.12fr; margin-top:0.8rem">
         <div class="scn-p bad">
           <span class="scn-tag">기존 — 한 권 통째</span>
@@ -2470,11 +2470,11 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
           <p class="scn-cap">이번에 쓸 규칙은 <b>한 편</b>인데, 서른 페이지가 <b>함께</b> 들어옵니다.</p>
         </div>
         <div class="scn-p good g1">
-          <span class="scn-tag">레퍼런스 계층화 — 표지 + 서랍</span>
+          <span class="scn-tag">레퍼런스 계층화 — 목차 따로, 본문 따로</span>
           <div class="scn-row" style="flex-wrap:nowrap; gap:0.8rem">
             <div class="scn-col" style="gap:0.4rem">
               <div class="doc mint" style="min-width:10rem"><span class="dt">SKILL.md — 목차 40줄</span><span class="dl" style="width:66%"></span><span class="dl" style="width:48%"></span></div>
-              <span class="fl-arr h0 ain" style="--dly:2.2s">↓<small>mutex 감지 → 동시성 서랍</small></span>
+              <span class="fl-arr h0 ain" style="--dly:2.2s">↓<small>mutex 감지 → 동시성 본문만</small></span>
               <div class="scn-row" style="gap:0.4rem; flex-wrap:nowrap">
                 <div class="doc agray" style="--dly:2.9s; min-width:0"><span class="dt">naming.md</span><span class="dl"></span></div>
                 <div class="doc agray" style="--dly:2.9s; min-width:0"><span class="dt">error.md</span><span class="dl"></span></div>
@@ -2490,7 +2490,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
               </div>
             </div>
           </div>
-          <p class="scn-cap"><b>목차는 늘 실리고</b>, 서랍(references/)은 <b>조건이 맞은 파일만</b> 열립니다 — 안 쓴 서랍은 비용 0.</p>
+          <p class="scn-cap"><b>목차는 늘 실리고</b>, 본문(references/)은 <b>조건이 맞은 파일만</b> 펼칩니다 — 펴지 않은 본문은 비용 0.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
@@ -2670,34 +2670,38 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
         </div>
       </div>
       <h2><span class="tkb b1" style="margin-right:0.5rem">②</span>스크립트 위임 — <span class="grad">세는 일은 밖에서, 읽는 일만 안에서</span></h2>
-      <div class="scn one sim mech" style="margin-top:0.8rem">
-        <div class="scn-p good g1" style="min-height:19rem">
-          <span class="scn-tag">두 가지 경로 — 같은 50만 줄</span>
-          <div class="scn-row" style="flex-wrap:nowrap; gap:1.3rem; align-items:center">
-            <div class="doc coral" style="min-width:11rem">
+      <div class="scn one sim mech" style="margin-top:0.8rem; gap:1.0rem">
+        <div class="scn-p bad" style="min-height:8.5rem">
+          <span class="scn-tag">Before — 50만 줄을 모델이 직접 읽을 때</span>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:0.7rem">
+            <div class="doc coral" style="flex:none; min-width:11rem">
               <span class="dt">regression.log — 50만 줄</span>
-              <span class="dl"></span><span class="dl" style="width:90%"></span><span class="dl"></span><span class="dl" style="width:82%"></span><span class="dl"></span><span class="dl" style="width:88%"></span><span class="dl"></span><span class="dl" style="width:70%"></span><span class="dl" style="width:84%"></span>
+              <span class="dl"></span><span class="dl" style="width:90%"></span><span class="dl" style="width:82%"></span><span class="dl"></span><span class="dl" style="width:70%"></span>
             </div>
-            <div class="scn-col" style="flex:1; gap:1.0rem; align-items:stretch">
-              <div class="scn-row" style="justify-content:flex-start; flex-wrap:nowrap">
-                <span class="fl-arr bad h0 ain" style="--dly:0.3s">→<small>READ 직접 읽기</small></span>
-                <div class="mwin hot h0 ain" style="--dly:0.3s">
-                  <span class="mw-t"><span>컨텍스트</span><b>초과</b></span>
-                  <div class="g red afill" style="--w:100%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>12%만 읽고</span><b>한도</b></div></div>
-                </div>
-                <span class="vlab fail h0 apop" style="--dly:1.3s">읽기도 실패 · 세기도 오답</span>
-              </div>
-              <div class="scn-row" style="justify-content:flex-start; flex-wrap:nowrap">
-                <span class="fl-arr ok h0 ain" style="--dly:1.9s">→<small>RUN 위임</small></span>
-                <span class="fl-node scr h0 ainglow" style="--dly:1.9s">scripts/digest.py<small>컨텍스트 밖에서 50만 줄 집계</small></span>
-                <span class="fl-arr ok h0 ain" style="--dly:2.8s">→<small>결과만</small></span>
-                <div class="doc mint h0 apop" style="--dly:3.1s; min-width:0"><span class="dt">요약 30줄</span><span class="dl" style="width:72%"></span><span class="dl" style="width:56%"></span><span class="stamp">수치 오차 0</span></div>
-                <span class="fl-arr ok h0 ain" style="--dly:3.7s">→</span>
-                <div class="mwin cool h0 ain" style="--dly:3.7s">
-                  <span class="mw-t"><span>컨텍스트</span><b>+1k</b></span>
-                  <div class="g afill" style="--w:4%; --dly:4.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>4%</b></div></div>
-                </div>
-              </div>
+            <span class="fl-arr bad h0 ain" style="--dly:0.3s; flex:none">→<small>READ 직접 읽기</small></span>
+            <div class="mwin hot h0 ain" style="--dly:0.3s; flex:none">
+              <span class="mw-t"><span>컨텍스트</span><b>초과</b></span>
+              <div class="g red afill" style="--w:100%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>12%만 읽고</span><b>한도</b></div></div>
+            </div>
+            <span class="vlab fail h0 apop" style="--dly:1.3s; flex:none">읽기도 실패 · 세기도 오답</span>
+          </div>
+          <p class="scn-cap">창에 다 안 들어가 <b>읽기가 먼저 실패</b>하고, 들어간 만큼만 세니 <b>집계도 어긋납니다</b> — 세기는 확률 모델의 약점입니다.</p>
+        </div>
+        <div class="scn-p good g1" style="min-height:9rem">
+          <span class="scn-tag">After — 세는 일을 스크립트에 맡길 때 (스크립트 위임)</span>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:0.55rem">
+            <div class="doc coral h0 ain" style="--dly:2.0s; flex:none; min-width:10rem">
+              <span class="dt">같은 50만 줄</span>
+              <span class="dl"></span><span class="dl" style="width:90%"></span><span class="dl" style="width:82%"></span>
+            </div>
+            <span class="fl-arr ok h0 ain" style="--dly:2.4s; flex:none">→<small>RUN 위임</small></span>
+            <span class="fl-node scr h0 ainglow" style="--dly:2.4s; flex:none">scripts/digest.py<small>컨텍스트 밖에서 50만 줄 집계</small></span>
+            <span class="fl-arr ok h0 ain" style="--dly:3.3s; flex:none">→<small>결과만</small></span>
+            <div class="doc mint h0 apop" style="--dly:3.6s; flex:none; min-width:0"><span class="dt">요약 30줄</span><span class="dl" style="width:72%"></span><span class="dl" style="width:56%"></span><span class="stamp">수치 오차 0</span></div>
+            <span class="fl-arr ok h0 ain" style="--dly:4.2s; flex:none">→</span>
+            <div class="mwin cool h0 ain" style="--dly:4.2s; flex:none">
+              <span class="mw-t"><span>컨텍스트</span><b>+1k</b></span>
+              <div class="g afill" style="--w:4%; --dly:4.5s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>4%</b></div></div>
             </div>
           </div>
           <p class="scn-cap">확률 모델의 약점인 <b>세기(집계·산술)는 컨텍스트 밖의 코드</b>가, 강점인 <b>뜻 읽기(해석·판단)만 모델</b>이 맡습니다.</p>
@@ -2774,7 +2778,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
           <span class="ska-cell"><span class="n">5</span>전체 점검</span>
         </div>
       </div>
-      <h2>3시간짜리 작업이, 첫 결정을 잊습니다</h2>
+      <h2>작업이 3시간을 넘어가면, 에이전트는 첫 결정을 잊습니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
@@ -2877,32 +2881,32 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
         </div>
       </div>
       <h2><span class="tkb b1" style="margin-right:0.5rem">③</span>외부 기억 — <span class="grad">대화는 흘러가도, 파일은 남는다</span></h2>
-      <div class="scn sim mech" style="grid-template-columns:0.82fr 1.18fr; margin-top:0.8rem; gap:1.0rem">
-        <div class="scn-p bad">
-          <span class="scn-tag">기존 — 기억이 대화에만</span>
-          <div class="scn-row">
-            <span class="blob agray" style="--dly:1.0s">10:05 첫 결정<br>"v2로 통일"</span>
-            <span class="blob agray" style="--dly:1.4s">초반 진행<br>모듈 1~15</span>
-            <span class="blob">최근 대화</span>
+      <div class="scn one sim mech" style="margin-top:0.8rem; gap:1.0rem">
+        <div class="scn-p bad" style="min-height:8.2rem">
+          <span class="scn-tag">Before — 기억이 대화에만 있을 때</span>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:0.7rem">
+            <span class="blob agray" style="--dly:1.0s; flex:none">10:05 첫 결정<br>"v2로 통일"</span>
+            <span class="blob agray" style="--dly:1.4s; flex:none">초반 진행<br>모듈 1~15</span>
+            <span class="blob" style="flex:none">최근 대화</span>
+            <span class="vlab fail h0 apop" style="--dly:2.1s; flex:none">한도가 차면 앞에서부터 · 세션이 끝나면 전부</span>
           </div>
-          <span class="vlab fail h0 apop" style="--dly:2.1s">한도가 차면 앞에서부터 · 세션이 끝나면 전부</span>
           <p class="scn-cap">컨텍스트는 <b>창</b>이지 창고가 아닙니다 — 성실히 일할수록 대화가 길어지고, <b>더 빨리 잊습니다</b>.</p>
         </div>
-        <div class="scn-p good g1">
-          <span class="scn-tag">외부 기억 — 기록을 파일로</span>
-          <div class="scn-row" style="flex-wrap:nowrap; gap:0.55rem">
+        <div class="scn-p good g1" style="min-height:9rem">
+          <span class="scn-tag">After — 기록을 파일로 옮길 때 (외부 기억)</span>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:0.6rem">
             <div class="scn-col" style="flex:none; gap:0.3rem">
-              <span class="blob agray" style="--dly:2.6s; white-space:nowrap; font-size:0.74rem">세션 A — 작업</span>
-              <span class="tiny mono h0 ain" style="--dly:2.6s; color:#FF94AC !important; white-space:nowrap">종료 = 대화 증발</span>
+              <span class="blob h0 ain" style="--dly:2.7s; white-space:nowrap; font-size:0.74rem">세션 A — 작업</span>
+              <span class="tiny mono h0 ain" style="--dly:2.7s; color:#FF94AC !important; white-space:nowrap">종료 = 대화 증발</span>
             </div>
-            <span class="fl-arr ok h0 ain" style="--dly:1.2s; flex:none">→<small>매 단계 WRITE</small></span>
-            <div class="doc mint aglow" style="--dly:1.6s; min-width:10rem; flex:none"><span class="dt">output/state.md</span>규칙: v2 통일
+            <span class="fl-arr ok h0 ain" style="--dly:3.1s; flex:none">→<small>매 단계 WRITE</small></span>
+            <div class="doc mint aglow" style="--dly:3.5s; min-width:10rem; flex:none"><span class="dt">output/state.md</span>규칙: v2 통일
 [x] 1~30 · 다음: 31
-메모: 03 API 변경<span class="stamp h0 apop" style="--dly:3.2s">살아 있음 ✓</span></div>
-            <span class="fl-arr ok h0 ain" style="--dly:3.6s; flex:none">→<small>시작 시 먼저 READ</small></span>
+메모: 03 API 변경<span class="stamp h0 apop" style="--dly:4.4s">살아 있음 ✓</span></div>
+            <span class="fl-arr ok h0 ain" style="--dly:4.8s; flex:none">→<small>시작 시 먼저 READ</small></span>
             <div class="scn-col" style="flex:none; gap:0.35rem">
-              <span class="blob h0 ain" style="--dly:3.9s; white-space:nowrap; font-size:0.74rem">세션 B — 빈 컨텍스트</span>
-              <span class="vlab pass h0 apop" style="--dly:4.5s; white-space:nowrap">31번부터 재개 ✓</span>
+              <span class="blob h0 ain" style="--dly:5.1s; white-space:nowrap; font-size:0.74rem">세션 B — 빈 컨텍스트</span>
+              <span class="vlab pass h0 apop" style="--dly:5.7s; white-space:nowrap">31번부터 재개 ✓</span>
             </div>
           </div>
           <p class="scn-cap">기억을 <b>휘발되는 대화</b>가 아니라 <b>영속되는 파일</b>에 둡니다 — 세션이 끊겨도, 사람이 바뀌어도 <b>첫 결정 그대로</b> 이어집니다.</p>
@@ -3400,14 +3404,14 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
     <!-- 19 · PART 2 간지 -->
     <section class="section-opener" data-hero data-sec="PART 2 · 스킬 연계술">
       <div class="autoshow fade-up"><span class="chip">PART 2 · 스킬 연계술 — 사건 ⑥~⑨</span></div>
-      <h1 class="autoshow fade-up" style="font-size:3.9rem">프로세스가 되려면,<br><span class="grad">'사이'를 설계해야</span> 합니다</h1>
+      <h1 class="autoshow fade-up" style="font-size:3.9rem">스킬을 모으면 도구함이 되고,<br><span class="grad">연결을 설계하면 프로세스</span>가 됩니다</h1>
       <ul class="ol autoshow fade-up" style="margin-top:1.4rem; max-width:46rem; flex:none">
         <li class="show"><span class="ix">사건 ⑥</span><span class="lb">결과를 다음 스킬로 넘길 때, 전달 사고가 난다</span></li>
         <li class="show"><span class="ix">사건 ⑦</span><span class="lb">프로세스가 시니어의 머릿속에만 있다</span></li>
         <li class="show"><span class="ix">사건 ⑧</span><span class="lb">부실한 중간 산출물이 끝까지 흘러간다</span></li>
         <li class="show"><span class="ix">사건 ⑨</span><span class="lb">스킬 스무 개 — 엉뚱한 스킬이 발동한다</span></li>
       </ul>
-      <p class="autoshow fade-up" style="margin-top:1.2rem; font-size:1.15rem; color:var(--fg-soft) !important">네 사건은 <b style="color:#fff">하나의 장애 대응 프로세스</b>를 이어서 완성해 갑니다 — 무대는 스킬 안이 아니라 <b style="color:#fff">스킬과 스킬 사이</b>입니다.</p>
+      <p class="autoshow fade-up" style="margin-top:1.2rem; font-size:1.15rem; color:var(--fg-soft) !important">네 사건은 <b style="color:#fff">하나의 장애 대응 프로세스</b>를 이어서 완성해 갑니다 — 무대는 스킬 안이 아니라 <b style="color:#fff">스킬과 스킬이 만나는 자리</b>입니다.</p>
       <p class="autoshow fade-up" style="margin-top:0.5rem; font-size:1.2rem; color:var(--fg-soft) !important">공통 원리 — <b style="color:#fff">스킬은 대화가 아니라 파일로 협업한다.</b></p>
     </section>
 
@@ -3434,7 +3438,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
               <div class="ska-log"><span class="sh-dim">      (요약은 대화 속에… 이미 컴팩션으로 일부 유실)</span></div>
               <div class="ska-log"><span class="ska-danger">USER  스크롤 올려 복사 → 붙여넣기 — 수동 개입</span></div>
               <div class="ska-log"><span class="ska-danger">CHECK 붙여넣은 요약이 어제 버전 — 구버전 리포트 발행</span></div>
-              <div class="ska-log"><span class="sh-dim">스킬은 둘 다 정상이었습니다 — 문제는 둘 "사이"입니다.</span></div>
+              <div class="ska-log"><span class="sh-dim">스킬은 둘 다 정상이었습니다 — 문제는 둘의 연결입니다.</span></div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
@@ -3919,23 +3923,25 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       </div>
       <h2><span class="tkb b2" style="margin-right:0.5rem">⑧</span>게이트 체크 — <span class="grad">결함은 태어난 자리에서 멈춘다</span></h2>
       <div class="scn one sim mech" style="margin-top:0.8rem">
-        <div class="scn-p good g2" style="min-height:19.5rem; justify-content:flex-start; gap:0.5rem">
+        <div class="scn-p good g2" style="justify-content:flex-start; gap:0.5rem">
           <span class="scn-tag">단계 사이의 검문소</span>
-          <div class="mstage" style="height:11.5rem; margin-top:1.1rem">
-            <div style="position:absolute; left:8%; right:8%; top:37%; border-top:0.14rem dashed rgba(143,168,255,0.42)"></div>
-            <span style="position:absolute; left:29%; top:37%; transform:translateY(-54%); color:rgba(143,168,255,0.85); font-size:0.82rem; line-height:1">▸</span>
-            <span style="position:absolute; left:73%; top:37%; transform:translateY(-54%); color:rgba(143,168,255,0.85); font-size:0.82rem; line-height:1">▸</span>
-            <span class="fl-node sk" style="position:absolute; left:1%; top:24%">2 · 분석<small>root-cause</small></span>
-            <span class="fl-node gate agatexv" style="position:absolute; left:44%; top:20%; --d1:2.3s; --d2:6.4s">게이트<small>scripts/gate.py — 기계 판정</small></span>
-            <span class="fl-node sk" style="position:absolute; right:1%; top:24%">3 · 초안<small>incident-report</small></span>
-            <div class="amvb" style="position:absolute; left:var(--l0); --l0:13%; --l1:35%; --dur:3.4s; --dly:0.9s; top:27%">
+          <div class="mstage" style="height:9.4rem; margin-top:0.7rem">
+            <div style="position:absolute; left:3%; right:3%; top:2.9rem; border-top:0.14rem dashed rgba(143,168,255,0.42)"></div>
+            <span style="position:absolute; left:32.4%; top:2.9rem; transform:translateY(-54%); color:rgba(143,168,255,0.85); font-size:0.85rem; line-height:1">▸</span>
+            <span style="position:absolute; left:66.2%; top:2.9rem; transform:translateY(-54%); color:rgba(143,168,255,0.85); font-size:0.85rem; line-height:1">▸</span>
+            <div style="position:absolute; left:0; right:0; top:0; height:5.8rem; display:flex; align-items:center; z-index:2">
+              <div style="flex:1; display:flex; justify-content:center"><span class="fl-node sk">2 · 분석<small>root-cause</small></span></div>
+              <div style="flex:1; display:flex; justify-content:center"><span class="fl-node gate agatexv" style="--d1:2.3s; --d2:6.4s">게이트<small>scripts/gate.py — 기계 판정</small></span></div>
+              <div style="flex:1; display:flex; justify-content:center"><span class="fl-node sk">3 · 초안<small>incident-report</small></span></div>
+            </div>
+            <div class="amvb" style="position:absolute; left:var(--l0); --l0:19%; --l1:33%; --dur:3.4s; --dly:0.9s; top:2.9rem; transform:translateY(-50%)">
               <div class="doc coral h0 ain" style="--dly:0.5s; min-width:0"><span class="dt">analysis.md</span>형식 ✓ · 재현 절차 <span class="bx">빈칸</span></div>
             </div>
-            <div class="mret h0 ain" style="--dly:2.9s; left:16%; right:44%; top:62%"><span>FAIL — 부족 항목 명시 · 반려</span></div>
-            <div class="amvx" style="position:absolute; left:var(--l1); --l0:13%; --l1:76%; --dur:2.6s; --dly:5.4s; top:27%">
+            <div class="amvx" style="position:absolute; left:var(--l1); --l0:19%; --l1:62%; --dur:2.6s; --dly:5.4s; top:2.9rem; transform:translateY(-50%)">
               <div class="doc mint h0 ain" style="--dly:4.9s; min-width:0"><span class="dt">analysis.md v2</span>재현 절차 <b>포함</b><span class="stamp">PASS 2/2</span></div>
             </div>
-            <span class="vlab pass h0 apop" style="--dly:8.2s; position:absolute; right:1%; top:70%">뒤 단계는 안심 ✓</span>
+            <div class="mret h0 ain" style="--dly:2.9s; left:14%; right:52%; top:6.5rem"><span>FAIL — 부족 항목 명시 · 반려</span></div>
+            <span class="vlab pass h0 apop" style="--dly:8.2s; position:absolute; right:6%; top:6.9rem">뒤 단계는 안심 ✓</span>
           </div>
           <div class="scn-row" style="gap:0.5rem; margin-top:0.2rem">
             <span class="pill green">여기서 잡으면 — 수정 1×</span>
@@ -3947,13 +3953,13 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
             <span class="vlab pass">⑧ 게이트 = 내용 검사 — 안이 채워졌고 믿을 만한가 · 아니면 반려</span>
           </div>
           <div class="scn-row" style="gap:0.6rem; margin-top:0.1rem">
-            <span class="vlab" style="border-color:rgba(255,212,107,0.7); color:#FFE9AE">어디에 세우나? — 모든 사이 ✕ · 부실이 비싸지는 길목에만 ✓ (파이프라인에 한두 곳)</span>
+            <span class="vlab" style="border-color:rgba(255,212,107,0.7); color:#FFE9AE">어디에 세우나? — 연결마다 ✕ · 부실이 비싸지는 길목에만 ✓ (파이프라인에 한두 곳)</span>
           </div>
           <p class="scn-cap">부실한 산출물은 <b>다음 단계의 입구</b>에서 멈춥니다 — 판정은 말이 아니라 <b>스크립트</b>가, 반려 사유는 <b>항목으로</b> 남습니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
-      <p class="note" style="margin-top:0.4rem">3편 Harness의 게이트를 <b>스킬과 스킬 사이</b>에 옮겨 심은 것입니다 — 흐름(⑦)에 신뢰를 더합니다. 단, <b>모든 이음새가 아니라 부실의 대가가 큰 길목에만</b> 세웁니다 — 결합 데모에서도 게이트는 한 곳뿐입니다.</p>
+      <p class="note" style="margin-top:0.4rem">3편 Harness의 게이트를 <b>스킬과 스킬 사이</b>에 옮겨 심은 것입니다 — 흐름(⑦)에 신뢰를 더합니다. 단, <b>연결마다가 아니라 부실의 대가가 큰 길목에만</b> 세웁니다 — 결합 데모에서도 게이트는 한 곳뿐입니다.</p>
     </section>
 
     <!-- 사건 08 · 개조 명세 -->
@@ -4204,30 +4210,30 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       </div>
     </section>
 
-    <!-- P2 정리 · 사이의 네 질문 -->
+    <!-- P2 정리 · 연결의 네 질문 -->
     <section data-sec="PART 2 · 정리">
       <div><span class="chip">PART 2 · 정리</span></div>
-      <h2>네 사건은 전부, 스킬과 스킬 <span class="grad">사이</span>에서 터졌습니다</h2>
-      <p class="autoshow fade-up" style="margin-top:0.6rem; font-size:1.1rem; color:var(--fg-soft) !important">스킬 하나를 잘 쓰는 법은 2편과 PART 1에서 끝났습니다 — 연계술의 네 기법은 스킬들 <b style="color:#fff">사이의 네 가지 질문</b>에 하나씩 답합니다.</p>
+      <h2>네 사건은 전부, 스킬과 스킬이 <span class="grad">만나는 자리</span>에서 터졌습니다</h2>
+      <p class="autoshow fade-up" style="margin-top:0.6rem; font-size:1.1rem; color:var(--fg-soft) !important">스킬 하나를 잘 쓰는 법은 2편과 PART 1에서 끝났습니다 — 연계술의 네 기법은 스킬과 스킬의 <b style="color:#fff">연결에 관한 네 가지 질문</b>에 하나씩 답합니다.</p>
       <div class="net autoshow fade-up" style="margin-top:0.9rem">
         <div class="net-row" style="border-color:rgba(143,168,255,0.55); background:rgba(143,168,255,0.05)">
           <div class="nt"><span class="tkb b2">⑥</span>산출물 약속</div>
-          <div class="nc">사이의 질문 — <b>무엇을 주고받는가?</b> (경로 · 형식 · 버전)</div>
+          <div class="nc">연결의 질문 — <b>무엇을 주고받는가?</b> (경로 · 형식 · 버전)</div>
           <div class="nj">없으면: 전달 유실 · 수동 복붙 · 구버전 사고</div>
         </div>
         <div class="net-row" style="border-color:rgba(143,168,255,0.4)">
           <div class="nt"><span class="tkb b2">⑦</span>파이프라인 스킬</div>
-          <div class="nc">사이의 질문 — <b>다음 순서는 무엇인가?</b> (단계 · 완료 조건)</div>
+          <div class="nc">연결의 질문 — <b>다음 순서는 무엇인가?</b> (단계 · 완료 조건)</div>
           <div class="nj">없으면: 단계 누락 · 시니어 부재 시 정지</div>
         </div>
         <div class="net-row" style="border-color:rgba(255,122,149,0.5); background:rgba(255,122,149,0.04)">
           <div class="nt"><span class="tkb b2" style="color:#FF94AC; border-color:rgba(255,122,149,0.85)">⑧</span>게이트 체크</div>
-          <div class="nc">사이의 질문 — <b>받은 것을 믿어도 되는가?</b> (내용 검사 · 반려 — 위험한 길목에만)</div>
+          <div class="nc">연결의 질문 — <b>받은 것을 믿어도 되는가?</b> (내용 검사 · 반려 — 위험한 길목에만)</div>
           <div class="nj">없으면: 부실 전파 · 재작업 9× · 전량 폐기</div>
         </div>
         <div class="net-row" style="border-color:rgba(143,168,255,0.4)">
           <div class="nt"><span class="tkb b2">⑨</span>라우터 스킬</div>
-          <div class="nc">사이의 질문 — <b>누가 먼저 나서는가?</b> (입구 · 분류표)</div>
+          <div class="nc">연결의 질문 — <b>누가 먼저 나서는가?</b> (입구 · 분류표)</div>
           <div class="nj">없으면: 오발동 · 미발동 · 발견 실패</div>
         </div>
       </div>
@@ -4241,7 +4247,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
           <p class="scn-cap" style="text-align:left; font-size:0.98rem">상자를 열어 <b>안이 채워졌고 믿을 만한가</b>를 봅니다. 아니면 그 자리에서 <b>반려</b> — <b>품질을 보증</b>하는 장치입니다. <span class="dim">(택배의 검수대)</span></p>
         </div>
       </div>
-      <p class="note autoshow fade-up" style="margin-top:0.7rem">배운 순서가 곧 구축 순서입니다 — <b>⑥이 이음새(전달)를 먼저 고정해야, ⑦이 그 이음새들로 라인(순서)을 세울 수 있고, ⑧이 흐르는 내용을 검수</b>합니다. 스킬이 불어나면 <b>⑨가 입구를 정리</b>합니다. 다음 장에서 넷이 함께 도는 모습을 봅니다.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.7rem">배운 순서가 곧 구축 순서입니다 — <b>⑥이 연결(전달)을 먼저 고정해야, ⑦이 그 연결들로 라인(순서)을 세울 수 있고, ⑧이 흐르는 내용을 검수</b>합니다. 스킬이 불어나면 <b>⑨가 입구를 정리</b>합니다. 다음 장에서 넷이 함께 도는 모습을 봅니다.</p>
     </section>
 
     <!-- 28 · PART 2 데모 · 파이프라인 시네마 -->
@@ -4275,7 +4281,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
         </div>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem">
-        <p class="note" style="margin:0; border-top:none; padding-top:0">사람의 개입 없이 — 부실 산출물은 <b class="accent3">게이트가 반려</b>하고, 프로세스는 <b class="accent2">스스로 회복</b>합니다. 게이트는 여기서도 <b>한 곳뿐</b> — 모든 사이가 아니라, 부실이 비싸지는 길목에만 세웁니다.</p>
+        <p class="note" style="margin:0; border-top:none; padding-top:0">사람의 개입 없이 — 부실 산출물은 <b class="accent3">게이트가 반려</b>하고, 프로세스는 <b class="accent2">스스로 회복</b>합니다. 게이트는 여기서도 <b>한 곳뿐</b> — 연결마다가 아니라, 부실이 비싸지는 길목에만 세웁니다.</p>
         <button class="pill" onclick="simReplay(this)" style="cursor:pointer">↻ 다시 재생</button>
       </div>
     </section>
@@ -5418,7 +5424,7 @@ C의 스킬 — 미완성                      <span class="bx">✕ "뭐부터 �
         <tr class="rh"><th style="width:2.4rem">#</th><th style="width:15rem">기법</th><th>이런 사건에</th><th>극복 원리</th><th style="width:16rem">외우는 한 줄</th></tr>
         <tr><td>①</td><td>레퍼런스 계층화</td><td>발동마다 규칙 30페이지가 실린다</td><td>기본 점유는 한 줄, 지식은 조건부 로드</td><td class="one">목차만 싣고, 지식은 문 뒤에</td></tr>
         <tr><td>②</td><td>스크립트 위임</td><td>로그 50만 줄 — 못 읽고, 세면 틀린다</td><td>집계는 밖의 코드, 판단만 모델</td><td class="one">세는 일은 코드가</td></tr>
-        <tr><td>③</td><td>외부 기억</td><td>3시간 작업이 첫 결정을 잊는다</td><td>기억을 대화에서 파일로 이동</td><td class="one">파일은 남는다</td></tr>
+        <tr><td>③</td><td>외부 기억</td><td>3시간째, 에이전트가 첫 결정을 잊는다</td><td>기억을 대화에서 파일로 이동</td><td class="one">파일은 남는다</td></tr>
         <tr><td>④</td><td>지도 우선 탐색</td><td>설명 하나에 리포 절반을 읽는다</td><td>소비가 질문 크기에 비례</td><td class="one">읽기는 검색의 결과</td></tr>
         <tr><td>⑤</td><td>분업 요약</td><td>아무리 아껴도 한 번에 안 들어간다</td><td>N×256k로 확장, 회수는 요약만</td><td class="one">쪼개면 곱해진다</td></tr>
         <tr><td>⑥</td><td>산출물 약속</td><td>결과를 다음 스킬로 넘길 때 전달 사고</td><td>약속된 경로+형식 = 인터페이스</td><td class="one">약속이 있어야 부품</td></tr>
