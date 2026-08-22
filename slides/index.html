@@ -3555,37 +3555,45 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
           <span class="ska-cell"><span class="n">9</span>부실 전파</span>
         </div>
       </div>
-      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">"보여준다"를, <span class="grad">경로·형식·버전이 있는 계약</span>으로</h2>
+      <h2 style="font-size:2.05rem; margin-bottom:0.3rem">새 스킬이 아닙니다 — <span class="grad">두 스킬에 약속을 한 절씩</span> 나눠 적습니다</h2>
       <div class="grid-2" style="grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.5rem; align-items:stretch">
-        <div class="term badsk">
-          <div class="term-bar"><span class="term-title">Before — 두 스킬 (문제 시점) — 전달 규정 없음</span></div>
-          <div class="term-body"><div class="mkbox"><span class="mkt">문제 지점 ① — 대화로만 출력</span><span class="t-hl">log-digest/SKILL.md</span>
-<span class="t-hl">## 절차</span>
-1. 로그를 요약한다. 2. 결과를 표로 정리한다.
-3. 요약 결과를 사용자에게 보여준다.
-   <span class="bx">✕ 결과가 대화로만 나가고 끝 — 파일로 남지 않음</span></div><div class="mkbox"><span class="mkt">문제 지점 ② — 입력 위치 미정</span><span class="t-hl">incident-report/SKILL.md</span>
-<span class="t-hl">## 절차</span>
-1. 로그 요약을 근거로 리포트를 쓴다.
+        <div style="display:flex; flex-direction:column; gap:0.4rem">
+          <div class="term badsk" style="flex:1">
+            <div class="term-bar"><span class="term-title">Before ① — log-digest/SKILL.md (생산자 · 문제 시점)</span></div>
+            <div class="term-body"><span class="t-hl">## 절차</span>
+1. 로그를 요약한다.  2. 결과를 표로 정리한다.
+<div class="mkbox"><span class="mkt">문제 지점 — 결과가 대화로만 나간다</span>3. 요약 결과를 사용자에게 보여준다.
+   <span class="bx">✕ 화면에 출력하고 끝 — 파일로 남지 않는다</span></div></div>
+          </div>
+          <div style="text-align:center; font-family:var(--mono); font-size:0.68rem; font-weight:700; color:#FF94AC; border:0.09rem dashed rgba(255,122,149,0.5); border-radius:0.6rem; padding:0.24rem 0.6rem; background:rgba(255,122,149,0.05)">두 스킬 사이의 매개 — 없음 · 전달은 대화와 사람 손 ✕</div>
+          <div class="term badsk" style="flex:1">
+            <div class="term-bar"><span class="term-title">Before ② — incident-report/SKILL.md (소비자 · 문제 시점)</span></div>
+            <div class="term-body"><span class="t-hl">## 절차</span>
+<div class="mkbox"><span class="mkt">문제 지점 — 입력의 위치·형식 미정</span>1. 로그 요약을 근거로 리포트를 쓴다.
    <span class="bx">✕ 그 '요약'이 어디 있는지 정한 적 없음</span>
-2. 형식을 갖춰 정리한다.</div>
-<span class="bx">✕ 같은 "요약"을 말하지만 경로도 형식도 버전도 없다</span></div>
+   <span class="bx">✕ 사람이 대화에서 긁어 붙여 줘야 시작된다</span></div>2. 형식을 갖춰 정리한다.
+<span class="t-out">(같은 "요약"을 말하지만 경로도 형식도 버전도 없다)</span></div>
+          </div>
         </div>
-        <div class="term fixsk">
-          <div class="term-bar"><span class="term-title">After — 두 스킬 (해결 시점) — 입출력 계약 명시</span></div>
-          <div class="term-body"><div class="mkbox good"><span class="mkt">핵심 변경 ① — 출력: 경로·형식·버전 고정</span><span class="t-hl">log-digest/SKILL.md ▸ 출력 계약</span> <span class="t-out">(생산자)</span>
-<span class="padd">＋</span> 3. 결과를 <span class="t-str">output/digest.md</span> 로 저장한다. <span class="t-out">(경로 고정)</span>
+        <div style="display:flex; flex-direction:column; gap:0.4rem">
+          <div class="term fixsk" style="flex:1">
+            <div class="term-bar"><span class="term-title">After ① — log-digest/SKILL.md (생산자 · 쓰는 쪽 약속 추가)</span></div>
+            <div class="term-body"><span class="t-hl">## 절차</span> <span class="t-out">(1~2 동일)</span>
+<div class="mkbox good"><span class="mkt">핵심 변경 — 출력 계약: 경로·형식·버전 고정</span><span class="padd">＋</span> 3. 결과를 <span class="t-str">output/digest.md</span> 로 저장한다. <span class="t-out">(경로 고정)</span>
 <span class="padd">＋</span> 4. 형식: <span class="t-str">## 요약 / ## 오류 Top 10 / ## 이상 징후</span>
-<span class="padd">＋</span> 5. 마지막 줄에 <span class="t-str">DIGEST-VERSION: 1</span> 을 남긴다.
-6. 사용자에게는 경로만 한 줄로 알린다.</div><div class="mkbox good"><span class="mkt">핵심 변경 ② — 입력: 규격 확인 후 소비 · 부재 시 정지</span><span class="t-hl">incident-report/SKILL.md ▸ 입력 계약</span> <span class="t-out">(소비자)</span>
-<span class="padd">＋</span> 1. <span class="t-str">output/digest.md</span> 가 있으면 <b>그것만</b> 근거로 쓴다.
-<span class="padd">＋</span> 2. 규격 표시(DIGEST-VERSION)가 없으면 <b>옛 파일·복사본으로 간주</b>,
-   쓰지 않는다.
-<span class="padd">＋</span> 3. 파일이 없으면 log-digest 실행을 안내하고 <b>멈춘다</b>.
-4. 직접 로그를 읽지 않는다. <span class="t-out">(내용의 품질 검사는 이 계약의 몫이 아니다 — 사건 ⑨)</span></div>
-<span class="t-hl">## 이 계약이 보장하는 것</span>
-· 복사·붙여넣기 0회 · 구버전 사고 차단 · 어떤 조합으로도 연결 가능</div>
+<span class="padd">＋</span> 5. 마지막 줄에 <span class="t-str">DIGEST-VERSION: 1</span> 을 남긴다.</div>6. 사용자에게는 경로만 한 줄로 알린다.</div>
+          </div>
+          <div style="text-align:center; font-family:var(--mono); font-size:0.68rem; font-weight:700; color:#9FF5E6; border:0.09rem solid rgba(43,234,208,0.5); border-radius:0.6rem; padding:0.24rem 0.6rem; background:rgba(43,234,208,0.06)">↓ 약속대로 WRITE — <span class="t-str">output/digest.md</span> (계약된 매개 문서) — 겉봉 확인 후 READ ↓</div>
+          <div class="term fixsk" style="flex:1">
+            <div class="term-bar"><span class="term-title">After ② — incident-report/SKILL.md (소비자 · 읽는 쪽 약속 추가)</span></div>
+            <div class="term-body"><span class="t-hl">## 절차</span>
+<div class="mkbox good"><span class="mkt">핵심 변경 — 입력 계약: 규격 확인 · 부재 시 정지</span><span class="padd">＋</span> 1. <span class="t-str">output/digest.md</span> 가 있으면 <b>그것만</b> 근거로 쓴다.
+<span class="padd">＋</span> 2. 규격 표시(DIGEST-VERSION)가 없으면 <b>옛 파일·복사본으로 간주</b>, 쓰지 않는다.
+<span class="padd">＋</span> 3. 파일이 없으면 log-digest 실행을 안내하고 <b>멈춘다</b>.</div>4. 직접 로그를 읽지 않는다. <span class="t-out">(내용의 품질 검사는 이 계약의 몫이 아니다 — 사건 ⑨)</span></div>
+          </div>
         </div>
       </div>
+      <p class="note" style="margin-top:0.45rem">하나의 SKILL.md가 아닙니다 — <b>이미 있는 두 스킬에 각자의 약속을 한 절씩</b> 추가하는 개조이며, 약속이 가리키는 <b>문서(output/digest.md)가 두 스킬 사이의 매개</b>가 됩니다. 연결할 스킬이 늘면, 같은 방식으로 계약만 추가하면 됩니다.</p>
     </section>
 
     <!-- 22 · 사건 ⑦ 문제 -->
