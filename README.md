@@ -20,7 +20,7 @@ AI Agent 팀 세미나 시리즈 **4편 — SKILL 심화** 의 발표 자료 저
   - **PART 2 · 스킬 연계술** ⑥산출물 약속 ⑦파이프라인 스킬 ⑧게이트 체크 ⑨라우터 스킬 — 하나의 장애 대응 프로세스를 네 사건으로 이어 완성하는 연작. 네 기법은 스킬과 스킬의 **연결**에 관한 네 질문(무엇을 주고받나·순서는·믿어도 되나·누가 나서나)에 답한다 (+ 연결의 네 질문 정리 · 결합 데모 시네마)
   - **PART 3 · 검증·리뷰 하네스** ⑩자가 리뷰 루프 ⑪반박 검증 ⑫기계 채점 하네스 ⑬증거 기반 완료 — 3편 Harness의 Validation·Record·Gate 를 스킬 안으로 (+ 네 겹 그물 정리 · "하나의 흐름" 정리 — P1 부품 → P2 라인 → P3 검사 연계)
   - ※ 확산(스킬 팩토리 — 기법을 팀의 기본값으로 배포)은 이번 세미나 범위에서 제외 — 추후 별도 다룬다
-- **실습편 — Skill Quest 심화 시즌** (별도 기획, 방식 미정): 기존 [skill quest 리포](https://github.com/ljd6805/seminar_ai_skill_quest)의 데이터·채점기·보드 위에 심화 미션 트랙을 얹는 방향. 해결 장의 스킬구성이 미션 골격이 된다.
+- **실습편 — Skill Quest 심화 시즌** (기획 v0.1 — [`docs/practice-seminar-plan.md`](docs/practice-seminar-plan.md)): 기존 [skill quest 리포](https://github.com/ljd6805/seminar_ai_skill_quest)에 심화 미션 트랙(`track: adv`, Lv.8~13)을 얹는다. 해결 장의 스킬구성이 미션 골격 — 본편 5미션(②·⑥·⑦+⑧·⑫·⑪) + 보스전(종합 사례+⑬ 증거표) + 자율 퀘스트, 120분 목표.
 
 ## 문서
 
@@ -28,6 +28,7 @@ AI Agent 팀 세미나 시리즈 **4편 — SKILL 심화** 의 발표 자료 저
 |---|---|
 | [`docs/seminar-synopsis.md`](docs/seminar-synopsis.md) | 이론편 시놉시스 v0.8 — 핵심 메시지, 전개 원칙(사건 서사), 사건 카탈로그(문제 예시→원인→해결), 장별 구성, 시간 배분, 실습 연계 계획, 결정 기록. **슬라이드 작성의 기준 문서** |
 | [`slides/index.html`](slides/index.html) | 이론편 슬라이드 v0.8 (73장, 단일 흐름) — reveal.js 자립형(오프라인 동작), 1·2·3편과 동일한 테마 상속(Wanted Sans Variable + JetBrains Mono 임베드). 사건마다 문제·해결 리플레이 애니메이션, 원인 차트, **원리 도해 애니메이션**(목차와 본문·검문 게이트·창 분할 등 사건별 은유) 포함 |
+| [`docs/practice-seminar-plan.md`](docs/practice-seminar-plan.md) | 실습편 기획 v0.1 — Skill Quest 심화 시즌(Season 2). 3스테이지(부품→라인→검사)·6레벨(Lv.8~13) 미션 카탈로그, 채점·보드 확장 설계, 당일 120분 운영안, 리포 확장 구성안, 일정 로드맵. **실습 리포 확장 작업의 기준 문서** |
 
 GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced/slides/`
 
@@ -39,7 +40,9 @@ GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced
 - [x] 이론편 슬라이드 v0.8 (73장 — 2편 5이론 복습 · 사건 13건 × [문제·해결·원리 도해·Before/After], PART 2 "연결의 네 질문" 정리, PART 3 마무리 "하나의 흐름"(부품→라인→검사) 파트 연계 정리, 256k 가계부·파이프라인 시네마·결함 낙하 그물 애니메이션, 선택 지도·종합 사례·부록 요약표)
 - [ ] 슬라이드 검토·보강 ← **다음 단계**
 - [ ] 리허설 및 시간 조정
-- [ ] 실습편 (Skill Quest 심화 시즌) 기획 — 미션 구성·레벨 체계·일정
+- [x] 실습편 (Skill Quest 심화 시즌) 기획 v0.1 — 미션 구성(본편 5+보스전+EX)·레벨 체계(Lv.8~13)·운영안, 일정은 D-기준 로드맵
+- [ ] 실습편 기획 리뷰 → v1.0 확정 (실습 일정 D 확정 포함)
+- [ ] 실습 리포(`seminar_ai_skill_quest`) 시즌 2 확장 구현 — 데이터·스크립트·미션 카드·채점기·보드
 
 ## 작성 원칙
 
