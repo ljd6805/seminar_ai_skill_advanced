@@ -1948,6 +1948,23 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
 .reveal section .plv { color:#9FF5E6; }
 .reveal section .plx { color:#FFB3C2; }
 
+/* --- 문제의 스킬 원문 (스킬북 — 당시 형태) --- */
+.term.badsk { border-color:rgba(255,122,149,0.5); display:flex; flex-direction:column; }
+.badsk .term-bar { border-bottom-color:rgba(255,122,149,0.3); }
+.reveal section .badsk .term-title { color:#FF94AC; }
+.badsk .term-body { font-size:0.78rem; line-height:1.66; white-space:pre-wrap; flex:1; }
+.reveal section .bx { color:#FF94AC; font-weight:700; }
+
+/* --- 원인 분석 가로 스트립 (문제 장 하단) --- */
+.causebar {
+  flex-direction:row; align-items:center; justify-content:flex-start;
+  gap:1.6rem; min-height:0; margin-top:0.85rem;
+  padding:1.15rem 1.4rem 0.95rem; flex-wrap:wrap;
+}
+.causebar .scn-cap { text-align:left; flex:1; min-width:20rem; font-size:0.98rem; }
+.causebar .g { max-width:13.5rem; flex:none; }
+.causebar .cb-v { display:flex; align-items:center; gap:1.1rem; flex-wrap:wrap; flex:none; }
+
 /* 씬 요소 가드 — 인쇄·모션 최소화·오버뷰에서 최종 상태로 표시 */
 @media print {
   .reveal .afill .g-bar i { width:var(--w,100%) !important; animation:none !important; }
@@ -2228,13 +2245,13 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
         </div>
       </div>
       <p class="autoshow fade-up" style="font-size:1.25rem; margin-top:1.1rem; text-align:center">기법을 외우면서 가지 않습니다 — <b>사건을 하나씩 해결하다 보면, 카탈로그가 저절로 완성됩니다.</b></p>
-      <p class="note autoshow fade-up" style="margin-top:0.9rem">색 언어는 시리즈 그대로 — <span class="accent3">코랄=문제·원인</span> · <span class="accent">보라=Agent</span> · <span style="color:#AFC3FF; font-weight:700">청보라=스킬 구성</span> · <span class="accent2">민트=해결·효과</span> · <span class="accent4">앰버=사람·원리</span>.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.9rem">색은 이렇게 읽어 주세요 — <span class="accent3">코랄=문제·원인</span> · <span class="accent">보라=Agent</span> · <span style="color:#AFC3FF; font-weight:700">청보라=스킬 구성</span> · <span class="accent2">민트=해결·효과</span> · <span class="accent4">앰버=사람·원리</span>.</p>
     </section>
 
     <!-- 7 · PART 1 간지 -->
     <section class="section-opener" data-hero data-sec="PART 1 · 컨텍스트 절약술">
       <div class="autoshow fade-up"><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 ①~⑤</span></div>
-      <h1 class="autoshow fade-up" style="font-size:3.9rem">쓰지 않는 것이<br><span class="grad">최고의 절약</span>입니다</h1>
+      <h1 class="autoshow fade-up" style="font-size:3.9rem">가장 확실한 절약은,<br><span class="grad">애초에 컨텍스트에 넣지 않는 것</span>입니다</h1>
       <ul class="ol autoshow fade-up" style="margin-top:1.4rem; max-width:46rem; flex:none">
         <li class="show"><span class="ix">사건 ①</span><span class="lb">스킬을 부를 때마다 규칙 30페이지가 실린다</span></li>
         <li class="show"><span class="ix">사건 ②</span><span class="lb">로그 50만 줄은 읽지도, 세지도 못한다</span></li>
@@ -2273,12 +2290,27 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.75rem">
-          <span class="scn-tag">원인 분석</span>
-          <div class="g red afill" style="--w:95%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>발동 시 로드</span><b>본문 전체 38k</b></div></div>
-          <div class="g afill" style="--w:6%; --dly:1.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>실제 필요량</span><b>규칙 1편 ≈ 2k</b></div></div>
-          <p class="scn-cap">2편에서 배운 로드 사이클 — <b>발동하면 본문 전체가 로드</b>됩니다.<br>지식과 절차가 한 파일에 있으면, 로드 단위는 <b>전부 아니면 전무</b>입니다.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 스킬 — convention-review/SKILL.md (당시 형태)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">convention-review</span>
+<span class="t-key">description:</span> <span class="t-str">코드 컨벤션 리뷰 요청 시 사용</span>
+<span class="t-out">---</span>
+<span class="t-hl">## 규칙</span> <span class="t-out">— 30페이지 전체를 본문에 수록</span>
+### 1. 네이밍 규칙 <span class="t-out">(8쪽 분량)</span>
+<span class="t-out">… 규칙 원문 그대로 …</span>
+### 2. 예외 처리 규칙 <span class="t-out">(11쪽 분량)</span>
+<span class="t-out">…</span>
+### 3. 동시성 규칙 <span class="t-out">(11쪽 분량)</span>
+<span class="t-out">…</span>
+<span class="bx">✕ 발동하는 순간, 이 전부가 통째로 로드된다</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="g red afill" style="--w:94%; --dly:0.5s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>발동 시 로드</span><b>본문 전체 38k</b></div></div>
+        <div class="g afill" style="--w:6%; --dly:0.9s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>실제 필요량</span><b>규칙 1편 ≈ 2k</b></div></div>
+        <p class="scn-cap">2편에서 배운 로드 사이클대로, <b>발동하면 본문 전체가 로드</b>됩니다. 지식과 절차가 한 파일에 있으면 로드 단위는 <b>전부 아니면 전무</b>입니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">쓴 것은 5%인데 치른 값은 100%입니다 — <b>지식을 담아 둔 위치</b>가 문제입니다. 다음 장에서 이 사건을 해결합니다.</p>
     </section>
@@ -2313,7 +2345,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/convention-review/</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — convention-review/ (실제 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">convention-review/</span>
 ├─ <span class="t-key">SKILL.md</span>              <span class="t-out">← 절차 40줄, 목차 역할</span>
 └─ <span class="t-key">references/</span>
@@ -2364,12 +2396,26 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.75rem">
-          <span class="scn-tag">원인 분석</span>
-          <div class="g red afill" style="--w:100%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>필요 용량</span><b>50만 줄 ≈ 수백만 토큰</b></div></div>
-          <div class="g afill" style="--w:8%; --dly:1.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>가진 창</span><b>256k — 수십 배 부족</b></div></div>
-          <p class="scn-cap">용량도 문제, <b>능력도 문제</b> — LLM은 확률적 생성기라<br><b>세는 일</b>(집계·산술)에 구조적으로 약합니다.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 스킬 — log-digest/SKILL.md (당시 형태)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">log-digest</span>
+<span class="t-key">description:</span> <span class="t-str">로그 요약·원인 분석 요청 시 사용</span>
+<span class="t-out">---</span>
+<span class="t-hl">## 절차</span>
+1. 로그 파일을 읽는다
+   <span class="bx">✕ 50만 줄을 모델이 직접 READ</span>
+2. 오류를 유형별로 세어 정리한다
+   <span class="bx">✕ '세기'는 확률 모델의 약점</span>
+3. 가장 많은 오류부터 보고한다
+<span class="t-out">(scripts/ 없음 — 집계까지 전부 모델의 몫)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="g red afill" style="--w:100%; --dly:0.5s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>필요 용량</span><b>수백만 토큰</b></div></div>
+        <div class="g afill" style="--w:8%; --dly:0.9s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>가진 창</span><b>256k</b></div></div>
+        <p class="scn-cap">용량도 문제, <b>능력도 문제</b>입니다 — LLM은 확률적 생성기라 <b>세는 일</b>(집계·산술)에 구조적으로 약합니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">읽기(용량 초과)와 집계(능력 불일치), <b>두 번 실패하는 작업</b>입니다. 다음 장에서 이 사건을 해결합니다.</p>
     </section>
@@ -2404,7 +2450,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/log-digest/</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — log-digest/ (실제 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">log-digest/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">scripts/</span>
@@ -2453,16 +2499,24 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.7rem">
-          <span class="scn-tag">원인 분석</span>
-          <div class="scn-row" style="gap:0.4rem">
-            <span class="blob agray" style="--dly:0.8s">첫 결정</span>
-            <span class="blob agray" style="--dly:1.1s">초반 진행</span>
-            <span class="blob">최근 대화</span>
-          </div>
-          <span class="vlab fail h0 ain" style="--dly:1.5s">세션 종료 = 전체 삭제</span>
-          <p class="scn-cap">기억이 <b>대화에만</b> 있습니다.<br>한도가 차면 <b>오래된 결정부터</b> 지워지고, 세션이 끝나면 <b>전부</b> 지워집니다.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 스킬 — api-migration/SKILL.md (당시 형태)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">api-migration</span>
+<span class="t-key">description:</span> <span class="t-str">API 마이그레이션 작업 시 사용</span>
+<span class="t-out">---</span>
+<span class="t-hl">## 절차</span>
+1. 모듈을 순서대로 v2 규칙에 맞춰 수정한다
+2. 진행 상황을 기억해 두고 이어서 한다
+   <span class="bx">✕ '기억'을 둘 곳을 정하지 않았다</span>
+3. 전 모듈이 끝나면 결과를 보고한다
+<span class="t-out">(상태 파일 규정 없음 — 진행 기록이 대화에만 존재)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="cb-v"><span class="blob agray" style="--dly:0.8s">첫 결정</span><span class="blob agray" style="--dly:1.1s">초반 진행</span><span class="blob">최근 대화</span><span class="vlab fail h0 ain" style="--dly:1.5s">세션 종료 = 전체 삭제</span></div>
+        <p class="scn-cap">기억이 <b>대화에만</b> 있습니다. 한도가 차면 <b>오래된 결정부터</b> 지워지고, 세션이 끝나면 <b>전부</b> 지워집니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">성실히 일할수록 대화가 길어지고, 길어질수록 더 빨리 잊습니다 — <b>기억을 두는 곳</b>이 문제입니다. 다음 장에서 해결합니다.</p>
     </section>
@@ -2497,7 +2551,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/long-task/</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — long-task/ (실제 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">long-task/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">assets/</span>
@@ -2547,12 +2601,24 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.75rem">
-          <span class="scn-tag">원인 분석</span>
-          <div class="g red afill" style="--w:97%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>읽은 양</span><b>∝ 리포 크기 (수만 줄)</b></div></div>
-          <div class="g afill" style="--w:5%; --dly:1.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>답에 필요한 양</span><b>≈ 300줄</b></div></div>
-          <p class="scn-cap">탐색 전략이 없으면 <b>"무엇을 읽을지"를 읽으면서</b> 찾게 됩니다 — 읽기가 검색을 대신하는 구조입니다.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 스킬 — repo-scout/SKILL.md (당시 형태)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">repo-scout</span>
+<span class="t-key">description:</span> <span class="t-str">코드 구조·동작 설명 요청 시 사용</span>
+<span class="t-out">---</span>
+<span class="t-hl">## 절차</span>
+1. 관련 파일을 읽고 구조를 파악한다
+   <span class="bx">✕ '관련'의 기준도, 읽는 범위 제한도 없다</span>
+2. 흐름을 정리해 설명한다
+<span class="t-out">(탐색 순서 없음 — 결국 눈에 띄는 파일부터 통째로 READ)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="g red afill" style="--w:97%; --dly:0.5s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>읽은 양</span><b>∝ 리포 크기</b></div></div>
+        <div class="g afill" style="--w:5%; --dly:0.9s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>답에 필요한 양</span><b>≈ 300줄</b></div></div>
+        <p class="scn-cap">탐색 전략이 없으면 <b>"무엇을 읽을지"를 읽으면서</b> 찾게 됩니다 — 읽기가 검색을 대신하는 구조입니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">질문의 답은 300줄이면 되는데 비용은 리포 크기를 따라갑니다 — <b>비례의 방향</b>이 잘못됐습니다. 다음 장에서 해결합니다.</p>
     </section>
@@ -2587,8 +2653,12 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/repo-scout/SKILL.md</span></div>
-          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">## 절차 — 넓게 → 좁게 → 깊게</span>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — repo-scout/SKILL.md (실제 작성 형태)</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">repo-scout</span>
+<span class="t-key">description:</span> <span class="t-str">코드 구조·동작 설명 요청 시 사용</span>
+<span class="t-out">---</span>
+<span class="t-hl">## 절차 — 넓게 → 좁게 → 깊게</span>
 1. <span class="t-str">tree -L 2</span> 로 구조만 파악한다. <span class="t-out">(내용 열람 금지)</span>
 2. <span class="t-str">grep -rn "&lt;심볼&gt;"</span> 로 후보 위치를 찾는다.
 3. 후보 파일은 해당 함수 <span class="t-hl">±50줄만</span> 읽는다.
@@ -2634,12 +2704,24 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.75rem">
-          <span class="scn-tag">원인 분석</span>
-          <div class="g red afill" style="--w:100%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>작업 필요량</span><b>12모듈 코드+결과</b></div></div>
-          <div class="g afill" style="--w:22%; --dly:1.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>상한</span><b>1 × 256k 고정</b></div></div>
-          <p class="scn-cap">①~④는 <b>소비를 줄일 뿐</b>, 총량은 못 늘립니다.<br>작업이 상한을 넘으면 절약의 문제가 아니라 <b>구조의 문제</b>입니다.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 스킬 — security-audit/SKILL.md (당시 형태)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">security-audit</span>
+<span class="t-key">description:</span> <span class="t-str">보안 점검 요청 시 사용</span>
+<span class="t-out">---</span>
+<span class="t-hl">## 절차</span>
+1. 모든 모듈을 차례로 점검한다
+   <span class="bx">✕ 12개 모듈을 한 세션이 전부 떠안는다</span>
+2. 발견 사항을 모아 보고서를 쓴다
+<span class="t-out">(분할·위임 규정 없음 — 코드와 결과가 한 창에 계속 쌓임)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="g red afill" style="--w:100%; --dly:0.5s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>작업 필요량</span><b>12모듈 코드+결과</b></div></div>
+        <div class="g afill" style="--w:22%; --dly:0.9s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>상한</span><b>1 × 256k 고정</b></div></div>
+        <p class="scn-cap">①~④는 <b>소비를 줄일 뿐</b>, 총량은 늘리지 못합니다. 작업이 상한을 넘으면 절약이 아니라 <b>구조의 문제</b>입니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">절약술의 한계선입니다 — 여기부터는 <b>다른 종류의 답</b>이 필요합니다. 다음 장에서 해결합니다.</p>
     </section>
@@ -2674,7 +2756,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/module-audit/</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — module-audit/ (실제 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">module-audit/</span>
 ├─ <span class="t-key">SKILL.md</span>              <span class="t-out">← 조율자</span>
 └─ <span class="t-key">assets/</span>
@@ -2770,15 +2852,23 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.8rem">
-          <span class="scn-tag">원인 분석</span>
-          <div class="scn-row">
-            <span class="fl-node sk">log-digest</span>
-            <span class="blob agray" style="--dly:0.8s">대화 속 요약<small style="display:block; font-size:0.62rem">형식 제각각 · 버전 없음</small></span>
-            <span class="fl-node ghost">incident-report<small>어디서 읽어야 하지?</small></span>
-          </div>
-          <p class="scn-cap">결과가 <b>대화 속에만</b> 있습니다 — 날아가고, 형식이 없고, 버전도 없습니다.<br>두 스킬 사이의 <b>인터페이스를 정한 적이 없기 때문</b>입니다.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 두 스킬 — 전달 규정이 없던 형태</span></div>
+          <div class="term-body"><span class="t-hl">log-digest/SKILL.md ▸ 마지막 절차</span>
+3. 요약 결과를 사용자에게 보여준다
+   <span class="bx">✕ 결과가 대화로만 나가고 끝</span>
+
+<span class="t-hl">incident-report/SKILL.md ▸ 첫 절차</span>
+1. 로그 요약을 근거로 리포트를 쓴다
+   <span class="bx">✕ 그 '요약'이 어디 있는지는 정한 적 없음</span>
+
+<span class="t-out">(같은 "요약"을 말하지만, 두 파일 어디에도 경로·형식이 없다)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="cb-v"><span class="fl-node sk">log-digest</span><span class="blob agray" style="--dly:0.8s">대화 속 요약</span><span class="fl-node ghost">incident-report<small>어디서 읽지?</small></span></div>
+        <p class="scn-cap">결과가 <b>대화 속에만</b> 있습니다 — 날아가고, 형식이 없고, 버전도 없습니다. 두 스킬 사이의 <b>인터페이스를 정한 적이 없기 때문</b>입니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">함수라면 시그니처부터 정했을 텐데 — 스킬에는 그게 없었습니다. 다음 장에서 해결합니다.</p>
     </section>
@@ -2811,7 +2901,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — 두 스킬의 SKILL.md, 계약 부분 발췌</span></div>
+          <div class="term-bar"><span class="term-title">해결된 두 스킬 — 계약 부분 (실제 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">log-digest ▸ 출력 계약</span> <span class="t-out">(생산자)</span>
 · 경로: <span class="t-str">output/digest.md</span> <span class="t-out">(고정)</span>
 · 형식: ## 요약 / ## 오류 Top 10 / ## 이상 징후
@@ -2858,19 +2948,22 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.8rem">
-          <span class="scn-tag">원인 분석</span>
-          <div class="scn-col" style="border:0.09rem dashed rgba(255,212,107,0.5); border-radius:0.7rem; padding:0.5rem 0.8rem; gap:0.25rem">
-            <span class="tiny mono" style="color:#FFE9AE !important">시니어 머릿속 (문서화된 적 없음)</span>
-            <span style="font-size:0.85rem; font-weight:700">수집 → 분석 → 초안 → 검증</span>
-          </div>
-          <div class="scn-row" style="gap:0.4rem">
-            <span class="fl-node sk" style="font-size:0.74rem">요약 스킬</span>
-            <span class="fl-node sk" style="font-size:0.74rem">분석 스킬</span>
-            <span class="fl-node sk" style="font-size:0.74rem">리포트 스킬</span>
-          </div>
-          <p class="scn-cap">각 스킬은 <b>자기 단계만</b> 압니다.<br>순서와 완료 조건은 <b>어디에도 적혀 있지 않습니다</b>.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 스킬 폴더 — 지휘자가 없던 형태</span></div>
+          <div class="term-body"><span class="t-hl">.opencode/skills/</span>
+├─ <span class="t-key">log-digest/</span>        <span class="t-out">← 수집만 안다</span>
+├─ <span class="t-key">root-cause/</span>        <span class="t-out">← 분석만 안다</span>
+├─ <span class="t-key">incident-report/</span>   <span class="t-out">← 초안만 안다</span>
+└─ <span class="t-key">report-check/</span>      <span class="t-out">← 검증만 안다</span>
+
+<span class="bx">✕ 순서와 완료 조건을 적은 파일이 없다</span>
+<span class="t-out">(부품은 다 있는데, 조립 설명서가 없는 상태)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="cb-v"><div class="scn-col" style="border:0.09rem dashed rgba(255,212,107,0.5); border-radius:0.7rem; padding:0.45rem 0.8rem; gap:0.15rem"><span class="tiny mono" style="color:#FFE9AE !important">시니어 머릿속 (기록 없음)</span><span style="font-size:0.88rem; font-weight:700">수집 → 분석 → 초안 → 검증</span></div></div>
+        <p class="scn-cap">각 스킬은 <b>자기 단계만</b> 압니다. 순서와 완료 조건은 <b>어디에도 적혀 있지 않습니다</b>.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">부품(⑥)은 갖췄는데 <b>조립 설명서</b>가 없습니다. 다음 장에서 해결합니다.</p>
     </section>
@@ -2904,8 +2997,12 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/incident-flow/SKILL.md</span></div>
-          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">## 단계</span> <span class="t-out">— 순서 고정 · 산출물 없으면 다음 단계 금지</span>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — incident-flow/SKILL.md (실제 작성 형태)</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">incident-flow</span>
+<span class="t-key">description:</span> <span class="t-str">"장애 대응 시작" 요청 시 전체 단계를 지휘</span>
+<span class="t-out">---</span>
+<span class="t-hl">## 단계</span> <span class="t-out">— 순서 고정 · 산출물 없으면 다음 단계 금지</span>
 1. 수집   → log-digest 스킬        → <span class="t-str">output/digest.md</span>
 2. 분석   → root-cause 스킬        → <span class="t-str">output/analysis.md</span>
 3. 초안   → incident-report 스킬   → <span class="t-str">output/report.md</span>
@@ -2951,19 +3048,23 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.7rem">
-          <span class="scn-tag">원인 분석</span>
-          <div class="scn-row" style="gap:0">
-            <span class="fl-node sk" style="font-size:0.72rem">log-digest<small>"로그를…"</small></span>
-            <span class="fl-node sk" style="font-size:0.72rem; margin-left:-1.1rem; background:#1A2140">pdf-export<small>"로그를 문서로…"</small></span>
-            <span class="vlab fail" style="margin-left:0.5rem">겹침 → 오발동</span>
-          </div>
-          <div class="scn-row" style="gap:0.5rem">
-            <span class="fl-node ghost" style="font-size:0.72rem">…해당 표현 없음…</span>
-            <span class="vlab fail">구멍 → 미발동</span>
-          </div>
-          <p class="scn-cap">발동 판단이 description끼리의 <b>유사도 경쟁</b>이 됩니다 —<br>스킬이 늘수록 <b>겹침과 빈틈이 함께</b> 늘어납니다.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 description들 — 겹침과 빈틈</span></div>
+          <div class="term-body"><span class="t-hl">pdf-export/SKILL.md</span>
+<span class="t-key">description:</span> <span class="t-str">로그·문서를 PDF로 정리해 변환할 때 사용</span>
+   <span class="bx">✕ "로그"가 log-digest와 겹친다 → 오발동</span>
+
+<span class="t-hl">review-summary/SKILL.md</span>
+<span class="t-key">description:</span> <span class="t-str">Summarize review comments…</span>
+   <span class="bx">✕ 사용자가 실제로 칠 한글 표현이 없다 → 미발동</span>
+
+<span class="t-out">(스킬 20개의 전체 지도를 가진 파일: 없음)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="cb-v"><span class="fl-node sk" style="font-size:0.74rem">log-digest</span><span class="fl-node sk" style="font-size:0.74rem; margin-left:-1.1rem; background:#1A2140">pdf-export</span><span class="vlab fail">겹침 → 오발동</span><span class="fl-node ghost" style="font-size:0.74rem">…표현 없음…</span><span class="vlab fail">빈틈 → 미발동</span></div>
+        <p class="scn-cap">발동 판단이 description끼리의 <b>유사도 경쟁</b>이 됩니다 — 스킬이 늘수록 <b>겹침과 빈틈이 함께</b> 늘어납니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">2편의 교통정리(description 다듬기)로 버티다가, 스무 개에서 <b>구조의 한계</b>를 만났습니다. 다음 장에서 해결합니다.</p>
     </section>
@@ -2997,7 +3098,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/qa-desk/SKILL.md</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — qa-desk/SKILL.md (실제 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-key">description:</span> <span class="t-str">QA 업무 요청 전반의 접수 창구.
   로그·리포트·리뷰 요청이 모호할 때 우선 사용.</span>
 
@@ -3047,13 +3148,25 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.7rem">
-          <span class="scn-tag">원인 분석 — 발견이 늦을수록 비싸진다</span>
-          <div class="g afill" style="--w:14%; --dly:0.5s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>2단계에서 잡으면</span><b>수정 1×</b></div></div>
-          <div class="g afill" style="--w:42%; --dly:0.9s"><div class="g-bar" style="border-color:rgba(255,212,107,0.5)"><i style="width:0; background:linear-gradient(90deg,#FFD46B,#FF9F7C)"></i></div><div class="g-cap"><span>3단계에서 잡으면</span><b>수정 3×</b></div></div>
-          <div class="g red afill" style="--w:100%; --dly:1.3s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>4단계에서 잡으면</span><b>수정 9× + 폐기</b></div></div>
-          <p class="scn-cap">단계 사이에 <b>검문이 없으니</b> 결함이 흐르며 증폭됩니다 — 쓰레기가 들어가면 쓰레기가 나옵니다.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 스킬 — incident-report/SKILL.md (당시 형태)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">incident-report</span>
+<span class="t-key">description:</span> <span class="t-str">장애 리포트 작성 시 사용</span>
+<span class="t-out">---</span>
+<span class="t-hl">## 절차</span>
+1. output/analysis.md 를 근거로 리포트를 쓴다
+   <span class="bx">✕ 입력을 무조건 신뢰 — 검사 없이 시작</span>
+2. output/report.md 로 저장한다
+<span class="t-out">(부실한 입력도 그대로 다음 단계의 산출물이 된다)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="g afill" style="--w:14%; --dly:0.4s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>2단계에서 잡으면</span><b>수정 1×</b></div></div>
+        <div class="g afill" style="--w:42%; --dly:0.8s"><div class="g-bar" style="border-color:rgba(255,212,107,0.5)"><i style="width:0; background:linear-gradient(90deg,#FFD46B,#FF9F7C)"></i></div><div class="g-cap"><span>3단계에서 잡으면</span><b>수정 3×</b></div></div>
+        <div class="g red afill" style="--w:100%; --dly:1.2s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>4단계에서 잡으면</span><b>수정 9× + 폐기</b></div></div>
+        <p class="scn-cap">단계 사이에 <b>검문이 없으니</b> 결함이 흐르며 증폭됩니다 — 쓰레기가 들어가면 쓰레기가 나옵니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">각 스킬은 입력을 <b>신뢰</b>했습니다 — 신뢰를 만들 장치가 없었을 뿐입니다. 다음 장에서 해결합니다.</p>
     </section>
@@ -3087,7 +3200,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — incident-report의 게이트 도입부</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — incident-report/ 게이트 도입부 (실제 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">incident-report/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">scripts/</span>
@@ -3183,15 +3296,23 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.7rem">
-          <span class="scn-tag">원인 분석</span>
-          <div class="scn-row">
-            <span class="fl-node ag">작성 프레임<small>방금 쓴 논리 그대로</small></span>
-            <span class="fl-arr">=</span>
-            <span class="fl-node ag">검토 프레임<small>같은 관점 · 기준 없음</small></span>
-          </div>
-          <p class="scn-cap">같은 컨텍스트에서 같은 관점으로 물으면, <b>방금 쓴 글을 정당화</b>하는 쪽으로 기웁니다.<br>기준 없는 검토는 <b>인상 비평</b>에 그칩니다.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 스킬 — pr-desc/SKILL.md (당시 형태)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">pr-desc</span>
+<span class="t-key">description:</span> <span class="t-str">PR 설명 작성 요청 시 사용</span>
+<span class="t-out">---</span>
+<span class="t-hl">## 절차</span>
+1. diff를 요약해 PR 설명을 쓴다
+2. 사용자에게 보여준다
+   <span class="bx">✕ 검토 단계가 아예 없다</span>
+<span class="t-out">(기준 파일도 없음 — "괜찮아?"라는 질문에 기댈 뿐)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="cb-v"><span class="fl-node ag">작성 프레임<small>방금 쓴 논리 그대로</small></span><span class="fl-arr">=</span><span class="fl-node ag">검토 프레임<small>같은 관점 · 기준 없음</small></span></div>
+        <p class="scn-cap">같은 컨텍스트에서 같은 관점으로 물으면, <b>방금 쓴 글을 정당화</b>하는 쪽으로 기웁니다. 기준 없는 검토는 <b>인상 비평</b>에 그칩니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">사람도 자기 글의 오타는 잘 못 봅니다 — 그래서 리뷰어를 <b>따로</b> 둡니다. 다음 장에서 같은 구조를 스킬 안에 만듭니다.</p>
     </section>
@@ -3224,7 +3345,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/pr-desc/</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — pr-desc/ (실제 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">pr-desc/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">references/</span>
@@ -3273,21 +3394,21 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.7rem">
-          <span class="scn-tag">원인 분석</span>
-          <div class="scn-row" style="align-items:stretch">
-            <div class="scn-col" style="gap:0.3rem">
-              <span class="tiny mono" style="color:#FF94AC !important">지지 증거 수집</span>
-              <span class="blob" style="border-style:solid">배포 후 급증 ✓</span>
-              <span class="blob" style="border-style:solid">시점 일치 ✓</span>
-            </div>
-            <div class="scn-col" style="gap:0.3rem">
-              <span class="tiny mono" style="color:#FF94AC !important">반례 탐색</span>
-              <span class="blob" style="min-height:3.6rem; display:flex; align-items:center">비어 있음 — 절차에 없음</span>
-            </div>
-          </div>
-          <p class="scn-cap"><b>확증 편향</b> — 지지 증거는 아무리 쌓여도 확증이 아니고,<br>반례는 <b>하나만 있어도 결정적</b>입니다.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 스킬 — root-cause/SKILL.md (검증 부분, 당시 형태)</span></div>
+          <div class="term-body"><span class="t-hl">## 절차 ▸ 검증 부분</span>
+3. 원인 후보를 뒷받침하는 증거를 모은다
+   <span class="bx">✕ 지지 증거만 모으는 방향</span>
+4. 증거가 충분하면 결론으로 보고한다
+   <span class="bx">✕ 반례를 찾는 단계가 없다</span>
+
+<span class="t-out">(많이 모을수록 확신만 커진다 — 확증 편향의 절차화)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="cb-v"><span class="blob" style="border-style:solid">지지 증거 수집 ✓✓</span><span class="blob" style="min-height:2.4rem; display:flex; align-items:center">반례 탐색 — 비어 있음</span></div>
+        <p class="scn-cap"><b>확증 편향</b> — 지지 증거는 아무리 쌓여도 확증이 아니고, 반례는 <b>하나만 있어도 결정적</b>입니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">리뷰 프레임(⑩)도 "통과시킬 이유"를 찾습니다 — 방향 자체를 뒤집어야 합니다. 다음 장에서 해결합니다.</p>
     </section>
@@ -3320,8 +3441,12 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/refute-check/SKILL.md</span></div>
-          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">## 절차</span> <span class="t-out">(결론 검증 요청 시)</span>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — refute-check/SKILL.md (실제 작성 형태)</span></div>
+          <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">refute-check</span>
+<span class="t-key">description:</span> <span class="t-str">원인·결론 보고의 검증 요청 시 사용</span>
+<span class="t-out">---</span>
+<span class="t-hl">## 절차</span> <span class="t-out">(결론 검증 요청 시)</span>
 1. 결론을 한 문장으로 요약해 적는다.
 2. <span class="t-hl">입장 전환 — "이 결론은 틀렸다"</span>를 전제로,
    반례를 3가지 경로에서 찾는다:
@@ -3367,15 +3492,23 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.7rem">
-          <span class="scn-tag">원인 분석 — 도구 불일치</span>
-          <div class="scn-row">
-            <span class="fl-node" style="border-color:rgba(190,200,224,0.5)">검사 대상<small>형식·합계 = 결정적 기준</small></span>
-            <span class="fl-arr bad">✕</span>
-            <span class="fl-node ag">검사 도구<small>LLM = 확률적 생성기</small></span>
-          </div>
-          <p class="scn-cap">결정적인 기준을 확률적인 도구로 검사하면 <b>확률적으로 놓치게 됩니다</b>.<br>능력의 문제가 아니라 <b>도구를 잘못 고른</b> 문제입니다.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 스킬 — test-report/SKILL.md (당시 형태)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">test-report</span>
+<span class="t-key">description:</span> <span class="t-str">주간 테스트 리포트 작성 시 사용</span>
+<span class="t-out">---</span>
+<span class="t-hl">## 절차</span>
+3. 작성한 리포트를 스스로 한 번 검토한다
+   <span class="bx">✕ 형식·합계를 '말로' 검증</span>
+4. 완료를 보고한다
+<span class="t-out">(scripts/validate.py 없음 — 채점기 부재)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="cb-v"><span class="fl-node" style="border-color:rgba(190,200,224,0.5)">검사 대상<small>형식·합계 = 결정적 기준</small></span><span class="fl-arr bad">✕</span><span class="fl-node ag">검사 도구<small>LLM = 확률적 생성기</small></span></div>
+        <p class="scn-cap">결정적인 기준을 확률적인 도구로 검사하면 <b>확률적으로 놓치게 됩니다</b>. 능력의 문제가 아니라 <b>도구를 잘못 고른</b> 문제입니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">사건 ②와 같은 교훈이 검증에도 적용됩니다 — <b>세는 일은 코드의 몫</b>입니다. 다음 장에서 해결합니다.</p>
     </section>
@@ -3409,7 +3542,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/test-report/</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — test-report/ (실제 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">test-report/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">scripts/</span>
@@ -3457,15 +3590,23 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.7rem">
-          <span class="scn-tag">원인 분석</span>
-          <div class="scn-col" style="gap:0.4rem">
-            <span class="blob" style="border-style:solid; font-size:0.9rem">"이상 없습니다" <b style="color:#FF94AC">— 증거 0줄</b></span>
-            <span class="fl-arr">▼</span>
-            <span class="fl-node hum">사람의 선택지<small>전부 재검증(30분) 또는 그냥 믿기</small></span>
-          </div>
-          <p class="scn-cap">완료 보고가 <b>주장문 형식</b>입니다 — 실행 여부와 출력이 남지 않으니, 실패한 항목이 <b>낙관적으로 뭉개져도 알아챌 방법이 없습니다</b>.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 스킬 — release-check/SKILL.md (당시 형태)</span></div>
+          <div class="term-body"><span class="t-out">---</span>
+<span class="t-key">name:</span> <span class="t-str">release-check</span>
+<span class="t-key">description:</span> <span class="t-str">배포 전 점검 요청 시 사용</span>
+<span class="t-out">---</span>
+<span class="t-hl">## 출력</span>
+- 8개 항목을 점검하고, 끝나면 한 줄로 보고한다:
+  "점검 완료 — 이상 없습니다"
+   <span class="bx">✕ 실행한 명령·출력을 남기라는 규정이 없다</span>
+<span class="t-out">(실패한 항목을 구분해 적을 칸조차 없음)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="cb-v"><span class="blob" style="border-style:solid; font-size:0.9rem">"이상 없습니다" <b style="color:#FF94AC">— 증거 0줄</b></span><span class="fl-arr">→</span><span class="fl-node hum">사람의 선택지<small>전부 재검증(30분) 또는 그냥 믿기</small></span></div>
+        <p class="scn-cap">완료 보고가 <b>주장문 형식</b>입니다 — 실행 여부와 출력이 남지 않으니, 실패한 항목이 <b>낙관적으로 뭉개져도 알아챌 방법이 없습니다</b>.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">신뢰가 무너진 건 에이전트 탓이 아니라 <b>보고 형식</b> 탓입니다. 다음 장에서 해결합니다.</p>
     </section>
@@ -3498,7 +3639,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/release-check/</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — release-check/ (실제 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">release-check/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">assets/</span>
@@ -3588,15 +3729,23 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
-        <div class="scn-p bad" style="gap:0.8rem">
-          <span class="scn-tag">원인 분석</span>
-          <div class="scn-row" style="gap:0.9rem">
-            <div class="doc coral" style="transform:rotate(-5deg); min-width:0"><span class="dt">A의 SKILL.md</span><span class="dl" style="width:40%"></span></div>
-            <div class="doc coral" style="transform:rotate(3deg); min-width:0"><span class="dt">B의 SKILL.md</span><span class="dl"></span><span class="dl"></span><span class="dl" style="width:85%"></span></div>
-            <div class="doc" style="border-style:dashed; min-width:0"><span class="dt">C의 — 미완성</span></div>
-          </div>
-          <p class="scn-cap">표준이 <b>"읽어야 하는 문서"</b>로만 있습니다.<br>적용하는 수고는 각자의 몫이고, 품질은 <b>개인의 숙련도를 따라갑니다</b>.</p>
+        <div class="term badsk" style="align-self:stretch">
+          <div class="term-bar"><span class="term-title">문제의 배포 방식 — 표준이 문서로만 있던 형태</span></div>
+          <div class="term-body"><span class="t-hl">팀 위키 ▸ "SKILL.md 작성 가이드 v2"</span>
+   <span class="bx">✕ 조회수 3 — 아무도 읽지 않는다</span>
+
+<span class="t-hl">2주 뒤의 팀 스킬 폴더</span>
+A의 스킬 — description 이 한 단어 <span class="bx">✕ 미발동</span>
+B의 스킬 — 금지 조항 없음 <span class="bx">✕ 폭주</span>
+C의 스킬 — 미완성 <span class="bx">✕ 포기</span>
+
+<span class="t-out">(표준을 적용해 주는 도구 없음 — 각자 맨손으로 작성)</span></div>
         </div>
+      </div>
+      <div class="scn-p bad causebar sim">
+        <span class="scn-tag">원인 분석</span>
+        <div class="cb-v"><div class="doc coral" style="transform:rotate(-5deg); min-width:0"><span class="dt">A의 SKILL.md</span><span class="dl" style="width:40%"></span></div><div class="doc coral" style="transform:rotate(3deg); min-width:0"><span class="dt">B의 SKILL.md</span><span class="dl"></span><span class="dl" style="width:85%"></span></div><div class="doc" style="border-style:dashed; min-width:0"><span class="dt">C의 — 미완성</span></div></div>
+        <p class="scn-cap">표준이 <b>"읽어야 하는 문서"</b>로만 있습니다. 적용하는 수고는 각자의 몫이고, 품질은 <b>개인의 숙련도를 따라갑니다</b>.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">문서는 배포가 아닙니다 — <b>기본값이 배포</b>입니다. 다음 장, 마지막 해결입니다.</p>
     </section>
@@ -3626,7 +3775,7 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">스킬구성 — .opencode/skills/skill-factory/</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — skill-factory/ (실제 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">skill-factory/</span>
 ├─ <span class="t-key">SKILL.md</span>
 ├─ <span class="t-key">references/</span>
