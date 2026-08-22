@@ -1,0 +1,9 @@
+[2026-08-11 07:55:18] svc-api   INFO  health: degraded (rps=190, p99=410ms)
+[2026-08-11 08:14:02] svc-api   ERROR tls_handshake: certificate expired (api-gw.pem, not_after=2026-08-10T09:00Z)
+[2026-08-11 08:41:37] svc-batch ERROR job nightly-sync aborted: upstream 502 from api-gw
+[2026-08-11 10:02:55] svc-api   ERROR upstream 502: TLS handshake failed with api-gw
+[2026-08-11 12:26:13] svc-batch ERROR tls_handshake: certificate expired (api-gw.pem, not_after=2026-08-10T09:00Z)
+[2026-08-11 15:48:29] svc-api   ERROR tls_handshake: certificate expired (api-gw.pem, not_after=2026-08-10T09:00Z)
+[2026-08-11 18:09:44] svc-batch ERROR job report-agg aborted: upstream 502 from api-gw
+[2026-08-11 21:33:57] svc-api   ERROR upstream 502: TLS handshake failed with api-gw
+[2026-08-11 23:59:59] monitor   INFO  daily summary: total errors=1104

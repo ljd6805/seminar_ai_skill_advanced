@@ -1,0 +1,10 @@
+[2026-08-12 08:03:26] svc-api   ERROR tls_handshake: certificate expired (api-gw.pem, not_after=2026-08-10T09:00Z)
+[2026-08-12 09:15:40] svc-batch ERROR job hourly-sync aborted: upstream 502 from api-gw
+[2026-08-12 11:47:08] svc-api   ERROR upstream 502: TLS handshake failed with api-gw
+[2026-08-12 14:00:12] deploy    INFO  svc-api v2.3.1 deploy completed (commit 9f3c21a, http-client lib bump 포함)
+[2026-08-12 14:06:33] svc-api   ERROR tls_handshake: certificate expired (api-gw.pem, not_after=2026-08-10T09:00Z)
+[2026-08-12 15:22:19] svc-api   ERROR upstream 502: TLS handshake failed with api-gw
+[2026-08-12 16:40:51] svc-batch ERROR tls_handshake: certificate expired (api-gw.pem, not_after=2026-08-10T09:00Z)
+[2026-08-12 19:12:04] svc-api   ERROR tls_handshake: certificate expired (api-gw.pem, not_after=2026-08-10T09:00Z)
+[2026-08-12 22:37:46] svc-batch ERROR job report-agg aborted: upstream 502 from api-gw
+[2026-08-12 23:59:59] monitor   INFO  daily summary: total errors=1377

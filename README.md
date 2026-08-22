@@ -28,7 +28,8 @@ AI Agent 팀 세미나 시리즈 **4편 — SKILL 심화** 의 발표 자료 저
 |---|---|
 | [`docs/seminar-synopsis.md`](docs/seminar-synopsis.md) | 이론편 시놉시스 v0.8 — 핵심 메시지, 전개 원칙(사건 서사), 사건 카탈로그(문제 예시→원인→해결), 장별 구성, 시간 배분, 실습 연계 계획, 결정 기록. **슬라이드 작성의 기준 문서** |
 | [`slides/index.html`](slides/index.html) | 이론편 슬라이드 v0.8 (73장, 단일 흐름) — reveal.js 자립형(오프라인 동작), 1·2·3편과 동일한 테마 상속(Wanted Sans Variable + JetBrains Mono 임베드). 사건마다 문제·해결 리플레이 애니메이션, 원인 차트, **원리 도해 애니메이션**(목차와 본문·검문 게이트·창 분할 등 사건별 은유) 포함 |
-| [`docs/practice-seminar-plan.md`](docs/practice-seminar-plan.md) | 실습편 기획 v0.1 — Skill Quest 심화 시즌(Season 2). 3스테이지(부품→라인→검사)·6레벨(Lv.8~13) 미션 카탈로그, 채점·보드 확장 설계, 당일 120분 운영안, 리포 확장 구성안, 일정 로드맵. **실습 리포 확장 작업의 기준 문서** |
+| [`docs/practice-seminar-plan.md`](docs/practice-seminar-plan.md) | 실습편 기획 v0.2 — Skill Quest 심화 시즌(Season 2). 3스테이지(부품→라인→검사)·6레벨(Lv.8~13) 미션 카탈로그, 초심자 가드레일, 채점·보드 확장 설계, 당일 120분 운영안, 일정 로드맵. **실습 리포 확장 작업의 기준 문서** |
+| [`quest-adv/`](quest-adv/) | 실습편 **출제물 초안(스테이징)** — 미션 카드 7장(Lv.8~13+EX), 데이터(함정 포함), 제공 스크립트·스킬 템플릿·시즌1 세이브 파일, 채점기(`check-adv.sh/.ps1/.bat`), 진행자 답안지. 폴더 구조가 실습 리포와 1:1이라 복사가 곧 병합 (적용법: `quest-adv/README.md`) |
 
 GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced/slides/`
 
@@ -40,9 +41,10 @@ GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced
 - [x] 이론편 슬라이드 v0.8 (73장 — 2편 5이론 복습 · 사건 13건 × [문제·해결·원리 도해·Before/After], PART 2 "연결의 네 질문" 정리, PART 3 마무리 "하나의 흐름"(부품→라인→검사) 파트 연계 정리, 256k 가계부·파이프라인 시네마·결함 낙하 그물 애니메이션, 선택 지도·종합 사례·부록 요약표)
 - [ ] 슬라이드 검토·보강 ← **다음 단계**
 - [ ] 리허설 및 시간 조정
-- [x] 실습편 (Skill Quest 심화 시즌) 기획 v0.1 — 미션 구성(본편 5+보스전+EX)·레벨 체계(Lv.8~13)·운영안, 일정은 D-기준 로드맵
+- [x] 실습편 (Skill Quest 심화 시즌) 기획 v0.2 — 미션 구성(본편 5+보스전+EX)·레벨 체계(Lv.8~13)·운영안·초심자 가드레일, 일정은 D-기준 로드맵
+- [x] 실습편 출제 초안 (`quest-adv/` 스테이징) — 미션 카드·데이터·스크립트·템플릿·채점기, 전 미션 채점 경로 실행 검증(6 CLEAR + 음성 테스트 6종)
 - [ ] 실습편 기획 리뷰 → v1.0 확정 (실습 일정 D 확정 포함)
-- [ ] 실습 리포(`seminar_ai_skill_quest`) 시즌 2 확장 구현 — 데이터·스크립트·미션 카드·채점기·보드
+- [ ] `quest-adv/` → 실습 리포(`seminar_ai_skill_quest`) 병합 + 웹 보드 Lv.8~13 확장 + Windows 채점기 실기 확인
 
 ## 작성 원칙
 

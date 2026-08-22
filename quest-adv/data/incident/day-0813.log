@@ -1,0 +1,8 @@
+[2026-08-13 07:48:15] svc-api   ERROR tls_handshake: certificate expired (api-gw.pem, not_after=2026-08-10T09:00Z)
+[2026-08-13 09:02:58] svc-batch ERROR tls_handshake: certificate expired (api-gw.pem, not_after=2026-08-10T09:00Z)
+[2026-08-13 09:03:21] svc-batch INFO  runtime: v1.9.0 (마지막 배포 2026-07-28 — 이번 주 배포 없음)
+[2026-08-13 10:31:44] svc-api   ERROR upstream 502: TLS handshake failed with api-gw
+[2026-08-13 13:56:12] svc-api   ERROR tls_handshake: certificate expired (api-gw.pem, not_after=2026-08-10T09:00Z)
+[2026-08-13 16:19:37] svc-batch ERROR job report-agg aborted: upstream 502 from api-gw
+[2026-08-13 20:44:53] svc-api   ERROR upstream 502: TLS handshake failed with api-gw
+[2026-08-13 23:59:59] monitor   INFO  daily summary: total errors=1298
