@@ -3513,29 +3513,31 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
         </div>
       </div>
       <h2><span class="tkb b2" style="margin-right:0.5rem">⑥</span>산출물 계약 — <span class="grad">전달은 대화가 아니라 규격 파일로</span></h2>
-      <div class="scn one sim mech" style="margin-top:0.8rem">
-        <div class="scn-p good g2" style="min-height:19.5rem; justify-content:flex-start; gap:0.55rem">
-          <span class="scn-tag">두 스킬 사이 — 인터페이스</span>
-          <div class="scn-row" style="gap:0.7rem">
-            <span class="fl-node sk">log-digest</span>
-            <span class="fl-arr bad">→</span>
-            <span class="blob agray" style="--dly:1.0s">대화 속 요약 — "위에 있어요"</span>
-            <span class="fl-arr bad">→</span>
-            <span class="fl-node ghost">incident-report</span>
-            <span class="vlab fail h0 apop" style="--dly:1.3s">유실 · 형식 제각각 · 구버전 ✕</span>
+      <div class="scn sim mech" style="margin-top:0.8rem; gap:1.0rem">
+        <div class="scn-p bad">
+          <span class="scn-tag">경로 1 — 대화로 전달 (기존)</span>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:0.45rem">
+            <span class="fl-node sk" style="flex:none">log-digest<small>생산자</small></span>
+            <span class="fl-arr bad h0 ain" style="--dly:0.3s; flex:none">→<small>화면에 출력</small></span>
+            <span class="blob agray" style="--dly:1.5s; flex:none">대화 속 요약<br>"위에 있어요"</span>
+            <span class="fl-arr bad h0 ain" style="--dly:0.8s; flex:none">→<small>스크롤 · 복붙</small></span>
+            <span class="fl-node ghost" style="flex:none">incident-report<small>어디서 읽지?</small></span>
           </div>
-          <div class="mstage" style="height:10.5rem; margin-top:0.5rem">
-            <span class="fl-node sk" style="position:absolute; left:1%; top:34%">log-digest<small>생산자 — 쓰는 쪽 약속</small></span>
-            <div style="position:absolute; left:36.5%; right:36.5%; top:2%; bottom:6%; border:0.11rem dashed rgba(143,168,255,0.55); border-radius:0.9rem; background:rgba(143,168,255,0.05)"></div>
-            <span class="scn-tag" style="position:absolute; left:50%; transform:translateX(-50%); top:-0.75rem">계약 — 경로 · 형식 · 버전</span>
-            <div style="position:absolute; left:38.5%; top:12%; font-family:var(--mono); font-size:0.62rem; line-height:1.9; color:#C4D2FF">경로  output/digest.md (고정)<br>형식  ## 요약 / ## 오류 Top 10<br>끝줄  DIGEST-VERSION: 1</div>
-            <span class="fl-node sk" style="position:absolute; right:1%; top:34%">incident-report<small>소비자 — 읽는 쪽 약속</small></span>
-            <div class="amvx" style="position:absolute; left:var(--l1); --l0:12%; --l1:70%; --dur:2.4s; --dly:2.4s; top:58%">
-              <div class="doc mint h0 ain" style="--dly:1.9s; min-width:0"><span class="dt">digest.md</span><span class="dl" style="width:72%"></span><span class="stamp">V1 규격 ✓</span></div>
-            </div>
-            <span class="vlab pass h0 apop" style="--dly:5.2s; position:absolute; right:0.5%; top:76%">규격 확인 → 소비 ✓</span>
+          <span class="vlab fail h0 apop" style="--dly:1.9s">유실 · 형식 제각각 · 구버전 사고 ✕</span>
+          <p class="scn-cap">같은 요약인데, 전달이 <b>사람의 손(스크롤·복붙)</b>에 걸려 있습니다 — 날아가고, 형식이 없고, 버전도 없습니다.</p>
+        </div>
+        <div class="scn-p good g2">
+          <span class="scn-tag">경로 2 — 규격 파일로 전달 (산출물 계약)</span>
+          <div class="h0 ain" style="--dly:2.4s; border:0.09rem dashed rgba(143,168,255,0.55); border-radius:0.7rem; background:rgba(143,168,255,0.05); padding:0.35rem 0.9rem 0.4rem; font-family:var(--mono); font-size:0.63rem; line-height:1.75; color:#C4D2FF; text-align:center">계약 — 두 스킬이 공유하는 약속<br>경로 <span class="t-str">output/digest.md</span> · 형식 <span class="t-str">3섹션 고정</span> · 끝줄 <span class="t-str">DIGEST-VERSION: 1</span></div>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:0.45rem">
+            <span class="fl-node sk" style="flex:none">log-digest<small>생산자</small></span>
+            <span class="fl-arr ok h0 ain" style="--dly:3.2s; flex:none">→<small>약속대로 WRITE</small></span>
+            <div class="doc mint h0 apop" style="--dly:3.5s; flex:none; min-width:0"><span class="dt">digest.md</span><span class="dl" style="width:72%"></span><span class="dl" style="width:55%"></span><span class="stamp">V1 규격 ✓</span></div>
+            <span class="fl-arr ok h0 ain" style="--dly:4.1s; flex:none">→<small>겉봉 확인 후 READ</small></span>
+            <span class="fl-node sk h0 ainglow" style="--dly:4.4s; flex:none">incident-report<small>소비자</small></span>
           </div>
-          <p class="scn-cap">함수의 시그니처처럼 — <b>어디에(경로) · 어떤 꼴로(형식) · 언제 것인지(버전)</b>를 고정합니다. 받는 쪽은 이 <b>겉봉만 확인</b>하고 믿고 씁니다 — 내용을 뜯어보는 검문은 이 계약의 몫이 아닙니다.</p>
+          <span class="vlab pass h0 apop" style="--dly:5.1s">복붙 0회 · 구버전 차단 ✓</span>
+          <p class="scn-cap">함수의 시그니처처럼 — <b>어디에(경로) · 어떤 꼴로(형식) · 언제 것인지(버전)</b>를 고정합니다. 받는 쪽은 <b>겉봉만 확인</b>하고 믿고 씁니다 — 내용을 뜯어보는 검문은 이 계약의 몫이 아닙니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
