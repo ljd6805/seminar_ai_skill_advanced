@@ -1817,6 +1817,9 @@ section.present .sim .amvy  { animation:kfMvy var(--dur,1.4s) ease-in var(--dly,
 section.present .sim .amvb  { animation:kfMvb var(--dur,3s) ease-in-out var(--dly,0s) both; }
 section.present .sim .afill .g-bar i { animation:kfFill var(--dur,1.2s) cubic-bezier(.3,.7,.4,1) var(--dly,.3s) both; }
 section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; }
+/* 결합형 — 등장(페이드) 후 강조. ain·aglow 를 한 요소에 겹치면 animation 이 덮어써지므로 전용 규칙 사용 */
+section.present .sim .ainglow { animation:asFadeUp .5s ease var(--dly,0s) both, kfGlow .5s ease calc(var(--dly,0s) + .5s) both; }
+section.present .sim .ainhit { animation:asFadeUp .5s ease var(--dly,0s) both, kfHit .55s ease calc(var(--dly,0s) + .55s) both; }
 @keyframes kfGray { to { opacity:0.18; filter:grayscale(1); } }
 @keyframes kfHit { 0%,100% { transform:none; } 30% { transform:translate(0.22rem,-0.08rem) rotate(1.6deg); } 65% { transform:translate(-0.16rem,0.04rem) rotate(-1.2deg); } }
 @keyframes kfGlow { to { border-color:var(--gc,rgba(43,234,208,0.9)); box-shadow:0 0 0.95rem var(--gs,rgba(43,234,208,0.3)); } }
@@ -1980,6 +1983,31 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
 .reveal section .mkbox .mkt { color:#FF94AC; }
 .mkbox.good { border-color:rgba(43,234,208,0.6); background:rgba(43,234,208,0.06); }
 .reveal section .mkbox.good .mkt { color:#5BFFE0; }
+
+/* --- 원리 도해 장 (사건마다 한 장 — 기법의 작동 원리를 그림으로) --- */
+.scn-p.g3 { border-style:solid; border-color:rgba(255,122,149,0.5); background:rgba(255,122,149,0.035); }
+.reveal section .scn-p.g3 > .scn-tag { color:#FF94AC; border-color:rgba(255,122,149,0.5); }
+.mech .scn-p { min-height:17rem; }
+.mech .scn-cap { font-size:0.95rem; }
+.mstage { position:relative; width:100%; }
+/* 컨텍스트 창 글리프 (게이지 내장) */
+.mwin {
+  border:0.11rem solid rgba(190,200,224,0.45); border-radius:0.8rem;
+  background:rgba(11,14,26,0.62); padding:0.5rem 0.75rem 0.55rem;
+  display:flex; flex-direction:column; gap:0.4rem; min-width:10.5rem;
+}
+.mwin .mw-t { display:flex; justify-content:space-between; gap:0.8rem; font-family:var(--mono); font-size:0.62rem; font-weight:700; color:var(--fg-soft) !important; white-space:nowrap; }
+.mwin .mw-t b { color:#E8ECF5; }
+.mwin .g { max-width:none; width:100%; min-width:9rem; }
+.mwin.hot { border-color:rgba(255,122,149,0.65); }
+.mwin.cool { border-color:rgba(43,234,208,0.6); }
+/* 반려·루프 되돌이 경로 (아래로 돌아가는 점선) */
+.mret { position:absolute; z-index:0; height:1.25rem; border:0.09rem dashed rgba(255,122,149,0.55); border-top:none; border-radius:0 0 0.8rem 0.8rem; }
+.mret span { position:absolute; left:50%; top:0.38rem; transform:translateX(-50%); font-family:var(--mono); font-size:0.6rem; color:#FFB3C2 !important; background:var(--bg-0); padding:0 0.4rem; white-space:nowrap; }
+.mret.ok { border-color:rgba(43,234,208,0.5); }
+.mret.ok span { color:#9FF5E6 !important; }
+/* 게이트·판정 점멸 — 시점 지정 (--d1 ✕ 코랄 · --d2 ✓ 민트) */
+section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV .7s ease var(--d2,3s); }
 
 /* --- 원인 분석 가로 스트립 (문제 장 하단) --- */
 .causebar {
@@ -2251,27 +2279,36 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
     <!-- 6 · 진행 방식 -->
     <section data-sec="도입 · 진행 방식">
       <div><span class="chip">진행 방식</span></div>
-      <h2>사건 하나에 세 장 — <span class="grad">문제 · 해결 · 개조 명세</span></h2>
-      <div class="grid-2" style="margin-top:1.0rem; align-items:stretch">
-        <div class="panel autoshow fade-left" style="gap:0.55rem; border-color:rgba(255,122,149,0.4)">
-          <div class="phead bad">문제 장 — 사건을 목격합니다</div>
+      <h2>사건 하나에 네 장 — <span class="grad">문제 · 해결 · 원리 · 개조 명세</span></h2>
+      <div class="grid-2" style="margin-top:1.0rem; align-items:stretch; gap:0.75rem 0.9rem">
+        <div class="panel autoshow fade-left" style="gap:0.5rem; border-color:rgba(255,122,149,0.4)">
+          <div class="phead bad">1 · 문제 장 — 사건을 목격합니다</div>
           <ul class="ol" style="flex:none">
             <li class="show"><span class="ix">예시</span><span class="lb"><b>구체적 상황 재현</b> — 실제 요청, 실제 실패 로그</span></li>
-            <li class="show"><span class="ix">제기</span><span class="lb"><b>문제제기</b> — 무엇이 막혔는가 (제목 한 문장)</span></li>
-            <li class="show"><span class="ix">원인</span><span class="lb"><b>원인 분석</b> — 왜 이런 일이 생기는가 (구조·수치)</span></li>
+            <li class="show"><span class="ix">원인</span><span class="lb"><b>원인 분석</b> — 문제의 스킬 원문과 함께 (구조·수치)</span></li>
           </ul>
         </div>
-        <div class="panel autoshow fade-right" style="gap:0.55rem; border-color:rgba(43,234,208,0.45)">
-          <div class="phead good">해결 장 — 같은 사건을 다시 돌립니다</div>
+        <div class="panel autoshow fade-right" style="gap:0.5rem; border-color:rgba(43,234,208,0.45)">
+          <div class="phead good">2 · 해결 장 — 같은 사건을 다시 돌립니다</div>
           <ul class="ol" style="flex:none">
-            <li class="show"><span class="ix">해결</span><span class="lb"><b>해결 리플레이</b> — 같은 요청이 단계별로 풀리는 과정</span></li>
-            <li class="show"><span class="ix">구성</span><span class="lb"><b>스킬구성</b> — 이 해결을 만드는 SKILL.md 발췌</span></li>
+            <li class="show"><span class="ix">해결</span><span class="lb"><b>해결 리플레이 + 스킬구성</b> — 해결된 SKILL.md의 실제 형태</span></li>
             <li class="show"><span class="ix">명명</span><span class="lb"><b>기술소개</b> — 이름은 마지막에, 답으로서 등장</span></li>
-            <li class="show"><span class="ix">명세</span><span class="lb"><b>개조 명세</b> — Before / After 스킬 전문 대조 (스킬북 본편)</span></li>
+          </ul>
+        </div>
+        <div class="panel autoshow fade-left" style="gap:0.5rem; border-color:rgba(255,212,107,0.45)">
+          <div class="phead" style="color:#FFE08A">3 · 원리 장 — 그림 한 장으로 이해합니다</div>
+          <ul class="ol" style="flex:none">
+            <li class="show"><span class="ix">도해</span><span class="lb"><b>움직이는 다이어그램</b> — 기법이 왜 통하는지, 스킬이 처음이어도 이 장에서 따라잡습니다</span></li>
+          </ul>
+        </div>
+        <div class="panel autoshow fade-right" style="gap:0.5rem; border-color:rgba(143,168,255,0.45)">
+          <div class="phead" style="color:#AFC3FF">4 · 개조 명세 장 — 스킬북의 본편입니다</div>
+          <ul class="ol" style="flex:none">
+            <li class="show"><span class="ix">명세</span><span class="lb"><b>Before / After 스킬 전문 대조</b> — 발표에선 훑고, 스킬을 쓸 때 펼쳐 봅니다</span></li>
           </ul>
         </div>
       </div>
-      <p class="autoshow fade-up" style="font-size:1.25rem; margin-top:1.1rem; text-align:center">기법을 외우면서 가지 않습니다 — <b>사건을 하나씩 해결하다 보면, 카탈로그가 저절로 완성됩니다.</b></p>
+      <p class="autoshow fade-up" style="font-size:1.25rem; margin-top:1.0rem; text-align:center">기법을 외우면서 가지 않습니다 — <b>사건을 하나씩 해결하다 보면, 카탈로그가 저절로 완성됩니다.</b></p>
       <p class="note autoshow fade-up" style="margin-top:0.9rem">색은 이렇게 읽어 주세요 — <span class="accent3">코랄=문제·원인</span> · <span class="accent">보라=Agent</span> · <span style="color:#AFC3FF; font-weight:700">청보라=스킬 구성</span> · <span class="accent2">민트=해결·효과</span> · <span class="accent4">앰버=사람·원리</span>.</p>
     </section>
 
@@ -2393,6 +2430,63 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
         <p class="tn-one"><b>목차만 싣고, 지식은 문 뒤에.</b> 지식 비용이 보유한 전체 분량이 아니라 <b>이번 작업에 쓰인 분량</b>에 비례하게 됩니다.</p>
         <div class="pills"><span class="pill green">기본 점유 ≈ 수십 토큰</span><span class="pill neutral">기준 개정 = 파일 교체</span></div>
       </div>
+    </section>
+
+    <!-- 사건 01 · 원리 도해 -->
+    <section data-sec="PART 1 · 사건 ① — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 01 · 원리 한눈에</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell now"><span class="n">1</span>규칙 30p</span>
+          <span class="ska-cell"><span class="n">2</span>로그 50만</span>
+          <span class="ska-cell"><span class="n">3</span>3시간 작업</span>
+          <span class="ska-cell"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2><span class="tkb b1" style="margin-right:0.5rem">①</span>레퍼런스 계층화 — <span class="grad">목차는 늘, 서랍은 그때만</span></h2>
+      <div class="scn sim mech" style="grid-template-columns:0.88fr 1.12fr; margin-top:0.8rem">
+        <div class="scn-p bad">
+          <span class="scn-tag">기존 — 한 권 통째</span>
+          <div class="scn-row" style="flex-wrap:nowrap">
+            <div class="doc coral" style="min-width:10.5rem">
+              <span class="dt">SKILL.md — 규칙 30페이지</span>
+              <span class="dl"></span><span class="dl" style="width:88%"></span><span class="dl"></span><span class="dl" style="width:74%"></span><span class="dl"></span><span class="dl" style="width:92%"></span><span class="dl" style="width:60%"></span>
+            </div>
+            <span class="fl-arr bad h0 ain" style="--dly:0.4s">→<small>발동 = 전부 로드</small></span>
+            <div class="mwin hot h0 ain" style="--dly:0.4s">
+              <span class="mw-t"><span>컨텍스트</span><b>+38k</b></span>
+              <div class="g red afill" style="--w:94%; --dly:0.8s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>94%</b></div></div>
+            </div>
+          </div>
+          <p class="scn-cap">이번에 쓸 규칙은 <b>한 편</b>인데, 서른 페이지가 <b>함께</b> 들어옵니다.</p>
+        </div>
+        <div class="scn-p good g1">
+          <span class="scn-tag">레퍼런스 계층화 — 표지 + 서랍</span>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:0.8rem">
+            <div class="scn-col" style="gap:0.4rem">
+              <div class="doc mint" style="min-width:10rem"><span class="dt">SKILL.md — 목차 40줄</span><span class="dl" style="width:66%"></span><span class="dl" style="width:48%"></span></div>
+              <span class="fl-arr h0 ain" style="--dly:2.2s">↓<small>mutex 감지 → 동시성 서랍</small></span>
+              <div class="scn-row" style="gap:0.4rem; flex-wrap:nowrap">
+                <div class="doc agray" style="--dly:2.9s; min-width:0"><span class="dt">naming.md</span><span class="dl"></span></div>
+                <div class="doc agray" style="--dly:2.9s; min-width:0"><span class="dt">error.md</span><span class="dl"></span></div>
+                <div class="doc mint aglow" style="--dly:2.5s; min-width:0"><span class="dt">concurrency.md</span><span class="dl"></span><span class="stamp h0 apop" style="--dly:2.5s">이번 건 ✓</span></div>
+              </div>
+            </div>
+            <span class="blob h0 ain" style="--dly:1.4s; align-self:flex-start">요청 — diff에<br>thread·mutex 등장</span>
+            <div class="scn-col" style="gap:0.35rem">
+              <span class="fl-arr ok h0 ain" style="--dly:3.5s">→<small>그때 읽기</small></span>
+              <div class="mwin cool h0 ain" style="--dly:3.5s">
+                <span class="mw-t"><span>컨텍스트</span><b>+3.3k</b></span>
+                <div class="g afill" style="--w:8%; --dly:3.9s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>이전의 1/11</b></div></div>
+              </div>
+            </div>
+          </div>
+          <p class="scn-cap"><b>목차는 늘 실리고</b>, 서랍(references/)은 <b>조건이 맞은 파일만</b> 열립니다 — 안 쓴 서랍은 비용 0.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">지식 비용이 <b>보유량이 아니라 사용량에 비례</b>하게 됩니다 — 규칙이 100페이지로 늘어도 스킬은 그대로입니다.</p>
     </section>
 
     <!-- 사건 01 · 개조 명세 -->
@@ -2555,6 +2649,56 @@ section.present .sim .astamp { animation:msStampIn .5s ease var(--dly,0s) both; 
       </div>
     </section>
 
+    <!-- 사건 02 · 원리 도해 -->
+    <section data-sec="PART 1 · 사건 ② — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 02 · 원리 한눈에</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell now"><span class="n">2</span>로그 50만</span>
+          <span class="ska-cell"><span class="n">3</span>3시간 작업</span>
+          <span class="ska-cell"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2><span class="tkb b1" style="margin-right:0.5rem">②</span>스크립트 위임 — <span class="grad">세는 일은 밖에서, 읽는 일만 안에서</span></h2>
+      <div class="scn one sim mech" style="margin-top:0.8rem">
+        <div class="scn-p good g1" style="min-height:19rem">
+          <span class="scn-tag">두 가지 경로 — 같은 50만 줄</span>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:1.3rem; align-items:center">
+            <div class="doc coral" style="min-width:11rem">
+              <span class="dt">regression.log — 50만 줄</span>
+              <span class="dl"></span><span class="dl" style="width:90%"></span><span class="dl"></span><span class="dl" style="width:82%"></span><span class="dl"></span><span class="dl" style="width:88%"></span><span class="dl"></span><span class="dl" style="width:70%"></span><span class="dl" style="width:84%"></span>
+            </div>
+            <div class="scn-col" style="flex:1; gap:1.0rem; align-items:stretch">
+              <div class="scn-row" style="justify-content:flex-start; flex-wrap:nowrap">
+                <span class="fl-arr bad h0 ain" style="--dly:0.3s">→<small>READ 직접 읽기</small></span>
+                <div class="mwin hot h0 ain" style="--dly:0.3s">
+                  <span class="mw-t"><span>컨텍스트</span><b>초과</b></span>
+                  <div class="g red afill" style="--w:100%; --dly:0.6s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>12%만 읽고</span><b>한도</b></div></div>
+                </div>
+                <span class="vlab fail h0 apop" style="--dly:1.3s">읽기도 실패 · 세기도 오답</span>
+              </div>
+              <div class="scn-row" style="justify-content:flex-start; flex-wrap:nowrap">
+                <span class="fl-arr ok h0 ain" style="--dly:1.9s">→<small>RUN 위임</small></span>
+                <span class="fl-node scr h0 ainglow" style="--dly:1.9s">scripts/digest.py<small>컨텍스트 밖에서 50만 줄 집계</small></span>
+                <span class="fl-arr ok h0 ain" style="--dly:2.8s">→<small>결과만</small></span>
+                <div class="doc mint h0 apop" style="--dly:3.1s; min-width:0"><span class="dt">요약 30줄</span><span class="dl" style="width:72%"></span><span class="dl" style="width:56%"></span><span class="stamp">수치 오차 0</span></div>
+                <span class="fl-arr ok h0 ain" style="--dly:3.7s">→</span>
+                <div class="mwin cool h0 ain" style="--dly:3.7s">
+                  <span class="mw-t"><span>컨텍스트</span><b>+1k</b></span>
+                  <div class="g afill" style="--w:4%; --dly:4.0s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>4%</b></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="scn-cap">확률 모델의 약점인 <b>세기(집계·산술)는 컨텍스트 밖의 코드</b>가, 강점인 <b>뜻 읽기(해석·판단)만 모델</b>이 맡습니다.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">원본이 500만 줄이 되어도 컨텍스트 비용은 <b>여전히 30줄</b> — 크기와 비용이 분리됩니다.</p>
+    </section>
+
     <!-- 사건 02 · 개조 명세 -->
     <section data-sec="PART 1 · 사건 ② — 개조 명세" class="spread">
       <div class="tk-top">
@@ -2710,6 +2854,54 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
         <p class="tn-one"><b>대화는 흘러가고, 파일은 남는다.</b> 기억을 휘발되는 컨텍스트에서 영속되는 파일로 — 세션이 끊겨도 더는 사고가 아닙니다.</p>
         <div class="pills"><span class="pill green">세션 무관 재개</span><span class="pill neutral">인수인계 문서 겸용</span></div>
       </div>
+    </section>
+
+    <!-- 사건 03 · 원리 도해 -->
+    <section data-sec="PART 1 · 사건 ③ — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 03 · 원리 한눈에</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell done"><span class="n"></span>로그 50만</span>
+          <span class="ska-cell now"><span class="n">3</span>3시간 작업</span>
+          <span class="ska-cell"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2><span class="tkb b1" style="margin-right:0.5rem">③</span>외부 기억 — <span class="grad">대화는 흘러가도, 파일은 남는다</span></h2>
+      <div class="scn sim mech" style="grid-template-columns:0.82fr 1.18fr; margin-top:0.8rem; gap:1.0rem">
+        <div class="scn-p bad">
+          <span class="scn-tag">기존 — 기억이 대화에만</span>
+          <div class="scn-row">
+            <span class="blob agray" style="--dly:1.0s">10:05 첫 결정<br>"v2로 통일"</span>
+            <span class="blob agray" style="--dly:1.4s">초반 진행<br>모듈 1~15</span>
+            <span class="blob">최근 대화</span>
+          </div>
+          <span class="vlab fail h0 apop" style="--dly:2.1s">한도가 차면 앞에서부터 · 세션이 끝나면 전부</span>
+          <p class="scn-cap">컨텍스트는 <b>창</b>이지 창고가 아닙니다 — 성실히 일할수록 대화가 길어지고, <b>더 빨리 잊습니다</b>.</p>
+        </div>
+        <div class="scn-p good g1">
+          <span class="scn-tag">외부 기억 — 기록을 파일로</span>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:0.55rem">
+            <div class="scn-col" style="flex:none; gap:0.3rem">
+              <span class="blob agray" style="--dly:2.6s; white-space:nowrap; font-size:0.74rem">세션 A — 작업</span>
+              <span class="tiny mono h0 ain" style="--dly:2.6s; color:#FF94AC !important; white-space:nowrap">종료 = 대화 증발</span>
+            </div>
+            <span class="fl-arr ok h0 ain" style="--dly:1.2s; flex:none">→<small>매 단계 WRITE</small></span>
+            <div class="doc mint aglow" style="--dly:1.6s; min-width:10rem; flex:none"><span class="dt">output/state.md</span>규칙: v2 통일
+[x] 1~30 · 다음: 31
+메모: 03 API 변경<span class="stamp h0 apop" style="--dly:3.2s">살아 있음 ✓</span></div>
+            <span class="fl-arr ok h0 ain" style="--dly:3.6s; flex:none">→<small>시작 시 먼저 READ</small></span>
+            <div class="scn-col" style="flex:none; gap:0.35rem">
+              <span class="blob h0 ain" style="--dly:3.9s; white-space:nowrap; font-size:0.74rem">세션 B — 빈 컨텍스트</span>
+              <span class="vlab pass h0 apop" style="--dly:4.5s; white-space:nowrap">31번부터 재개 ✓</span>
+            </div>
+          </div>
+          <p class="scn-cap">기억을 <b>휘발되는 대화</b>가 아니라 <b>영속되는 파일</b>에 둡니다 — 세션이 끊겨도, 사람이 바뀌어도 <b>첫 결정 그대로</b> 이어집니다.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">state.md 는 에이전트의 기억이면서 동시에 <b>사람이 읽는 인수인계 문서</b>가 됩니다.</p>
     </section>
 
     <!-- 사건 03 · 개조 명세 -->
@@ -2871,6 +3063,48 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       </div>
     </section>
 
+    <!-- 사건 04 · 원리 도해 -->
+    <section data-sec="PART 1 · 사건 ④ — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 04 · 원리 한눈에</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell done"><span class="n"></span>로그 50만</span>
+          <span class="ska-cell done"><span class="n"></span>3시간 작업</span>
+          <span class="ska-cell now"><span class="n">4</span>리포 탐색</span>
+          <span class="ska-cell"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2><span class="tkb b1" style="margin-right:0.5rem">④</span>지도 우선 탐색 — <span class="grad">지도 먼저, 읽기는 좌표만</span></h2>
+      <div class="scn one sim mech" style="margin-top:0.8rem">
+        <div class="scn-p good g1" style="min-height:19rem">
+          <span class="scn-tag">넓게 → 좁게 → 깊게</span>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:1.4rem; align-items:center">
+            <div class="scn-col" style="flex:1.25; gap:0.5rem">
+              <div class="gridm mstage">
+                <span class="scan amvx" style="--l0:2%; --l1:97%; --dur:1.7s; --dly:0.4s; left:var(--l1)"></span>
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="hit h0 ain" style="--dly:2.6s"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="hit h0 ain" style="--dly:2.6s"></i><i></i><i></i><i></i><i></i>
+              </div>
+              <div class="scn-row" style="gap:0.45rem">
+                <span class="pill neutral h0 ain" style="--dly:0.4s">1 · tree — 구조 12줄</span>
+                <span class="pill neutral h0 ain" style="--dly:2.2s">2 · grep "validatePayment" — 후보 2곳</span>
+                <span class="pill green h0 ain" style="--dly:3.2s">3 · 좌표만 READ</span>
+              </div>
+            </div>
+            <span class="fl-arr ok h0 ain" style="--dly:3.6s">→<small>±50줄만</small></span>
+            <div class="scn-col" style="gap:0.5rem">
+              <div class="doc mint h0 apop" style="--dly:3.9s; min-width:12rem"><span class="dt">pay/validate.cpp:120–220</span><span class="dl"></span><span class="dl" style="width:68%"></span><span class="stamp">근거 :143</span></div>
+              <div class="g afill" style="--w:5%; --dly:4.5s; max-width:13rem"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>지도 우선</span><b>297줄</b></div></div>
+              <div class="g red" style="max-width:13rem"><div class="g-bar"><i style="width:97%"></i></div><div class="g-cap"><span>통째 읽기</span><b>리포 절반</b></div></div>
+            </div>
+          </div>
+          <p class="scn-cap">본문을 읽지 않는 <b>지도 도구(tree·grep)</b>로 후보를 좁히고, 읽기는 <b>좌표가 나온 곳</b>에서만 시작합니다.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">비용의 비례 대상이 <b>리포 크기에서 질문 크기로</b> 바뀝니다 — 같은 256k로 열 배 큰 리포를 다룹니다.</p>
+    </section>
+
     <!-- 사건 04 · 개조 명세 -->
     <section data-sec="PART 1 · 사건 ④ — 개조 명세" class="spread">
       <div class="tk-top">
@@ -3024,6 +3258,48 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
         <p class="tn-one"><b>쪼개면 컨텍스트는 곱해진다.</b> ①~④가 절약이라면 ⑤는 확장 — 총량을 <b>1×256k에서 N×256k로</b> 늘리는 유일한 기법입니다.</p>
         <div class="pills"><span class="pill green">총량 N×256k</span><span class="pill neutral">회수는 요약만</span></div>
       </div>
+    </section>
+
+    <!-- 사건 05 · 원리 도해 -->
+    <section data-sec="PART 1 · 사건 ⑤ — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 1 · 컨텍스트 절약술 — 사건 05 · 원리 한눈에</span></div>
+        <div class="ska-track p1">
+          <span class="ska-cell done"><span class="n"></span>규칙 30p</span>
+          <span class="ska-cell done"><span class="n"></span>로그 50만</span>
+          <span class="ska-cell done"><span class="n"></span>3시간 작업</span>
+          <span class="ska-cell done"><span class="n"></span>리포 탐색</span>
+          <span class="ska-cell now"><span class="n">5</span>전체 점검</span>
+        </div>
+      </div>
+      <h2><span class="tkb b1" style="margin-right:0.5rem">⑤</span>분업 요약 — <span class="grad">창을 쪼개면, 총량이 곱해진다</span></h2>
+      <div class="scn sim mech" style="grid-template-columns:0.8fr 1.2fr; margin-top:0.8rem">
+        <div class="scn-p bad">
+          <span class="scn-tag">기존 — 창 하나가 전부 떠안기</span>
+          <div class="mwin hot" style="min-width:13rem">
+            <span class="mw-t"><span>한 세션</span><b>모듈 12개 코드+결과</b></span>
+            <div class="g red afill" style="--w:100%; --dly:0.5s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>상한</span><b>1 × 256k</b></div></div>
+          </div>
+          <span class="vlab fail h0 apop" style="--dly:1.4s">모듈 6에서 한도 — 앞 결과부터 뭉개짐</span>
+          <p class="scn-cap">①~④로 아껴도 <b>총량은 1 × 256k</b> — 작업이 상한을 넘으면 절약으로는 못 풉니다.</p>
+        </div>
+        <div class="scn-p good g1">
+          <span class="scn-tag">분업 요약 — 깨끗한 창 × N</span>
+          <div class="mwin cool h0 ain" style="--dly:1.9s; align-self:center">
+            <span class="mw-t"><span>본부 — 계획·종합만</span><b>보고 12 × 10줄</b></span>
+            <div class="g afill" style="--w:12%; --dly:4.4s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>12%</b></div></div>
+          </div>
+          <span class="fl-arr ok h0 ain" style="--dly:3.9s">↑<small>회수는 요약만 — 코드 원문 금지</small></span>
+          <div class="scn-row" style="gap:0.7rem; flex-wrap:nowrap">
+            <div class="mwin cool h0 apop" style="--dly:2.4s; min-width:0"><span class="mw-t"><span>워커 1</span><b>모듈 1~4</b></span><div class="g afill" style="--w:64%; --dly:2.8s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>자기 창</span><b>256k</b></div></div></div>
+            <div class="mwin cool h0 apop" style="--dly:2.7s; min-width:0"><span class="mw-t"><span>워커 2</span><b>모듈 5~8</b></span><div class="g afill" style="--w:58%; --dly:3.1s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>자기 창</span><b>256k</b></div></div></div>
+            <div class="mwin cool h0 apop" style="--dly:3.0s; min-width:0"><span class="mw-t"><span>워커 3</span><b>모듈 9~12</b></span><div class="g afill" style="--w:61%; --dly:3.4s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>자기 창</span><b>256k</b></div></div></div>
+          </div>
+          <p class="scn-cap">조각마다 <b>깨끗한 256k</b>에서 점검하고, 본부에는 <b>양식에 맞춘 10줄</b>만 돌아옵니다 — 총 처리량 <b>3 × 256k</b>.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">①~④가 <b>절약</b>이라면 ⑤는 <b>확장</b>입니다 — 유일하게 총량 자체를 늘리는 기법.</p>
     </section>
 
     <!-- 사건 05 · 개조 명세 -->
@@ -3223,6 +3499,47 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       </div>
     </section>
 
+    <!-- 사건 06 · 원리 도해 -->
+    <section data-sec="PART 2 · 사건 ⑥ — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 06 · 원리 한눈에</span></div>
+        <div class="ska-track p2">
+          <span class="ska-cell now"><span class="n">6</span>전달 사고</span>
+          <span class="ska-cell"><span class="n">7</span>수동 지휘</span>
+          <span class="ska-cell"><span class="n">8</span>오발동</span>
+          <span class="ska-cell"><span class="n">9</span>부실 전파</span>
+        </div>
+      </div>
+      <h2><span class="tkb b2" style="margin-right:0.5rem">⑥</span>산출물 계약 — <span class="grad">전달은 대화가 아니라 규격 파일로</span></h2>
+      <div class="scn one sim mech" style="margin-top:0.8rem">
+        <div class="scn-p good g2" style="min-height:19.5rem; justify-content:flex-start; gap:0.55rem">
+          <span class="scn-tag">두 스킬 사이 — 인터페이스</span>
+          <div class="scn-row" style="gap:0.7rem">
+            <span class="fl-node sk">log-digest</span>
+            <span class="fl-arr bad">→</span>
+            <span class="blob agray" style="--dly:1.0s">대화 속 요약 — "위에 있어요"</span>
+            <span class="fl-arr bad">→</span>
+            <span class="fl-node ghost">incident-report</span>
+            <span class="vlab fail h0 apop" style="--dly:1.3s">유실 · 형식 제각각 · 구버전 ✕</span>
+          </div>
+          <div class="mstage" style="height:10.5rem; margin-top:0.5rem">
+            <span class="fl-node sk" style="position:absolute; left:1%; top:34%">log-digest<small>생산자 — 쓰는 쪽 약속</small></span>
+            <div style="position:absolute; left:36.5%; right:36.5%; top:2%; bottom:6%; border:0.11rem dashed rgba(143,168,255,0.55); border-radius:0.9rem; background:rgba(143,168,255,0.05)"></div>
+            <span class="scn-tag" style="position:absolute; left:50%; transform:translateX(-50%); top:-0.75rem">계약 — 경로 · 형식 · 버전</span>
+            <div style="position:absolute; left:38.5%; top:12%; font-family:var(--mono); font-size:0.62rem; line-height:1.9; color:#C4D2FF">경로  output/digest.md (고정)<br>형식  ## 요약 / ## 오류 Top 10<br>끝줄  DIGEST-VERSION: 1</div>
+            <span class="fl-node sk" style="position:absolute; right:1%; top:34%">incident-report<small>소비자 — 읽는 쪽 약속</small></span>
+            <div class="amvx" style="position:absolute; left:var(--l1); --l0:12%; --l1:70%; --dur:2.4s; --dly:2.4s; top:58%">
+              <div class="doc mint h0 ain" style="--dly:1.9s; min-width:0"><span class="dt">digest.md</span><span class="dl" style="width:72%"></span><span class="stamp">V1 규격 ✓</span></div>
+            </div>
+            <span class="vlab pass h0 apop" style="--dly:5.2s; position:absolute; right:0.5%; top:76%">규격 확인 → 소비 ✓</span>
+          </div>
+          <p class="scn-cap">함수의 시그니처처럼 — <b>경로·형식·버전이 맞아야</b> 다음 스킬이 받습니다. 규격이 없으면 <b>소비하지 않고 멈추는 것</b>까지가 계약입니다.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">계약을 지키는 스킬은 <b>어떤 조합으로도</b> 이어 붙일 수 있습니다 — 부품이 된다는 뜻입니다.</p>
+    </section>
+
     <!-- 사건 06 · 개조 명세 -->
     <section data-sec="PART 2 · 사건 ⑥ — 개조 명세" class="spread">
       <div class="tk-top">
@@ -3364,6 +3681,44 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
         <p class="tn-one"><b>프로세스도 스킬이다.</b> 시니어의 머릿속 순서가 <b>기록된 자산</b>이 됩니다 — 단계 산출물이 파일로 남아 중간부터 다시 시작할 수도 있습니다.</p>
         <div class="pills"><span class="pill green">시작은 한 마디</span><span class="pill neutral">단계 누락 0</span></div>
       </div>
+    </section>
+
+    <!-- 사건 07 · 원리 도해 -->
+    <section data-sec="PART 2 · 사건 ⑦ — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 07 · 원리 한눈에</span></div>
+        <div class="ska-track p2">
+          <span class="ska-cell done"><span class="n"></span>전달 사고</span>
+          <span class="ska-cell now"><span class="n">7</span>수동 지휘</span>
+          <span class="ska-cell"><span class="n">8</span>오발동</span>
+          <span class="ska-cell"><span class="n">9</span>부실 전파</span>
+        </div>
+      </div>
+      <h2><span class="tkb b2" style="margin-right:0.5rem">⑦</span>파이프라인 스킬 — <span class="grad">순서를 아는 스킬은 하나면 된다</span></h2>
+      <div class="scn one sim mech" style="margin-top:0.8rem">
+        <div class="scn-p good g2" style="min-height:19.5rem; gap:0.85rem">
+          <span class="scn-tag">지휘자 한 명 + 부품 네 개</span>
+          <div class="scn-row" style="gap:0.8rem">
+            <span class="blob h0 ain" style="--dly:0.3s">USER — "장애 대응 시작해줘"<br><b>한 마디가 전부</b></span>
+            <span class="fl-arr h0 ain" style="--dly:0.9s">→</span>
+            <span class="fl-node ag h0 ainglow" style="--dly:0.9s; --gc:rgba(155,130,255,0.9); --gs:rgba(155,130,255,0.3)">incident-flow<small>지휘자 — 순서·완료 조건 보유</small></span>
+            <div class="doc blue h0 ain" style="--dly:1.5s; min-width:0"><span class="dt">단계표</span>1 수집 → 2 분석<br>→ 3 초안 → 4 검증</div>
+          </div>
+          <div class="scn-row" style="gap:0.45rem; flex-wrap:nowrap">
+            <span class="fl-node sk h0 ainglow" style="--dly:2.1s">1 수집<small>log-digest</small></span>
+            <div class="doc mint h0 apop" style="--dly:2.7s; min-width:0"><span class="dt">digest.md</span></div>
+            <span class="fl-node sk h0 ainglow" style="--dly:3.2s">2 분석<small>root-cause</small></span>
+            <div class="doc mint h0 apop" style="--dly:3.8s; min-width:0"><span class="dt">analysis.md</span></div>
+            <span class="fl-node sk h0 ainglow" style="--dly:4.3s">3 초안<small>incident-report</small></span>
+            <div class="doc mint h0 apop" style="--dly:4.9s; min-width:0"><span class="dt">report.md</span></div>
+            <span class="fl-node sk h0 ainglow" style="--dly:5.4s">4 검증<small>report-check</small></span>
+            <span class="vlab pass h0 apop" style="--dly:6.0s">4/4 · 누락 0</span>
+          </div>
+          <p class="scn-cap">순서는 사람 머릿속이 아니라 <b>incident-flow의 SKILL.md 파일</b>에 있습니다 — 새벽 2시의 신입이 돌려도 같은 길. 단계 산출물이 남아 <b>중간부터 재개</b>도 됩니다.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">각 단계를 잇는 화살표가 방금 본 <b>산출물 계약(⑥)</b>입니다 — 계약이 있어야 지휘가 됩니다.</p>
     </section>
 
     <!-- 사건 07 · 개조 명세 -->
@@ -3514,6 +3869,49 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       </div>
     </section>
 
+    <!-- 사건 08 · 원리 도해 -->
+    <section data-sec="PART 2 · 사건 ⑧ — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 08 · 원리 한눈에</span></div>
+        <div class="ska-track p2">
+          <span class="ska-cell done"><span class="n"></span>전달 사고</span>
+          <span class="ska-cell done"><span class="n"></span>수동 지휘</span>
+          <span class="ska-cell now"><span class="n">8</span>오발동</span>
+          <span class="ska-cell"><span class="n">9</span>부실 전파</span>
+        </div>
+      </div>
+      <h2><span class="tkb b2" style="margin-right:0.5rem">⑧</span>라우터 스킬 — <span class="grad">입구는 하나, 분류는 표로</span></h2>
+      <div class="scn one sim mech" style="margin-top:0.8rem">
+        <div class="scn-p good g2" style="min-height:19.5rem; gap:0.6rem">
+          <span class="scn-tag">스무 개의 스킬, 하나의 창구</span>
+          <div class="scn-row" style="gap:0.7rem">
+            <span class="blob agray" style="--dly:1.2s">"이 로그 좀 봐줘"</span>
+            <span class="fl-arr bad h0 ain" style="--dly:0.4s">→<small>description 유사도 경쟁</small></span>
+            <span class="fl-node sk agray" style="--dly:1.2s">pdf-export</span>
+            <span class="vlab fail h0 apop" style="--dly:0.8s">엉뚱한 스킬 — 오발동 ✕</span>
+          </div>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:1.1rem; margin-top:0.3rem">
+            <div class="scn-col" style="gap:0.55rem; align-items:flex-end">
+              <span class="blob h0 ain" style="--dly:1.8s">"이 로그 좀 봐줘"</span>
+              <span class="blob h0 ain" style="--dly:2.8s">"리뷰 코멘트 정리해줘"</span>
+              <span class="blob h0 ain" style="--dly:3.8s">"그… 지난주 그거 정리해줘"</span>
+            </div>
+            <span class="fl-arr h0 ain" style="--dly:1.8s">→</span>
+            <span class="fl-node sk h0 ainglow" style="--dly:1.5s; --gc:rgba(143,168,255,0.9); --gs:rgba(143,168,255,0.3)" >qa-desk — 접수 창구<small>분류표: 요청의 말 → 담당 스킬</small></span>
+            <span class="fl-arr h0 ain" style="--dly:2.2s">→</span>
+            <div class="scn-col" style="gap:0.55rem; align-items:flex-start">
+              <span class="fl-node sk h0 ainglow" style="--dly:2.3s">log-digest<small>로그 · 크래시 · 원인</small></span>
+              <span class="fl-node sk h0 ainglow" style="--dly:3.3s">review-summary<small>리뷰 · 코멘트 정리</small></span>
+              <span class="fl-node hum h0 ainglow" style="--dly:4.3s; --gc:rgba(255,212,107,0.9); --gs:rgba(255,212,107,0.3)">모호함 → 질문<small>"리뷰 정리 / 주간 리포트 — 어느 쪽?"</small></span>
+            </div>
+          </div>
+          <p class="scn-cap">발동 판단이 description끼리의 <b>유사도 경쟁</b>에서 <b>표에 적힌 규칙</b>으로 바뀝니다 — 분류 불가면 짐작 대신 <b>질문</b>이 정답입니다.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">창구의 description은 <b>넓게</b>, 전문 스킬은 <b>좁고 정확하게</b> — 겹침도 빈틈도 사라집니다.</p>
+    </section>
+
     <!-- 사건 08 · 개조 명세 -->
     <section data-sec="PART 2 · 사건 ⑧ — 개조 명세" class="spread">
       <div class="tk-top">
@@ -3658,6 +4056,46 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
         <p class="tn-one"><b>게이트가 있어야 흐름을 믿는다.</b> 결함을 <b>가장 싼 단계</b>에서 차단 — 3편 Harness의 게이트를 스킬 사이에 옮겨 심었습니다.</p>
         <div class="pills"><span class="pill green">반려 사유 명시</span><span class="pill neutral">뒤 단계는 안심</span></div>
       </div>
+    </section>
+
+    <!-- 사건 09 · 원리 도해 -->
+    <section data-sec="PART 2 · 사건 ⑨ — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 2 · 스킬 연계술 — 사건 09 · 원리 한눈에</span></div>
+        <div class="ska-track p2">
+          <span class="ska-cell done"><span class="n"></span>전달 사고</span>
+          <span class="ska-cell done"><span class="n"></span>수동 지휘</span>
+          <span class="ska-cell done"><span class="n"></span>오발동</span>
+          <span class="ska-cell now"><span class="n">9</span>부실 전파</span>
+        </div>
+      </div>
+      <h2><span class="tkb b2" style="margin-right:0.5rem">⑨</span>게이트 체크 — <span class="grad">결함은 태어난 자리에서 멈춘다</span></h2>
+      <div class="scn one sim mech" style="margin-top:0.8rem">
+        <div class="scn-p good g2" style="min-height:19.5rem; justify-content:flex-start; gap:0.5rem">
+          <span class="scn-tag">단계 사이의 검문소</span>
+          <div class="mstage" style="height:11.5rem; margin-top:1.1rem">
+            <span class="fl-node sk" style="position:absolute; left:1%; top:24%">2 · 분석<small>root-cause</small></span>
+            <span class="fl-node gate agatexv" style="position:absolute; left:44%; top:20%; --d1:2.3s; --d2:6.4s">게이트<small>scripts/gate.py — 기계 판정</small></span>
+            <span class="fl-node sk" style="position:absolute; right:1%; top:24%">3 · 초안<small>incident-report</small></span>
+            <div class="amvb" style="position:absolute; left:var(--l0); --l0:13%; --l1:35%; --dur:3.4s; --dly:0.9s; top:27%">
+              <div class="doc coral h0 ain" style="--dly:0.5s; min-width:0"><span class="dt">analysis.md</span>재현 절차 <span class="bx">없음</span></div>
+            </div>
+            <div class="mret h0 ain" style="--dly:2.9s; left:16%; right:44%; top:62%"><span>FAIL — 부족 항목 명시 · 반려</span></div>
+            <div class="amvx" style="position:absolute; left:var(--l1); --l0:13%; --l1:76%; --dur:2.6s; --dly:5.4s; top:27%">
+              <div class="doc mint h0 ain" style="--dly:4.9s; min-width:0"><span class="dt">analysis.md v2</span>재현 절차 <b>포함</b><span class="stamp">PASS 2/2</span></div>
+            </div>
+            <span class="vlab pass h0 apop" style="--dly:8.2s; position:absolute; right:1%; top:70%">뒤 단계는 안심 ✓</span>
+          </div>
+          <div class="scn-row" style="gap:0.5rem; margin-top:0.2rem">
+            <span class="pill green">여기서 잡으면 — 수정 1×</span>
+            <span class="pill neutral">다음 단계에서 — 수정 3×</span>
+            <span class="pill pink">끝에서 — 수정 9× + 폐기</span>
+          </div>
+          <p class="scn-cap">부실한 산출물은 <b>다음 단계의 입구</b>에서 멈춥니다 — 판정은 말이 아니라 <b>스크립트</b>가, 반려 사유는 <b>항목으로</b> 남습니다.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">3편 Harness의 게이트를 <b>스킬과 스킬 사이</b>에 옮겨 심은 것입니다 — 흐름(⑦)에 신뢰를 더합니다.</p>
     </section>
 
     <!-- 사건 09 · 개조 명세 -->
@@ -3856,6 +4294,45 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       </div>
     </section>
 
+    <!-- 사건 10 · 원리 도해 -->
+    <section data-sec="PART 3 · 사건 ⑩ — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 10 · 원리 한눈에</span></div>
+        <div class="ska-track p3">
+          <span class="ska-cell now"><span class="n">10</span>관대한 자평</span>
+          <span class="ska-cell"><span class="n">11</span>그럴듯한 오답</span>
+          <span class="ska-cell"><span class="n">12</span>기계적 실수</span>
+          <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
+        </div>
+      </div>
+      <h2><span class="tkb b3" style="margin-right:0.5rem">⑩</span>자가 리뷰 루프 — <span class="grad">같은 모델, 다른 프레임</span></h2>
+      <div class="scn one sim mech" style="margin-top:0.8rem">
+        <div class="scn-p g3" style="min-height:19.5rem; justify-content:flex-start; gap:0.5rem">
+          <span class="scn-tag">혼자서 하는 페어 리뷰</span>
+          <div class="mstage" style="height:12rem; margin-top:1.0rem">
+            <span class="fl-node ag" style="position:absolute; left:1%; top:22%">작성 프레임<small>초안을 쓴 그 관점</small></span>
+            <div class="doc h0 apop" style="--dly:0.5s; position:absolute; left:20.5%; top:24%; min-width:0"><span class="dt">draft.md</span><span class="dl" style="width:72%"></span><span class="dl" style="width:58%"></span></div>
+            <span class="fl-node ag aglow" style="position:absolute; left:38%; top:22%; --dly:1.3s; --gc:rgba(255,122,149,0.85); --gs:rgba(255,122,149,0.3)">리뷰 프레임<small>"지금부터 리뷰어다 — 결함만 찾는다"</small></span>
+            <div class="doc blue h0 ain" style="--dly:1.8s; position:absolute; left:39%; top:64%; min-width:0"><span class="dt">checklist.md</span>#2 테스트 영향 · #5 롤백<br>#7 과장 표현 <span class="t-out">(팀 공유 기준)</span></div>
+            <div style="position:absolute; left:63%; top:22%; display:flex; align-items:center; gap:0.5rem">
+              <span class="tiny mono" style="color:#A9B4D8 !important">지적</span>
+              <span class="cnt h0 apop" style="--dly:2.4s">3</span>
+              <span class="fl-arr h0 ain" style="--dly:3.3s">→</span>
+              <span class="cnt h0 apop" style="--dly:3.6s">1</span>
+              <span class="fl-arr h0 ain" style="--dly:4.3s">→</span>
+              <span class="cnt ok h0 apop" style="--dly:4.6s">0</span>
+            </div>
+            <div class="mret h0 ain" style="--dly:2.9s; left:6%; right:44%; top:56%"><span>지적 반영해 수정 — 최대 2회 반복</span></div>
+            <span class="vlab pass h0 apop" style="--dly:5.3s; position:absolute; left:63%; top:52%">지적 0건 → 제출 ✓</span>
+            <span class="tiny mono h0 ain" style="--dly:5.8s; position:absolute; left:63%; top:70%; color:#A9B4D8 !important">사람 리뷰에는 남은 것만 올라간다</span>
+          </div>
+          <p class="scn-cap">같은 모델이라도 <b>프레임(역할 선언)과 체크리스트</b>를 바꾸면 남의 눈이 됩니다 — 기준이 파일이니 <b>누가 써도 같은 수준</b>으로 잡습니다.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">비용은 몇 초의 재검토 — 대가는 <b>사람 리뷰에서 반복 지적이 사라지는 것</b>입니다.</p>
+    </section>
+
     <!-- 사건 10 · 개조 명세 -->
     <section data-sec="PART 3 · 사건 ⑩ — 개조 명세" class="spread">
       <div class="tk-top">
@@ -4004,6 +4481,47 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       </div>
     </section>
 
+    <!-- 사건 11 · 원리 도해 -->
+    <section data-sec="PART 3 · 사건 ⑪ — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 11 · 원리 한눈에</span></div>
+        <div class="ska-track p3">
+          <span class="ska-cell done"><span class="n"></span>관대한 자평</span>
+          <span class="ska-cell now"><span class="n">11</span>그럴듯한 오답</span>
+          <span class="ska-cell"><span class="n">12</span>기계적 실수</span>
+          <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
+        </div>
+      </div>
+      <h2><span class="tkb b3" style="margin-right:0.5rem">⑪</span>반박 검증 — <span class="grad">반례 하나가 확신을 이긴다</span></h2>
+      <div class="scn one sim mech" style="margin-top:0.8rem">
+        <div class="scn-p g3" style="min-height:19.5rem; gap:0.8rem">
+          <span class="scn-tag">결론을 채택하기 전, 세 방향에서 두드린다</span>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:1.0rem">
+            <div class="scn-col" style="gap:0.35rem; align-items:flex-end">
+              <span class="pill pink h0 ain" style="--dly:0.6s">시간 반박 — 그 전에도 있었나?</span>
+              <span class="pill neutral">사례 반박 — 같은 조건, 무증상은?</span>
+              <span class="pill neutral">대안 반박 — 다른 원인 후보는?</span>
+            </div>
+            <span class="fl-arr bad h0 ain" style="--dly:1.3s">→<small>grep 8/09~8/12 — 반례 발견!</small></span>
+            <div class="doc coral ahit" style="--dly:1.9s; min-width:13rem"><span class="dt">결론 A — "원인은 8/12 배포"</span>근거: 배포 직후 오류 급증
+<span class="bx">반례: 8/10에도 동일 오류 — 배포 전</span><span class="stamp red h0 apop" style="--dly:2.5s">기각</span></div>
+          </div>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:1.0rem">
+            <div class="scn-col" style="gap:0.35rem; align-items:flex-end">
+              <span class="vlab pass h0 apop" style="--dly:3.6s">시간 반박 실패</span>
+              <span class="vlab pass h0 apop" style="--dly:4.1s">사례 반박 실패</span>
+              <span class="vlab pass h0 apop" style="--dly:4.6s">대안 반박 실패</span>
+            </div>
+            <span class="fl-arr ok h0 ain" style="--dly:5.1s">→<small>세 번 살아남음</small></span>
+            <div class="doc mint h0 ainglow" style="--dly:3.2s; min-width:13rem"><span class="dt">결론 B — "8/10 인증서 만료"</span>반박 기록 3건 첨부<span class="stamp h0 apop" style="--dly:5.5s">채택 ✓</span></div>
+          </div>
+          <p class="scn-cap">지지 증거는 아무리 쌓여도 확증이 아니고, <b>반례는 하나면 결정적</b>입니다 — 반박에서 <b>살아남은 결론만</b> 보고됩니다.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">리뷰 루프(⑩)가 "빠진 것"을 찾는다면, 반박 검증은 <b>"틀린 것"</b>을 찾습니다 — 방향이 반대인 그물입니다.</p>
+    </section>
+
     <!-- 사건 11 · 개조 명세 -->
     <section data-sec="PART 3 · 사건 ⑪ — 개조 명세" class="spread">
       <div class="tk-top">
@@ -4149,6 +4667,43 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
         <p class="tn-one"><b>말로 통과하지 말고, 채점으로 통과하라.</b> 3편의 Validation 루프를 스킬 안에 넣은 것 — 그리고 <b>2편 실습의 check.sh가 바로 이 구조</b>였습니다.</p>
         <div class="pills"><span class="pill green">판정 재현 가능</span><span class="pill neutral">루프 상한 명시</span></div>
       </div>
+    </section>
+
+    <!-- 사건 12 · 원리 도해 -->
+    <section data-sec="PART 3 · 사건 ⑫ — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 12 · 원리 한눈에</span></div>
+        <div class="ska-track p3">
+          <span class="ska-cell done"><span class="n"></span>관대한 자평</span>
+          <span class="ska-cell done"><span class="n"></span>그럴듯한 오답</span>
+          <span class="ska-cell now"><span class="n">12</span>기계적 실수</span>
+          <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
+        </div>
+      </div>
+      <h2><span class="tkb b3" style="margin-right:0.5rem">⑫</span>기계 채점 하네스 — <span class="grad">판정은 코드가, PASS까지 루프</span></h2>
+      <div class="scn one sim mech" style="margin-top:0.8rem">
+        <div class="scn-p g3" style="min-height:19.5rem; justify-content:flex-start; gap:0.55rem">
+          <span class="scn-tag">검산기를 스킬 안에 동봉</span>
+          <div class="scn-row" style="gap:0.7rem">
+            <span class="fl-node ag">말로 검토<small>"문제없어 보입니다"</small></span>
+            <span class="vlab fail h0 apop" style="--dly:0.6s">확률적 — 매번 다르게 놓친다 ✕</span>
+            <span class="fl-arr" style="margin:0 0.4rem">vs</span>
+            <span class="fl-node scr">코드로 채점<small>결정적 — 같은 입력, 같은 판정</small></span>
+            <span class="vlab pass h0 apop" style="--dly:1.2s">재현 가능 ✓</span>
+          </div>
+          <div class="mstage" style="height:10.5rem; margin-top:0.9rem">
+            <div class="doc h0 apop" style="--dly:1.7s; position:absolute; left:2%; top:18%; min-width:0"><span class="dt">test-report.md</span><span class="dl" style="width:70%"></span><span class="dl" style="width:52%"></span></div>
+            <span class="fl-node scr agatexv" style="position:absolute; left:31%; top:20%; --d1:2.8s; --d2:5.8s">scripts/validate.py<small>필수 섹션 · 합계 일치 · 금지 문구</small></span>
+            <span class="vlab fail h0 apop" style="--dly:3.0s; position:absolute; left:60%; top:12%">FAIL — 합계 15≠17 · '환경' 누락</span>
+            <span class="vlab pass h0 apop" style="--dly:6.0s; position:absolute; left:60%; top:38%">PASS — 2회차 ✓</span>
+            <div class="mret h0 ain" style="--dly:3.6s; left:5%; right:52%; top:60%"><span>지적 항목만 고쳐 재채점 — PASS까지 (상한 5회)</span></div>
+            <div class="doc mint h0 apop" style="--dly:6.6s; position:absolute; left:60%; top:56%; min-width:0"><span class="dt">최종 리포트</span>끝에 PASS 로그 원문 첨부<span class="stamp">증명 동봉</span></div>
+          </div>
+          <p class="scn-cap">형식·합계 같은 <b>결정적 기준</b>은 <b>결정적 도구(코드)</b>로 검사합니다 — 사람은 검산기가 아니라 PASS 로그만 확인합니다.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">2편 실습의 <b>check.sh가 바로 이 구조</b>였습니다 — 여러분은 이미 이 하네스를 통과해 봤습니다.</p>
     </section>
 
     <!-- 사건 12 · 개조 명세 -->
@@ -4300,6 +4855,47 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
         <p class="tn-one"><b>증거가 없으면 완료가 아니다.</b> 완료의 정의를 주장에서 <b>검증 가능한 기록</b>으로 바꿉니다 — 3편 Record 개념을 산출물에 적용한 것입니다.</p>
         <div class="pills"><span class="pill green">재확인 30분 → 3분</span><span class="pill neutral">감사 추적 확보</span></div>
       </div>
+    </section>
+
+    <!-- 사건 13 · 원리 도해 -->
+    <section data-sec="PART 3 · 사건 ⑬ — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 3 · 검증·리뷰 하네스 — 사건 13 · 원리 한눈에</span></div>
+        <div class="ska-track p3">
+          <span class="ska-cell done"><span class="n"></span>관대한 자평</span>
+          <span class="ska-cell done"><span class="n"></span>그럴듯한 오답</span>
+          <span class="ska-cell done"><span class="n"></span>기계적 실수</span>
+          <span class="ska-cell now"><span class="n">13</span>완료 한 줄</span>
+        </div>
+      </div>
+      <h2><span class="tkb b3" style="margin-right:0.5rem">⑬</span>증거 기반 완료 — <span class="grad">말 대신 영수증</span></h2>
+      <div class="scn sim mech" style="grid-template-columns:0.85fr 1.15fr; margin-top:0.8rem">
+        <div class="scn-p bad">
+          <span class="scn-tag">기존 — 주장문 한 줄</span>
+          <span class="blob" style="font-size:0.95rem">"점검 완료 — 이상 없습니다"<br><b style="color:#FF94AC">증거 0줄</b></span>
+          <span class="fl-arr h0 ain" style="--dly:0.6s">↓</span>
+          <span class="fl-node hum h0 ain" style="--dly:0.6s">사람의 선택지<small>전부 재검증(30분) — 또는 그냥 믿기</small></span>
+          <span class="vlab fail h0 apop" style="--dly:1.3s">실패한 항목이 뭉개져도 모른다</span>
+          <p class="scn-cap">확인도 반박도 <b>불가능한 형식</b>입니다 — 신뢰가 아니라 <b>도박</b>이 됩니다.</p>
+        </div>
+        <div class="scn-p good g4">
+          <span class="scn-tag">증거 기반 완료 — 행마다 실행 기록</span>
+          <div style="border:0.0781rem solid rgba(255,212,107,0.4); border-radius:0.7rem; background:rgba(11,14,26,0.62); padding:0.55rem 0.85rem; font-family:var(--mono); font-size:0.7rem; line-height:2.0; align-self:stretch">
+            <div class="h0 ain" style="--dly:1.8s"><span class="t-out">#1 헬스체크</span>  curl -s /health  <span class="t-out">→</span> 200 OK  <span class="plv">PASS</span></div>
+            <div class="h0 ain" style="--dly:2.2s"><span class="t-out">#2 디스크</span>    df -h /data      <span class="t-out">→</span> 61% 사용  <span class="plv">PASS</span></div>
+            <div class="h0 ain" style="--dly:2.6s"><span class="t-out">#3 백업</span>      ls backups/      <span class="t-out">→</span> 오늘자 존재  <span class="plv">PASS</span></div>
+            <div class="h0 ainhit" style="--dly:3.0s; border:0.09rem solid rgba(255,212,107,0.65); border-radius:0.4rem; padding:0 0.4rem; background:rgba(255,212,107,0.07)"><span class="t-out">#4 DB 준비</span>   migrate --check  <span class="t-out">→</span> 권한 오류(13)  <b style="color:#FFE08A">미실행</b></div>
+          </div>
+          <div class="scn-row" style="gap:0.7rem">
+            <span class="fl-arr ok h0 ain" style="--dly:3.9s">↓<small>3분 훑기</small></span>
+            <span class="fl-node hum h0 ainglow" style="--dly:3.9s; --gc:rgba(255,212,107,0.9); --gs:rgba(255,212,107,0.3)">사람<small>"미실행" 행만 조치</small></span>
+            <span class="vlab pass h0 apop" style="--dly:4.7s">#4 처리 후 안전 배포 ✓</span>
+          </div>
+          <p class="scn-cap">완료의 정의가 <b>주장</b>에서 <b>검증 가능한 기록</b>으로 바뀝니다 — 미실행은 숨길 일이 아니라 <b>정보</b>입니다.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">3편의 Record 개념을 산출물에 적용한 것입니다 — 사람의 재확인이 <b>30분에서 3분</b>이 됩니다.</p>
     </section>
 
     <!-- 사건 13 · 개조 명세 -->
@@ -4492,6 +5088,47 @@ C의 스킬 — 미완성 <span class="bx">✕ 포기</span>
         <p class="tn-one"><b>표준은 문서가 아니라 기본값으로 배포한다.</b> 오늘의 13기법도 이 스킬에 담아 팀에 퍼뜨릴 수 있습니다.</p>
         <div class="pills"><span class="pill green">첫 스킬 = 표준</span><span class="pill neutral">표준 개정 = 파일 교체</span></div>
       </div>
+    </section>
+
+    <!-- 사건 14 · 원리 도해 -->
+    <section data-sec="PART 4 · 사건 ⑭ — 원리">
+      <div class="tk-top">
+        <div><span class="chip">PART 4 · 확산 — 사건 14 · 원리 한눈에</span></div>
+        <div class="ska-track p4">
+          <span class="ska-cell now"><span class="n">14</span>제각각 품질</span>
+        </div>
+      </div>
+      <h2><span class="tkb b4" style="margin-right:0.5rem">⑭</span>스킬 팩토리 — <span class="grad">표준을 기본값으로 찍어낸다</span></h2>
+      <div class="scn one sim mech" style="margin-top:0.8rem">
+        <div class="scn-p good g4" style="min-height:19.5rem; gap:0.7rem">
+          <span class="scn-tag">가이드 문서 → 생성하는 스킬</span>
+          <div class="scn-row" style="gap:0.7rem">
+            <div class="doc coral agray" style="--dly:1.0s; min-width:0"><span class="dt">위키 — 작성 가이드 v2</span><span class="dl"></span><span class="dl" style="width:76%"></span></div>
+            <span class="vlab fail h0 apop" style="--dly:0.5s">조회수 3 — 읽어야 하는 표준은 퍼지지 않는다</span>
+          </div>
+          <div class="scn-row" style="flex-wrap:nowrap; gap:1.0rem">
+            <span class="blob h0 ain" style="--dly:1.6s">다섯 답 —<br>언제 · 입력 · 출력 · 금지 · 검증</span>
+            <span class="fl-arr h0 ain" style="--dly:2.2s">→<small>인터뷰</small></span>
+            <div class="scn-col" style="gap:0.35rem">
+              <span class="fl-node sk h0 ainglow" style="--dly:2.2s; --gc:rgba(255,212,107,0.9); --gs:rgba(255,212,107,0.3)">skill-factory<small>표준 골격 채움 + 자가 점검 ⑩ 내장</small></span>
+              <div class="scn-row" style="gap:0.35rem">
+                <div class="doc amber" style="min-width:0; font-size:0.58rem"><span class="dt">skill-template.md</span></div>
+                <div class="doc amber" style="min-width:0; font-size:0.58rem"><span class="dt">skill-standard.md</span></div>
+              </div>
+            </div>
+            <span class="fl-arr ok h0 ain" style="--dly:3.0s">→<small>생성</small></span>
+            <div class="scn-col" style="gap:0.4rem; align-items:flex-start">
+              <div class="doc mint h0 apop" style="--dly:3.2s; min-width:0"><span class="dt">A — log-digest</span><span class="dl" style="width:70%"></span><span class="stamp">표준 ✓</span></div>
+              <div class="doc mint h0 apop" style="--dly:3.7s; min-width:0"><span class="dt">B — deploy-note</span><span class="dl" style="width:70%"></span><span class="stamp">표준 ✓</span></div>
+              <div class="doc mint h0 apop" style="--dly:4.2s; min-width:0"><span class="dt">C(신입) — meeting-notes</span><span class="dl" style="width:70%"></span><span class="stamp">표준 ✓</span></div>
+            </div>
+          </div>
+          <div class="scn-row"><span class="vlab pass h0 apop" style="--dly:4.9s">누가 만들어도 = 팀 표준 품질</span></div>
+          <p class="scn-cap">표준을 <b>읽는 문서</b>가 아니라 <b>만들어 주는 기본값</b>으로 배포합니다 — 잘 쓰는 사람의 노하우가 틀에 담겨 <b>사람 밖으로</b> 나옵니다.</p>
+        </div>
+      </div>
+      <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
+      <p class="note" style="margin-top:0.4rem">표준이 바뀌면 <b>skill-standard.md 한 파일만</b> 갈아 끼웁니다 — 다음 생성부터 새 표준이 기본값입니다.</p>
     </section>
 
     <!-- 사건 14 · 개조 명세 -->
