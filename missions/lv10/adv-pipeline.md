@@ -55,8 +55,8 @@ check: script
 - 최종 analysis.md 의 재현 절차에 TBD 가 없을 것
 
 ## 검증
-- Linux&nbsp;&nbsp;&nbsp;: `./check-adv.sh adv-pipeline`
-- Windows: `check-adv.bat adv-pipeline`
+- Linux&nbsp;&nbsp;&nbsp;: `./check.sh adv-pipeline`
+- Windows: `check.bat adv-pipeline`
 
 <details><summary>힌트 ① — 한 마디에 4단계가 안 굴러간다면</summary>
 incident-flow 의 description 에 "장애 대응 시작"이 있는지(트리거), 단계표의 스킬 이름·경로 빈칸이

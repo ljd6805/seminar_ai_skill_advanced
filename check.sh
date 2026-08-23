@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# SKILL QUEST 심화 시즌(Season 2) 채점기 — 사용법: ./check-adv.sh <mission-id>
+# SKILL QUEST 심화 시즌(시즌 2) 채점기 — 사용법: ./check.sh <mission-id>
 # 통과 시 성장 코드(GROW-Lx-XXXX)를 출력합니다. 웹 보드에 입력하세요.
-# (기초 시즌 채점기 check.sh 와 같은 방식·같은 SALT — 레벨만 8~13)
+# (시즌 1(2편 Skill Quest)의 채점기와 같은 방식·같은 SALT — 레벨은 8~13)
 set -u
 SALT="skill-quest-2026-hbd"
 ID="${1:-}"
@@ -156,11 +156,10 @@ case "$ID" in
     exit 0 ;;
 
   "")
-    echo "사용법: ./check-adv.sh <mission-id>"
+    echo "사용법: ./check.sh <mission-id>"
     echo "심화 시즌 미션 목록:"
-    ls missions/*/adv-*.md 2>/dev/null | sed 's|missions/[^/]*/||; s|\.md||; s|^|  - |'
-    echo "  (기초 시즌 미션은 ./check.sh 로 채점합니다)" ;;
+    ls missions/*/adv-*.md 2>/dev/null | sed 's|missions/[^/]*/||; s|\.md||; s|^|  - |' ;;
 
   *)
-    fail "알 수 없는 미션 id 입니다: $ID (./check-adv.sh 로 목록 확인 — 기초 시즌은 ./check.sh)" ;;
+    fail "알 수 없는 미션 id 입니다: $ID (./check.sh 로 목록 확인)" ;;
 esac

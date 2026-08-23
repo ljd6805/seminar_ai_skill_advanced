@@ -39,8 +39,8 @@ check: script
 - 반박의 근거가 로그에서 실제로 확인한 내용일 것
 
 ## 검증
-- Linux&nbsp;&nbsp;&nbsp;: `./check-adv.sh adv-refute`
-- Windows: `check-adv.bat adv-refute`
+- Linux&nbsp;&nbsp;&nbsp;: `./check.sh adv-refute`
+- Windows: `check.bat adv-refute`
 
 **클리어하면 심화 시즌 수료입니다. 🎓** (Lv.13 보스전과 EX 는 세미나 후의 도전 과제)
 

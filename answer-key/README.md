@@ -28,7 +28,7 @@
 
 ## 리허설 워크스루 (실측용 순서)
 
-1. `python tools/gen-big-log.py` → Lv.8 레시피대로 개조 → check-adv 8 통과 시간 기록
+1. `python tools/gen-big-log.py` → Lv.8 레시피대로 개조 → check.sh 8 통과 시간 기록
 2. Lv.9: rm digest → 멈춤 확인 → 재생성 → 리포트 → check 9
 3. Lv.10: 부품 설치 → 템플릿 채움 → `rm -f output/*.md` → 1차(GATE FAIL 목격) → root-cause 보완 → 2차(SKIP·PASS) → check 10 — **최중량, 실측 필수**
 4. Lv.11: 뼈대 빈칸 채움 → bad-report 수동 FAIL 확인 → 발동(루프 목격) → check 11

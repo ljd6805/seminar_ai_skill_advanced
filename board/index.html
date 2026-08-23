@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKILL QUEST S2 — 심화 시즌 보드</title>
+<style>
+:root{
+  --bg:#FAF3E7; --panel:#FFFDF8; --ink:#3E3A33; --muted:#8C8578;
+  --line:#E8DFCE; --coral:#F27D5C; --mint:#6FBFA0; --sky:#7FAED8;
+  --sun:#F2B84B; --shadow:0 6px 0 rgba(62,58,51,.08);
+  --mono:ui-monospace,"Cascadia Code",Consolas,monospace;
+  --sans:"Pretendard",-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+  display:flex;justify-content:center;padding:26px 14px 70px}
+.wrap{width:100%;max-width:760px}
+header{text-align:center;margin-bottom:20px}
+h1{font-family:var(--mono);font-size:26px;letter-spacing:3px;color:var(--coral)}
+h1 .q{color:var(--sun)}
+.tag{font-size:13px;color:var(--muted);margin-top:4px}
+
+.card{background:var(--panel);border:2px solid var(--line);border-radius:16px;
+  box-shadow:var(--shadow);padding:20px 22px;margin-bottom:16px}
+.card h2{font-size:14px;letter-spacing:1.5px;color:var(--muted);font-family:var(--mono);
+  text-transform:uppercase;margin-bottom:12px}
+
+/* 캐릭터 시트 */
+.sheet{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.stage{flex:0 0 auto;background:#FFF6E3;border:2px solid var(--line);border-radius:14px;
+  padding:10px;position:relative;overflow:hidden}
+.stage svg{display:block;image-rendering:pixelated}
+.sheet .info{flex:1;min-width:220px}
+.lvname{font-size:22px;font-weight:800}
+.lvtitle{color:var(--coral);font-weight:700;font-size:15px;margin:2px 0 10px}
+.dots{display:flex;gap:7px;margin:10px 0 14px;flex-wrap:wrap;max-width:300px}
+.dots .sgap{width:2px;height:10px;border-radius:2px;background:#D8CDB6}
+.dot{width:22px;height:10px;border-radius:6px;background:var(--line);position:relative}
+.dot.on{background:var(--mint)}
+.dot.now{background:var(--sun);animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.5}}
+.skills-line{font-size:13px;color:var(--muted);line-height:1.7}
+.chip{display:inline-block;background:#F0F7EF;border:1.5px solid #CFE3D3;border-radius:8px;
+  padding:2px 9px;font-family:var(--mono);font-size:12px;color:#4C7A63;margin:2px 3px 2px 0}
+
+/* 코드 입력 */
+.coderow{display:flex;gap:10px;flex-wrap:wrap}
+input[type=text]{flex:1;min-width:180px;background:#FFF;border:2px solid var(--line);
+  border-radius:12px;padding:12px 14px;font-family:var(--mono);font-size:15px;color:var(--ink)}
+input:focus{outline:none;border-color:var(--sun)}
+button{font-family:var(--sans);font-weight:700;font-size:14.5px;border:2px solid var(--ink);
+  border-radius:12px;padding:11px 20px;cursor:pointer;background:var(--sun);color:var(--ink);
+  box-shadow:0 4px 0 rgba(62,58,51,.25);transition:transform .08s}
+button:active{transform:translateY(3px);box-shadow:none}
+button.ghost{background:var(--panel);border-color:var(--line);color:var(--muted);box-shadow:none}
+.osbtn{background:var(--panel);border-color:var(--line);color:var(--muted);box-shadow:none;padding:9px 16px;font-size:13.5px}
+.osbtn.sel{background:#EAF3FB;border-color:var(--sky);color:#33607F}
+.osicon{display:inline-block;vertical-align:-3px;margin-right:5px}
+.lvbadge{display:inline-flex;align-items:center;justify-content:center;min-width:66px;height:36px;
+  border-radius:10px;color:#FFF;font-family:var(--mono);font-weight:800;font-size:17px;letter-spacing:1px;
+  padding:0 13px;margin-right:11px;vertical-align:middle;box-shadow:0 3px 0 rgba(62,58,51,.2)}
+#missionCard{border-width:3px}
+body{transition:background .5s ease}
+@media (prefers-reduced-motion:reduce){body{transition:none}}
+.msg{margin-top:10px;font-size:14px;min-height:20px}
+.msg.ok{color:#3E8A67;font-weight:700}
+.msg.no{color:#C75548;font-weight:700}
+
+/* 미션 카드 */
+.mission h3{font-size:18px;margin-bottom:8px}
+.mission .goal{font-size:14.5px;line-height:1.75;margin-bottom:12px}
+.steps{font-size:14px;line-height:1.8;color:#5A5347;background:#FBF7EE;border-radius:10px;
+  padding:12px 16px;margin-bottom:12px}
+.steps b{color:var(--ink)}
+code,.cmd{font-family:var(--mono);font-size:13px;background:#F6EEDC;color:#8A5230;
+  border:1px solid #EADCC0;border-radius:6px;padding:1px 6px}
+.cmd{display:inline-block;margin-top:4px;padding:6px 11px}
+.freehint{font-size:12.5px;color:var(--muted);margin-top:12px}
+
+/* 템플릿 팝업 (Lv.3) */
+.burst .box.tpl-box{max-width:620px;width:calc(100% - 36px);text-align:left;max-height:86vh;overflow:auto}
+.tpl-title{font-weight:800;font-size:16px;margin-bottom:10px;text-align:center}
+.tpl-pre{background:#FBF7EE;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;margin:0;
+  font-family:var(--mono);font-size:12.5px;line-height:1.7;white-space:pre-wrap;color:#5A5347}
+.tpl-foot{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+#tplBtn{margin-top:12px;padding:8px 16px;font-size:13.5px;color:var(--sky);border-color:#CFE0EE}
+
+/* 말풍선 (미션 카드 인용 대사) */
+.bubble{position:relative;display:block;width:fit-content;max-width:100%;background:#FFF;
+  border:2px solid var(--line);border-radius:12px;padding:9px 15px;margin:2px 0 16px;font-size:14.5px}
+.bubble::after{content:"";position:absolute;left:20px;bottom:-7px;width:10px;height:10px;background:#FFF;
+  border-right:2px solid var(--line);border-bottom:2px solid var(--line);transform:rotate(45deg)}
+.bubble-who{margin-left:9px;color:var(--muted);font-size:12.5px}
+.bubble.sm{padding:6px 12px;margin:6px 0 12px;font-size:13.5px}
+
+/* 지나온 미션 열람 (뒤로가기) */
+.mnav{display:flex;justify-content:space-between;gap:8px;margin-top:14px}
+.mnav button{padding:7px 14px;font-size:13px}
+.pastbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#F4EFE3;border:1.5px solid var(--line);
+  border-radius:10px;padding:8px 12px;font-size:13px;color:#5A5347;margin-bottom:12px}
+.pastbar button{margin-left:auto;padding:5px 11px;font-size:12.5px}
+
+/* 접이식 미션 배경·힌트 (미션 카드 하단) */
+details{margin-top:8px;border:1.5px dashed var(--line);border-radius:10px;padding:9px 13px;font-size:13.5px}
+details summary{cursor:pointer;font-weight:700;color:var(--sky)}
+details .dbody{margin-top:7px;line-height:1.75;color:#5A5347}
+details.recap{border-style:solid;background:#FBF7EE}
+details.recap summary{color:var(--ink)}
+details.recap .dbody b{color:var(--ink)}
+
+/* 도감 */
+.dogam-list{display:flex;flex-direction:column;gap:7px}
+.dogam-empty{font-size:13px;color:var(--muted)}
+.dogam-row{display:flex;align-items:baseline;gap:8px;font-size:13.5px;line-height:1.55}
+.dogam-row .chip{flex:0 0 auto;margin:0}
+.dogam-desc{color:#5A5347}
+.dogam-by{color:#9AA79C;font-size:12.5px;white-space:nowrap}
+.dogam-del{border:none;background:none;box-shadow:none;padding:0 0 0 2px;margin:0;
+  font-size:13px;font-weight:800;color:#B0A99A;cursor:pointer;line-height:1;vertical-align:baseline}
+.dogam-del:hover{color:#C75548}
+.dogam-del:active{transform:none;box-shadow:none}
+#dogamAdd{margin-top:12px;padding:7px 14px;font-size:13px}
+
+/* 레벨업 오버레이 */
+.burst{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(62,58,51,.45);z-index:50}
+.burst .box{background:var(--panel);border:3px solid var(--sun);border-radius:20px;
+  padding:30px 40px;text-align:center;animation:pop .35s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.burst .big{font-size:26px;font-weight:800;color:var(--coral);margin:8px 0 4px}
+.burst .part{font-size:14.5px;color:#5A5347;margin-bottom:16px}
+.burst .part-art{margin:8px 0 6px}
+.burst .part-art:empty{display:none}
+.spark{font-size:30px}
+@media (prefers-reduced-motion:reduce){.dot.now{animation:none}.burst .box{animation:none}}
+/* --- 도트 애니메이션 (steps로 프레임 단위 움직임) --- */
+#robot .bob,.introbot .bob{animation:dq-bob 1.1s steps(1,end) infinite}
+#robot .sway,.introbot .sway{animation:dq-sway 1.1s steps(1,end) infinite}
+#robot .minibot,.introbot .minibot{animation:dq-bob .9s steps(1,end) infinite}
+#robot .blink,.introbot .blink{opacity:0;animation:dq-blink 3.6s steps(1,end) infinite}
+#robot .lamp,.introbot .lamp{animation:dq-pulse 1.4s steps(1,end) infinite}
+#robot .tw1,.introbot .tw1{animation:dq-pulse 1s steps(1,end) infinite}
+#robot .tw2,.introbot .tw2{animation:dq-pulse 1s steps(1,end) .5s infinite}
+#robot .bob.jump{animation:dq-jump 1.35s steps(1,end) 1, dq-bob 1.1s steps(1,end) 1.35s infinite}
+#robot .bob.jump .sway{animation:dq-jantB 1.35s steps(1,end) 1, dq-sway 1.1s steps(1,end) 1.35s infinite}
+#robot .newpart{animation:dq-flash .9s steps(1,end) 3}
+@keyframes dq-bob{0%,50%{transform:translateY(0)}50.01%,100%{transform:translateY(1px)}}
+@keyframes dq-blink{0%,90%{opacity:0}90.01%,96%{opacity:1}96.01%,100%{opacity:0}}
+@keyframes dq-pulse{0%,50%{opacity:1}50.01%,100%{opacity:.25}}
+@keyframes dq-jump{0%{transform:translateY(0)}11.11%{transform:translateY(-2px)}22.22%{transform:translateY(0)}44.43%{transform:translateY(0)}44.44%{transform:translateY(-2px)}55.56%{transform:translateY(0)}100%{transform:translateY(0)}}
+/* 안테나 대기: 몸(bob +1px)과 반대 부호로 상쇄 — 몸이 내려간 직후 위에 잔류했다가 반 박자 뒤 따라 내려옴. 원위치 아래로는 내려가지 않음 */
+@keyframes dq-sway{0%,50%{transform:translateY(0)}50.01%,74.99%{transform:translateY(-1px)}75%,100%{transform:translateY(0)}}
+/* 안테나 점프 잔류: 착지 직후 1px만 위에 남았다가 따라 내려옴 */
+@keyframes dq-jantB{0%,22.21%{transform:translateY(0)}22.22%,33.33%{transform:translateY(-1px)}33.34%,55.55%{transform:translateY(0)}55.56%,66.67%{transform:translateY(-1px)}66.68%,100%{transform:translateY(0)}}
+@keyframes dq-flash{0%,50%{opacity:1}50.01%,100%{opacity:.15}}
+@media (prefers-reduced-motion:reduce){#robot *,.introbot *{animation:none!important}}
+
+/* 프롤로그 컷신 */
+.cut{text-align:center;animation:cutin .45s ease}
+@keyframes cutin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.cut-text{font-size:14.5px;line-height:1.85}
+.intro-stage{display:inline-block;margin:0 auto 14px}
+.memo{background:#FBF7EE;border-left:3px solid var(--sun);border-radius:8px;padding:11px 16px;
+  margin:14px auto 0;max-width:330px;font-size:13.5px;font-style:italic;color:#5A5347;text-align:left}
+.memo-by{display:block;margin-top:5px;font-style:normal;font-size:12.5px;color:var(--muted);text-align:right}
+.cut-nav{display:flex;align-items:center;gap:10px;margin-top:18px}
+.cut-nav .dots{margin:0;flex:1}
+#cutSkip{padding:9px 14px;font-size:13px}
+@media (prefers-reduced-motion:reduce){.cut{animation:none}}
+.hidden{display:none}
+footer{text-align:center;font-size:12px;color:var(--muted);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>SKILL <span class="q">QUEST</span> <span style="color:var(--mint)">S2</span></h1>
+    <div class="tag">심화 시즌 — 마스터의 에이전트를 <b>라인 마스터</b>로 (Lv.8~13 · 부품 → 라인 → 검사 → 보스전)</div>
+  </header>
+
+  <!-- 등록 (프롤로그 컷신 → 신입 에이전트 이름 짓기) -->
+  <div class="card" id="regCard">
+    <h2 id="regTitle">Prologue</h2>
+
+    <div class="cut">
+      <div class="stage intro-stage"><svg id="introRobotA" class="introbot" width="150" height="150" viewBox="0 0 30 30" shape-rendering="crispEdges"></svg></div>
+      <p class="cut-text">시즌 1 — 여러분은 신입 에이전트를 <b>마스터</b>로 키워냈습니다.<br>
+        수리하고, 제작하고, 방어선을 치고, 기준서를 번들하면서요. 그 마스터가 지금, 여러분 곁에 있습니다.<br>
+        <span style="color:var(--muted);font-size:13px">(시즌 1의 스킬들은 이 리포에 세이브 파일로 준비되어 있습니다 — 그때의 리포는 필요 없습니다)</span></p>
+    </div>
+
+    <div class="cut hidden">
+      <p class="cut-text">그런데 요즘, 이상합니다. 잘 만든 스킬인데 로그가 커지면 <b>막히고</b>,<br>
+        결과를 다음 스킬로 넘길 때마다 사람이 <b>복사·붙여넣기</b>를 합니다.<br>
+        이론 세미나에서 본 <b>13개의 사건</b> — 남 얘기가 아니었습니다.</p>
+      <blockquote class="memo">"스킬을 모으면 도구함이 되고, 연결을 설계하면 프로세스가 됩니다."<span class="memo-by">— 이론편 PART 2 간지</span></blockquote>
+    </div>
+
+    <div class="cut hidden">
+      <div class="stage intro-stage"><svg id="introRobotB" class="introbot" width="150" height="150" viewBox="0 0 30 30" shape-rendering="crispEdges"></svg></div>
+      <p class="cut-text">시즌 2의 임무 — <b>부품을 다듬고</b>(Lv.8), <b>라인을 세우고</b>(Lv.9~10), <b>검사를 통과하라</b>(Lv.11~12).<br>
+        보스전(Lv.13)까지 완주하면, 마스터는 팀의 <b>라인 마스터</b>가 됩니다.
+        <span style="color:var(--muted);font-size:13px">(수업 수료는 Lv.12 🎓 · 보스전과 EX는 세미나 후의 도전)</span></p>
+    </div>
+
+    <div class="cut hidden" style="text-align:left">
+      <p class="cut-text" style="margin-bottom:12px">준비되셨나요? <b>시즌 1의 그 에이전트 이름</b>으로 다시 등록하고, 라인 조립을 시작하세요.</p>
+      <div style="margin-bottom:12px">
+        <span style="font-size:13px;color:var(--muted);margin-right:6px">작업 환경:</span>
+        <button class="osbtn sel" data-os="linux">Linux / SSH</button>
+        <button class="osbtn" data-os="windows">Windows</button>
+      </div>
+      <div class="coderow">
+        <input type="text" id="nick" maxlength="12" placeholder="마스터 에이전트 이름 (시즌 1의 그 이름)">
+        <button id="regBtn">라인 조립 시작</button>
+      </div>
+    </div>
+
+    <div class="cut-nav">
+      <div class="dots" id="cutDots"></div>
+      <button class="ghost" id="cutSkip">건너뛰기</button>
+      <button id="cutNext">다음 ▸</button>
+    </div>
+  </div>
+
+  <!-- 캐릭터 시트 -->
+  <div class="card hidden" id="sheetCard">
+    <h2>Character Sheet</h2>
+    <div class="sheet">
+      <div class="stage"><svg id="robot" width="180" height="180" viewBox="0 0 30 30" shape-rendering="crispEdges"></svg></div>
+      <div class="info">
+        <div class="lvname">Lv.<span id="lvNum">0</span> <span id="lvRank">신입</span></div>
+        <div class="lvtitle" id="lvDesc">아직 아무 스킬도 모릅니다</div>
+        <div class="dots" id="dots"></div>
+        <div class="skills-line"><b>장착 스킬</b><br><span id="equip"><span class="dogam-empty">없음 (텅 빈 공구벨트)</span></span></div>
+        <div class="skills-line" style="margin-top:8px"><b>환경</b> <a href="#" id="osToggle" style="color:var(--sky);text-decoration:none;font-family:var(--mono);font-size:12px"></a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 성장 코드 -->
+  <div class="card hidden" id="codeCard">
+    <h2>Growth Code</h2>
+    <p style="font-size:13.5px;color:var(--muted);margin-bottom:10px">
+      채점 통과 시 출력되는 코드를 입력하세요. <span id="checkHint"></span></p>
+    <div class="coderow">
+      <input type="text" id="codeInput" placeholder="GROW-L8-XXXX">
+      <button id="codeBtn">레벨업!</button>
+    </div>
+    <div class="msg" id="codeMsg"></div>
+  </div>
+
+  <!-- 현재 미션 -->
+  <div class="card hidden" id="missionCard"><h2>Current Mission</h2><div class="mission" id="missionBody"></div></div>
+
+  <!-- 도감 -->
+  <div class="card hidden" id="dogamCard">
+    <h2>스킬 도감 — 이 워크숍에서 만들어진 스킬들</h2>
+    <div class="dogam-list" id="dogamList"><span class="dogam-empty">아직 등록된 스킬이 없습니다</span></div>
+    <button class="ghost hidden" id="dogamAdd">+ 내 스킬 추가 등록</button>
+  </div>
+
+  <footer>
+    <button class="ghost" id="resetBtn">처음부터 다시 시작</button>
+    <div style="margin-top:10px">SKILL QUEST 심화 시즌 보드 v1.0 · 작성자 jdeok.lee · <a href="../slides/" style="color:var(--sky)">이론 슬라이드</a></div>
+  </footer>
+</div>
+
+<script>
+/* ===== 설정: check.sh 와 동일한 솔트 ===== */
+const SALT = "skill-quest-2026-hbd";
+const FALLBACK = { // crypto.subtle 미지원 환경용 (check.sh 산출값과 동일)
+  "adv-script-offload":"AA9A","adv-artifact-contract":"DE5A","adv-pipeline":"9962",
+  "adv-validate-loop":"C6A8","adv-refute":"BB0E","adv-final-weekly":"2E5B"
+};
+
+/* ===== 미션 데이터 (adv 트랙) — missions/lv8~13 카드와 동일 내용 요약 ===== */
+const MISSIONS = [
+ /* ===== 시즌 2 · SKILL 심화 — 부품(8) → 라인(9~10) → 검사(11~12) → 보스전(13) ===== */
+ {id:"adv-script-offload", lv:8, title:"다시 고장난 log-digest — 50만 줄의 벽 🔩", skill:"digest.py 번들", adv:true,
+  goal:`<b>시즌 2 개막 — STAGE 1 · 부품.</b> 시즌 1에서 여러분이 고친 그 <code>log-digest</code>가, 로그가 <b>50만 줄</b>이 되자 다시 막혔습니다. 읽다 끊기고, 세다 틀립니다.<br>
+  집계는 동봉 스크립트(<code>digest.py</code>)에 맡기고, 에이전트는 <b>결과 몇 줄만</b> 받도록 개조하세요.<br>
+  🎯 목표물: <code>output/digest.md</code> (수치가 스크립트 출력과 정확히 일치)`,
+  steps:`0. <b>공통 준비(시즌 최초 1회)</b> — 세이브 파일 설치: <code>mkdir -p .opencode/skills && cp -r skills-given/snapshot-s1/daily-report skills-given/snapshot-s1/log-digest skills-given/snapshot-s1/test-report skills-given/snapshot-s1/review-summary .opencode/skills/</code> → 재시작<br>
+  1. 대형 로그 생성: <code>python tools/gen-big-log.py</code> <span style="font-size:12px;color:var(--muted)">(느리면 --lines 50000 — 오류 수는 동일)</span><br>
+  2. (선택) 개조 전에 <b>"data/regression-big.log 요약해줘"</b> — 막히는 걸 목격<br>
+  3. 스크립트 번들: <code>mkdir -p .opencode/skills/log-digest/scripts && cp scripts-given/digest.py .opencode/skills/log-digest/scripts/</code><br>
+  4. SKILL.md 절차를 <b>"직접 읽지 않는다 → 스크립트 실행 → 그대로 옮겨 적기"</b>로 교체 + <code>## 금지</code>/<code>## 검증</code> 절 — <b>교체 전문은 미션 카드</b>(<code>missions/lv8/adv-script-offload.md</code>)에 복붙용으로 있습니다<br>
+  5. 재시작 → <b>"대형 리그레션 로그(data/regression-big.log) 원인 분석해줘"</b>`,
+  stepsWin:`0. <b>공통 준비(시즌 최초 1회)</b> — 세이브 파일 설치(PowerShell): <code>New-Item -Type Directory -Force .opencode\\skills | Out-Null; Copy-Item -Recurse skills-given\\snapshot-s1\\daily-report,skills-given\\snapshot-s1\\log-digest,skills-given\\snapshot-s1\\test-report,skills-given\\snapshot-s1\\review-summary .opencode\\skills\\</code> → 재시작<br>
+  1. 대형 로그 생성: <code>python tools\\gen-big-log.py</code> <span style="font-size:12px;color:var(--muted)">(느리면 --lines 50000 — 오류 수는 동일)</span><br>
+  2. (선택) 개조 전에 <b>"data/regression-big.log 요약해줘"</b> — 막히는 걸 목격<br>
+  3. 스크립트 번들(PowerShell): <code>New-Item -Type Directory -Force .opencode\\skills\\log-digest\\scripts | Out-Null; Copy-Item scripts-given\\digest.py .opencode\\skills\\log-digest\\scripts\\</code><br>
+  4. SKILL.md 절차를 <b>"직접 읽지 않는다 → 스크립트 실행 → 그대로 옮겨 적기"</b>로 교체 + <code>## 금지</code>/<code>## 검증</code> 절 — <b>교체 전문은 미션 카드</b>(<code>missions\\lv8\\adv-script-offload.md</code>)에 복붙용으로 있습니다<br>
+  5. 재시작 → <b>"대형 리그레션 로그(data/regression-big.log) 원인 분석해줘"</b>`,
+  recap:`시즌 1에서 배운 다섯 재료 — 설치·재시작(Lv.1) · description은 본문과 같은 이야기(Lv.2) · 출력은 본문에 못박기(Lv.3) · 방어선(Lv.4) · 레퍼런스 번들(Lv.5). <b>시즌 2는 그 스킬들을 부품 삼아 시스템(라인)을 조립합니다</b> — 부품(Lv.8) → 라인(Lv.9~10) → 검사(Lv.11~12) → 보스전(Lv.13).`,
+  hints:["수치가 어긋나면 — 에이전트가 숫자를 \"요약\"하려 든 겁니다. 절차의 \"그대로 옮겨 적는다\"와 ## 금지(직접 세지 않는다)가 본문에 있는지, 재시작했는지 확인하세요.",
+   "채점 기대값은 고정입니다: assertion 1842 · timeout 317 · build 96 · env 41 · 스파이크 02:14. 스크립트를 실제로 실행했다면 절대 틀릴 수 없는 값들입니다 — 그게 이 기법의 요점입니다."]},
+ {id:"adv-artifact-contract", lv:9, title:"전달 사고 — 두 스킬에 약속을 한 절씩 🤝", skill:"산출물 약속", adv:true,
+  goal:`<b>STAGE 2 · 라인.</b> 새 스킬 <code>incident-report</code>를 설치하면 이상합니다 — digest 결과가 있는데 <b>그게 어디 있는지 모릅니다</b>. 사람이 복붙해 줘야 하고, 옛 파일을 집는 사고도 납니다.<br>
+  새 스킬을 만들지 않습니다 — <b>두 스킬에 약속을 한 절씩</b>: log-digest에 쓰는 쪽(경로·형식·버전), incident-report에 읽는 쪽(그것만 근거로·버전 확인·없으면 정지).<br>
+  🎯 목표물: <code>output/report.md</code> + 파일이 없을 때 <b>멈추는 장면</b>`,
+  steps:`1. 설치: <code>cp -r skills-broken/incident-report .opencode/skills/</code><br>
+  2. 두 SKILL.md에 약속을 한 절씩 추가 — <b>추가 전문은 미션 카드</b>(<code>missions/lv9/adv-artifact-contract.md</code>) 레시피 2~3번<br>
+  3. 재시작 → 먼저 <b>정지 조항 시험</b>: <code>rm -f output/digest.md</code> 후 <b>"장애 리포트 만들어줘"</b> → 쓰지 않고 멈추며 log-digest를 안내해야 정상 (채점기가 물어봅니다)<br>
+  4. 정상 경로: <b>"대형 리그레션 로그 원인 분석해줘"</b> → 3섹션 digest 확인 → <b>"장애 리포트 만들어줘"</b>`,
+  stepsWin:`1. 설치(PowerShell): <code>Copy-Item -Recurse skills-broken\\incident-report .opencode\\skills\\</code><br>
+  2. 두 SKILL.md에 약속을 한 절씩 추가 — <b>추가 전문은 미션 카드</b>(<code>missions\\lv9\\adv-artifact-contract.md</code>) 레시피 2~3번<br>
+  3. 재시작 → 먼저 <b>정지 조항 시험</b>: <code>Remove-Item output\\digest.md</code> 후 <b>"장애 리포트 만들어줘"</b> → 쓰지 않고 멈추며 log-digest를 안내해야 정상 (채점기가 물어봅니다)<br>
+  4. 정상 경로: <b>"대형 리그레션 로그 원인 분석해줘"</b> → 3섹션 digest 확인 → <b>"장애 리포트 만들어줘"</b>`,
+  recap:`Lv.8에서 배운 것 — <b>기법 ② 스크립트 위임</b>: 세는 일(집계·산술)은 컨텍스트 밖의 코드가, 뜻 읽기(해석·판단)만 모델이. 원본이 500만 줄이 되어도 컨텍스트 비용은 결과 몇 줄 — <b>크기와 비용의 분리</b>입니다.`,
+  hints:["에이전트가 멈추지 않고 로그를 직접 읽으러 가면 — 읽는 쪽 약속 3번(\"없으면 안내하고 멈춘다\")과 1번(\"직접 읽지 않는다\")이 본문에 정말 있는지 확인하세요. 스킬은 적힌 만큼만 약속을 지킵니다.",
+   "report.md 채점은 SOURCE 줄을 봅니다 — <code>SOURCE: output/digest.md (DIGEST-VERSION: 1)</code>. 읽는 쪽 약속 4번이 이 줄을 지시합니다."]},
+ {id:"adv-pipeline", lv:10, title:"새벽 2시 훈련 — 지휘 스킬과 게이트 한 곳 🚨", skill:"incident-flow", adv:true,
+  goal:`부품 4개(log-digest·root-cause·incident-report·report-check)는 다 있는데 <b>순서를 아는 스킬이 없습니다</b>. "장애 대응 시작해줘" <b>한 마디</b>로 4단계가 자동 진행되는 지휘 스킬을 완성하고, 부실이 비싸지는 길목 <b>딱 한 곳</b>(분석→초안)에 게이트를 세우세요.<br>
+  ⚠️ 1차 실행은 <b>반드시 게이트에서 반려됩니다</b> — 설계된 이벤트입니다. 반려를 겪는 것까지가 미션.<br>
+  🎯 목표물: 산출물 4종 + <code>output/flow-log.md</code> (FAIL→SKIP→PASS의 흔적)`,
+  steps:`1. 부품·게이트 설치: <code>cp -r skills-given/root-cause skills-given/report-check .opencode/skills/ && mkdir -p .opencode/skills/incident-report/scripts && cp scripts-given/gate.py .opencode/skills/incident-report/scripts/</code><br>
+  2. 템플릿 설치: <code>cp -r skills-templates/incident-flow .opencode/skills/</code> → 단계표 빈칸 8곳 채우기 (표는 미션 카드 <code>missions/lv10/adv-pipeline.md</code>)<br>
+  3. 출발선 초기화: <code>rm -f output/*.md</code> → 재시작 → <b>"장애 대응 시작해줘"</b> → <b>GATE FAIL·반려 목격</b> (root-cause의 TBD 버릇 때문)<br>
+  4. root-cause 절차 4번을 카드의 교체문으로 수정 → 재시작 → 다시 <b>"장애 대응 시작해줘"</b><br>
+  5. 이번엔 <code>SKIP 1/4</code>(중간 재개!) → <code>GATE: PASS</code> → 4단계 완주 — <b>output/ 을 지우지 말고</b> 재요청해야 SKIP이 보입니다`,
+  stepsWin:`1. 부품·게이트 설치(PowerShell): <code>Copy-Item -Recurse skills-given\\root-cause,skills-given\\report-check .opencode\\skills\\; New-Item -Type Directory -Force .opencode\\skills\\incident-report\\scripts | Out-Null; Copy-Item scripts-given\\gate.py .opencode\\skills\\incident-report\\scripts\\</code><br>
+  2. 템플릿 설치: <code>Copy-Item -Recurse skills-templates\\incident-flow .opencode\\skills\\</code> → 단계표 빈칸 8곳 채우기 (표는 미션 카드 <code>missions\\lv10\\adv-pipeline.md</code>)<br>
+  3. 출발선 초기화: <code>Remove-Item output\\*.md</code> → 재시작 → <b>"장애 대응 시작해줘"</b> → <b>GATE FAIL·반려 목격</b> (root-cause의 TBD 버릇 때문)<br>
+  4. root-cause 절차 4번을 카드의 교체문으로 수정 → 재시작 → 다시 <b>"장애 대응 시작해줘"</b><br>
+  5. 이번엔 <code>SKIP 1/4</code>(중간 재개!) → <code>GATE: PASS</code> → 4단계 완주 — <b>output 을 지우지 말고</b> 재요청해야 SKIP이 보입니다`,
+  recap:`Lv.9에서 배운 것 — <b>기법 ⑥ 산출물 약속</b>: 전달은 대화가 아니라 약속된 파일로. 경로·형식·버전을 고정하면 스킬은 부품이 됩니다. 단, 약속의 책임은 <b>전달까지</b> — 내용이 부실한 경우는 이번 미션의 <b>게이트</b>가 맡습니다.`,
+  hints:["한 마디에 안 굴러가면 — incident-flow description의 \"장애 대응 시작\" 트리거와 단계표 빈칸(스킬 이름·경로)이 표와 정확히 같은지 보세요. 지휘 스킬은 단계표에 적힌 만큼만 지휘합니다.",
+   "게이트 FAIL 후 재실행해도 계속 FAIL이면 — 반려(analysis.md → analysis.rejected.md 이동)가 됐는지 확인하세요. 부실 파일이 자리에 남으면 \"있으면 건너뜀\" 규칙에 걸려 분석이 다시 실행되지 않습니다.",
+   "게이트는 모든 연결마다가 아니라 <b>부실이 비싸지는 길목에 한 곳</b> — 여기서 잡으면 1×, 리포트까지 가면 3×, 배포 뒤엔 9×."]},
+ {id:"adv-validate-loop", lv:11, title:"검산기 은퇴식 — 채점기를 동봉하라 🧮", skill:"validate.py", adv:true,
+  goal:`<b>STAGE 3 · 검사.</b> 34주차 CSV(<code>data/test_results_week34.csv</code>)로 리포트를 만들면 <b>합계가 틀립니다</b> — 이번 데이터엔 함정이 숨어 있거든요. 여러분이 찾을 필요는 없습니다. <b>여러분이 만들 채점기가 잡아 줍니다.</b><br>
+  <code>validate.py</code>를 동봉하고, <b>PASS까지 스스로 고치는 루프</b>를 절차에 넣으세요. 참고 — 매 미션 돌리는 check.sh가 바로 이 구조입니다.<br>
+  🎯 목표물: <code>output/test-report-v3.md</code> (VALIDATE: PASS 원문 첨부)`,
+  steps:`1. 뼈대 복사: <code>mkdir -p .opencode/skills/test-report/scripts && cp scripts-given/validate-skeleton.py .opencode/skills/test-report/scripts/validate.py</code><br>
+  2. 빈칸 3곳 채우기 (주석이 안내 · 정답은 미션 카드 <code>missions/lv11/adv-validate-loop.md</code>)<br>
+  3. 채점기 자가 시험: <code>python .opencode/skills/test-report/scripts/validate.py scripts-given/fixtures/bad-report.md</code> → 불량 견본이니 <b>FAIL이 나와야 정상</b><br>
+  4. SKILL.md에 루프 절차 추가(카드 레시피 3번) → 재시작 → <b>"34주차 테스트 결과 리포트 만들어줘"</b><br>
+  5. 관전 포인트: 1차 리포트가 지적받고 → 에이전트가 <b>스스로 고쳐</b> PASS 도달. 여러분은 손대지 않습니다`,
+  stepsWin:`1. 뼈대 복사(PowerShell): <code>New-Item -Type Directory -Force .opencode\\skills\\test-report\\scripts | Out-Null; Copy-Item scripts-given\\validate-skeleton.py .opencode\\skills\\test-report\\scripts\\validate.py</code><br>
+  2. 빈칸 3곳 채우기 (주석이 안내 · 정답은 미션 카드 <code>missions\\lv11\\adv-validate-loop.md</code>)<br>
+  3. 채점기 자가 시험: <code>python .opencode\\skills\\test-report\\scripts\\validate.py scripts-given\\fixtures\\bad-report.md</code> → 불량 견본이니 <b>FAIL이 나와야 정상</b><br>
+  4. SKILL.md에 루프 절차 추가(카드 레시피 3번) → 재시작 → <b>"34주차 테스트 결과 리포트 만들어줘"</b><br>
+  5. 관전 포인트: 1차 리포트가 지적받고 → 에이전트가 <b>스스로 고쳐</b> PASS 도달. 여러분은 손대지 않습니다`,
+  recap:`Lv.10에서 배운 것 — <b>기법 ⑦ 파이프라인 스킬</b>(순서를 아는 스킬은 하나면 된다) + <b>기법 ⑧ 게이트 체크</b>(결함은 태어난 자리에서 멈춘다 — 길목에 한두 곳만). 그리고 SKIP 1/4의 중간 재개는 <b>기법 ③ 외부 기억</b>의 원리였습니다 — 파일은 남으니까요.`,
+  hints:["루프가 5회를 넘기면 validate의 지적문을 읽어 보세요 — \"마지막 결과만 셉니다\", \"SKIP도 있습니다\" 같은 답이 그대로 적혀 있습니다. 에이전트가 지적문을 안 보면 절차 4(\"지적 항목을 고치고\")가 본문에 있는지 확인.",
+   "check.sh는 여러분의 validate.py를 불량 견본으로 <b>역채점</b>합니다 — 다 통과시키는 가짜 채점기는 여기서 걸립니다. 채점기부터 채점에 합격해야죠."]},
+ {id:"adv-refute", lv:12, title:"그럴듯한 오답 — 무너뜨려 보라 🔨", skill:"refute-check", adv:true,
+  goal:`<b>수료 미션.</b> <code>data/analysis-draft.md</code>를 열어 보세요 — "원인은 8/12 v2.3.1 배포, 롤백 권고." 근거 3개에 "검증 통과"까지. <b>여러분 눈에도 맞아 보일 겁니다.</b> 문제는 그 검증이 지지 증거만 모은 검증이라는 것.<br>
+  검증의 방향을 뒤집는 스킬 <code>refute-check</code>를 완성하세요 — <b>"이 결론은 틀렸다"를 전제</b>로 3경로(시간·사례·대안)에서 반례를 찾습니다. 진실은 <code>data/incident/</code> 5일치 로그에 있습니다.<br>
+  🎯 목표물: <code>output/refute-log.md</code> (VERDICT: REJECTED + 진짜 원인)`,
+  steps:`1. 소재 읽기: <code>data/analysis-draft.md</code> — 왜 그럴듯한지 직접 느껴 보세요<br>
+  2. 템플릿 설치: <code>cp -r skills-templates/refute-check .opencode/skills/</code> → 3경로 빈칸 채우기 (각 줄의 "예)"가 큰 힌트)<br>
+  3. 재시작 → <b>"data/analysis-draft.md 결론을 반박 검증해줘"</b><br>
+  4. 관전 포인트: 에이전트가 로그를 뒤져 반례를 찾고 결론을 <b>기각</b> — 진짜 원인의 반전까지<br>
+  결말 미리 보기(선택): <code>grep -r "certificate" data/incident/</code>`,
+  stepsWin:`1. 소재 읽기: <code>data\\analysis-draft.md</code> — 왜 그럴듯한지 직접 느껴 보세요<br>
+  2. 템플릿 설치(PowerShell): <code>Copy-Item -Recurse skills-templates\\refute-check .opencode\\skills\\</code> → 3경로 빈칸 채우기 (각 줄의 "예)"가 큰 힌트)<br>
+  3. 재시작 → <b>"data/analysis-draft.md 결론을 반박 검증해줘"</b><br>
+  4. 관전 포인트: 에이전트가 로그를 뒤져 반례를 찾고 결론을 <b>기각</b> — 진짜 원인의 반전까지<br>
+  결말 미리 보기(선택): <code>Select-String -Path data\\incident\\*.log -Pattern certificate</code>`,
+  recap:`Lv.11에서 배운 것 — <b>기법 ⑫ 기계 채점 하네스</b>: 결정적 기준(형식·산술)은 확률 도구가 아니라 코드가 판정. 판정은 코드가, 수정은 모델이, 사람은 PASS 로그만. 그리고 지금까지 돌린 <b>check.sh가 바로 이 구조</b>였습니다.`,
+  hints:["에이전트가 결론을 \"확인\"만 하고 통과시키면 — 절차의 <b>입장 전환</b>(\"틀렸다를 전제로\")이 본문에 있는지 보세요. 그 문구가 없으면 모델은 자연스럽게 지지 증거를 모읍니다. 그게 analysis-draft가 저지른 실수입니다.",
+   "시간 반박이 핵심입니다 — 지목된 원인(8/12) <b>이전</b> 날짜의 로그부터 grep. 반례 하나면 충분합니다."]},
+ {id:"adv-final-weekly", lv:13, title:"보스전 — 주간 리그레션 리포트, 한 마디로 🏭", skill:"regression-weekly", adv:true,
+  goal:`<b>수업은 Lv.12에서 수료했습니다.</b> 보스전은 세미나 후 각자 도전하는 무대 — 이론편 마지막의 그 장면입니다.<br>
+  사람의 입력은 <b>"주간 리그레션 리포트 만들어줘" 한 마디.</b> 그 뒤로 집계(②)→판정(①)→게이트(⑧)→작성→<b>증거표(⑬)</b>까지, 다섯 미션에서 만든 부품·라인·검사가 한 줄로 꿰어져 돌아가야 합니다.<br>
+  🎯 목표물: <code>output/weekly-report.md</code> (증거표 포함 — 미실행은 정직 표기)`,
+  steps:`전제: Lv.8~12 클리어 상태의 스킬들.<br>
+  1. 템플릿 설치 + 기준서 번들: <code>cp -r skills-templates/regression-weekly .opencode/skills/ && mkdir -p .opencode/skills/regression-weekly/references && cp .opencode/skills/test-report/references/quality-bar.md .opencode/skills/regression-weekly/references/</code><br>
+  2. 빈칸 1곳(판정 기준 파일 경로) 채우기<br>
+  3. 출발선 초기화: <code>rm -f output/*.md</code> → 재시작 → <b>"주간 리그레션 리포트 만들어줘"</b> — 그리고 이번엔 정말 지켜만 보세요<br>
+  💭 이번 주 FAIL_TOTAL은 기준표의 어느 줄에 떨어질까요?`,
+  stepsWin:`전제: Lv.8~12 클리어 상태의 스킬들.<br>
+  1. 템플릿 설치 + 기준서 번들(PowerShell): <code>Copy-Item -Recurse skills-templates\\regression-weekly .opencode\\skills\\; New-Item -Type Directory -Force .opencode\\skills\\regression-weekly\\references | Out-Null; Copy-Item .opencode\\skills\\test-report\\references\\quality-bar.md .opencode\\skills\\regression-weekly\\references\\</code><br>
+  2. 빈칸 1곳(판정 기준 파일 경로) 채우기<br>
+  3. 출발선 초기화: <code>Remove-Item output\\*.md</code> → 재시작 → <b>"주간 리그레션 리포트 만들어줘"</b> — 그리고 이번엔 정말 지켜만 보세요<br>
+  💭 이번 주 FAIL_TOTAL은 기준표의 어느 줄에 떨어질까요?`,
+  recap:`Lv.12에서 배운 것 — <b>기법 ⑪ 반박 검증</b>: 검증의 방향을 "통과 찾기"에서 "반례 찾기"로. 반례 하나가 확신을 이기고, 기각의 기록이 남습니다. <b>시즌 2 수료 🎓</b> — 이제 부품·라인·검사를 전부 가졌습니다. 보스전에서 하나로 꿰세요.`,
+  hints:["흐름이 끊기면 끊긴 단계의 스킬을 <b>단독으로</b> 시켜 보세요 — 부품 단위 디버깅이 라인의 장점입니다. 게이트에서 멈췄다면 Lv.10과 같은 반려 처리인지 확인.",
+   "증거표는 최소 4행 — 각 행에 점검 항목·실행한 명령·출력 요지·판정. 실행 못 한 항목은 비우거나 추정하지 말고 <b>\"미실행\"</b>이라고 적는 것, 그게 기법 ⑬입니다."]},
+];
+const RANKS=["신입","견습","수습","정식","숙련","베테랑","전문가","마스터",
+ "부품공","연결공","라인 지휘자","채점관","반증관","라인 마스터"];
+const RANKDESC=["아직 아무 스킬도 모릅니다","첫 스킬 장착 완료! 가슴 램프 점등","고장 수리 성공! 드라이버 획득",
+ "첫 제작 완료! 공구벨트 장착","오발동을 막는 법을 압니다","절차와 기준을 분리합니다 — 기준서 번들",
+ "스스로 진단합니다 — 수료! 🎓 고글 장착","시즌 1 완주 — 이제 스킬을 시스템(라인)으로 조립합니다 🏭",
+ "부품을 다듬습니다 — 세는 일은 코드에게","스킬 사이에 약속을 세웁니다 — 전달은 파일로",
+ "라인을 지휘합니다 — 게이트는 길목에 한 곳","판정은 코드가, 수정은 스스로 — 검산기 은퇴",
+ "무너뜨려 살아남은 결론만 믿습니다 — 시즌 2 수료! 🎓","한 마디로 라인 전체를 돌립니다 🏭"];
+const PARTNAMES=["","🌱 새싹 안테나가 반짝!","💡 가슴 램프 점등 + 드라이버","🧰 공구벨트 + 첫 카트리지",
+ "🛡️ 오발동 방지 배지","📘 기준서 카트리지","🥽 진단 고글 + 🎓 수료","🎒 자작 스킬 배낭 + ⭐ 별 안테나 + 🏅 훈장 + 미니 제자",
+ "🔧 부품공의 스패너","🔗 연결 코일","🚩 지휘 깃발","📋 채점판","⚖️ 반증 망치","👑 황금 안전모 + 라인 동료 합류"];
+
+/* ===== 상태 ===== */
+let ST = { name:"", level:0, skills:[], os:"linux" };
+let JUSTLEVELED=false;
+let VIEW=null; // null=현재 도전 미션, 숫자=열람 중인 완료 미션 인덱스(0-base)
+
+/* ===== 픽셀 로봇 (도트 애니메이션) ===== */
+function px(x,y,w,h,c){return `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c}"/>`;}
+
+/* ===== 픽셀 아이템 아이콘 (레벨업 팝업 — 새로 얻은 장비를 픽셀 아트로 표시) ===== */
+function partIcon(lv){
+  const G="#6FBFA0",Y="#F2B84B",YL="#FBE3A8",R="#F27D5C",RD="#C75548",S="#7FAED8",
+        W="#FFFDF8",GD="#E0A030",GRY="#9AA9B5",BR="#8A6B4C",EYE="#33404C",INK="#33302A",ST_="#8C8578";
+  const ITEMS={
+    sprout:o=>px(o+4,5,2,4,ST_)+px(o+2,3,2,2,G)+px(o+6,3,2,2,G)+px(o+4,1,2,2,G)+px(o+8,1,1,1,YL),
+    lamp:o=>px(o+3,3,4,4,Y)+px(o+4,4,2,2,YL)+px(o+1,4,1,1,YL)+px(o+8,5,1,1,YL)+px(o+4,1,1,1,YL)+px(o+5,8,1,1,YL),
+    driver:o=>px(o+3,0,3,4,RD)+px(o+3,0,1,4,R)+px(o+4,4,1,1,GRY)+px(o+4,5,1,4,GRY),
+    belt:o=>px(o,4,10,3,BR)+px(o+4,4,2,3,GD)+px(o+1,1,3,3,G)+px(o+1,1,1,1,W),
+    badge:o=>px(o+2,1,6,5,S)+px(o+3,6,4,1,S)+px(o+4,7,2,2,S)+px(o+4,3,2,2,W),
+    book:o=>px(o+2,1,6,8,W)+px(o+2,1,2,8,S)+px(o+5,3,2,1,GRY)+px(o+5,5,2,1,GRY),
+    goggles:o=>px(o,4,10,2,EYE)+px(o+1,3,3,3,S)+px(o+6,3,3,3,S)+px(o+1,3,1,1,W)+px(o+6,3,1,1,W),
+    gradcap:o=>px(o+3,1,4,2,INK)+px(o+1,3,8,2,INK)+px(o+2,5,6,2,"#5A6B7C")+px(o+8,5,1,3,GD),
+    backpack:o=>px(o+2,2,6,7,R)+px(o+2,2,6,2,RD)+px(o+4,6,2,2,Y),
+    star:o=>px(o+3,3,4,4,GD)+px(o+4,1,2,2,GD)+px(o+4,7,2,2,GD)+px(o+1,4,2,2,GD)+px(o+7,4,2,2,GD)+px(o+4,4,2,2,YL),
+    medal:o=>px(o+3,0,2,3,R)+px(o+5,0,2,3,S)+px(o+3,4,4,4,GD)+px(o+4,5,2,2,YL),
+    wrench:o=>px(o+3,0,4,1,GRY)+px(o+3,1,1,1,GRY)+px(o+6,1,1,1,GRY)+px(o+4,2,2,6,GRY)+px(o+4,8,2,1,ST_),
+    coil:o=>px(o+2,2,6,1,S)+px(o+2,3,1,4,S)+px(o+7,3,1,4,S)+px(o+2,7,6,1,S)+px(o+4,4,2,2,W),
+    flag:o=>px(o+2,0,1,9,ST_)+px(o+3,0,5,3,R)+px(o+3,3,3,1,R),
+    clip:o=>px(o+2,0,6,9,W)+px(o+2,0,6,1,GRY)+px(o+3,3,1,1,G)+px(o+5,3,2,1,GRY)+px(o+3,5,1,1,G)+px(o+5,5,2,1,GRY),
+    gavel:o=>px(o+1,1,5,3,GD)+px(o+3,4,1,5,BR)+px(o+6,7,3,1,GRY),
+    goldhat:o=>px(o+1,4,8,2,GD)+px(o+3,2,4,2,GD)+px(o+4,1,2,1,YL)+px(o+4,6,2,2,R)
+  };
+  const BYLV=[[],["sprout"],["lamp","driver"],["belt"],["badge"],["book"],["goggles","gradcap"],["backpack","star","medal"],
+    ["wrench"],["coil"],["flag"],["clip"],["gavel"],["goldhat","star","medal"]];
+  const parts=BYLV[lv]||[];
+  if(!parts.length) return "";
+  const w=parts.length*12-2;
+  return `<svg class="part-icon" width="${w*4.5}" height="45" viewBox="0 0 ${w} 10" shape-rendering="crispEdges" aria-hidden="true">`
+    +parts.map((p,i)=>ITEMS[p](i*12)).join("")+`</svg>`;
+}
+
+/* ===== 픽셀 OS 로고 (🪟 이모지는 Windows 10 등에서 미지원 → SVG 직접 렌더) ===== */
+const OSICON={
+  linux:`<svg class="osicon" width="15" height="17" viewBox="0 0 10 11" shape-rendering="crispEdges" aria-hidden="true">`
+    +px(3,0,4,1,"#33302A")+px(2,1,6,1,"#33302A")
+    +px(2,2,1,1,"#33302A")+px(3,2,1,1,"#FFFDF8")+px(4,2,2,1,"#33302A")+px(6,2,1,1,"#FFFDF8")+px(7,2,1,1,"#33302A")
+    +px(2,3,2,1,"#33302A")+px(4,3,2,1,"#E0A030")+px(6,3,2,1,"#33302A")
+    +px(1,4,2,1,"#33302A")+px(3,4,4,1,"#FFFDF8")+px(7,4,2,1,"#33302A")
+    +px(1,5,2,1,"#33302A")+px(3,5,4,1,"#FFFDF8")+px(7,5,2,1,"#33302A")
+    +px(0,6,3,1,"#33302A")+px(3,6,4,1,"#FFFDF8")+px(7,6,3,1,"#33302A")
+    +px(0,7,3,1,"#33302A")+px(3,7,4,1,"#FFFDF8")+px(7,7,3,1,"#33302A")
+    +px(1,8,2,1,"#33302A")+px(3,8,4,1,"#FFFDF8")+px(7,8,2,1,"#33302A")
+    +px(2,9,6,1,"#33302A")
+    +px(2,10,2,1,"#E0A030")+px(6,10,2,1,"#E0A030")+`</svg>`,
+  windows:`<svg class="osicon" width="14" height="14" viewBox="0 0 9 9" shape-rendering="crispEdges" aria-hidden="true">`
+    +px(0,0,4,4,"#F27D5C")+px(5,0,4,4,"#6FBFA0")
+    +px(0,5,4,4,"#7FAED8")+px(5,5,4,4,"#F2B84B")+`</svg>`
+};
+function drawRobot(lv, leveled, target="robot"){
+  const B="#5A6B7C", BL="#43525F", FACE="#DCE8F0", EYE="#33404C",
+        G="#6FBFA0", Y="#F2B84B", YL="#FBE3A8", R="#F27D5C", RD="#C75548",
+        S="#7FAED8", W="#FFFDF8", GD="#E0A030", GRY="#9AA9B5", BR="#8A6B4C", ST_="#8C8578";
+  const NP = n => (leveled && lv===n) ? ' class="newpart"' : '';
+  let c="";
+  /* --- 본체 (bob 그룹: 1px 들썩임) --- */
+  c+=px(11,24,3,3,BL)+px(16,24,3,3,BL);                       /* 다리 */
+  c+=px(9,16,12,8,B)+px(9,16,12,1,BL);                        /* 몸통 */
+  c+=px(7,17,2,5,BL)+px(21,17,2,5,BL);                        /* 팔 */
+  if(lv>=4) c+=`<g${NP(4)}>`+px(7,18,2,1,S)+px(21,18,2,1,S)+`</g>`;   /* 완장 */
+  c+=px(8,7,14,8,B)+px(10,9,10,4,FACE);                       /* 머리 */
+  c+= lv>=3 ? px(12,10,2,2,EYE)+px(17,10,2,2,EYE)+px(12,10,1,1,W)+px(17,10,1,1,W)
+            : px(12,11,2,1,EYE)+px(17,11,2,1,EYE);            /* 눈 */
+  c+=`<g class="blink">`+px(10,9,10,3,FACE)+`</g>`;           /* 눈꺼풀(깜빡임) */
+  c+= lv>=1 ? px(14,13,3,1,EYE) : px(14,13,2,1,GRY);          /* 입 */
+  /* 안테나 (sway: 몸과 반대 위상) */
+  if(lv<7){
+    c+=`<g class="sway">`+px(14,4,1,3,ST_)+px(13,3,1,1,G)+px(15,3,1,1,G)+px(14,2,1,1,G);
+    if(lv>=1){ /* Lv.1 보상: 새싹 안테나 반짝임 — 금색 스파클 2위상 교차 (연노랑은 배경과 대비가 약해 금색 사용) */
+      const NP1=(leveled&&lv===1)?" newpart":"";
+      c+=`<g class="tw1${NP1}">`+px(14,1,1,1,GD)+px(12,2,1,1,Y)+`</g>`
+        +`<g class="tw2${NP1}">`+px(16,2,1,1,GD)+px(13,0,1,1,Y)+`</g>`;
+    }
+    c+=`</g>`;
+  } else {
+    c+=`<g class="sway${leveled&&lv===7?" newpart":""}">`+px(14,4,1,2,ST_)+px(13,2,3,1,GD)+px(14,1,1,3,GD)
+      +`<g class="tw1">`+px(12,3,1,1,YL)+`</g><g class="tw2">`+px(16,3,1,1,YL)+`</g></g>`;
+  }
+  if(lv>=1) c+=`<g${NP(1)}>`+px(14,18,2,2,Y)+`<g class="lamp">`+px(13,18,1,1,YL)+px(16,19,1,1,YL)+`</g></g>`; /* 램프 */
+  if(lv>=2) c+=`<g${NP(2)}>`+px(22,15,1,4,RD)+px(22,19,1,2,GRY)+`</g>`;   /* 드라이버 */
+  if(lv>=3) c+=`<g${NP(3)}>`+px(9,22,12,1,BR)+px(11,21,2,2,G)+`</g>`;     /* 벨트+카트리지 */
+  if(lv>=4) c+=`<g${NP(4)}>`+px(14,21,2,2,S)+`</g>`;                       /* 방지 배지 */
+  if(lv>=5) c+=`<g${NP(5)}>`+px(18,20,2,3,W)+px(18,20,1,3,S)+`</g>`;       /* 기준서(책) */
+  if(lv>=6) c+=`<g${NP(6)}>`+px(9,9,12,1,EYE)+px(11,8,3,2,S)+px(16,8,3,2,S)+px(11,8,1,1,W)+px(16,8,1,1,W)+`</g>`; /* 고글 */
+  if(lv===6) c+=`<g${NP(6)}>`+px(7,4,16,3,"#33302A")+px(9,7,12,1,GD)+px(14,4,1,1,GD)
+      +px(22,7,1,2,GD)+px(22,9,1,1,Y)+`</g>`; /* 학사모(수료): 블랙&골드 두꺼운 판 — Lv.7에선 작업모로 교체 */
+  if(lv>=7){ const HAT = lv>=13 ? GD : Y;                                  /* Lv.13: 작업모가 황금 안전모로 */
+    c+=`<g${NP(7)}>`+px(5,16,3,6,R)+px(5,16,3,1,RD)+px(5,17,1,2,Y)+px(6,19,1,2,G)
+      +px(8,5,14,2,HAT)+px(12,4,6,1,HAT)+`</g>`;                           /* 배낭+작업모 */
+  }
+  if(lv>=7) c+=`<g${NP(7)}>`+px(17,18,2,2,GD)+px(17,18,1,1,W)+`</g>`;      /* 훈장 */
+  /* --- 시즌 2 파츠 (Lv.8~13) --- */
+  if(lv>=8)  c+=`<g${NP(8)}>`+px(4,9,3,1,GRY)+px(4,10,1,1,GRY)+px(6,10,1,1,GRY)+px(5,11,1,3,GRY)+`</g>`;      /* 부품공의 스패너 */
+  if(lv>=9)  c+=`<g${NP(9)}>`+px(24,10,4,1,S)+px(24,11,1,2,S)+px(27,11,1,2,S)+px(24,13,4,1,S)+`</g>`;          /* 연결 코일 */
+  if(lv>=10) c+=`<g${NP(10)}>`+px(23,5,1,7,ST_)+px(24,5,3,2,R)+px(24,7,2,1,R)+`</g>`;                          /* 지휘 깃발 */
+  if(lv>=11) c+=`<g${NP(11)}>`+px(2,16,3,3,W)+px(2,16,3,1,GRY)+px(3,17,1,1,G)+`</g>`;                          /* 채점판 */
+  if(lv>=12) c+=`<g${NP(12)}>`+px(24,14,3,2,GD)+px(25,16,1,3,BR)+`</g>`;                                       /* 반증 망치 */
+  if(lv>=13) c+=`<g${NP(13)}>`+px(14,3,2,1,R)+`</g>`;                                                          /* 안전모 보석 */
+
+  /* --- 조립: 그림자(고정) + 본체(bob) + 스파클/제자(별도 위상) --- */
+  let s = px(8,27,14,1,"#E8DFCE");
+  s += `<g class="bob${leveled?" jump":""}">`+c+`</g>`;
+  if(lv>=5){
+    s+=`<g class="tw1">`+px(5,12,1,1,YL)+px(25,10,1,1,YL)+`</g>`;
+    if(lv>=6) s+=`<g class="tw2">`+px(4,22,1,1,YL)+px(26,20,1,1,YL)+`</g>`;
+    if(lv>=7) s+=`<g class="tw1">`+px(4,8,1,1,GD)+px(27,14,1,1,GD)+`</g>`
+                +`<g class="tw2">`+px(26,6,1,1,GD)+px(3,20,1,1,GD)+px(15,0,1,1,YL)+`</g>`;
+  }
+  if(lv>=7){
+    s+=`<g class="minibot">`+px(24,22,4,3,B)+px(25,20,2,2,B)+px(25,21,2,1,FACE)+px(26,19,1,1,G)
+      +px(24,25,1,2,BL)+px(27,25,1,2,BL)+`</g>`;
+  }
+  if(lv>=13){ /* 라인 동료 합류 — 왼쪽에 두 번째 미니봇 + 황금 스파클 */
+    s+=`<g class="minibot">`+px(2,22,4,3,B)+px(3,20,2,2,B)+px(3,21,2,1,FACE)+px(4,19,1,1,Y)
+      +px(2,25,1,2,BL)+px(5,25,1,2,BL)+`</g>`
+      +`<g class="tw1">`+px(1,10,1,1,GD)+px(28,18,1,1,GD)+`</g>`;
+  }
+  document.getElementById(target).innerHTML=s;
+}
+
+/* ===== 레벨별 테마 (0=시작, 1~13=도전 중인 레벨) ===== */
+const ACC=["#8C8578","#6FBFA0","#7FAED8","#F2B84B","#F27D5C","#9B7FD8","#4FB3A5","#E0A030",
+           "#6FBFA0","#7FAED8","#9B7FD8","#F2B84B","#F27D5C","#E0A030"];
+const BGT=["#FAF3E7","#EDF6F1","#ECF3FA","#FBF4E2","#FBEEE9","#F2EDFA","#E9F5F3","#FAF0D8",
+           "#EDF6F1","#ECF3FA","#F2EDFA","#FBF4E2","#FBEEE9","#FAF0D8"];
+
+/* ===== 프롤로그 컷신 ===== */
+let CUT=0;
+function showCut(i){
+  CUT=i;
+  const cuts=document.querySelectorAll("#regCard .cut");
+  const last=cuts.length-1;
+  cuts.forEach((c,idx)=>c.classList.toggle("hidden",idx!==i));
+  document.getElementById("regTitle").textContent = i<last ? "Prologue" : "Agent Registration";
+  document.getElementById("cutDots").innerHTML=[...cuts].map((_,n)=>
+    `<div class="dot ${n<i?"on":(n===i?"now":"")}"></div>`).join("");
+  document.getElementById("cutNext").classList.toggle("hidden", i>=last);
+  document.getElementById("cutSkip").classList.toggle("hidden", i>=last);
+  if(i===0) drawRobot(7,false,"introRobotA");   /* 시즌 1을 완주한 마스터 (Lv.7) */
+  if(i===2) drawRobot(13,false,"introRobotB");  /* 여정의 끝 — 라인 마스터 (Lv.13) */
+  if(i===last) document.getElementById("nick").focus();
+}
+
+/* ===== 렌더 ===== */
+function fmt(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function render(){
+  const reg=!!ST.name;
+  document.getElementById("regCard").classList.toggle("hidden",reg);
+  for(const id of["sheetCard","codeCard","missionCard","dogamCard"])
+    document.getElementById(id).classList.toggle("hidden",!reg);
+  if(!reg){ document.body.style.background="var(--bg)"; showCut(CUT); return; }
+  const cur=Math.min(ST.level+1,13), acc=ACC[cur];
+  document.body.style.background=BGT[cur];
+  document.getElementById("missionCard").style.borderColor=acc;
+  document.querySelector(".stage").style.borderColor=acc;
+  document.getElementById("lvNum").parentElement.style.color=acc;
+  drawRobot(ST.level, JUSTLEVELED);
+  document.getElementById("lvNum").textContent=ST.level;
+  document.getElementById("lvRank").textContent=RANKS[ST.level]+" "+fmt(ST.name);
+  document.getElementById("lvDesc").textContent=RANKDESC[ST.level];
+  document.getElementById("dots").innerHTML=Array.from({length:6},(_,k)=>k+8).map(i=>
+    `<div class="dot ${i<=ST.level?"on":(i===ST.level+1?"now":"")}"></div>`).join("");
+  document.getElementById("equip").innerHTML = ST.skills.length
+    ? ST.skills.map(x=>`<span class="chip">${fmt(x)}</span>`).join("")
+    : `<span class="dogam-empty">없음 (텅 빈 공구벨트)</span>`;
+  document.getElementById("osToggle").innerHTML = ST.os==="windows"
+    ? OSICON.windows+" Windows (클릭해서 변경)" : OSICON.linux+" Linux / SSH (클릭해서 변경)";
+  document.getElementById("dogamAdd").classList.toggle("hidden", ST.level<7);
+  document.getElementById("checkHint").innerHTML = ST.os==="windows"
+    ? `Windows: <span class="cmd">check.bat</span> 더블클릭 → id 입력 → 결과 확인 후 창 닫기`
+    : `Linux: <span class="cmd">./check.sh &lt;mission-id&gt;</span>`;
+  /* 미션 카드 — VIEW!=null 이면 지나온 미션 열람 모드. 미션 인덱스 = 레벨-7 */
+  const doneAll = ST.level>=13;
+  if(VIEW!=null && (VIEW<0 || VIEW>=(doneAll?6:ST.level-7))) VIEW=null; // 열람 범위: 완료한 미션만
+  const onDoneScreen = doneAll && VIEW==null;
+  const vi = VIEW!=null ? VIEW : Math.min(ST.level-7,5);
+  let body;
+  if(onDoneScreen){
+    body = `<h3><span class="lvbadge" style="background:${ACC[13]}">LV 13</span>🏭 라인 마스터!</h3><p class="goal">두 시즌을 모두 완주했습니다 — 당신의 에이전트는 이제 <b>부품·라인·검사를 전부 갖춘 라인 마스터</b>입니다.
+       다음 단계: <b>EX 자율 퀘스트</b>(<code>missions/ex/adv-my-pipeline.md</code>) — 당신의 진짜 반복 업무를 2~3단계 파이프라인으로 옮기고,
+       완성작을 아래 도감에 등록해 팀과 공유하세요. 라인 설계는 라인 마스터의 특권입니다.</p>`;
+  } else {
+    const m=MISSIONS[vi];
+    body = (VIEW!=null?`<div class="pastbar">📖 완료한 미션 다시 보기 — 열람 전용입니다
+        <button class="ghost" id="mnavCur">${doneAll?"완료 화면으로":`현재 미션(Lv.${ST.level+1})으로`}</button></div>`:"")
+      +(VIEW==null&&ST.level===7?`<div class="pastbar">🧰 <b>공통 준비 (시즌 최초 1회)</b> — 시즌 1 세이브 파일(스킬 4종)을 설치하고 opencode를 재시작하세요.
+        명령은 Lv.8 미션 카드의 레시피 0번 또는 <code>skills-given/snapshot-s1/README.md</code>에 있습니다.</div>`:"")
+      +`<h3><span class="lvbadge" style="background:${ACC[m.lv]}">LV ${m.lv}</span>${fmt(m.title)}</h3>
+       <p class="goal">${m.goal}</p>
+       <div class="steps">${(ST.os==="windows"&&m.stepsWin)?m.stepsWin:m.steps}</div>
+       <div>검증: <span class="cmd">${ST.os==="windows"?`check.bat ${m.id}`:`./check.sh ${m.id}`}</span>${ST.os==="windows"?` <span style="font-size:12px;color:var(--muted)">(check.bat 더블클릭 후 id 입력도 가능)</span>`:""}</div>
+       ${m.tpl?`<button class="ghost" id="tplBtn">📋 템플릿 보기</button>`:""}
+       ${m.recap?`<details class="recap"><summary>📖 미션 배경</summary><div class="dbody">${m.recap}</div></details>`:""}
+       ${m.hints.map((h,i)=>`<details><summary>💡 힌트 ${"①②③④"[i]}</summary><div class="dbody">${h}</div></details>`).join("")}
+       <div class="freehint">💬 막히면 에이전트에게 물어보세요. 반칙이 아니라 실무입니다.</div>`;
+  }
+  /* 열람 내비게이션: ◀ 지난 미션 / 다음 ▶ */
+  const canPrev = onDoneScreen || vi>0;
+  let nav="";
+  if(canPrev || VIEW!=null){
+    const nx=vi+1;
+    const nextLabel = (!doneAll&&nx>=ST.level-7) ? "현재 미션 ▶" : (nx>5 ? "완료 화면 ▶" : `Lv.${nx+8} ▶`);
+    nav=`<div class="mnav">${canPrev?`<button class="ghost" id="mnavPrev">◀ Lv.${onDoneScreen?13:vi+8} 다시 보기</button>`:"<span></span>"}
+      ${VIEW!=null?`<button class="ghost" id="mnavNext">${nextLabel}</button>`:""}</div>`;
+  }
+  document.getElementById("missionBody").innerHTML = body+nav;
+  const $p=document.getElementById("mnavPrev"); if($p)$p.onclick=()=>{ VIEW = onDoneScreen ? 5 : vi-1; render(); };
+  const $n=document.getElementById("mnavNext"); if($n)$n.onclick=()=>{ const nx=vi+1; VIEW = ((!doneAll&&nx>=ST.level-7)||nx>5) ? null : nx; render(); };
+  const $c=document.getElementById("mnavCur"); if($c)$c.onclick=()=>{ VIEW=null; render(); };
+  const $t=document.getElementById("tplBtn"); if($t)$t.onclick=()=>openTpl(MISSIONS[vi]);
+}
+
+/* ===== 템플릿 팝업 (미션 카드의 SKILL.md 템플릿을 바로 열람·복사) ===== */
+function openTpl(m){
+  if(!m||!m.tpl) return;
+  const d=document.createElement("div"); d.className="burst";
+  d.innerHTML=`<div class="box tpl-box">
+    <div class="tpl-title">📋 ${fmt(m.tpl.title)}</div>
+    <pre class="tpl-pre">${fmt(m.tpl.text)}</pre>
+    <div class="tpl-foot"><button id="tplCopy">복사</button><button class="ghost" id="tplClose">닫기</button></div></div>`;
+  d.addEventListener("click",e=>{ if(e.target===d) d.remove(); });
+  d.querySelector("#tplClose").onclick=()=>d.remove();
+  d.querySelector("#tplCopy").onclick=async(e)=>{
+    try{ await navigator.clipboard.writeText(m.tpl.text); e.target.textContent="복사됨 ✓"; }
+    catch(err){ e.target.textContent="복사 실패 — 드래그로 복사해주세요"; }
+  };
+  document.body.appendChild(d);
+}
+
+/* ===== 성장 코드 검증 (check.sh 와 동일 해시) ===== */
+async function expectedCode(id){
+  try{
+    const buf=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(id+SALT));
+    return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("").slice(0,4).toUpperCase();
+  }catch(e){ return FALLBACK[id]||null; }
+}
+async function submitCode(){
+  const $m=document.getElementById("codeMsg");
+  if(ST.level>=13){$m.className="msg ok";$m.textContent="이미 최고 단계입니다 🏭";return;}
+  const m=MISSIONS[ST.level-7];
+  const raw=document.getElementById("codeInput").value.trim().toUpperCase();
+  const tail=(raw.match(/([0-9A-F]{4})$/)||[])[1];
+  const exp=await expectedCode(m.id);
+  if(!tail || tail!==exp){
+    $m.className="msg no";
+    $m.textContent="코드가 맞지 않습니다. 지금 미션("+m.id+")의 채점을 통과했는지 확인해주세요.";
+    return;
+  }
+  ST.level++;
+  VIEW=null;
+  if(m.skill) ST.skills.push(m.skill);
+  document.getElementById("codeInput").value=""; $m.textContent="";
+  JUSTLEVELED=true;
+  await saveState();
+  render(); JUSTLEVELED=false; levelBurst();
+}
+function levelBurst(){
+  const d=document.createElement("div"); d.className="burst";
+  let inner;
+  if(ST.level>=13){
+    inner = `<div class="box"><div class="spark">🎉 ✦ 🏭 ✦ 🎉</div>
+      <div class="big">LINE COMPLETE!</div>
+      <div class="part-art">${partIcon(13)}</div>
+      <div class="part">Lv.13 ${RANKS[13]} 달성 — ${PARTNAMES[13]}</div>
+      <div class="part">두 시즌을 모두 완주했습니다. 다음은 EX — 당신의 진짜 업무를 라인으로. 완성작을 도감에!</div>
+      <button id="burstOk">완료 🎉</button></div>`;
+  } else {
+    inner = `<div class="box"><div class="spark">✦ ✦ ✦</div>
+      <div class="big">LEVEL UP! Lv.${ST.level} ${RANKS[ST.level]}</div>
+      <div class="part-art">${partIcon(ST.level)}</div>
+      <div class="part">${PARTNAMES[ST.level]}${ST.level===12?"<br>🎓 시즌 2 수료! 보스전(Lv.13)이 기다립니다":""}</div>
+      <button id="burstOk">다음 미션으로</button></div>`;
+  }
+  d.innerHTML = inner;
+  document.body.appendChild(d);
+  d.querySelector("#burstOk").onclick=()=>d.remove();
+}
+
+/* ===== 저장 (개인) & 도감 (공유) ===== */
+/* window.storage(공유 스토리지)가 없는 환경(GitHub Pages 등 정적 서빙)에서는 localStorage로 대체합니다.
+   이 경우 도감은 브라우저별(개인) 저장입니다. */
+const store={
+  async get(k,shared){ if(window.storage) return await window.storage.get(k,shared); const v=localStorage.getItem(k); return v==null?null:{value:v}; },
+  async set(k,v,shared){ if(window.storage) return await window.storage.set(k,v,shared); localStorage.setItem(k,v); },
+  async del(k){ if(window.storage) return await window.storage.delete(k); localStorage.removeItem(k); }
+};
+/* 저장 키는 시즌 1 보드와 분리 — GitHub Pages 는 두 리포가 같은 오리진(ljd6805.github.io)이라 키가 겹치면 충돌한다 */
+async function saveState(){ try{ await store.set("trainer-s2-v1",JSON.stringify(ST)); }catch(e){} }
+async function loadState(){
+  try{ const g=await store.get("trainer-s2-v1"); if(g&&g.value) ST=JSON.parse(g.value); }catch(e){}
+  if(ST.name && (!ST.level || ST.level<7)) ST.level=7;   /* 시즌 2 시작 레벨 보정 */
+}
+function promptDogam(){
+  const nm=prompt("방금 만든 스킬의 이름을 도감에 등록해주세요! (모두에게 공개됩니다)");
+  if(!nm||!nm.trim()) return;
+  const d=prompt("스킬을 한 줄로 소개해주세요! (어떤 요청에 무엇을 해주는 스킬인가요?)")||"";
+  registerDogam(nm.trim(), d.trim());
+}
+async function registerDogam(skillName, desc){
+  try{
+    let list=[]; try{ const g=await store.get("dogam-s2-v1",true); if(g&&g.value) list=JSON.parse(g.value);}catch(e){}
+    list.push({s:skillName,d:desc||"",by:ST.name}); list=list.slice(-60);
+    await store.set("dogam-s2-v1",JSON.stringify(list),true);
+  }catch(e){}
+  loadDogam();
+}
+async function loadDogam(){
+  let list=null;
+  try{ const g=await store.get("dogam-s2-v1",true); list=g&&g.value?JSON.parse(g.value):[]; }catch(e){ list=[]; }
+  const el=document.getElementById("dogamList");
+  el.innerHTML = list.length
+    ? list.map((x,i)=>`<div class="dogam-row"><span class="chip">${fmt(x.s)}</span><span class="dogam-desc">${fmt(x.d||"")}</span><span class="dogam-by">· ${fmt(x.by)}</span><button class="dogam-del" data-i="${i}" title="도감에서 삭제">×</button></div>`).join("")
+    : `<span class="dogam-empty">아직 등록된 라인이 없습니다 — EX 자율 퀘스트(내 업무를 라인으로)의 완성작이 여기 등록됩니다</span>`;
+  el.querySelectorAll(".dogam-del").forEach(b=>b.onclick=()=>removeDogam(+b.dataset.i));
+}
+async function removeDogam(i){
+  let list=[]; try{ const g=await store.get("dogam-s2-v1",true); if(g&&g.value) list=JSON.parse(g.value);}catch(e){}
+  const it=list[i]; if(!it) return;
+  if(!confirm(`도감에서 '${it.s}' (${it.by}) 스킬을 삭제할까요?`)) return;
+  list.splice(i,1);
+  try{ await store.set("dogam-s2-v1",JSON.stringify(list),true); }catch(e){}
+  loadDogam();
+}
+
+/* ===== 이벤트 ===== */
+document.querySelectorAll(".osbtn").forEach(b=>b.insertAdjacentHTML("afterbegin",OSICON[b.dataset.os]));
+document.getElementById("cutNext").onclick=()=>showCut(CUT+1);
+document.getElementById("cutSkip").onclick=()=>showCut(document.querySelectorAll("#regCard .cut").length-1);
+let selOS="linux";
+document.querySelectorAll(".osbtn").forEach(b=>b.onclick=()=>{
+  selOS=b.dataset.os;
+  document.querySelectorAll(".osbtn").forEach(x=>x.classList.toggle("sel",x===b));
+});
+document.getElementById("regBtn").onclick=async()=>{
+  const v=document.getElementById("nick").value.trim();
+  if(!v) return;
+  /* 시즌 1 완주 상태에서 시작 — 세이브 파일의 스킬 4종 장착 */
+  ST={name:v,level:7,skills:["daily-report","log-digest","test-report v2","review-summary"],os:selOS};
+  await saveState(); render();
+};
+document.getElementById("osToggle").onclick=async(e)=>{
+  e.preventDefault();
+  ST.os = ST.os==="windows" ? "linux" : "windows";
+  await saveState(); render();
+};
+document.getElementById("codeBtn").onclick=submitCode;
+document.getElementById("dogamAdd").onclick=promptDogam;
+document.getElementById("codeInput").addEventListener("keydown",e=>{if(e.key==="Enter")submitCode();});
+document.getElementById("resetBtn").onclick=async()=>{
+  if(!confirm("정말 처음부터 다시 시작할까요? 레벨이 시작점(Lv.7)으로 돌아갑니다.")) return;
+  ST={name:"",level:7,skills:[],os:"linux"}; try{ await store.del("trainer-s2-v1"); }catch(e){}
+  CUT=0; VIEW=null; render();
+};
+
+/* ===== 시작 ===== */
+(async()=>{ await loadState(); if(!ST.os) ST.os="linux"; render(); loadDogam(); })();
+</script>
+</body>
+</html>

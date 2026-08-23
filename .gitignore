@@ -1,0 +1,5 @@
+# 참가자 로컬 산출물 (커밋 금지)
+output/
+.opencode/
+.quest-state
+data/regression-big.log

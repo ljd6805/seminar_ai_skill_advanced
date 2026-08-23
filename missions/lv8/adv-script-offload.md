@@ -8,7 +8,8 @@ check: script
 
 # Lv.8 다시 고장난 log-digest — 50만 줄의 벽 🔩
 
-> **STAGE 1 · 부품** — 심화 시즌에 오신 것을 환영합니다. 시즌 1에서 여러분이 고친 그 스킬이, 다시 막혔습니다.
+> **STAGE 1 · 부품** — 심화 시즌에 오신 것을 환영합니다. 시즌 1(2편 Skill Quest)에서 여러분이 마스터로 키운
+> 그 에이전트의 스킬들이 이 리포에 **세이브 파일**로 준비되어 있습니다. 그리고 그중 하나가, 다시 막혔습니다.
 
 시즌 1의 `log-digest`는 18줄짜리 `data/regression.log`를 잘 요약했습니다.
 그런데 이번 주부터 야간 리그레션이 전 모듈로 확대되면서 로그가 **50만 줄**이 됐습니다.
@@ -19,6 +20,9 @@ check: script
 (이론편 **사건 ② 스크립트 위임**의 After가 곧 정답지입니다)
 
 ## 절차 (레시피)
+0. **공통 준비 (시즌 최초 1회)** — 시즌 1 완주 상태의 스킬 4종을 설치하고 opencode를 재시작합니다:
+   - Linux: `mkdir -p .opencode/skills && cp -r skills-given/snapshot-s1/daily-report skills-given/snapshot-s1/log-digest skills-given/snapshot-s1/test-report skills-given/snapshot-s1/review-summary .opencode/skills/`
+   - Windows(PowerShell): `New-Item -Type Directory -Force .opencode\skills | Out-Null; Copy-Item -Recurse skills-given\snapshot-s1\daily-report,skills-given\snapshot-s1\log-digest,skills-given\snapshot-s1\test-report,skills-given\snapshot-s1\review-summary .opencode\skills\`
 1. 대형 로그를 생성합니다 (몇 초 걸립니다. 오류 개수는 누구나 같습니다):
    - 공통: `python tools/gen-big-log.py`  → `data/regression-big.log` (50만 줄)
    - 너무 느린 환경이면: `python tools/gen-big-log.py --lines 50000` (오류 개수는 동일)
@@ -53,8 +57,8 @@ check: script
 - 스킬 폴더에 `scripts/digest.py` 가 번들되어 있고, 본문이 "직접 읽지 않는다"를 지시할 것
 
 ## 검증
-- Linux&nbsp;&nbsp;&nbsp;: `./check-adv.sh adv-script-offload`
-- Windows: `check-adv.bat adv-script-offload`
+- Linux&nbsp;&nbsp;&nbsp;: `./check.sh adv-script-offload`
+- Windows: `check.bat adv-script-offload`
 
 <details><summary>힌트 — 수치가 자꾸 어긋난다면</summary>
 에이전트가 숫자를 "요약"하려 들면 틀립니다. 절차 3의 "그대로 옮겨 적는다"가 지시문에 있는지,

@@ -39,8 +39,8 @@ check: script
 - 사람의 개입이 첫 한 마디뿐이었을 것 (채점기가 물어봅니다)
 
 ## 검증
-- Linux&nbsp;&nbsp;&nbsp;: `./check-adv.sh adv-final-weekly`
-- Windows: `check-adv.bat adv-final-weekly`
+- Linux&nbsp;&nbsp;&nbsp;: `./check.sh adv-final-weekly`
+- Windows: `check.bat adv-final-weekly`
 
 <details><summary>힌트 — 어딘가에서 흐름이 끊긴다면</summary>
 끊긴 단계의 스킬을 **단독으로** 시켜 보세요 (부품 단위 디버깅 — 라인의 장점입니다).

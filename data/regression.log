@@ -1,0 +1,18 @@
+[2026-07-22 23:01:12] ===== NIGHTLY REGRESSION START (seed=87231, 16 tests) =====
+[2026-07-22 23:03:41] TEST tb_axi_burst_rw ......... PASS  (t=142s)
+[2026-07-22 23:05:02] TEST tb_ddr_init_cal ......... FAIL  UVM_ERROR ddr_phy.sv(412) @ 812ns: assertion 'cal_done_within_2us' failed
+[2026-07-22 23:07:19] TEST tb_pcie_link_train ...... PASS  (t=201s)
+[2026-07-22 23:09:55] TEST tb_axi_outstanding ...... FAIL  TIMEOUT: watchdog expired after 600s (no activity on m_axi.rvalid)
+[2026-07-22 23:10:03] TEST tb_usb_enum ............. PASS  (t=88s)
+[2026-07-22 23:12:47] TEST tb_ddr_refresh .......... FAIL  UVM_ERROR ddr_ctrl.sv(233) @ 1204ns: assertion 'ref_interval_max' failed
+[2026-07-22 23:13:10] TEST tb_spi_loopback ......... PASS  (t=41s)
+[2026-07-22 23:13:12] TEST tb_pcie_msi ............. FAIL  BUILD ERROR: vlog-2110 undeclared identifier 'msi_vec_q' (pcie_msi_agent.sv:87)
+[2026-07-22 23:15:30] TEST tb_i2c_multi_master ..... PASS  (t=63s)
+[2026-07-22 23:18:02] TEST tb_axi_narrow_burst ..... FAIL  TIMEOUT: watchdog expired after 600s (scoreboard queue not drained)
+[2026-07-22 23:18:04] TEST tb_gpio_irq ............. PASS  (t=17s)
+[2026-07-22 23:18:06] TEST tb_ddr_bist ............. FAIL  ENV ERROR: license checkout failed (VCSRuntime_Net: all seats in use)
+[2026-07-22 23:20:41] TEST tb_uart_flow_ctrl ....... PASS  (t=52s)
+[2026-07-22 23:20:44] TEST tb_pcie_hotplug ......... FAIL  ENV ERROR: scratch disk quota exceeded on /sim/scratch07 (needed 4.2G)
+[2026-07-22 23:23:58] TEST tb_axi_exclusive ........ PASS  (t=133s)
+[2026-07-22 23:26:15] TEST tb_ddr_lowpower ......... FAIL  UVM_ERROR ddr_pmu.sv(178) @ 2891ns: assertion 'sr_exit_latency' failed
+[2026-07-22 23:26:20] ===== NIGHTLY REGRESSION END: 9 PASS / 7 FAIL =====

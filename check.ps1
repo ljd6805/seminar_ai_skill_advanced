@@ -46,7 +46,7 @@ function HasR([string]$File, [string]$Pattern) { # 정규식
 if ($Id -eq "") {
   Write-Host "SKILL QUEST 심화 시즌 채점기 - 미션 목록:"
   Get-ChildItem -Path "missions" -Recurse -Filter "adv-*.md" | ForEach-Object { Write-Host ("  - " + $_.BaseName) }
-  Write-Host "  (기초 시즌 미션은 check.bat 로 채점합니다)"
+  Write-Host "  (시즌 1 미션은 2편 리포의 check.bat 로 채점합니다)"
   $Id = (Read-Host "채점할 미션 id 를 입력하세요").Trim()
   if ($Id -eq "") { Fail "미션 id 가 입력되지 않았습니다." }
 }
@@ -149,5 +149,5 @@ switch ($Id) {
     Write-Host "  (미션 카드: missions/ex/adv-my-pipeline.md)"
     exit 0 }
 
-  default { Fail "알 수 없는 미션 id 입니다: $Id (인자 없이 실행하면 목록이 표시됩니다 - 기초 시즌은 check.bat)" }
+  default { Fail "알 수 없는 미션 id 입니다: $Id (인자 없이 실행하면 목록이 표시됩니다)" }
 }

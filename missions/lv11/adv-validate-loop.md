@@ -15,7 +15,7 @@ check: script
 여러분이 찾을 필요는 없습니다. **채점기가 잡아 줄 겁니다.** 지금까진 사람이 검산기였다면,
 오늘부로 은퇴시킵니다.
 
-참고로 — 여러분이 매 미션 돌리는 `check-adv.sh` 가 바로 이 구조입니다. 오늘은 그걸 여러분 스킬 안에 짓습니다.
+참고로 — 여러분이 매 미션 돌리는 `check.sh` 가 바로 이 구조입니다. 오늘은 그걸 여러분 스킬 안에 짓습니다.
 
 ## 목표
 `test-report`에 채점 스크립트 `validate.py`를 동봉하고, **PASS 가 나올 때까지 스스로 고치는 루프**를
@@ -52,11 +52,11 @@ check: script
 - `output/test-report-v3.md` 의 수치가 **CSV 정답과 일치** (validate 가 CSV를 다시 세서 대조합니다)
 - 기준서에 따른 `GRADE:` 와 `REF-VERSION:` 이 정확할 것 (Lv.5 에서 배운 그 번들입니다)
 - `VALIDATE: PASS` 원문이 리포트에 첨부되어 있을 것
-- 채점기가 진짜 작동할 것 — check-adv 가 불량 견본으로 여러분의 validate.py 를 **역채점**합니다
+- 채점기가 진짜 작동할 것 — check.sh 가 불량 견본으로 여러분의 validate.py 를 **역채점**합니다
 
 ## 검증
-- Linux&nbsp;&nbsp;&nbsp;: `./check-adv.sh adv-validate-loop`
-- Windows: `check-adv.bat adv-validate-loop`
+- Linux&nbsp;&nbsp;&nbsp;: `./check.sh adv-validate-loop`
+- Windows: `check.bat adv-validate-loop`
 
 <details><summary>힌트 — 루프가 5회를 넘긴다면</summary>
 validate 의 지적문을 읽어 보세요 — "마지막 결과만 셉니다", "SKIP 도 있습니다" 같은 힌트가 그대로

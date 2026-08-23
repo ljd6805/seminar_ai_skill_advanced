@@ -52,8 +52,8 @@ log-digest 에는 **쓰는 쪽 약속**(경로·형식·버전)을, incident-rep
 - 파일이 없을 때 리포트 스킬이 **멈추는** 것을 직접 확인했을 것
 
 ## 검증
-- Linux&nbsp;&nbsp;&nbsp;: `./check-adv.sh adv-artifact-contract`
-- Windows: `check-adv.bat adv-artifact-contract`
+- Linux&nbsp;&nbsp;&nbsp;: `./check.sh adv-artifact-contract`
+- Windows: `check.bat adv-artifact-contract`
 
 <details><summary>힌트 — 에이전트가 멈추지 않고 로그를 직접 읽으러 간다면</summary>
 읽는 쪽 약속의 3번("없으면 안내하고 멈춘다")과 1번의 "직접 읽지 않는다"가 본문에 정말 있는지,
