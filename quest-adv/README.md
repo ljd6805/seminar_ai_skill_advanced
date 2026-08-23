@@ -1,5 +1,9 @@
 # quest-adv — SKILL QUEST 심화 시즌(Season 2) 스테이징
 
+> ✅ **병합 완료 (2026-08-23)**: 이 트리는 실습 리포의 **`claude/season2-advanced-missions` 브랜치**에 반영되었습니다
+> (+웹 보드 v2.0 Lv.8~13 확장 — 보드는 스테이징에 없고 그 브랜치에만 있습니다). 이후 수정은 그 브랜치에서 하고,
+> 이 폴더는 출제 이력·기획 리뷰용 사본으로 유지합니다. 아래 "적용 방법"은 재병합이 필요할 때만 쓰세요.
+
 4편 실습 세미나의 **출제물 초안**입니다. 기획서(`docs/practice-seminar-plan.md`)대로 만든
 미션·데이터·스크립트·채점기 일습이며, 폴더 구조는 실습 리포
 [`seminar_ai_skill_quest`](https://github.com/ljd6805/seminar_ai_skill_quest)의 최상위와 **1:1**입니다.

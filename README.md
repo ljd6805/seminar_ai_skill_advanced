@@ -43,8 +43,9 @@ GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced
 - [ ] 리허설 및 시간 조정
 - [x] 실습편 (Skill Quest 심화 시즌) 기획 v0.2 — 미션 구성(본편 5+보스전+EX)·레벨 체계(Lv.8~13)·운영안·초심자 가드레일, 일정은 D-기준 로드맵
 - [x] 실습편 출제 초안 (`quest-adv/` 스테이징) — 미션 카드·데이터·스크립트·템플릿·채점기, 전 미션 채점 경로 실행 검증(6 CLEAR + 음성 테스트 6종)
-- [ ] 실습편 기획 리뷰 → v1.0 확정 (실습 일정 D 확정 포함)
-- [ ] `quest-adv/` → 실습 리포(`seminar_ai_skill_quest`) 병합 + 웹 보드 Lv.8~13 확장 + Windows 채점기 실기 확인
+- [x] 실습 리포 병합 + 웹 보드 v2.0 (Lv.8~13) — `seminar_ai_skill_quest`의 `claude/season2-advanced-missions` 브랜치, Chromium 실기 테스트 통과
+- [ ] 실습편 기획 리뷰 → v1.0 확정 (실습 일정 D 확정 포함) + 시즌 2 브랜치 main 반영
+- [ ] Windows 채점기(`check-adv.bat/.ps1`) 실기 확인 (리허설에서)
 
 ## 작성 원칙
 
