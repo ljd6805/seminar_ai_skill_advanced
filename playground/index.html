@@ -165,6 +165,7 @@
         <li>발동·행동은 모델의 확률적 판단이라 회차마다 다를 수 있다 —
             장면 재현이 아니라 <b>스킬 구조의 차이</b>를 보는 것이 목적.</li>
         <li>이 문서는 시험이 아니라 <b>경험과 케이스 스터디</b>를 위한 것이다 — 각 카드의 <b>SKILL.md 본문 비교</b>와 심은 정답을 먼저 읽고 시작해도 좋다.</li>
+        <li>일부 before 스킬(②④⑫)에는 “직접 읽고 직접 센다 · 스크립트 금지” 같은 <b>재현 장치</b>가 들어 있다 — 요즘 모델은 시키지 않아도 알아서 코드·검색으로 우회하는데, 그 우회가 바로 해당 기법이기 때문이다.</li>
       </ol>
     </div>
     <div class="card">
@@ -273,19 +274,23 @@ bash playground/reset.sh</pre>
   
     <details class="skillview" open>
       <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
-      <ul class="diffnotes"><li>Before 절차의 동사는 “연다·분류한다·센다” — 읽기와 집계를 전부 모델에게 시킨다.</li><li>After는 1번이 <b>금지(“직접 읽지 않는다”)</b>, 2번이 <b>실행(digest.py)</b> — 절차의 동사가 바뀌었다.</li><li>“수치는 출력의 숫자를 그대로” + 검증 절(건수 합 = TOTAL)이 지어낸 수치를 차단한다.</li></ul>
-      <div class="skgrid"><div class="sk before"><h5>Before · log-digest/SKILL.md — 모델이 읽고 센다</h5><pre><span class="fm">---</span>
+      <ul class="diffnotes"><li>Before 절차의 동사는 “연다·분류한다·직접 센다” — 읽기와 집계를 전부 모델에게 시킨다.</li><li>After는 1번이 <b>금지(“직접 읽지 않는다”)</b>, 2번이 <b>실행(digest.py)</b> — 절차의 동사가 바뀌었다.</li><li>“수치는 출력의 숫자를 그대로” + 검증 절(건수 합 = TOTAL)이 지어낸 수치를 차단한다.</li><li>Before 의 “스크립트 금지”는 <b>재현 장치</b>다 — 요즘 에이전트는 시키지 않아도 알아서 코드로 집계한다(그 우회가 바로 이 기법). 문제 행동을 고정해야 Before/After 가 극적으로 갈린다.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · log-digest/SKILL.md — 모델이 직접 읽고 센다</h5><pre><span class="fm">---</span>
 <span class="fmk">name: log-digest</span>
 <span class="fmk">description: 로그 요약·원인 분석 요청 시 사용</span>
 <span class="fm">---</span>
 <span class="mdh"># Log Digest</span>
 
 <span class="mdh">## 절차</span>
-<span class="hlb">1. 대상 로그 파일을 연다.</span>
-2. 오류 메시지를 유형별로 분류한다.
-<span class="hlb">3. 유형별 건수를 세어 표로 만든다.</span>
+<span class="hlb">1. 대상 로그 파일을 직접 연다(READ).</span>
+2. 본문을 읽으며 오류 메시지를 유형별로 분류한다.
+<span class="hlb">3. 유형별 건수를 **직접 세어** 표로 만든다.</span>
 4. 가장 많은 유형부터 원인 후보를 적는다.
-5. `output/digest.md` 로 저장한다.</pre></div><div class="sk after"><h5>After · log-digest/SKILL.md — 코드가 세고, 모델은 해석만</h5><pre><span class="fm">---</span>
+5. `output/digest.md` 로 저장한다.
+
+<span class="mdh">## 금지</span>
+<span class="hlb">- 집계·검색용 스크립트/명령의 작성·실행 (python·grep·awk·wc 등)</span>
+<span class="hlb">  — 건수는 본문을 읽어 **직접 센다**.</span></pre></div><div class="sk after"><h5>After · log-digest/SKILL.md — 코드가 세고, 모델은 해석만</h5><pre><span class="fm">---</span>
 <span class="fmk">name: log-digest</span>
 <span class="fmk">description: 리그레션·크래시 로그의 요약, 오류 집계, 원인 분석 요청 시 사용</span>
 <span class="fm">---</span>
@@ -395,16 +400,19 @@ bash playground/reset.sh</pre>
   
     <details class="skillview" open>
       <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
-      <ul class="diffnotes"><li>Before의 “관련 파일을 읽는다” — '관련'의 기준도, 읽는 범위 제한도 없다. 결국 눈에 띄는 파일부터 통째로.</li><li>After는 순서를 강제한다: <b>지도(tree) → 검색(grep) → 좌표 읽기(±50줄)</b>. 근거는 파일:줄.</li><li>금지 절(통째 읽기·grep 없는 열람)과 출력 절(읽은 총량 보고)이 탐색 행동을 측정 가능하게 만든다.</li></ul>
-      <div class="skgrid"><div class="sk before"><h5>Before · repo-scout/SKILL.md — 기준 없는 읽기</h5><pre><span class="fm">---</span>
+      <ul class="diffnotes"><li>Before는 “처음부터 끝까지 통째로 읽는다” — '관련'의 기준도, 읽는 범위 제한도 없다.</li><li>After는 순서를 강제한다: <b>지도(tree) → 검색(grep) → 좌표 읽기(±50줄)</b>. 근거는 파일:줄.</li><li>금지 절(통째 읽기·grep 없는 열람)과 출력 절(읽은 총량 보고)이 탐색 행동을 측정 가능하게 만든다.</li><li>Before 의 “grep 금지”는 <b>재현 장치</b>다 — 요즘 모델은 시키지 않아도 검색부터 한다(그 우회가 바로 이 기법).</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · repo-scout/SKILL.md — 통째 읽기</h5><pre><span class="fm">---</span>
 <span class="fmk">name: repo-scout</span>
 <span class="fmk">description: 코드 구조·동작 설명 요청 시 사용</span>
 <span class="fm">---</span>
 <span class="mdh"># Repo Scout</span>
 
 <span class="mdh">## 절차</span>
-<span class="hlb">1. 관련 파일을 읽고 구조를 파악한다.</span>
-2. 흐름을 정리해 설명한다.</pre></div><div class="sk after"><h5>After · repo-scout/SKILL.md — 넓게→좁게→깊게</h5><pre><span class="fm">---</span>
+<span class="hlb">1. 관련해 보이는 파일을 열어 **처음부터 끝까지 통째로** 읽고 구조를 파악한다.</span>
+2. 흐름을 정리해 설명한다.
+
+<span class="mdh">## 금지</span>
+<span class="hlb">- 검색 도구(grep 등)로 후보를 좁히는 행위 — 파일 본문을 직접 읽어 찾는다.</span></pre></div><div class="sk after"><h5>After · repo-scout/SKILL.md — 넓게→좁게→깊게</h5><pre><span class="fm">---</span>
 <span class="fmk">name: repo-scout</span>
 <span class="fmk">description: 코드 구조·동작 설명, 심볼 위치 추적 요청 시 사용</span>
 <span class="fm">---</span>
@@ -938,18 +946,21 @@ test-report      테스트 결과 집계·주간 리포트 작성 시 사용</pr
   
     <details class="skillview" open>
       <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
-      <ul class="diffnotes"><li>Before 3번: “스스로 한 번 검토한다” — 형식·합계라는 <b>결정적 기준을 확률 도구(말)</b>로 검사한다.</li><li>After 는 validate.py 채점 → FAIL 항목 수정 → <b>PASS 까지 루프(상한 5회)</b> — 판정이 코드라 같은 입력이면 같은 판정.</li><li>금지(“채점 없이 완료”·“채점기 수정으로 통과”)와 PASS 로그 첨부 — 사람은 검산기가 아니라 로그만 확인.</li></ul>
-      <div class="skgrid"><div class="sk before"><h5>Before · test-report/SKILL.md — 말로 하는 검토</h5><pre><span class="fm">---</span>
+      <ul class="diffnotes"><li>Before 3번: “눈으로 스스로 한 번 검토한다” — 형식·합계라는 <b>결정적 기준을 확률 도구(말)</b>로 검사한다.</li><li>After 는 validate.py 채점 → FAIL 항목 수정 → <b>PASS 까지 루프(상한 5회)</b> — 판정이 코드라 같은 입력이면 같은 판정.</li><li>금지(“채점 없이 완료”·“채점기 수정으로 통과”)와 PASS 로그 첨부 — 사람은 검산기가 아니라 로그만 확인.</li><li>Before 의 “스크립트 금지”는 <b>재현 장치</b>다 — 요즘 모델은 알아서 검증 코드를 짠다(그 우회가 바로 이 기법).</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · test-report/SKILL.md — 눈으로 하는 검토</h5><pre><span class="fm">---</span>
 <span class="fmk">name: test-report</span>
 <span class="fmk">description: 주간 테스트 리포트 작성 시 사용</span>
 <span class="fm">---</span>
 <span class="mdh"># Test Report</span>
 
 <span class="mdh">## 절차</span>
-1. `data/test_results.csv` 를 집계한다.
+1. `data/test_results.csv` 를 읽고 직접 집계한다.
 2. 리포트를 작성한다.
-<span class="hlb">3. 작성한 리포트를 스스로 한 번 검토한다.</span>
-4. 완료를 보고한다.</pre></div><div class="sk after"><h5>After · test-report/SKILL.md — 채점 루프 내장</h5><pre><span class="fm">---</span>
+<span class="hlb">3. 작성한 리포트를 **눈으로** 스스로 한 번 검토한다.</span>
+4. 완료를 보고한다.
+
+<span class="mdh">## 금지</span>
+<span class="hlb">- 집계·검증용 스크립트/코드의 작성·실행 — 집계는 직접 세고, 검토는 읽어서 말로 한다.</span></pre></div><div class="sk after"><h5>After · test-report/SKILL.md — 채점 루프 내장</h5><pre><span class="fm">---</span>
 <span class="fmk">name: test-report</span>
 <span class="fmk">description: 테스트 결과 집계·주간 리포트 작성 시 사용 (기계 채점 포함)</span>
 <span class="fm">---</span>
