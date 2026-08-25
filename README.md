@@ -28,7 +28,7 @@ AI Agent 팀 세미나 시리즈 **4편 — SKILL 심화** 의 발표 자료 저
 |---|---|
 | [`docs/seminar-synopsis.md`](docs/seminar-synopsis.md) | 이론편 시놉시스 v0.8 — 핵심 메시지, 전개 원칙(사건 서사), 사건 카탈로그(문제 예시→원인→해결), 장별 구성, 시간 배분, 실습 연계 계획, 결정 기록. **슬라이드 작성의 기준 문서** |
 | [`slides/index.html`](slides/index.html) | 이론편 슬라이드 v0.8 (73장, 단일 흐름) — reveal.js 자립형(오프라인 동작), 1·2·3편과 동일한 테마 상속(Wanted Sans Variable + JetBrains Mono 임베드). 사건마다 문제·해결 리플레이 애니메이션, 원인 차트, **원리 도해 애니메이션**(목차와 본문·검문 게이트·창 분할 등 사건별 은유) 포함 |
-| [`playground/`](playground/) | **13기법 case별 체험 키트** — 각 사건을 직접 손으로 돌려보는 개인 체험용 워크스페이스. case마다 `before/`(문제의 스킬)·`after/`(해결된 스킬) 를 나란히 두고, 동작하는 스크립트(`digest.py`·`gate.py`·`validate.py`)와 정답이 심긴 샘플 데이터를 포함. ※ 세미나 실습편과는 **별개**의 비공식 부속물 |
+| [`playground/`](playground/) | **13기법 case별 체험 키트** — 각 사건을 직접 손으로 돌려보는 개인 체험용 워크스페이스. case마다 `before/`(문제의 스킬)·`after/`(해결된 스킬) 를 나란히 두고, 동작하는 스크립트(`digest.py`·`gate.py`·`validate.py`)와 정답이 심긴 샘플 데이터를 포함. 체험 가이드: [`playground/index.html`](playground/index.html) (Pages: `…/playground/`). ※ 세미나 실습편과는 **별개**의 비공식 부속물 |
 
 GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced/slides/`
 

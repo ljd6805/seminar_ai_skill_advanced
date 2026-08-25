@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>playground 체험 가이드 — SKILL 심화 13기법</title>
+<style>
+  :root{
+    --bg:#0B0E1A; --panel:#121729; --panel2:#0E1322; --line:rgba(143,168,255,.16);
+    --fg:#E8ECFA; --fg-soft:#A9B4D8; --fg-dim:#6B7699;
+    --mint:#2BEAD0; --mint-soft:#9FF5E6; --coral:#FF7A95; --coral-soft:#FF94AC;
+    --blue:#8FA8FF; --blue-soft:#C4D2FF; --yellow:#FFD46B; --yellow-soft:#FFE9AE;
+    --purple:#9B82FF;
+    --mono:'JetBrains Mono',ui-monospace,'Cascadia Code','D2Coding',Consolas,monospace;
+    --sans:'Wanted Sans Variable','Wanted Sans','Pretendard','Noto Sans KR',-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.7;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 1.4rem 5rem}
+
+  /* ── hero ─────────────────────────────── */
+  header.hero{padding:4.2rem 0 2.2rem;border-bottom:1px solid var(--line)}
+  .kicker{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;color:var(--blue);
+          text-transform:uppercase}
+  h1{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;margin:.45rem 0 .6rem;letter-spacing:-.01em}
+  h1 .grad{background:linear-gradient(92deg,var(--mint),var(--blue) 55%,var(--purple));
+           -webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{color:var(--fg-soft);max-width:46rem}
+  .warn{margin-top:1.2rem;border:1px dashed rgba(255,212,107,.45);background:rgba(255,212,107,.06);
+        border-radius:.7rem;padding:.7rem 1rem;color:var(--yellow-soft);font-size:.92rem}
+  .warn b{color:var(--yellow)}
+
+  /* ── nav ──────────────────────────────── */
+  nav{display:flex;flex-wrap:wrap;gap:.5rem;padding:1.1rem 0}
+  nav a{font-family:var(--mono);font-size:.78rem;color:var(--fg-soft);text-decoration:none;
+        border:1px solid var(--line);border-radius:2rem;padding:.28rem .8rem;transition:.15s}
+  nav a:hover{color:var(--fg);border-color:var(--blue)}
+
+  /* ── sections ─────────────────────────── */
+  section{margin-top:2.6rem}
+  h2{font-size:1.35rem;font-weight:800;display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem}
+  h2 .bar{width:.32rem;height:1.25em;border-radius:.2rem;background:var(--blue);flex:none}
+  section.p1 h2 .bar{background:var(--mint)} section.p2 h2 .bar{background:var(--blue)}
+  section.p3 h2 .bar{background:var(--yellow)}
+  .lede{color:var(--fg-soft);margin-bottom:1.1rem;max-width:52rem;font-size:.95rem}
+
+  /* ── howto ────────────────────────────── */
+  .howto{display:grid;grid-template-columns:1.15fr .85fr;gap:1rem;margin-top:1.1rem}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:.9rem;padding:1.1rem 1.25rem}
+  .card h3{font-size:1rem;margin-bottom:.5rem;color:var(--blue-soft)}
+  ol.steps{padding-left:1.2rem;display:grid;gap:.35rem;color:var(--fg-soft);font-size:.94rem}
+  ol.steps b{color:var(--fg)}
+  pre{font-family:var(--mono);font-size:.8rem;line-height:1.75;background:var(--panel2);
+      border:1px solid var(--line);border-radius:.7rem;padding:.85rem 1rem;overflow-x:auto;color:var(--blue-soft)}
+  pre .c{color:var(--fg-dim)} pre .g{color:var(--mint-soft)} pre .r{color:var(--coral-soft)}
+  code.inline{font-family:var(--mono);font-size:.85em;background:rgba(143,168,255,.1);
+              border-radius:.3rem;padding:.08em .38em;color:var(--blue-soft)}
+
+  /* ── case card ────────────────────────── */
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:1rem;
+        padding:1.2rem 1.3rem 1.1rem;margin-top:1rem}
+  .case>header{display:flex;align-items:flex-start;gap:.9rem;flex-wrap:wrap}
+  .num{flex:none;width:2.3rem;height:2.3rem;border-radius:.65rem;display:grid;place-items:center;
+       font-family:var(--mono);font-weight:700;font-size:1.02rem;color:#0B0E1A}
+  .p1 .num{background:var(--mint)} .p2 .num{background:var(--blue)} .p3 .num{background:var(--yellow)}
+  .case h3{font-size:1.08rem;font-weight:800}
+  .case h3 em{font-style:normal;font-family:var(--mono);font-weight:500;font-size:.72rem;
+              color:var(--fg-dim);margin-left:.45rem}
+  .one{color:var(--fg-soft);font-size:.9rem;margin-top:.1rem}
+  .folder{margin-left:auto;flex:none;font-family:var(--mono);font-size:.72rem;color:var(--fg-soft);
+          border:1px solid var(--line);border-radius:.45rem;padding:.2rem .55rem;background:var(--panel2)}
+  .reqs{margin-top:.8rem;display:grid;gap:.4rem}
+  .req{display:flex;gap:.6rem;align-items:baseline;font-size:.86rem;flex-wrap:wrap}
+  .req .tag{flex:none;font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.06em;
+            border-radius:.35rem;padding:.14rem .5rem}
+  .req .tag.ask{background:rgba(143,168,255,.16);color:var(--blue-soft)}
+  .req .tag.prep{background:rgba(255,212,107,.14);color:var(--yellow-soft)}
+  .req code{font-family:var(--mono);font-size:.82rem;color:var(--fg);background:var(--panel2);
+            border:1px solid var(--line);border-radius:.5rem;padding:.22rem .6rem}
+  .ba{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.85rem}
+  .ba>div{border-radius:.7rem;padding:.7rem .9rem;font-size:.88rem;color:var(--fg-soft);
+          background:var(--panel2);border:1px solid var(--line)}
+  .ba h4{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;margin-bottom:.3rem}
+  .ba .b{border-left:.22rem solid var(--coral)} .ba .b h4{color:var(--coral-soft)}
+  .ba .a{border-left:.22rem solid var(--mint)}  .ba .a h4{color:var(--mint-soft)}
+  .ans{margin-top:.7rem;font-size:.82rem;color:var(--yellow-soft);border-top:1px dashed var(--line);
+       padding-top:.55rem}
+  .ans b{color:var(--yellow)}
+
+  footer{margin-top:3.5rem;border-top:1px solid var(--line);padding-top:1.2rem;
+         color:var(--fg-dim);font-size:.85rem;display:flex;gap:1.2rem;flex-wrap:wrap}
+  footer a{color:var(--blue-soft)}
+
+  @media (max-width:760px){
+    .howto{grid-template-columns:1fr}
+    .ba{grid-template-columns:1fr}
+    .folder{margin-left:0}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">SKILL 심화 세미나 · 부속물</div>
+  <h1>playground <span class="grad">체험 가이드</span></h1>
+  <p class="sub">이론편 13개 사건을 <b>직접 손으로 돌려보기</b> 위한 미니 워크스페이스 모음.
+  case마다 <b>before/</b>(문제의 스킬)와 <b>after/</b>(해결된 스킬)가 나란히 있고,
+  같은 요청을 양쪽에 넣어 차이를 관찰한다.</p>
+  <div class="warn"><b>⚠ 실습편(Skill Quest 심화 시즌)과는 별개.</b>
+  시놉시스 §8의 실습 연계 계획과 무관한, 발표자 개인 체험용 비공식 부속물이다.</div>
+</header>
+
+<nav>
+  <a href="#howto">사용법</a>
+  <a href="#p1">PART 1 · 절약술 ①~⑤</a>
+  <a href="#p2">PART 2 · 연계술 ⑥~⑨</a>
+  <a href="#p3">PART 3 · 하네스 ⑩~⑬</a>
+  <a href="#quick">스크립트 빠른 확인</a>
+</nav>
+
+<!-- ══════════════ 사용법 ══════════════ -->
+<section id="howto">
+  <h2><span class="bar"></span>체험하는 법 (공통)</h2>
+  <div class="howto">
+    <div class="card">
+      <h3>순서</h3>
+      <ol class="steps">
+        <li>case 의 <b>before/</b>(또는 after/)를 프로젝트 루트로 스킬 도구(opencode 등)를 연다.</li>
+        <li>아래 카드의 <b>요청 문장</b>을 그대로 입력한다.</li>
+        <li><b>Before → After 순서</b>로 같은 요청을 넣고 차이를 관찰한다.</li>
+        <li>스크립트 있는 case(②⑧⑫)는 에이전트 없이 스크립트만 돌려도 핵심이 보인다.</li>
+        <li>모든 데이터는 before/·after/ <b>안에</b> 있다 — 폴더 하나만 열면 자립적으로 돈다.</li>
+        <li>발동·행동은 모델의 확률적 판단이라 회차마다 다를 수 있다 —
+            장면 재현이 아니라 <b>스킬 구조의 차이</b>를 보는 것이 목적.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>폴더 구조 · 초기화</h3>
+<pre>caseNN-&lt;기법&gt;/
+├─ README.md            <span class="c">← 상세 시나리오</span>
+├─ before/
+│  ├─ .opencode/skills/…/SKILL.md   <span class="r">← 문제의 스킬</span>
+│  └─ (데이터: work/ logs/ src/ …)
+└─ after/
+   ├─ .opencode/skills/…/SKILL.md   <span class="g">← 해결된 스킬</span>
+   └─ (+ references/ scripts/ assets/)
+
+<span class="c"># 체험 후 원상복구 (확인 프롬프트 있음)</span>
+bash playground/reset.sh</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PART 1 ══════════════ -->
+<section id="p1" class="p1">
+  <h2><span class="bar"></span>PART 1 · 컨텍스트 절약술 — 컨텍스트에는 결론만</h2>
+  <p class="lede">사내 LLM의 256k 컨텍스트를 설계 조건으로 삼는 다섯 사건. 원본은 밖에 두고, 결론만 들여보낸다.</p>
+
+  <article class="case p1">
+    <header>
+      <span class="num">①</span>
+      <div><h3>레퍼런스 계층화 <em>Progressive Disclosure</em></h3>
+      <p class="one">목차만 싣고, 지식은 문 뒤에 — 비용이 보유량이 아니라 사용량에 비례.</p></div>
+      <code class="folder">case01-progressive-disclosure/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag ask">요청</span><code>work/changes.diff 컨벤션 리뷰해줘</code></div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>규칙 3편(네이밍·예외·동시성)이 SKILL.md 본문에 통째 —
+        발동 순간 전부 로드된다. 이번 diff에 필요한 건 동시성 한 편뿐.</div>
+      <div class="a"><h4>AFTER 관찰</h4>SKILL.md는 목차 역할만. diff에서 thread/lock 감지 →
+        <code class="inline">references/concurrency.md</code>만 읽고 조항 번호(§)로 지적.
+        naming·error-handling은 끝까지 읽히지 않는다.</div>
+    </div>
+    <p class="ans"><b>심은 정답</b> — diff의 동시성 위반 3건: 락 안 sleep(§1.1) · 무락 카운터 증가(§3.1) · 종료 설계 없는 스레드(§5.1)</p>
+  </article>
+
+  <article class="case p1">
+    <header>
+      <span class="num">②</span>
+      <div><h3>스크립트 위임 <em>Script Offloading</em></h3>
+      <p class="one">세는 일은 코드가, 뜻을 읽는 일은 모델이.</p></div>
+      <code class="folder">case02-script-offloading/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag prep">준비</span><code>python3 tools/make_log.py --lines 50000</code></div>
+      <div class="req"><span class="tag ask">요청</span><code>지난밤 logs/regression.log 원인 분석해줘</code></div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>로그를 직접 READ — 일부만 읽고 추정하거나, 셀 때마다
+        건수가 달라진다(세기는 확률 모델의 약점).</div>
+      <div class="a"><h4>AFTER 관찰</h4>읽지 않고 <code class="inline">scripts/digest.py</code> 실행 →
+        요약 30줄만 근거로 사용. 수치는 스크립트 값 그대로 인용.</div>
+    </div>
+    <p class="ans"><b>심은 정답</b> — AssertionError 1,842 · TimeoutError 317 · 첫 급증 02:14 (슬라이드와 동일 수치)</p>
+  </article>
+
+  <article class="case p1">
+    <header>
+      <span class="num">③</span>
+      <div><h3>외부 기억 <em>External Memory</em></h3>
+      <p class="one">대화는 흘러가고, 파일은 남는다.</p></div>
+      <code class="folder">case03-external-memory/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag ask">Before</span><code>src/ 모듈들을 전부 v2 API로 통일해줘</code> → 몇 개 진행 후 <b>새 세션</b>에서 <code>이어서 해줘</code></div>
+      <div class="req"><span class="tag ask">After</span>빈 컨텍스트의 새 세션에서 곧장 <code>이어서 해줘</code></div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>기억이 대화에만 — 세션이 끊기면 무엇을 하던 작업인지,
+        규칙이 v2였는지 전부 증발한다.</div>
+      <div class="a"><h4>AFTER 관찰</h4>after/에는 <code class="inline">output/state.md</code>가
+        03에서 끊긴 상태로 들어 있다. state.md를 먼저 읽고 03부터 v2로 재개,
+        끝나는 즉시 [x]와 메모 1줄 갱신.</div>
+    </div>
+    <p class="ans"><b>포인트</b> — 지난 대화 필요량 0줄. state.md는 인수인계 문서로도 그대로 읽힌다.</p>
+  </article>
+
+  <article class="case p1">
+    <header>
+      <span class="num">④</span>
+      <div><h3>지도 우선 탐색 <em>Map-first Navigation</em></h3>
+      <p class="one">읽기는 검색의 결과여야 한다.</p></div>
+      <code class="folder">case04-map-first/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag ask">요청</span><code>repo/ 에서 결제 검증이 어디서 어떻게 도는지 설명해줘</code></div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>"관련 파일을 읽는다"뿐 — 1만 5천 줄 repo에서
+        큰 잡음 파일부터 통째로 읽다 컨텍스트가 부푼다.</div>
+      <div class="a"><h4>AFTER 관찰</h4>구조 파악 → <code class="inline">grep -rn validatePayment</code> →
+        해당 함수 ±50줄만 READ → <code class="inline">파일:줄</code> 근거 + 읽은 총량 보고.</div>
+    </div>
+    <p class="ans"><b>심은 정답</b> — <code class="inline">repo/src/pay/validate.py</code>의 validatePayment: 요청 → 한도 검사 → 승인 큐</p>
+  </article>
+
+  <article class="case p1">
+    <header>
+      <span class="num">⑤</span>
+      <div><h3>분업 요약 <em>Fan-out &amp; Summarize</em></h3>
+      <p class="one">쪼개면 컨텍스트는 곱해진다 — 유일한 총량 확장 기법.</p></div>
+      <code class="folder">case05-fanout-summarize/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag ask">요청</span><code>modules/ 전부 보안 점검해줘</code></div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>한 세션이 모듈 6개의 코드+결과를 전부 떠안는다 —
+        늘릴수록 앞 결과가 요약으로 뭉개진다.</div>
+      <div class="a"><h4>AFTER 관찰</h4>plan.md로 분할 → 모듈마다 서브에이전트/새 세션에 위임
+        → <b>10줄 양식 보고만</b> 회수 → 부모는 보고 파일만 읽고 종합. 코드 원문은 돌아오지 않는다.</div>
+    </div>
+    <p class="ans"><b>심은 정답</b> — 취약점 6종: MD5+정적솔트 · SQL 인젝션 · path traversal · shell=True · 예측 가능 난수 · 하드코딩 자격증명</p>
+  </article>
+</section>
+
+<!-- ══════════════ PART 2 ══════════════ -->
+<section id="p2" class="p2">
+  <h2><span class="bar"></span>PART 2 · 스킬 연계술 — 스킬은 대화가 아니라 파일로 협업한다</h2>
+  <p class="lede">하나의 장애 대응 프로세스(수집→분석→초안→검증)를 네 사건으로 이어 완성하는 연작.
+  ⑥무엇을 주고받나 · ⑦순서는 · ⑧믿어도 되나 · ⑨누가 나서나.</p>
+
+  <article class="case p2">
+    <header>
+      <span class="num">⑥</span>
+      <div><h3>산출물 약속 <em>Artifact Contract</em></h3>
+      <p class="one">약속이 있어야 부품이 된다 — 경로·형식·버전.</p></div>
+      <code class="folder">case06-artifact-contract/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag ask">요청 1</span><code>logs/incident.log 요약해줘</code></div>
+      <div class="req"><span class="tag ask">요청 2</span><code>방금 요약으로 장애 리포트 만들어줘</code></div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>요약이 화면에만 남는다 — 리포트 스킬이 "요약이
+        어디 있죠?" 사람이 복붙하면 구버전 사고. 함수로 치면 return 없이 print만 한 꼴.</div>
+      <div class="a"><h4>AFTER 관찰</h4>생산자는 <code class="inline">output/digest.md</code>
+        (3섹션 + DIGEST-VERSION: 1)로 저장, 소비자는 버전 확인 후 그것만 근거로.
+        버전 줄을 지우고 다시 요청하면 <b>거부</b>하는지 실험해 보라.</div>
+    </div>
+    <p class="ans"><b>포인트</b> — 이 약속의 책임은 전달까지. 내용 품질은 ⑧의 몫.</p>
+  </article>
+
+  <article class="case p2">
+    <header>
+      <span class="num">⑦</span>
+      <div><h3>파이프라인 스킬 <em>Pipeline Orchestrator</em></h3>
+      <p class="one">프로세스도 스킬이다 — 순서를 아는 스킬은 하나면 된다.</p></div>
+      <code class="folder">case07-pipeline/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag ask">요청</span><code>장애 대응 시작해줘</code></div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>부품 4개뿐, 조립 설명서 없음 — 분석을 건너뛰고
+        리포트를 시키면 "원인 미상" 리포트가 그대로 발행된다.</div>
+      <div class="a"><h4>AFTER 관찰</h4>지휘자 incident-flow가 단계표대로 1→4 자동 진행,
+        단계마다 산출물 경로 한 줄 보고. digest·analysis만 남기고 재시작하면
+        <b>3단계부터 재개</b>되는지 확인(③의 원리).</div>
+    </div>
+    <p class="ans"><b>포인트</b> — 단계를 잇는 화살표가 ⑥의 산출물 약속이다.</p>
+  </article>
+
+  <article class="case p2">
+    <header>
+      <span class="num">⑧</span>
+      <div><h3>게이트 체크 <em>Stage Gate</em></h3>
+      <p class="one">약속이 형식을 본다면, 게이트는 내용을 본다.</p></div>
+      <code class="folder">case08-stage-gate/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag prep">준비</span><code>cp output/analysis.bad.md output/analysis.md</code></div>
+      <div class="req"><span class="tag ask">요청</span><code>장애 리포트 써줘</code></div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>입력을 검사 없이 신뢰 — 재현 절차가 빈 분석을
+        그대로 근거로 삼거나 지어낸다.</div>
+      <div class="a"><h4>AFTER 관찰</h4>도입부에서 <code class="inline">gate.py</code> 실행 →
+        GATE FAIL(부족 항목 명시)로 <b>멈추고 반려</b>. good으로 바꾸면 PASS 후 진행,
+        PASS 로그를 리포트 끝에 첨부.</div>
+    </div>
+    <p class="ans"><b>심은 정답</b> — analysis.bad.md → FAIL(재현 절차·영향 범위) · analysis.good.md → PASS 3/3. 게이트는 모든 연결이 아니라 부실이 비싸지는 길목에만.</p>
+  </article>
+
+  <article class="case p2">
+    <header>
+      <span class="num">⑨</span>
+      <div><h3>라우터 스킬 <em>Router Skill</em></h3>
+      <p class="one">전문가가 많을수록 접수 창구가 필요하다.</p></div>
+      <code class="folder">case09-router/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag ask">요청</span><code>이 로그 좀 봐줘</code> · <code>리뷰 코멘트 정리해줘</code> · <code>그… 지난주 그거 정리해줘</code></div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>발동이 description 유사도 경쟁 — "로그"가 겹쳐
+        pdf-export 오발동, 한글 표현이 없어 review-summary 미발동.</div>
+      <div class="a"><h4>AFTER 관찰</h4>qa-desk 접수 창구가 분류표로 배정. 모호한 요청엔
+        짐작 대신 <b>후보 2개를 제시하고 질문</b>. 전문 스킬 description은 좁고 정확하게.</div>
+    </div>
+    <p class="ans"><b>포인트</b> — 창구는 넓게, 전문 스킬은 좁게. 겹침도 빈틈도 사라진다.</p>
+  </article>
+</section>
+
+<!-- ══════════════ PART 3 ══════════════ -->
+<section id="p3" class="p3">
+  <h2><span class="bar"></span>PART 3 · 검증·리뷰 하네스 — "됐습니다"를 "증명됐습니다"로</h2>
+  <p class="lede">같은 모델이라도 프레임·방향·도구·형식을 바꾸면 검증이 된다. 네 겹의 그물.</p>
+
+  <article class="case p3">
+    <header>
+      <span class="num">⑩</span>
+      <div><h3>자가 리뷰 루프 <em>Self-Review Loop</em></h3>
+      <p class="one">같은 모델, 다른 프레임 — 혼자서 하는 페어 리뷰.</p></div>
+      <code class="folder">case10-self-review/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag ask">요청</span><code>work/changes.diff 로 PR 설명 써줘</code> (Before에선 이어서 <code>괜찮아? 빠진 거 없어?</code>)</div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>검토 단계가 없다 — "괜찮아?"에 작성 프레임 그대로
+        "잘 정리되어 있습니다".</div>
+      <div class="a"><h4>AFTER 관찰</h4>초안 → <b>"지금부터 리뷰어다"</b> 역할 전환 +
+        체크리스트 항목별 결함만 지적(#2 테스트 영향·#5 롤백·#7 과장 표현) → 반영 →
+        지적 0건까지(최대 2회) → 제출.</div>
+    </div>
+    <p class="ans"><b>참고</b> — work/draft.weak.md 는 과장·모호 표현을 일부러 심은 초안. 체크리스트 리뷰로 넣어 보라.</p>
+  </article>
+
+  <article class="case p3">
+    <header>
+      <span class="num">⑪</span>
+      <div><h3>반박 검증 <em>Adversarial Check</em></h3>
+      <p class="one">반박에서 살아남은 결론만 결론이다.</p></div>
+      <code class="folder">case11-adversarial/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag ask">Before</span><code>logs/service.log 와 data/deploy-history.md 로 장애 원인 분석해줘</code></div>
+      <div class="req"><span class="tag ask">After</span><code>"원인은 8/12 배포" 결론을 반박 검증해줘</code></div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>지지 증거만 수집하는 절차 — 배포(8/12 13:00) 직후
+        오류 폭증(196건)에 끌려 "배포 탓" 결론으로 기운다.</div>
+      <div class="a"><h4>AFTER 관찰</h4>"이 결론은 틀렸다" 전제로 시간·사례·대안 3경로 반박 →
+        8/10(배포 전) 오류 발견 → <b>결론 기각</b> → 인증서 만료로 정정, 반박 기록 첨부.</div>
+    </div>
+    <p class="ans"><b>심은 정답</b> — 8/10·11(배포 전)에 이미 CertificateError+Timeout 44건. 실제 원인은 인증서 만료.</p>
+  </article>
+
+  <article class="case p3">
+    <header>
+      <span class="num">⑫</span>
+      <div><h3>기계 채점 하네스 <em>Script-Judged Gate</em></h3>
+      <p class="one">말로 통과하지 말고, 채점으로 통과하라.</p></div>
+      <code class="folder">case12-script-judged/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag ask">요청</span><code>data/test_results.csv 로 주간 테스트 리포트 써줘</code></div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>"스스로 한 번 검토" — 합계 불일치·섹션 누락 같은
+        결정적 실수를 말(확률적 도구)로 검사해 놓친다.</div>
+      <div class="a"><h4>AFTER 관찰</h4><code class="inline">validate.py</code> 채점 →
+        FAIL 항목 수정 → <b>PASS까지 루프(≤5회)</b> → PASS 로그 원문을 리포트 끝에 첨부.
+        사람은 검산기가 아니라 PASS 로그만 확인.</div>
+    </div>
+    <p class="ans"><b>심은 정답</b> — 전체 17 = PASS 12 + FAIL 3 + SKIP 2. SKIP을 빠뜨리면 합계 불일치로 FAIL.</p>
+  </article>
+
+  <article class="case p3">
+    <header>
+      <span class="num">⑬</span>
+      <div><h3>증거 기반 완료 <em>Evidence-based Done</em></h3>
+      <p class="one">증거가 없으면 완료가 아니다 — 말 대신 영수증.</p></div>
+      <code class="folder">case13-evidence-done/</code>
+    </header>
+    <div class="reqs">
+      <div class="req"><span class="tag ask">요청</span><code>env/ 기준으로 배포 전 점검해줘</code></div>
+    </div>
+    <div class="ba">
+      <div class="b"><h4>BEFORE 관찰</h4>"점검 완료 — 이상 없습니다" 한 줄 — 실행 실패한
+        항목이 낙관적으로 뭉개져도 알 방법이 없다.</div>
+      <div class="a"><h4>AFTER 관찰</h4>증거표 의무: 행마다 실행한 명령 + 출력 원문 + 판정.
+        4번(DB 준비)은 권한 오류라 <b>"미실행" + 사유</b>로 정직하게 남는다.
+        사람은 미실행/FAIL 행만 조치.</div>
+    </div>
+    <p class="ans"><b>심은 정답</b> — env/migrate_check.txt 에 권한 오류(errno 13). "미실행" 표기가 정답 — 미실행은 숨길 일이 아니라 정보다.</p>
+  </article>
+</section>
+
+<!-- ══════════════ quick ══════════════ -->
+<section id="quick">
+  <h2><span class="bar"></span>스크립트만 빠르게 확인</h2>
+  <p class="lede">에이전트 없이도 ②⑧⑫의 핵심 장치를 30초 만에 확인할 수 있다.</p>
+<pre><span class="c"># ② 로그 집계 — 심은 정답(1,842 · 317 · 02:14)이 그대로 나온다</span>
+cd case02-script-offloading/after
+python3 tools/make_log.py --lines 50000 --out /tmp/r.log
+python3 .opencode/skills/log-digest/scripts/digest.py /tmp/r.log
+
+<span class="c"># ⑧ 단계 게이트 — bad는 FAIL·반려, good은 PASS</span>
+cd case08-stage-gate/after
+python3 .opencode/skills/incident-report/scripts/gate.py output/analysis.bad.md   <span class="r"># FAIL</span>
+python3 .opencode/skills/incident-report/scripts/gate.py output/analysis.good.md  <span class="g"># PASS</span>
+
+<span class="c"># ⑫ 리포트 채점 — 합계·섹션·금지 문구를 코드가 판정</span>
+cd case12-script-judged/after
+python3 .opencode/skills/test-report/scripts/validate.py output/test-report.bad.md   <span class="r"># FAIL</span>
+python3 .opencode/skills/test-report/scripts/validate.py output/test-report.good.md  <span class="g"># PASS</span></pre>
+</section>
+
+<footer>
+  <span>SKILL 심화 세미나 4편 — playground 체험 가이드</span>
+  <a href="README.md">README.md (마크다운판)</a>
+  <a href="../slides/">이론편 슬라이드</a>
+</footer>
+
+</div>
+</body>
+</html>
