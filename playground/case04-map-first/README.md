@@ -3,21 +3,19 @@
 > 슬라이드: PART 1 · 사건 04 — "설명 하나를 들으려고, 리포 절반을 읽히고 있습니다"
 
 ## 시나리오
-수천 줄짜리 모듈이 여럿인 `repo/`. 질문은 "결제 검증이 어디서 어떻게 도는지".
-정답 흐름은 `src/pay/validate.py` 의 `validatePayment`(요청 → 한도 검사 → 승인 큐)
-한 곳(≈20줄)이지만, 탐색 전략이 없으면 눈에 띄는 파일부터 통째로 읽게 된다.
+`repo/` 는 총 1만 5천 줄 규모(잡음 모듈 다수). 질문은 "결제 검증이 어디서 어떻게
+도는지". 정답 흐름은 `repo/src/pay/validate.py` 의 `validatePayment`(요청 → 한도
+검사 → 승인 큐) 한 곳(≈20줄)이지만, 탐색 전략이 없으면 눈에 띄는 파일부터
+통째로 읽게 된다. (before/·after/ 안에 같은 repo 사본이 들어 있다)
 
 ## 체험 방법
 공통 요청: `repo/ 에서 결제 검증이 어디서 어떻게 도는지 설명해줘`
-1. **Before** — `before/` 스킬로 (repo 는 `../repo`).
+1. **Before** — `before/` 를 루트로 열고 요청.
    - 관찰: "관련 파일을 읽는다"는 지시뿐 — order_service·util_math 같은
      큰 잡음 파일까지 통째로 읽다 컨텍스트가 부풀거나 앞 내용이 밀려난다.
-2. **After** — `after/` 스킬로 같은 요청.
-   - 관찰: `tree`/파일목록 → `grep -rn validatePayment` → 후보 파일의 함수
-     ±50줄만 READ → `src/pay/validate.py:###` 근거로 흐름 설명. 읽은 총량 보고.
-
-> 편의상 스킬과 대상 repo 를 분리해 뒀다. 한 워크스페이스에서 체험하려면
-> `repo/` 안에 `.opencode/skills/repo-scout/` 를 복사해 넣고 요청하면 된다.
+2. **After** — `after/` 를 루트로 열고 같은 요청.
+   - 관찰: 구조 파악(tree/목록) → `grep -rn validatePayment` → 후보 파일의 함수
+     ±50줄만 READ → `repo/src/pay/validate.py:###` 근거로 흐름 설명. 읽은 총량 보고.
 
 ## 관찰 포인트
 - 읽은 총량: Before(리포 크기에 비례) vs After(질문 크기에 비례, ≈300줄).

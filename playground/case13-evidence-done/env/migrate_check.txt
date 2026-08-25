@@ -1,3 +1,0 @@
-$ migrate --check
-ERROR: permission denied (errno 13) — role 'deployer' lacks CREATE on schema 'public'
-점검 불가: 실행 실패 (권한 오류)

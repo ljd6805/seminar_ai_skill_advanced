@@ -1,10 +1,10 @@
-"""cart_client — v1 API 스타일 (마이그레이션 대상 02)."""
-from legacy.http import client, LegacyError
+"""cart_client — v2 API 스타일 (마이그레이션 완료 02)."""
+from api.http import client, ApiError
 
 
 def add_item(payload):
     try:
-        resp = client.call("/v1/cart/items", payload)
-    except LegacyError as e:
+        resp = client.request("POST", "/v2/cart/items", json=payload)
+    except ApiError as e:
         raise RuntimeError(f"cart_client 실패: {e}")
-    return resp.data
+    return resp.json()["data"]

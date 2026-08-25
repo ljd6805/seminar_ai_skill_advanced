@@ -1,6 +1,6 @@
 ---
 name: incident-flow
-description: "장애 대응 시작" 요청 시 아래 단계 전체를 지휘
+description: '"장애 대응 시작" 요청 시 수집→분석→초안→검증 전체 단계를 지휘'
 ---
 # Incident Flow — 조율 스킬(지휘자)
 

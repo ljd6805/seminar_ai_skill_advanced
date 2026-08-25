@@ -5,9 +5,10 @@
 ## 시나리오
 "원인은 8/12 배포"라는 그럴듯한 결론. 지지 증거(배포 직후 오류 급증)만 모으면
 통과한다. 하지만 `logs/service.log` 에는 **8/10(배포 전)에 이미** 동일한
-CertificateError+TimeoutError 가 다수 있다. 실제 원인은 인증서 만료.
+CertificateError+TimeoutError 가 다수 있다. 실제 원인은 인증서 만료. `data/deploy-history.md`(8/12 13:00 v4.7 배포)가
+"배포 탓"이라는 그럴듯한 결론을 유도한다. (로그·데이터는 before/·after/ 양쪽에 있다)
 
-## 먼저 로그로 반례 확인
+## 먼저 로그로 반례 확인 (before/ 또는 after/ 안에서)
 ```bash
 grep ERROR logs/service.log | grep -oE "2026-08-[0-9]+" | sort | uniq -c
 # → 08-10, 08-11 에도 ERROR 다수 (배포 8/12 이전!)
@@ -16,7 +17,8 @@ grep "2026-08-10" logs/service.log | grep CertificateError | head
 
 ## 체험 방법
 1. **Before** — `before/` root-cause: "지지 증거를 모은다"까지.
-   - `logs/service.log 로 장애 원인 분석해줘` → 배포 직후 급증만 보고 "8/12 배포" 결론.
+   - `logs/service.log 와 data/deploy-history.md 로 장애 원인 분석해줘`
+   - 배포(8/12 13:00) 직후 오류 폭증이 지지 증거로 쌓여 "8/12 배포" 결론으로 기운다.
 2. **After** — `after/` refute-check: "이 결론은 틀렸다" 전제로 3경로 반박.
    - `"원인은 8/12 배포" 결론을 반박 검증해줘`
    - 관찰: 시간 반박(grep 8/10~8/12) → 8/10 반례 발견 → **결론 기각** →

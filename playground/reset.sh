@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
-# playground 체험 중 생성된 산출물을 지워 초기 상태로 되돌린다.
-# (git 으로 추적되는 SKILL.md·샘플·정답 파일은 건드리지 않는다.)
+# playground 를 체험 전 상태로 되돌린다.
+#  1) gitignore 대상 생성물(대용량 로그, output/*.md 산출물 등) 삭제
+#  2) 체험 중 수정된 '추적 파일' 원복 — ⚠ 커밋하지 않은 수정도 함께 되돌린다
+# 확인 없이 실행: bash reset.sh --yes
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$HERE"
+REPO="$(cd "$HERE/.." && pwd)"
 
-echo "[reset] ② 생성된 대용량 로그 삭제"
-rm -rf case02-script-offloading/*/logs
+if [ "${1:-}" != "--yes" ]; then
+  echo "[reset] 원복될 추적 파일 변경 목록:"
+  git -C "$REPO" status --short -- playground || true
+  printf "[reset] 위 변경을 모두 되돌리고 생성물을 지웁니다. 계속할까요? [y/N] "
+  read -r ans
+  case "$ans" in y|Y) ;; *) echo "[reset] 취소"; exit 1 ;; esac
+fi
 
-echo "[reset] ③ 재개 실험으로 변경된 state.md 를 원위치(03에서 끊긴 상태)로"
-# after/output/state.md 는 git 추적본. 체험 중 바뀌었으면 checkout 으로 복구.
-git -C "$HERE/.." checkout -- playground/case03-external-memory/after/output/state.md 2>/dev/null || true
-
-echo "[reset] ⑥⑦ 파이프라인 산출물(output/*.md) 삭제 — 단, 추적되는 샘플은 보존"
-find case06-artifact-contract case07-pipeline -type d -name output -exec rm -rf {} + 2>/dev/null || true
-
-echo "[reset] ⑩ 자가 리뷰 초안 산출물 삭제"
-rm -rf case10-self-review/*/output
-
-echo "[reset] 완료. (git status 로 남은 변경을 확인하세요)"
+git -C "$REPO" clean -fdX -- playground
+git -C "$REPO" checkout -- playground
+echo "[reset] 완료 — 생성물 삭제 + 추적 파일 원복."

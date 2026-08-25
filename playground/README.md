@@ -23,8 +23,11 @@
 2. 각 폴더의 `README.md` 에 적힌 **요청 문장**을 그대로 입력한다.
 3. **Before → After 순서로** 같은 요청을 넣고 차이를 관찰한다.
 4. 스크립트 있는 case 는 에이전트 없이 스크립트만 먼저 돌려도 핵심이 보인다.
+5. 모든 데이터는 `before/`·`after/` **안에** 들어 있다 — 워크스페이스 하나만 열면 자립적으로 돈다.
+6. 스킬 발동·행동은 모델의 확률적 판단이라 회차마다 다를 수 있다.
+   문제 장면이 그대로 재현되지 않아도 된다 — **before/after 스킬 구조의 차이**를 관찰하는 것이 목적이다.
 
-전체를 원상복구하려면: `bash playground/reset.sh` (생성 로그·산출물·백업을 지운다).
+전체를 원상복구하려면: `bash playground/reset.sh` (생성 산출물 삭제 + 체험 중 수정된 추적 파일 원복 — 실행 전 확인 프롬프트).
 
 ## 13기법 지도
 
@@ -75,8 +78,8 @@ cd case02-script-offloading/after && python3 tools/make_log.py --lines 50000 --o
 
 # ⑧ 단계 게이트
 cd case08-stage-gate/after \
-  && python3 .opencode/skills/incident-report/scripts/gate.py ../output/analysis.bad.md \
-  ;  python3 .opencode/skills/incident-report/scripts/gate.py ../output/analysis.good.md
+  && python3 .opencode/skills/incident-report/scripts/gate.py output/analysis.bad.md \
+  ;  python3 .opencode/skills/incident-report/scripts/gate.py output/analysis.good.md
 
 # ⑫ 리포트 채점
 cd case12-script-judged/after \

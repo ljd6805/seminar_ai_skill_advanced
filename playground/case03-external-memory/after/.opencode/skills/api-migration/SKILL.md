@@ -15,9 +15,11 @@ description: 모듈 API 마이그레이션(v1→v2) 작업·재개 요청 시 �
 5. 대화가 길어지면 **대화가 아니라 state.md 를 기준**으로 삼는다.
 
 ## v2 규칙
-- `client.call(path, body)` → `client.request("POST", path, json=body)`
-- `resp.data` → `resp.json()["data"]`
-- `LegacyError` → `ApiError` 로 캐치 변경
+- import: `from legacy.http import client, LegacyError` → `from api.http import client, ApiError`
+- 호출: `client.call(path, body)` → `client.request("POST", path, json=body)`
+- 경로: `/v1/...` → `/v2/...`
+- 응답: `resp.data` → `resp.json()["data"]`
+- 예외: `LegacyError` → `ApiError` 로 캐치 변경
 
 ## 금지
 - state.md 갱신 없이 다음 모듈로 넘어가는 행위

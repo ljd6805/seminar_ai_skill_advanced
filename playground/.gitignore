@@ -2,18 +2,20 @@
 __pycache__/
 *.pyc
 
-# 체험 중 생성되는 산출물 — 저장소에 담지 않는다
+# ② 생성되는 대용량 로그
 case02-script-offloading/*/logs/
+
+# 체험 중 스킬이 생성하는 산출물 (추적하지 않음)
 **/output/digest.md
 **/output/analysis.md
 **/output/report.md
+**/output/test-report.md
 **/output/verdict.md
 **/output/draft.md
+**/output/audit/
+case03-external-memory/before/output/
 case10-self-review/*/output/
 
-# 단, 체험의 '정답'으로 미리 넣어 둔 샘플은 추적한다 (아래는 무시 해제)
-!case03-external-memory/after/output/state.md
-!case08-stage-gate/output/analysis.bad.md
-!case08-stage-gate/output/analysis.good.md
-!case12-script-judged/after/output/test-report.bad.md
-!case12-script-judged/after/output/test-report.good.md
+# ※ 미리 심어 둔 정답 샘플(analysis.bad.md / analysis.good.md,
+#   test-report.bad.md / test-report.good.md, after/output/state.md)은
+#   위 패턴과 다른 파일명이므로 그대로 추적된다.

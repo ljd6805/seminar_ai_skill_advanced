@@ -1,2 +1,0 @@
-$ validate-config config/prod.yaml
-OK: 42 keys validated, 0 errors
