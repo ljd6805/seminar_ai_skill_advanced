@@ -1,3 +1,7 @@
+# 파이썬 캐시 (py_compile 등으로 생성)
+__pycache__/
+*.pyc
+
 # 체험 중 생성되는 산출물 — 저장소에 담지 않는다
 case02-script-offloading/*/logs/
 **/output/digest.md
