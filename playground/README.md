@@ -2,8 +2,9 @@
 
 이론편 슬라이드의 **각 사건(case)을 직접 손으로 돌려보기 위한** 개인 체험용 워크스페이스입니다.
 
-> 📄 **한눈에 보는 HTML 가이드**: [`index.html`](index.html) — 13개 case의 요청 문장·관찰 포인트·심은 정답을
-> 카드로 정리한 체험 가이드. GitHub Pages 활성화 시 `https://ljd6805.github.io/seminar_ai_skill_advanced/playground/`
+> 📄 **한눈에 보는 HTML 가이드**: [`index.html`](index.html) — 13개 case의 요청 문장·관찰 포인트·심은 정답에
+> **Before/After SKILL.md 본문 비교와 "무엇이 달라졌나" 해설**까지 담은 케이스 스터디 문서.
+> GitHub Pages 활성화 시 `https://ljd6805.github.io/seminar_ai_skill_advanced/playground/`
 
 > ⚠️ **이건 세미나 실습편(Skill Quest 심화 시즌)과는 별개입니다.**
 > 시놉시스 §8 의 실습 연계 계획과 무관하며, 발표자가 혼자 기법을 체감해 보기 위한

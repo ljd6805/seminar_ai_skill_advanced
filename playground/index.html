@@ -98,6 +98,34 @@
     .ba{grid-template-columns:1fr}
     .folder{margin-left:0}
   }
+
+  /* ── skill 본문 비교 ─────────────────── */
+  .skillview{margin-top:.95rem;border-top:1px dashed var(--line);padding-top:.65rem}
+  .skillview summary{cursor:pointer;font-family:var(--mono);font-size:.76rem;font-weight:700;
+                     color:var(--blue-soft);letter-spacing:.04em}
+  .skillview summary:hover{color:var(--fg)}
+  .diffnotes{margin:.6rem 0 0;padding-left:1.15rem;display:grid;gap:.3rem;
+             color:var(--fg-soft);font-size:.86rem}
+  .diffnotes b{color:var(--fg)}
+  .skgrid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.75rem}
+  .sk h5,.mini h5{font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;
+                  margin-bottom:.35rem;font-weight:700}
+  .sk.before h5{color:var(--coral-soft)} .sk.after h5{color:var(--mint-soft)}
+  .sk pre,.mini pre{font-size:.72rem;line-height:1.7;max-height:30rem;color:var(--fg-soft)}
+  .sk.before pre{border-left:.22rem solid var(--coral)}
+  .sk.after pre{border-left:.22rem solid var(--mint)}
+  .sk .hlb{display:inline-block;width:100%;background:rgba(255,122,149,.13);color:var(--coral-soft);
+           border-radius:.25rem}
+  .sk .hlg{display:inline-block;width:100%;background:rgba(43,234,208,.10);color:var(--mint-soft);
+           border-radius:.25rem}
+  .sk .mdh{color:var(--blue-soft);font-weight:700}
+  .sk .fm{color:var(--fg-dim)} .sk .fmk{color:var(--yellow-soft)}
+  .sk .elide,.elide{color:var(--fg-dim);font-style:italic}
+  .sk .fsep{color:var(--purple);font-weight:700}
+  .mini{margin-top:.6rem}
+  .mini h5{color:var(--yellow-soft)}
+  .mini pre{border-left:.22rem solid var(--yellow);max-height:16rem}
+  @media (max-width:760px){ .skgrid{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -129,12 +157,14 @@
       <h3>순서</h3>
       <ol class="steps">
         <li>case 의 <b>before/</b>(또는 after/)를 프로젝트 루트로 스킬 도구(opencode 등)를 연다.</li>
-        <li>아래 카드의 <b>요청 문장</b>을 그대로 입력한다.</li>
+        <li>카드에 <b>준비</b> 태그(노랑)가 있으면 <b>그 명령을 먼저 실행</b>한다 — 일부 case 는 준비 과정이 필요하다 (예: ② 로그 생성, ⑧ 시드 복사).</li>
+        <li>이어서 <b>요청 문장</b>(파랑 태그)을 그대로 입력한다.</li>
         <li><b>Before → After 순서</b>로 같은 요청을 넣고 차이를 관찰한다.</li>
         <li>스크립트 있는 case(②⑧⑫)는 에이전트 없이 스크립트만 돌려도 핵심이 보인다.</li>
         <li>모든 데이터는 before/·after/ <b>안에</b> 있다 — 폴더 하나만 열면 자립적으로 돈다.</li>
         <li>발동·행동은 모델의 확률적 판단이라 회차마다 다를 수 있다 —
             장면 재현이 아니라 <b>스킬 구조의 차이</b>를 보는 것이 목적.</li>
+        <li>이 문서는 시험이 아니라 <b>경험과 케이스 스터디</b>를 위한 것이다 — 각 카드의 <b>SKILL.md 본문 비교</b>와 심은 정답을 먼저 읽고 시작해도 좋다.</li>
       </ol>
     </div>
     <div class="card">
@@ -177,6 +207,49 @@ bash playground/reset.sh</pre>
         naming·error-handling은 끝까지 읽히지 않는다.</div>
     </div>
     <p class="ans"><b>심은 정답</b> — diff의 동시성 위반 3건: 락 안 sleep(§1.1) · 무락 카운터 증가(§3.1) · 종료 설계 없는 스레드(§5.1)</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before는 절차 2줄 뒤에 <b>규칙 전문이 본문에</b> 이어진다 — 스킬의 로드 단위는 파일이라, 발동 = 전부 로드.</li><li>After는 본문에서 지식을 들어내고 <b>“어떤 조건이면 어느 파일을 읽는다”는 라우팅 절차</b>만 남겼다 (목차 역할).</li><li>“읽지 않은 규칙으로는 지적하지 않는다”·“references/ 전체 한 번에 읽기 금지”가 조건부 로드를 절차로 못 박는다.</li><li>규칙 개정 = references/ 파일 교체 — SKILL.md 는 그대로다.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · convention-review/SKILL.md — 규칙이 본문에</h5><pre><span class="fm">---</span>
+<span class="fmk">name: convention-review</span>
+<span class="fmk">description: 코드 컨벤션 리뷰 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Convention Review</span>
+
+<span class="mdh">## 절차</span>
+1. 변경된 diff를 읽는다.
+2. 아래 규칙에 따라 위반을 지적한다.
+
+<span class="hlb">## 규칙 — 전체 수록</span>
+<span class="mdh">### 1. 네이밍 규칙 (8쪽 분량이던 문서)</span>
+<span class="elide">    … (조항 §1~§6, 수십 줄이 여기 계속 이어진다) …</span>
+<span class="mdh">### 2. 예외 처리 규칙 (11쪽 분량이던 문서)</span>
+<span class="elide">    … (조항 §1~§6, 수십 줄이 여기 계속 이어진다) …</span>
+<span class="mdh">### 3. 동시성 규칙 (11쪽 분량이던 문서)</span>
+<span class="elide">    … (조항 §1~§6, 수십 줄이 여기 계속 이어진다) …</span></pre></div><div class="sk after"><h5>After · convention-review/SKILL.md — 목차 + 조건부 참조</h5><pre><span class="fm">---</span>
+<span class="fmk">name: convention-review</span>
+<span class="fmk">description: diff·코드의 컨벤션 리뷰, 규칙 위반 점검 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Convention Review</span>
+
+<span class="mdh">## 절차</span>
+1. diff에서 파일 유형·키워드만 훑는다. (전체 정독 금지)
+2. 해당하는 규칙 파일**만** 골라 읽는다:
+<span class="hlg">   - 이름·구조 지적 필요        → `references/naming.md`</span>
+<span class="hlg">   - try/except·오류 코드       → `references/error-handling.md`</span>
+<span class="hlg">   - thread·mutex·lock·async    → `references/concurrency.md`</span>
+3. 읽은 규칙의 조항 번호를 근거로 지적한다. (예: concurrency §3.1)
+<span class="hlg">4. 읽지 않은 규칙으로는 지적하지 않는다.</span>
+
+<span class="mdh">## 금지</span>
+<span class="hlg">- `references/` 전체를 한 번에 읽는 행위</span>
+- 규칙 원문의 본문 복사 (조항 번호와 한 줄 요지만 인용)
+
+<span class="mdh">## 출력</span>
+- 지적 목록: `[조항] 파일:줄 — 위반 내용 (1줄)` 형식
+- 마지막 줄에 &quot;읽은 규칙 파일: &lt;목록&gt;&quot; 을 보고한다.</pre></div></div>
+    </details>
   </article>
 
   <article class="case p1">
@@ -197,6 +270,45 @@ bash playground/reset.sh</pre>
         요약 30줄만 근거로 사용. 수치는 스크립트 값 그대로 인용.</div>
     </div>
     <p class="ans"><b>심은 정답</b> — AssertionError 1,842 · TimeoutError 317 · 첫 급증 02:14 (슬라이드와 동일 수치)</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before 절차의 동사는 “연다·분류한다·센다” — 읽기와 집계를 전부 모델에게 시킨다.</li><li>After는 1번이 <b>금지(“직접 읽지 않는다”)</b>, 2번이 <b>실행(digest.py)</b> — 절차의 동사가 바뀌었다.</li><li>“수치는 출력의 숫자를 그대로” + 검증 절(건수 합 = TOTAL)이 지어낸 수치를 차단한다.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · log-digest/SKILL.md — 모델이 읽고 센다</h5><pre><span class="fm">---</span>
+<span class="fmk">name: log-digest</span>
+<span class="fmk">description: 로그 요약·원인 분석 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Log Digest</span>
+
+<span class="mdh">## 절차</span>
+<span class="hlb">1. 대상 로그 파일을 연다.</span>
+2. 오류 메시지를 유형별로 분류한다.
+<span class="hlb">3. 유형별 건수를 세어 표로 만든다.</span>
+4. 가장 많은 유형부터 원인 후보를 적는다.
+5. `output/digest.md` 로 저장한다.</pre></div><div class="sk after"><h5>After · log-digest/SKILL.md — 코드가 세고, 모델은 해석만</h5><pre><span class="fm">---</span>
+<span class="fmk">name: log-digest</span>
+<span class="fmk">description: 리그레션·크래시 로그의 요약, 오류 집계, 원인 분석 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Log Digest</span>
+
+<span class="mdh">## 절차</span>
+<span class="hlg">1. 로그 파일을 **직접 읽지 않는다**. (1,000줄 초과 시 반드시)</span>
+<span class="hlg">2. `python3 .opencode/skills/log-digest/scripts/digest.py &lt;로그경로&gt;` 를 실행한다.</span>
+   - 출력: 유형별 건수 · 첫 발생/첫 급증 시각 · 대표 사례 · TOTAL (약 30줄)
+3. 스크립트 출력만 근거로 원인 후보를 2~3개 적는다.
+<span class="hlg">4. 수치는 출력의 숫자를 그대로 옮긴다. (직접 세지 않는다)</span>
+5. `output/digest.md` 로 저장한다. 끝줄: `DIGEST-VERSION: 1`
+
+<span class="mdh">## 금지</span>
+<span class="hlg">- 원본 로그의 READ, 부분 발췌 붙여넣기</span>
+- 스크립트 출력에 없는 수치의 사용 (직접 세지 않는다)
+
+<span class="mdh">## 검증</span>
+<span class="hlg">- digest.md 의 유형별 건수 합 = 스크립트 TOTAL 값</span>
+
+<span class="mdh">## 폴더 구성</span>
+<span class="hlg">log-digest/ ├─ SKILL.md └─ scripts/digest.py  ← 컨텍스트 밖에서 실행</span></pre></div></div>
+    </details>
   </article>
 
   <article class="case p1">
@@ -218,6 +330,49 @@ bash playground/reset.sh</pre>
         끝나는 즉시 [x]와 메모 1줄 갱신.</div>
     </div>
     <p class="ans"><b>포인트</b> — 지난 대화 필요량 0줄. state.md는 인수인계 문서로도 그대로 읽힌다.</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before의 “진행 상황을 기억해 두고”는 <b>저장 위치가 없는 지시</b> — 대화가 유일한 저장소가 된다.</li><li>After는 시작 조건(state.md 있으면 읽고 이어서 / 없으면 템플릿 생성) → 즉시 갱신 → 기준 선언(“대화가 아니라 state.md”)의 3단 구조.</li><li>금지 절이 “아까 정한 규칙” 같은 대화 의존 표현 자체를 막는다 — 첫 결정(v2 통일)은 state.md 상단에 산다.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · api-migration/SKILL.md — 기억 둘 곳이 없다</h5><pre><span class="fm">---</span>
+<span class="fmk">name: api-migration</span>
+<span class="fmk">description: API 마이그레이션 작업 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># API Migration</span>
+
+<span class="mdh">## 절차</span>
+1. 모듈을 순서대로 v2 규칙에 맞춰 수정한다.
+<span class="hlb">2. 진행 상황을 기억해 두고 이어서 한다.</span>
+3. 전 모듈이 끝나면 결과를 보고한다.</pre></div><div class="sk after"><h5>After · api-migration/SKILL.md — 기억을 파일로</h5><pre><span class="fm">---</span>
+<span class="fmk">name: api-migration</span>
+<span class="fmk">description: 모듈 API 마이그레이션(v1→v2) 작업·재개 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># API Migration</span>
+
+<span class="mdh">## 절차</span>
+<span class="hlg">1. 시작할 때 `output/state.md` 가 있으면 **먼저 읽고 이어서** 한다.</span>
+<span class="hlg">   없으면 `assets/state-template.md` 를 복사해 만든다.</span>
+2. 이번에 다룰 모듈 하나를 정하고, 규칙(state.md 상단)을 확인한다.
+3. 모듈을 v2 규칙으로 수정한다. (아래 &quot;v2 규칙&quot; 참조)
+<span class="hlg">4. 끝나는 즉시 state.md 를 갱신한다:</span>
+   - 해당 줄 `[ ]` → `[x]`
+   - 특이 사항은 &quot;메모&quot; 절에 1줄
+<span class="hlg">5. 대화가 길어지면 **대화가 아니라 state.md 를 기준**으로 삼는다.</span>
+
+<span class="mdh">## v2 규칙</span>
+- import: `from legacy.http import client, LegacyError` → `from api.http import client, ApiError`
+- 호출: `client.call(path, body)` → `client.request(&quot;POST&quot;, path, json=body)`
+- 경로: `/v1/...` → `/v2/...`
+- 응답: `resp.data` → `resp.json()[&quot;data&quot;]`
+- 예외: `LegacyError` → `ApiError` 로 캐치 변경
+
+<span class="mdh">## 금지</span>
+<span class="hlg">- state.md 갱신 없이 다음 모듈로 넘어가는 행위</span>
+<span class="hlg">- &quot;아까 정한 규칙&quot;처럼 대화 기억에 기대는 표현</span>
+
+<span class="hlg">## state.md 형식 (assets/state-template.md)</span>
+규칙: v2 통일 · [x] 01 · … · [ ] 40 · 메모: 03 API 변경 확인</pre></div></div>
+    </details>
   </article>
 
   <article class="case p1">
@@ -237,6 +392,41 @@ bash playground/reset.sh</pre>
         해당 함수 ±50줄만 READ → <code class="inline">파일:줄</code> 근거 + 읽은 총량 보고.</div>
     </div>
     <p class="ans"><b>심은 정답</b> — <code class="inline">repo/src/pay/validate.py</code>의 validatePayment: 요청 → 한도 검사 → 승인 큐</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before의 “관련 파일을 읽는다” — '관련'의 기준도, 읽는 범위 제한도 없다. 결국 눈에 띄는 파일부터 통째로.</li><li>After는 순서를 강제한다: <b>지도(tree) → 검색(grep) → 좌표 읽기(±50줄)</b>. 근거는 파일:줄.</li><li>금지 절(통째 읽기·grep 없는 열람)과 출력 절(읽은 총량 보고)이 탐색 행동을 측정 가능하게 만든다.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · repo-scout/SKILL.md — 기준 없는 읽기</h5><pre><span class="fm">---</span>
+<span class="fmk">name: repo-scout</span>
+<span class="fmk">description: 코드 구조·동작 설명 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Repo Scout</span>
+
+<span class="mdh">## 절차</span>
+<span class="hlb">1. 관련 파일을 읽고 구조를 파악한다.</span>
+2. 흐름을 정리해 설명한다.</pre></div><div class="sk after"><h5>After · repo-scout/SKILL.md — 넓게→좁게→깊게</h5><pre><span class="fm">---</span>
+<span class="fmk">name: repo-scout</span>
+<span class="fmk">description: 코드 구조·동작 설명, 심볼 위치 추적 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Repo Scout</span>
+
+<span class="mdh">## 절차 — 넓게 → 좁게 → 깊게</span>
+<span class="hlg">1. `tree -L 2` (또는 파일 목록)으로 구조만 파악한다. (내용 열람 금지)</span>
+<span class="hlg">2. `grep -rn &quot;&lt;심볼&gt;&quot;` 로 후보 위치를 찾는다.</span>
+   - 심볼을 모르면: 요청의 명사로 grep → 후보 확보
+<span class="hlg">3. 후보 파일은 해당 함수 **±50줄만** 읽는다.</span>
+4. 부족하면 호출부를 grep 으로 따라가며 2~3을 반복한다.
+5. 근거는 `파일경로:줄번호` 형식으로 남긴다.
+
+<span class="mdh">## 금지</span>
+<span class="hlg">- 폴더를 순회하며 파일 전체를 읽는 행위</span>
+<span class="hlg">- 1,000줄 넘는 파일의 통째 읽기 (필요 범위만)</span>
+<span class="hlg">- grep 없이 &quot;일단 열어 보는&quot; 읽기</span>
+
+<span class="mdh">## 출력</span>
+- 흐름 설명 + 근거(파일:줄)
+<span class="hlg">- 읽은 총량 보고 (예: 총 297줄)</span></pre></div></div>
+    </details>
   </article>
 
   <article class="case p1">
@@ -256,6 +446,47 @@ bash playground/reset.sh</pre>
         → <b>10줄 양식 보고만</b> 회수 → 부모는 보고 파일만 읽고 종합. 코드 원문은 돌아오지 않는다.</div>
     </div>
     <p class="ans"><b>심은 정답</b> — 취약점 6종: MD5+정적솔트 · SQL 인젝션 · path traversal · shell=True · 예측 가능 난수 · 하드코딩 자격증명</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before는 “모든 모듈을 차례로” — 한 창(1×256k)이 코드+결과를 전부 떠안는 절차.</li><li>After는 <b>분할(plan.md) → 위임(지시문 원문 포함) → 회수(10줄 양식만)</b> 3단계로 재편 — 총량이 N×256k 로 곱해진다.</li><li>“부모 세션에서 코드 열기 금지”·“양식 이탈은 반려·재위임”이 컨텍스트 역류를 구조적으로 차단.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · security-audit/SKILL.md — 한 창이 전부</h5><pre><span class="fm">---</span>
+<span class="fmk">name: security-audit</span>
+<span class="fmk">description: 보안 점검 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Security Audit</span>
+
+<span class="mdh">## 절차</span>
+<span class="hlb">1. 모든 모듈을 차례로 점검한다.</span>
+2. 발견 사항을 모아 보고서를 쓴다.</pre></div><div class="sk after"><h5>After · module-audit/SKILL.md — 분할·위임·회수</h5><pre><span class="fm">---</span>
+<span class="fmk">name: module-audit</span>
+<span class="fmk">description: 리포 전체·다수 모듈의 보안 점검 요청 시 사용 (분업 요약 조율자)</span>
+<span class="fm">---</span>
+<span class="mdh"># Module Audit — 조율자</span>
+
+<span class="mdh">## 절차</span>
+<span class="hlg">1. 대상 모듈 목록을 `output/audit/plan.md` 에 적는다. (modules/ 하위 폴더 = 조각)</span>
+<span class="hlg">2. 모듈마다 **서브에이전트(또는 새 세션)**에 위임한다.</span>
+   위임 지시문 (그대로 사용):
+   &gt; &quot;modules/&lt;X&gt; 만 점검하라. 결과는 assets/report-form.md 양식
+<span class="hlg">   &gt;  10줄로 `output/audit/&lt;X&gt;.md` 에 저장하라. 코드 원문 인용 금지.&quot;</span>
+<span class="hlg">3. 위임이 끝나면 `output/audit/*.md` **만** 읽고 종합한다.</span>
+4. 종합 리포트에 모듈별 보고 파일 경로를 남긴다.
+
+<span class="mdh">## 금지</span>
+<span class="hlg">- 부모 세션에서 모듈 코드를 직접 여는 행위</span>
+<span class="hlg">- 회수 시 10줄 양식을 벗어난 보고 수용 (벗어나면 반려·재위임)</span>
+
+<span class="mdh">## 보고 양식 (assets/report-form.md · 10줄 고정)</span>
+모듈: · 위험도(상/중/하): · 발견 1~3 (각 1줄) · 근거: 파일:줄 · 제안(1줄)</pre></div></div><div class="mini"><h5>After · assets/report-form.md — 회수 양식(10줄 고정)</h5><pre><span class="mdh"># 모듈 점검 보고 (10줄 고정 양식)</span>
+모듈:
+위험도(상/중/하):
+발견 1:
+발견 2:
+발견 3:
+근거: 파일:줄
+제안:</pre></div>
+    </details>
   </article>
 </section>
 
@@ -284,6 +515,61 @@ bash playground/reset.sh</pre>
         버전 줄을 지우고 다시 요청하면 <b>거부</b>하는지 실험해 보라.</div>
     </div>
     <p class="ans"><b>포인트</b> — 이 약속의 책임은 전달까지. 내용 품질은 ⑧의 몫.</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before: 생산자는 “보여준다”로 끝나고, 소비자의 '요약'은 위치·형식·버전이 미정 — 둘 사이에 인터페이스가 없다.</li><li>After는 <b>새 스킬이 아니라</b> 기존 두 스킬에 약속을 한 절씩 추가한 개조 — 쓰는 쪽(경로·형식·버전), 읽는 쪽(그것만·버전 없으면 거부·없으면 정지).</li><li>“내용의 품질 검사는 이 약속의 몫이 아니다” — 책임 경계를 스킬 본문에 명시해 ⑧(게이트)과 역할을 나눈다.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · log-digest/SKILL.md (생산자) — 화면에 출력하고 끝</h5><pre><span class="fm">---</span>
+<span class="fmk">name: log-digest</span>
+<span class="fmk">description: 로그 요약·원인 분석 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Log Digest</span>
+
+<span class="mdh">## 절차</span>
+1. 로그를 요약한다.
+2. 결과를 표로 정리한다.
+<span class="hlb">3. 요약 결과를 사용자에게 보여준다.</span></pre></div><div class="sk after"><h5>After · log-digest/SKILL.md (생산자) — 쓰는 쪽 약속</h5><pre><span class="fm">---</span>
+<span class="fmk">name: log-digest</span>
+<span class="fmk">description: 리그레션·크래시·장애 로그의 요약, 오류 집계 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Log Digest (생산자)</span>
+
+<span class="mdh">## 절차</span>
+1. 로그를 요약한다.
+2. 결과를 표로 정리한다.
+<span class="hlg">3. 결과를 `output/digest.md` 로 저장한다. (경로 고정)</span>
+<span class="hlg">4. 형식: `## 요약` / `## 오류 Top 10` / `## 이상 징후`</span>
+<span class="hlg">5. 마지막 줄에 `DIGEST-VERSION: 1` 을 남긴다.</span>
+<span class="hlg">6. 사용자에게는 경로만 한 줄로 알린다.</span>
+
+<span class="mdh">## 쓰는 쪽 약속 (요약)</span>
+- 경로: `output/digest.md` (고정)
+- 형식: 위 3개 섹션 고정
+<span class="hlg">- 버전: 마지막 줄 `DIGEST-VERSION: 1`</span></pre></div><div class="sk before"><h5>Before · incident-report/SKILL.md (소비자) — 입력 위치 미정</h5><pre><span class="fm">---</span>
+<span class="fmk">name: incident-report</span>
+<span class="fmk">description: 장애 리포트 작성 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Incident Report</span>
+
+<span class="mdh">## 절차</span>
+<span class="hlb">1. 로그 요약을 근거로 리포트를 쓴다.</span>
+2. 형식을 갖춰 정리한다.</pre></div><div class="sk after"><h5>After · incident-report/SKILL.md (소비자) — 읽는 쪽 약속</h5><pre><span class="fm">---</span>
+<span class="fmk">name: incident-report</span>
+<span class="fmk">description: 장애 리포트 작성 시 사용 (digest.md 를 입력으로)</span>
+<span class="fm">---</span>
+<span class="mdh"># Incident Report (소비자)</span>
+
+<span class="mdh">## 절차</span>
+<span class="hlg">1. `output/digest.md` 가 있으면 **그것만** 근거로 쓴다.</span>
+<span class="hlg">2. 버전 표시(`DIGEST-VERSION`)가 없으면 **옛 파일·복사본으로 간주**하고 쓰지 않는다.</span>
+<span class="hlg">3. 파일이 없으면 log-digest 실행을 안내하고 **멈춘다**.</span>
+<span class="hlg">4. 직접 로그를 읽지 않는다. (내용의 품질 검사는 이 약속의 몫이 아니다 — 사건 ⑧)</span>
+5. 리포트를 `output/report.md` 로 저장한다.
+
+<span class="mdh">## 읽는 쪽 약속 (요약)</span>
+- 입력 경로: `output/digest.md` (고정)
+- 버전 없으면 사용 거부 · 파일 없으면 정지</pre></div></div>
+    </details>
   </article>
 
   <article class="case p2">
@@ -304,6 +590,77 @@ bash playground/reset.sh</pre>
         <b>3단계부터 재개</b>되는지 확인(③의 원리).</div>
     </div>
     <p class="ans"><b>포인트</b> — 단계를 잇는 화살표가 ⑥의 산출물 약속이다.</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before: 부품 4개의 SKILL.md 는 각자 자기 단계만 안다 — <b>순서와 완료 조건을 적은 파일이 없다</b> (조립 설명서 부재).</li><li>After에 추가된 incident-flow 하나가 단계표(순서·담당 스킬·산출물 경로)를 명문화 — 부품은 그대로다.</li><li>진행 규칙(산출물 있으면 건너뜀 = 중간 재개, 실패 시 정지)과 금지(건너뛰기·순서 변경)가 지휘를 기계적으로 만든다.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · 부품 스킬 4개 (지휘자 없음 — before/after 동일)</h5><pre><span class="fsep">━━ log-digest/SKILL.md ━━</span>
+
+<span class="fm">---</span>
+<span class="fmk">name: log-digest</span>
+<span class="fmk">description: 장애 로그 수집·요약 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Log Digest — 1단계(수집)</span>
+<span class="mdh">## 절차</span>
+1. logs/incident.log 를 요약한다.
+2. `output/digest.md` 로 저장한다. (## 요약 / ## 오류 Top / ## 이상 징후)
+
+<span class="fsep">━━ root-cause/SKILL.md ━━</span>
+
+<span class="fm">---</span>
+<span class="fmk">name: root-cause</span>
+<span class="fmk">description: 장애 원인 분석 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Root Cause — 2단계(분석)</span>
+<span class="mdh">## 절차</span>
+1. `output/digest.md` 를 근거로 원인 후보를 분석한다.
+2. `output/analysis.md` 로 저장한다. (## 원인 후보 / ## 재현 절차 / ## 영향 범위)
+
+<span class="fsep">━━ incident-report/SKILL.md ━━</span>
+
+<span class="fm">---</span>
+<span class="fmk">name: incident-report</span>
+<span class="fmk">description: 장애 리포트 초안 작성 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Incident Report — 3단계(초안)</span>
+
+<span class="mdh">## 절차</span>
+1. `output/digest.md` 를 근거로 개요·타임라인을 쓴다.
+   (없으면 log-digest 실행을 안내하고 멈춘다)
+2. `output/analysis.md` 가 있으면 원인·조치 섹션의 근거로 삼는다.
+<span class="hlb">   없으면 원인 섹션에 &quot;미상 — 분석 산출물 없음&quot; 으로 적는다.</span>
+3. `output/report.md` 로 저장한다.
+
+<span class="fsep">━━ report-check/SKILL.md ━━</span>
+
+<span class="fm">---</span>
+<span class="fmk">name: report-check</span>
+<span class="fmk">description: 장애 리포트 최종 검증 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Report Check — 4단계(검증)</span>
+<span class="mdh">## 절차</span>
+1. `output/report.md` 의 필수 섹션·수치 일관성을 검증한다.
+2. `output/verdict.md` 로 판정(PASS/FAIL + 사유)을 남긴다.</pre></div><div class="sk after"><h5>After · incident-flow/SKILL.md — 새로 추가된 지휘자</h5><pre><span class="fm">---</span>
+<span class="fmk">name: incident-flow</span>
+<span class="fmk">description: &#x27;&quot;장애 대응 시작&quot; 요청 시 수집→분석→초안→검증 전체 단계를 지휘&#x27;</span>
+<span class="fm">---</span>
+<span class="mdh"># Incident Flow — 조율 스킬(지휘자)</span>
+
+<span class="hlg">## 단계 — 순서 고정 · 산출물 없으면 다음 단계 금지</span>
+1. 수집  → log-digest 스킬      → `output/digest.md`
+2. 분석  → root-cause 스킬      → `output/analysis.md`
+3. 초안  → incident-report 스킬 → `output/report.md`
+4. 검증  → report-check 스킬    → `output/verdict.md`
+
+<span class="mdh">## 진행 규칙</span>
+- 각 단계 완료 시 **단계명과 산출물 경로만 한 줄** 보고한다.
+<span class="hlg">- 이전 단계 산출물이 이미 있으면 그 단계는 건너뛴다.</span>
+  (중간부터 재개 가능 — 사건 ③의 원리)
+<span class="hlg">- 단계 실패 시: 실패 지점과 사유를 보고하고 멈춘다.</span>
+
+<span class="mdh">## 금지</span>
+<span class="hlg">- 단계 건너뛰기 · 순서 변경 · 산출물 없이 &quot;완료&quot; 보고</span></pre></div></div>
+    </details>
   </article>
 
   <article class="case p2">
@@ -325,6 +682,37 @@ bash playground/reset.sh</pre>
         PASS 로그를 리포트 끝에 첨부.</div>
     </div>
     <p class="ans"><b>심은 정답</b> — analysis.bad.md → FAIL(재현 절차·영향 범위) · analysis.good.md → PASS 3/3. 게이트는 모든 연결이 아니라 부실이 비싸지는 길목에만.</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before 1번: “analysis.md 를 근거로 쓴다” — 입력을 무조건 신뢰하고 시작한다.</li><li>After 1번: 쓰기 전에 gate.py 실행 — <b>검사가 절차의 첫 줄</b>로 들어왔다. 약속(⑥)이 겉모습을 보면, 게이트는 내용을 본다.</li><li>“FAIL → 진행하지 않는다” + 반려 문구 형식 + PASS 로그 첨부 — 판정과 반려 사유가 기록으로 남는다.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · incident-report/SKILL.md — 검사 없는 신뢰</h5><pre><span class="fm">---</span>
+<span class="fmk">name: incident-report</span>
+<span class="fmk">description: 장애 리포트 작성 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Incident Report</span>
+
+<span class="mdh">## 절차</span>
+<span class="hlb">1. `output/analysis.md` 를 근거로 리포트를 쓴다.</span>
+2. 재현 절차·영향 범위·원인을 정리한다.
+3. `output/report.md` 로 저장한다.</pre></div><div class="sk after"><h5>After · incident-report/SKILL.md — 게이트 내장</h5><pre><span class="fm">---</span>
+<span class="fmk">name: incident-report</span>
+<span class="fmk">description: 장애 리포트 작성 시 사용 (분석 산출물 게이트 포함)</span>
+<span class="fm">---</span>
+<span class="mdh"># Incident Report</span>
+
+<span class="mdh">## 절차</span>
+<span class="hlg">1. 시작 전에 `python3 .opencode/skills/incident-report/scripts/gate.py output/analysis.md` 실행.</span>
+   - 검사: 필수 섹션(재현 절차·영향 범위·원인 후보)이 **실제로 채워졌는가**
+     · TODO/TBD 없음
+<span class="hlg">2. **FAIL → 진행하지 않는다.** 부족 항목을 그대로 알리고 분석 단계로 반려한다.</span>
+<span class="hlg">   - 형식: &quot;GATE FAIL — [항목]. 분석 보완 후 재시도.&quot;</span>
+3. PASS → 리포트 작성을 시작한다.
+<span class="hlg">4. `output/report.md` 저장 · PASS 로그를 리포트 끝에 첨부.</span>
+
+<span class="mdh">## 폴더 구성</span>
+incident-report/ ├─ SKILL.md └─ scripts/gate.py  ← 이전 산출물 판정기</pre></div></div>
+    </details>
   </article>
 
   <article class="case p2">
@@ -344,6 +732,69 @@ bash playground/reset.sh</pre>
         짐작 대신 <b>후보 2개를 제시하고 질문</b>. 전문 스킬 description은 좁고 정확하게.</div>
     </div>
     <p class="ans"><b>포인트</b> — 창구는 넓게, 전문 스킬은 좁게. 겹침도 빈틈도 사라진다.</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before: 각 스킬의 description 이 서로 겹치거나(pdf-export 의 “로그”) 사용자의 말과 어긋난다(review-summary 는 영문뿐) — 발동이 유사도 경쟁이 된다.</li><li>After 에 추가된 qa-desk 는 발동 기준을 <b>표(요청의 말 → 담당 스킬)</b>로 명문화하고, 분류 불가면 짐작 대신 질문한다.</li><li>운영 규칙: 창구는 넓게, 전문 스킬 description 은 <b>좁고 정확하게</b> 고친다 — 새 스킬은 분류표에 한 줄 추가.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · 전문 스킬 4개의 description — 겹침과 빈틈</h5><pre><span class="fsep">━━ log-digest/SKILL.md ━━</span>
+
+<span class="fm">---</span>
+<span class="fmk">name: log-digest</span>
+<span class="fmk">description: 로그 파일을 요약할 때 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Log Digest</span>
+로그를 요약한다.
+
+<span class="fsep">━━ pdf-export/SKILL.md ━━</span>
+
+<span class="fm">---</span>
+<span class="fmk">name: pdf-export</span>
+<span class="hlb">description: 로그·문서를 PDF로 정리해 변환할 때 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># PDF Export</span>
+문서를 PDF로 변환한다. (주의: description 의 &quot;로그&quot;가 log-digest 와 겹쳐 오발동 유발)
+
+<span class="fsep">━━ review-summary/SKILL.md ━━</span>
+
+<span class="fm">---</span>
+<span class="fmk">name: review-summary</span>
+<span class="hlb">description: Summarize review comments into action items</span>
+<span class="fm">---</span>
+<span class="mdh"># Review Summary</span>
+리뷰 코멘트를 정리한다. (주의: 사용자가 칠 한글 표현이 description 에 없어 미발동 유발)
+
+<span class="fsep">━━ test-report/SKILL.md ━━</span>
+
+<span class="fm">---</span>
+<span class="fmk">name: test-report</span>
+<span class="fmk">description: 테스트 리포트를 작성할 때 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Test Report</span>
+주간 테스트 리포트를 작성한다.</pre></div><div class="sk after"><h5>After · qa-desk/SKILL.md — 새로 추가된 접수 창구</h5><pre><span class="fm">---</span>
+<span class="fmk">name: qa-desk</span>
+<span class="fmk">description: QA 업무 요청 전반의 접수 창구. 로그·리포트·리뷰 요청이 모호할 때 우선 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># QA Desk — 라우터 스킬(접수 창구)</span>
+
+<span class="mdh">## 분류표</span>
+| 요청에 이런 말이 있으면        | 이 스킬로 진행    |
+|--------------------------------|-------------------|
+| 로그 · 크래시 · 원인           | log-digest        |
+| 리포트 · 집계 · 주간           | test-report       |
+| 리뷰 · 코멘트 · PR 피드백 정리 | review-summary    |
+| PDF · 문서 변환                | pdf-export        |
+
+<span class="mdh">## 분류 불가 시</span>
+<span class="hlg">- 후보 2개를 제시하고 사용자에게 확인받는다. (짐작으로 진행하지 않는다)</span>
+
+<span class="mdh">## 운영 규칙</span>
+<span class="hlg">- 전문 스킬의 description 은 **좁고 정확하게** 다듬는다.</span>
+  예: pdf-export → &quot;완성된 문서의 PDF 변환&quot; (로그 삭제)
+<span class="hlg">- 새 스킬 추가 시 이 분류표에 한 줄을 함께 추가한다.</span></pre></div></div><div class="mini"><h5>After · 좁혀진 전문 스킬 description 발췌</h5><pre>log-digest       로그·크래시 파일의 오류 집계·원인 요약 (완성된 문서 변환은 제외)
+pdf-export       완성된 문서(md/html)의 PDF 변환 시 사용 (로그 분석 아님)
+review-summary   코드 리뷰 코멘트 정리·리뷰 정리 요청 시 사용 (리뷰/코멘트/PR 피드백)
+test-report      테스트 결과 집계·주간 리포트 작성 시 사용</pre></div>
+    </details>
   </article>
 </section>
 
@@ -370,6 +821,44 @@ bash playground/reset.sh</pre>
         지적 0건까지(최대 2회) → 제출.</div>
     </div>
     <p class="ans"><b>참고</b> — work/draft.weak.md 는 과장·모호 표현을 일부러 심은 초안. 체크리스트 리뷰로 넣어 보라.</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before는 “작성 → 보여준다” 2박자 — 검토 단계가 아예 없어 “괜찮아?”에 작성 프레임 그대로 답한다.</li><li>After는 <b>“지금부터 리뷰어다” 역할 전환 선언</b>과 체크리스트 로드가 절차에 박혀 있다 — 같은 모델, 다른 프레임.</li><li>“결함만·항목 번호 필수·최대 2회·0건이면 제출” — 리뷰를 인상 평가가 아니라 체크로 만든다.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · pr-desc/SKILL.md — 쓰고 끝</h5><pre><span class="fm">---</span>
+<span class="fmk">name: pr-desc</span>
+<span class="fmk">description: PR 설명 작성 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># PR Description</span>
+
+<span class="mdh">## 절차</span>
+1. diff를 읽고 변경 요지를 뽑는다.
+2. PR 설명 초안을 작성한다.
+<span class="hlb">3. 사용자에게 보여준다.</span></pre></div><div class="sk after"><h5>After · pr-desc/SKILL.md — 리뷰 루프 내장</h5><pre><span class="fm">---</span>
+<span class="fmk">name: pr-desc</span>
+<span class="fmk">description: PR 설명 작성 요청 시 사용 (자가 리뷰 루프 포함)</span>
+<span class="fm">---</span>
+<span class="mdh"># PR Description</span>
+
+<span class="mdh">## 절차</span>
+1. 초안을 `output/draft.md` 에 작성한다.
+<span class="hlg">2. **역할 전환 — &quot;지금부터 리뷰어다.&quot;**</span>
+<span class="hlg">   `references/review-checklist.md` 를 로드하고, 항목별로 **결함만** 찾는다.</span>
+   (칭찬 금지 · 지적은 항목 번호와 함께)
+<span class="hlg">3. 지적을 반영해 고친다. 2~3을 **최대 2회** 반복.</span>
+<span class="hlg">4. 마지막 리뷰에서 지적 0건이면 제출한다.</span>
+   0건이 안 되면: 남은 지적을 정리해 사용자 판단에 넘긴다.</pre></div></div><div class="mini"><h5>After · references/review-checklist.md — 지적 기준(팀 공유)</h5><pre><span class="mdh"># PR 설명 리뷰 체크리스트 (팀 공유)</span>
+
+리뷰어 역할로 아래 항목만 본다. 통과 근거가 아니라 **결함**을 찾는다.
+
+- #1 제목이 &quot;무엇을/왜&quot;를 한 줄로 말하는가
+- #2 **테스트 영향**이 적혀 있는가 (추가/변경된 테스트, 수동 검증 절차)
+- #3 호환성/마이그레이션 영향(설정·스키마·API 변경)이 명시됐는가
+- #4 관련 이슈/티켓 링크가 있는가
+- #5 **롤백 계획**이 있는가 (되돌리는 법)
+- #6 리뷰어를 위한 확인 포인트(무엇을 봐야 하나)가 있는가
+- #7 **과장·모호 표현**이 없는가 (&quot;완벽히&quot;, &quot;아마&quot;, &quot;약간&quot;, &quot;등등&quot;)</pre></div>
+    </details>
   </article>
 
   <article class="case p3">
@@ -390,6 +879,42 @@ bash playground/reset.sh</pre>
         8/10(배포 전) 오류 발견 → <b>결론 기각</b> → 인증서 만료로 정정, 반박 기록 첨부.</div>
     </div>
     <p class="ans"><b>심은 정답</b> — 8/10·11(배포 전)에 이미 CertificateError+Timeout 44건. 실제 원인은 인증서 만료.</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before 3번: 후보를 <b>“뒷받침하는”</b> 증거를 모은다 — 방향이 확증이라, 많이 모을수록 확신만 커진다.</li><li>After 는 전제를 뒤집는다: <b>“이 결론은 틀렸다”</b>를 전제로 반례 3경로(시간·사례·대안)를 탐색.</li><li>반례 1건 = 기각, 3경로 실패 = “반박 3회 실패” 명시 후 채택 — 시도한 반박은 기록으로 남고, 새 세션 실행을 권장(작성 편향 차단).</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · root-cause/SKILL.md — 지지 증거 수집</h5><pre><span class="fm">---</span>
+<span class="fmk">name: root-cause</span>
+<span class="fmk">description: 장애 원인 분석 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Root Cause (검증 부분 — 문제 시점)</span>
+
+<span class="mdh">## 절차</span>
+1. 증상과 시각을 정리한다.
+2. 원인 후보를 세운다.
+<span class="hlb">3. 후보를 **뒷받침하는** 증거를 모은다.</span>
+4. 증거가 충분하면 결론으로 보고한다.
+
+<span class="hlb">(지지 증거만 모으는 방향 — 반례를 찾는 단계가 없다)</span></pre></div><div class="sk after"><h5>After · refute-check/SKILL.md — 새로 추가된 반박 검증</h5><pre><span class="fm">---</span>
+<span class="fmk">name: refute-check</span>
+<span class="fmk">description: 원인·결론 보고의 검증, 채택 전 확인 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Refute Check — 반박 검증 스킬</span>
+
+<span class="mdh">## 절차 (결론 검증 요청 시)</span>
+1. 검증할 결론을 한 문장으로 적는다.
+<span class="hlg">2. **입장 전환 — &quot;이 결론은 틀렸다&quot;** 를 전제로, 반례를 3가지 경로에서 찾는다:</span>
+<span class="hlg">   - 시간 반박 — 원인 시점 **이전**에도 증상이 있었나</span>
+     (예: `grep -E &quot;2026-08-1[012]&quot; logs/service.log | grep ERROR` — 배포 전 로그)
+<span class="hlg">   - 사례 반박 — 조건이 같은데 증상 없는 곳은</span>
+<span class="hlg">   - 대안 반박 — 같은 증상을 내는 다른 원인 후보는</span>
+<span class="hlg">3. 반례 발견 → **결론 기각**. 근거(명령·결과)를 첨부해 보고한다.</span>
+<span class="hlg">4. 3경로 모두 실패 → &quot;반박 3회 실패&quot;를 명시하고 채택한다.</span>
+
+<span class="mdh">## 기록</span>
+- 시도한 반박 경로·명령·결과를 보고에 그대로 남긴다.
+<span class="hlg">- 가능하면 **새 세션**에서 실행한다. (작성 편향 차단)</span></pre></div></div>
+    </details>
   </article>
 
   <article class="case p3">
@@ -410,6 +935,42 @@ bash playground/reset.sh</pre>
         사람은 검산기가 아니라 PASS 로그만 확인.</div>
     </div>
     <p class="ans"><b>심은 정답</b> — 전체 17 = PASS 12 + FAIL 3 + SKIP 2. SKIP을 빠뜨리면 합계 불일치로 FAIL.</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before 3번: “스스로 한 번 검토한다” — 형식·합계라는 <b>결정적 기준을 확률 도구(말)</b>로 검사한다.</li><li>After 는 validate.py 채점 → FAIL 항목 수정 → <b>PASS 까지 루프(상한 5회)</b> — 판정이 코드라 같은 입력이면 같은 판정.</li><li>금지(“채점 없이 완료”·“채점기 수정으로 통과”)와 PASS 로그 첨부 — 사람은 검산기가 아니라 로그만 확인.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · test-report/SKILL.md — 말로 하는 검토</h5><pre><span class="fm">---</span>
+<span class="fmk">name: test-report</span>
+<span class="fmk">description: 주간 테스트 리포트 작성 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Test Report</span>
+
+<span class="mdh">## 절차</span>
+1. `data/test_results.csv` 를 집계한다.
+2. 리포트를 작성한다.
+<span class="hlb">3. 작성한 리포트를 스스로 한 번 검토한다.</span>
+4. 완료를 보고한다.</pre></div><div class="sk after"><h5>After · test-report/SKILL.md — 채점 루프 내장</h5><pre><span class="fm">---</span>
+<span class="fmk">name: test-report</span>
+<span class="fmk">description: 테스트 결과 집계·주간 리포트 작성 시 사용 (기계 채점 포함)</span>
+<span class="fm">---</span>
+<span class="mdh"># Test Report</span>
+
+<span class="mdh">## 절차</span>
+1. `data/test_results.csv` 를 집계해 리포트를 `output/test-report.md` 로 작성한다.
+   - 필수 섹션: `## 요약` / `## 환경` / `## 결과표` / `## 특이사항`
+   - 요약에 PASS/FAIL/SKIP/전체 수치를 적는다.
+<span class="hlg">2. `python3 .opencode/skills/test-report/scripts/validate.py output/test-report.md` 실행.</span>
+   - 검사: 필수 섹션 존재 · PASS+FAIL+SKIP=전체 합계 · 금지 문구(&quot;아마&quot; 등)·빈 셀 없음
+3. FAIL → 지적 항목을 고치고 2를 다시 실행한다.
+<span class="hlg">   **PASS가 나올 때까지 반복한다.** (최대 5회, 초과 시 보고)</span>
+<span class="hlg">4. PASS 출력 원문을 리포트 끝에 첨부한다.</span>
+
+<span class="mdh">## 금지</span>
+<span class="hlg">- 채점 없이 &quot;완료&quot; 보고 · 채점기 수정으로 통과 시도</span>
+
+<span class="mdh">## 폴더 구성</span>
+test-report/ ├─ SKILL.md └─ scripts/validate.py</pre></div></div>
+    </details>
   </article>
 
   <article class="case p3">
@@ -430,6 +991,51 @@ bash playground/reset.sh</pre>
         사람은 미실행/FAIL 행만 조치.</div>
     </div>
     <p class="ans"><b>심은 정답</b> — env/migrate_check.txt 에 권한 오류(errno 13). "미실행" 표기가 정답 — 미실행은 숨길 일이 아니라 정보다.</p>
+  
+    <details class="skillview" open>
+      <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
+      <ul class="diffnotes"><li>Before 출력이 주장문 한 줄(“이상 없습니다”) — 실행 여부와 출력이 남지 않아 확인도 반박도 불가.</li><li>After 는 완료의 정의 자체를 바꾼다: <b>“완료 선언은 증거표가 채워진 경우에만”</b>.</li><li>행 형식(항목|명령|출력 원문|판정) + <b>미실행 정직 표기</b>(빈칸·추정 금지) — 미실행은 숨길 일이 아니라 정보다.</li></ul>
+      <div class="skgrid"><div class="sk before"><h5>Before · release-check/SKILL.md — 증거 없는 한 줄</h5><pre><span class="fm">---</span>
+<span class="fmk">name: release-check</span>
+<span class="fmk">description: 배포 전 점검 요청 시 사용</span>
+<span class="fm">---</span>
+<span class="mdh"># Release Check</span>
+
+<span class="mdh">## 절차</span>
+1. 점검 목록(env/ 의 5개 항목)을 순서대로 확인한다.
+<span class="hlb">2. 끝나면 한 줄로 보고한다: &quot;점검 완료 — 이상 없습니다&quot;</span></pre></div><div class="sk after"><h5>After · release-check/SKILL.md — 증거표 의무</h5><pre><span class="fm">---</span>
+<span class="fmk">name: release-check</span>
+<span class="fmk">description: 배포 전 점검 요청 시 사용 (증거표 첨부 의무)</span>
+<span class="fm">---</span>
+<span class="mdh"># Release Check</span>
+
+<span class="mdh">## 출력 규칙</span>
+<span class="hlg">- **&quot;완료&quot; 선언은 증거표가 채워진 경우에만** 허용한다.</span>
+- 증거표 각 행 (assets/evidence-form.md):
+  `점검 항목 | 실행한 명령 | 출력 원문(3줄 이내) | 판정(PASS/FAIL/미실행)`
+<span class="hlg">- 실행하지 못한 항목은 판정을 `미실행` + 사유로 남긴다. (빈칸·추정 금지)</span>
+<span class="hlg">- 증거가 없는 문장은 리포트에 쓰지 않는다.</span>
+
+<span class="mdh">## 점검 항목 (env/ 기준 5항목 — 실제 사건은 8항목)</span>
+1. 헬스체크: `cat env/health.txt`
+2. 디스크 여유: `cat env/disk.txt`
+3. 백업 존재: `ls env/backups/`
+4. DB 마이그레이션 준비: `cat env/migrate_check.txt` (권한 오류가 심겨 있음 → 미실행 처리)
+5. 설정 검증: `cat env/config_check.txt`
+
+<span class="mdh">## 사람의 확인</span>
+- 증거표만 훑고, &quot;미실행&quot;·&quot;FAIL&quot; 행만 조치 대상으로 넘긴다.</pre></div></div><div class="mini"><h5>After · assets/evidence-form.md — 증거표 양식</h5><pre><span class="mdh"># 배포 전 점검 — 증거표 (완료 선언 전 필수)</span>
+
+| # | 점검 항목 | 실행한 명령 | 출력 원문(3줄 이내) | 판정 |
+|---|-----------|-------------|---------------------|------|
+| 1 | 헬스체크   |             |                     |      |
+| 2 | 디스크     |             |                     |      |
+| 3 | 백업       |             |                     |      |
+| 4 | DB 준비    |             |                     |      |
+| 5 | 설정 검증  |             |                     |      |
+
+&gt; &quot;미실행&quot;은 숨길 일이 아니라 정보다. 빈칸·추정 금지.</pre></div>
+    </details>
   </article>
 </section>
 
