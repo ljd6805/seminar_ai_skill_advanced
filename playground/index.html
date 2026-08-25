@@ -62,8 +62,8 @@
   .case{background:var(--panel);border:1px solid var(--line);border-radius:1rem;
         padding:1.2rem 1.3rem 1.1rem;margin-top:1rem}
   .case>header{display:flex;align-items:flex-start;gap:.9rem;flex-wrap:wrap}
-  .num{flex:none;width:2.3rem;height:2.3rem;border-radius:.65rem;display:grid;place-items:center;
-       font-family:var(--mono);font-weight:700;font-size:1.02rem;color:#0B0E1A}
+  .num{flex:none;height:2.05rem;padding:0 .7rem;border-radius:.6rem;display:grid;place-items:center;
+       font-family:var(--mono);font-weight:700;font-size:.85rem;letter-spacing:.03em;color:#0B0E1A}
   .p1 .num{background:var(--mint)} .p2 .num{background:var(--blue)} .p3 .num{background:var(--yellow)}
   .case h3{font-size:1.08rem;font-weight:800}
   .case h3 em{font-style:normal;font-family:var(--mono);font-weight:500;font-size:.72rem;
@@ -143,9 +143,9 @@
 
 <nav>
   <a href="#howto">사용법</a>
-  <a href="#p1">PART 1 · 절약술 ①~⑤</a>
-  <a href="#p2">PART 2 · 연계술 ⑥~⑨</a>
-  <a href="#p3">PART 3 · 하네스 ⑩~⑬</a>
+  <a href="#p1">PART 1 · 절약술 case01~05</a>
+  <a href="#p2">PART 2 · 연계술 case06~09</a>
+  <a href="#p3">PART 3 · 하네스 case10~13</a>
   <a href="#quick">스크립트 빠른 확인</a>
 </nav>
 
@@ -157,15 +157,15 @@
       <h3>순서</h3>
       <ol class="steps">
         <li>case 의 <b>before/</b>(또는 after/)를 프로젝트 루트로 스킬 도구(opencode 등)를 연다.</li>
-        <li>카드에 <b>준비</b> 태그(노랑)가 있으면 <b>그 명령을 먼저 실행</b>한다 — 일부 case 는 준비 과정이 필요하다 (예: ② 로그 생성, ⑧ 시드 복사).</li>
+        <li>카드에 <b>준비</b> 태그(노랑)가 있으면 <b>그 명령을 먼저 실행</b>한다 — 일부 case 는 준비 과정이 필요하다 (예: case02 로그 생성, case08 시드 복사).</li>
         <li>이어서 <b>요청 문장</b>(파랑 태그)을 그대로 입력한다.</li>
         <li><b>Before → After 순서</b>로 같은 요청을 넣고 차이를 관찰한다.</li>
-        <li>스크립트 있는 case(②⑧⑫)는 에이전트 없이 스크립트만 돌려도 핵심이 보인다.</li>
+        <li>스크립트 있는 case02·case08·case12 는 에이전트 없이 스크립트만 돌려도 핵심이 보인다.</li>
         <li>모든 데이터는 before/·after/ <b>안에</b> 있다 — 폴더 하나만 열면 자립적으로 돈다.</li>
         <li>발동·행동은 모델의 확률적 판단이라 회차마다 다를 수 있다 —
             장면 재현이 아니라 <b>스킬 구조의 차이</b>를 보는 것이 목적.</li>
         <li>이 문서는 시험이 아니라 <b>경험과 케이스 스터디</b>를 위한 것이다 — 각 카드의 <b>SKILL.md 본문 비교</b>와 심은 정답을 먼저 읽고 시작해도 좋다.</li>
-        <li>일부 before 스킬(②④⑫)에는 “직접 읽고 직접 센다 · 스크립트 금지” 같은 <b>재현 장치</b>가 들어 있다 — 요즘 모델은 시키지 않아도 알아서 코드·검색으로 우회하는데, 그 우회가 바로 해당 기법이기 때문이다.</li>
+        <li>일부 before 스킬(case02·case04·case12)에는 “직접 읽고 직접 센다 · 스크립트 금지” 같은 <b>재현 장치</b>가 들어 있다 — 요즘 모델은 시키지 않아도 알아서 코드·검색으로 우회하는데, 그 우회가 바로 해당 기법이기 때문이다.</li>
       </ol>
     </div>
     <div class="card">
@@ -192,7 +192,7 @@ bash playground/reset.sh</pre>
 
   <article class="case p1">
     <header>
-      <span class="num">①</span>
+      <span class="num">case01</span>
       <div><h3>레퍼런스 계층화 <em>Progressive Disclosure</em></h3>
       <p class="one">목차만 싣고, 지식은 문 뒤에 — 비용이 보유량이 아니라 사용량에 비례.</p></div>
       <code class="folder">case01-progressive-disclosure/</code>
@@ -255,7 +255,7 @@ bash playground/reset.sh</pre>
 
   <article class="case p1">
     <header>
-      <span class="num">②</span>
+      <span class="num">case02</span>
       <div><h3>스크립트 위임 <em>Script Offloading</em></h3>
       <p class="one">세는 일은 코드가, 뜻을 읽는 일은 모델이.</p></div>
       <code class="folder">case02-script-offloading/</code>
@@ -318,7 +318,7 @@ bash playground/reset.sh</pre>
 
   <article class="case p1">
     <header>
-      <span class="num">③</span>
+      <span class="num">case03</span>
       <div><h3>외부 기억 <em>External Memory</em></h3>
       <p class="one">대화는 흘러가고, 파일은 남는다.</p></div>
       <code class="folder">case03-external-memory/</code>
@@ -382,7 +382,7 @@ bash playground/reset.sh</pre>
 
   <article class="case p1">
     <header>
-      <span class="num">④</span>
+      <span class="num">case04</span>
       <div><h3>지도 우선 탐색 <em>Map-first Navigation</em></h3>
       <p class="one">읽기는 검색의 결과여야 한다.</p></div>
       <code class="folder">case04-map-first/</code>
@@ -439,7 +439,7 @@ bash playground/reset.sh</pre>
 
   <article class="case p1">
     <header>
-      <span class="num">⑤</span>
+      <span class="num">case05</span>
       <div><h3>분업 요약 <em>Fan-out &amp; Summarize</em></h3>
       <p class="one">쪼개면 컨텍스트는 곱해진다 — 유일한 총량 확장 기법.</p></div>
       <code class="folder">case05-fanout-summarize/</code>
@@ -502,11 +502,11 @@ bash playground/reset.sh</pre>
 <section id="p2" class="p2">
   <h2><span class="bar"></span>PART 2 · 스킬 연계술 — 스킬은 대화가 아니라 파일로 협업한다</h2>
   <p class="lede">하나의 장애 대응 프로세스(수집→분석→초안→검증)를 네 사건으로 이어 완성하는 연작.
-  ⑥무엇을 주고받나 · ⑦순서는 · ⑧믿어도 되나 · ⑨누가 나서나.</p>
+  case06 무엇을 주고받나 · case07 순서는 · case08 믿어도 되나 · case09 누가 나서나.</p>
 
   <article class="case p2">
     <header>
-      <span class="num">⑥</span>
+      <span class="num">case06</span>
       <div><h3>산출물 약속 <em>Artifact Contract</em></h3>
       <p class="one">약속이 있어야 부품이 된다 — 경로·형식·버전.</p></div>
       <code class="folder">case06-artifact-contract/</code>
@@ -522,11 +522,11 @@ bash playground/reset.sh</pre>
         (3섹션 + DIGEST-VERSION: 1)로 저장, 소비자는 버전 확인 후 그것만 근거로.
         버전 줄을 지우고 다시 요청하면 <b>거부</b>하는지 실험해 보라.</div>
     </div>
-    <p class="ans"><b>포인트</b> — 이 약속의 책임은 전달까지. 내용 품질은 ⑧의 몫.</p>
+    <p class="ans"><b>포인트</b> — 이 약속의 책임은 전달까지. 내용 품질은 case08(게이트)의 몫.</p>
   
     <details class="skillview" open>
       <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
-      <ul class="diffnotes"><li>Before: 생산자는 “보여준다”로 끝나고, 소비자의 '요약'은 위치·형식·버전이 미정 — 둘 사이에 인터페이스가 없다.</li><li>After는 <b>새 스킬이 아니라</b> 기존 두 스킬에 약속을 한 절씩 추가한 개조 — 쓰는 쪽(경로·형식·버전), 읽는 쪽(그것만·버전 없으면 거부·없으면 정지).</li><li>“내용의 품질 검사는 이 약속의 몫이 아니다” — 책임 경계를 스킬 본문에 명시해 ⑧(게이트)과 역할을 나눈다.</li></ul>
+      <ul class="diffnotes"><li>Before: 생산자는 “보여준다”로 끝나고, 소비자의 '요약'은 위치·형식·버전이 미정 — 둘 사이에 인터페이스가 없다.</li><li>After는 <b>새 스킬이 아니라</b> 기존 두 스킬에 약속을 한 절씩 추가한 개조 — 쓰는 쪽(경로·형식·버전), 읽는 쪽(그것만·버전 없으면 거부·없으면 정지).</li><li>“내용의 품질 검사는 이 약속의 몫이 아니다” — 책임 경계를 스킬 본문에 명시해 case08(게이트)과 역할을 나눈다.</li></ul>
       <div class="skgrid"><div class="sk before"><h5>Before · log-digest/SKILL.md (생산자) — 화면에 출력하고 끝</h5><pre><span class="fm">---</span>
 <span class="fmk">name: log-digest</span>
 <span class="fmk">description: 로그 요약·원인 분석 요청 시 사용</span>
@@ -582,7 +582,7 @@ bash playground/reset.sh</pre>
 
   <article class="case p2">
     <header>
-      <span class="num">⑦</span>
+      <span class="num">case07</span>
       <div><h3>파이프라인 스킬 <em>Pipeline Orchestrator</em></h3>
       <p class="one">프로세스도 스킬이다 — 순서를 아는 스킬은 하나면 된다.</p></div>
       <code class="folder">case07-pipeline/</code>
@@ -595,9 +595,9 @@ bash playground/reset.sh</pre>
         리포트를 시키면 "원인 미상" 리포트가 그대로 발행된다.</div>
       <div class="a"><h4>AFTER 관찰</h4>지휘자 incident-flow가 단계표대로 1→4 자동 진행,
         단계마다 산출물 경로 한 줄 보고. digest·analysis만 남기고 재시작하면
-        <b>3단계부터 재개</b>되는지 확인(③의 원리).</div>
+        <b>3단계부터 재개</b>되는지 확인(case03 의 원리).</div>
     </div>
-    <p class="ans"><b>포인트</b> — 단계를 잇는 화살표가 ⑥의 산출물 약속이다.</p>
+    <p class="ans"><b>포인트</b> — 단계를 잇는 화살표가 case06 의 산출물 약속이다.</p>
   
     <details class="skillview" open>
       <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
@@ -673,7 +673,7 @@ bash playground/reset.sh</pre>
 
   <article class="case p2">
     <header>
-      <span class="num">⑧</span>
+      <span class="num">case08</span>
       <div><h3>게이트 체크 <em>Stage Gate</em></h3>
       <p class="one">약속이 형식을 본다면, 게이트는 내용을 본다.</p></div>
       <code class="folder">case08-stage-gate/</code>
@@ -693,7 +693,7 @@ bash playground/reset.sh</pre>
   
     <details class="skillview" open>
       <summary>SKILL.md 본문 비교 — 무엇이 달라졌나</summary>
-      <ul class="diffnotes"><li>Before 1번: “analysis.md 를 근거로 쓴다” — 입력을 무조건 신뢰하고 시작한다.</li><li>After 1번: 쓰기 전에 gate.py 실행 — <b>검사가 절차의 첫 줄</b>로 들어왔다. 약속(⑥)이 겉모습을 보면, 게이트는 내용을 본다.</li><li>“FAIL → 진행하지 않는다” + 반려 문구 형식 + PASS 로그 첨부 — 판정과 반려 사유가 기록으로 남는다.</li></ul>
+      <ul class="diffnotes"><li>Before 1번: “analysis.md 를 근거로 쓴다” — 입력을 무조건 신뢰하고 시작한다.</li><li>After 1번: 쓰기 전에 gate.py 실행 — <b>검사가 절차의 첫 줄</b>로 들어왔다. 약속(case06)이 겉모습을 보면, 게이트는 내용을 본다.</li><li>“FAIL → 진행하지 않는다” + 반려 문구 형식 + PASS 로그 첨부 — 판정과 반려 사유가 기록으로 남는다.</li></ul>
       <div class="skgrid"><div class="sk before"><h5>Before · incident-report/SKILL.md — 검사 없는 신뢰</h5><pre><span class="fm">---</span>
 <span class="fmk">name: incident-report</span>
 <span class="fmk">description: 장애 리포트 작성 시 사용</span>
@@ -725,7 +725,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py  ← 이전 산출물 �
 
   <article class="case p2">
     <header>
-      <span class="num">⑨</span>
+      <span class="num">case09</span>
       <div><h3>라우터 스킬 <em>Router Skill</em></h3>
       <p class="one">전문가가 많을수록 접수 창구가 필요하다.</p></div>
       <code class="folder">case09-router/</code>
@@ -813,7 +813,7 @@ test-report      테스트 결과 집계·주간 리포트 작성 시 사용</pr
 
   <article class="case p3">
     <header>
-      <span class="num">⑩</span>
+      <span class="num">case10</span>
       <div><h3>자가 리뷰 루프 <em>Self-Review Loop</em></h3>
       <p class="one">같은 모델, 다른 프레임 — 혼자서 하는 페어 리뷰.</p></div>
       <code class="folder">case10-self-review/</code>
@@ -871,7 +871,7 @@ test-report      테스트 결과 집계·주간 리포트 작성 시 사용</pr
 
   <article class="case p3">
     <header>
-      <span class="num">⑪</span>
+      <span class="num">case11</span>
       <div><h3>반박 검증 <em>Adversarial Check</em></h3>
       <p class="one">반박에서 살아남은 결론만 결론이다.</p></div>
       <code class="folder">case11-adversarial/</code>
@@ -927,7 +927,7 @@ test-report      테스트 결과 집계·주간 리포트 작성 시 사용</pr
 
   <article class="case p3">
     <header>
-      <span class="num">⑫</span>
+      <span class="num">case12</span>
       <div><h3>기계 채점 하네스 <em>Script-Judged Gate</em></h3>
       <p class="one">말로 통과하지 말고, 채점으로 통과하라.</p></div>
       <code class="folder">case12-script-judged/</code>
@@ -986,7 +986,7 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</pre></div></div>
 
   <article class="case p3">
     <header>
-      <span class="num">⑬</span>
+      <span class="num">case13</span>
       <div><h3>증거 기반 완료 <em>Evidence-based Done</em></h3>
       <p class="one">증거가 없으면 완료가 아니다 — 말 대신 영수증.</p></div>
       <code class="folder">case13-evidence-done/</code>
@@ -1053,18 +1053,18 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</pre></div></div>
 <!-- ══════════════ quick ══════════════ -->
 <section id="quick">
   <h2><span class="bar"></span>스크립트만 빠르게 확인</h2>
-  <p class="lede">에이전트 없이도 ②⑧⑫의 핵심 장치를 30초 만에 확인할 수 있다.</p>
-<pre><span class="c"># ② 로그 집계 — 심은 정답(1,842 · 317 · 02:14)이 그대로 나온다</span>
+  <p class="lede">에이전트 없이도 case02·case08·case12 의 핵심 장치를 30초 만에 확인할 수 있다.</p>
+<pre><span class="c"># case02 · 로그 집계 — 심은 정답(1,842 · 317 · 02:14)이 그대로 나온다</span>
 cd case02-script-offloading/after
 python3 tools/make_log.py --lines 50000 --out /tmp/r.log
 python3 .opencode/skills/log-digest/scripts/digest.py /tmp/r.log
 
-<span class="c"># ⑧ 단계 게이트 — bad는 FAIL·반려, good은 PASS</span>
+<span class="c"># case08 · 단계 게이트 — bad는 FAIL·반려, good은 PASS</span>
 cd case08-stage-gate/after
 python3 .opencode/skills/incident-report/scripts/gate.py output/analysis.bad.md   <span class="r"># FAIL</span>
 python3 .opencode/skills/incident-report/scripts/gate.py output/analysis.good.md  <span class="g"># PASS</span>
 
-<span class="c"># ⑫ 리포트 채점 — 합계·섹션·금지 문구를 코드가 판정</span>
+<span class="c"># case12 · 리포트 채점 — 합계·섹션·금지 문구를 코드가 판정</span>
 cd case12-script-judged/after
 python3 .opencode/skills/test-report/scripts/validate.py output/test-report.bad.md   <span class="r"># FAIL</span>
 python3 .opencode/skills/test-report/scripts/validate.py output/test-report.good.md  <span class="g"># PASS</span></pre>
