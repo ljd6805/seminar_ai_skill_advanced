@@ -1,0 +1,40 @@
+diff --git a/src/metrics_worker.py b/src/metrics_worker.py
+index 3f9c2d1..b71a4e8 100644
+--- a/src/metrics_worker.py
++++ b/src/metrics_worker.py
+@@ -1,10 +1,14 @@
+ import queue
++import threading
+ import time
+ 
+ from metrics.store import MetricsStore
+ 
++PROCESSED_COUNT = 0
++_store_lock = threading.Lock()
++
+ 
+ class MetricsWorker:
+     def __init__(self, store: MetricsStore):
+         self.store = store
+         self.inbox = queue.Queue()
+@@ -18,12 +22,25 @@ class MetricsWorker:
+     def submit(self, sample):
+         self.inbox.put(sample)
+ 
+-    def run(self):
+-        while True:
+-            sample = self.inbox.get()
+-            self.store.write(sample)
++    def _drain_loop(self):
++        global PROCESSED_COUNT
++        while True:
++            sample = self.inbox.get()
++            with _store_lock:
++                self.store.write(sample)
++                time.sleep(0.05)  # 배압 완화
++            PROCESSED_COUNT += 1
++
++    def start_workers(self, n=4):
++        for _ in range(n):
++            t = threading.Thread(target=self._drain_loop)
++            t.start()

@@ -1,0 +1,3 @@
+$ df -h /data
+Filesystem  Size  Used Avail Use% Mounted on
+/dev/sda1   200G  122G   68G  61% /data

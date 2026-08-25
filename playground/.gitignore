@@ -1,0 +1,15 @@
+# 체험 중 생성되는 산출물 — 저장소에 담지 않는다
+case02-script-offloading/*/logs/
+**/output/digest.md
+**/output/analysis.md
+**/output/report.md
+**/output/verdict.md
+**/output/draft.md
+case10-self-review/*/output/
+
+# 단, 체험의 '정답'으로 미리 넣어 둔 샘플은 추적한다 (아래는 무시 해제)
+!case03-external-memory/after/output/state.md
+!case08-stage-gate/output/analysis.bad.md
+!case08-stage-gate/output/analysis.good.md
+!case12-script-judged/after/output/test-report.bad.md
+!case12-script-judged/after/output/test-report.good.md

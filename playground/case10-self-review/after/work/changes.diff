@@ -1,0 +1,20 @@
+diff --git a/api/session.py b/api/session.py
+index a1b2c3d..e4f5a6b 100644
+--- a/api/session.py
++++ b/api/session.py
+@@ -12,7 +12,7 @@ SESSION_TTL = 3600
+ 
+ def create_session(user_id):
+-    token = _legacy_token()
++    token = secrets.token_urlsafe(32)     # 예측 가능 난수 → CSPRNG 로 교체
+     store.put(token, user_id, ttl=SESSION_TTL)
+     return token
+ 
+@@ -20,6 +20,10 @@ def create_session(user_id):
+ def validate_session(token):
+-    return store.get(token) is not None
++    rec = store.get(token)
++    if rec is None:
++        return False
++    store.touch(token, ttl=SESSION_TTL)   # 슬라이딩 만료로 변경
++    return True

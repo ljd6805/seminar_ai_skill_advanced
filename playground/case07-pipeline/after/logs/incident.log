@@ -1,0 +1,9 @@
+2026-08-24 02:05:11.001 INFO  [gateway] health ok
+2026-08-24 02:11:03.212 ERROR [payments] TimeoutError: upstream stage-pay no response in 30s
+2026-08-24 02:11:59.870 ERROR [payments] TimeoutError: upstream stage-pay no response in 30s
+2026-08-24 02:12:40.114 ERROR [auth] CertificateError: certificate has expired (CN=stage-pay)
+2026-08-24 02:13:02.550 ERROR [payments] TimeoutError: upstream stage-pay no response in 30s
+2026-08-24 02:14:21.900 ERROR [auth] CertificateError: certificate has expired (CN=stage-pay)
+2026-08-24 02:14:55.010 ERROR [payments] ConnectionResetError: peer closed (stage-pay)
+2026-08-24 02:16:10.777 ERROR [auth] CertificateError: certificate has expired (CN=stage-pay)
+2026-08-24 02:20:31.334 WARN  [gateway] circuit-breaker open for stage-pay
