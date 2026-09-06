@@ -2210,7 +2210,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.7rem">
         <p class="note" style="margin:0; border-top:none; padding-top:0">스킬은 절차대로 움직였습니다 — <b>무너진 곳은 스킬 바깥</b>입니다.</p>
-        <button class="pill" onclick="simReplay(this)" style="cursor:pointer">↻ 다시 재생</button>
+        <button class="pill" onclick="simReplay(this)" style="cursor:pointer;flex-shrink:0;white-space:nowrap">↻ 다시 재생</button>
       </div>
     </section>
 
@@ -4279,7 +4279,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem">
         <p class="note" style="margin:0; border-top:none; padding-top:0">도해는 수집·분석·보고 3단계만 표시합니다. 실제 절차의 최종 검증(4단계)은 유지합니다. 자동 반려·재시도에는 별도 실행기와 재시도 상한이 필요합니다.<b></b></p>
-        <button class="pill" onclick="simReplay(this)" style="cursor:pointer">↻ 다시 재생</button>
+        <button class="pill" onclick="simReplay(this)" style="cursor:pointer;flex-shrink:0;white-space:nowrap">↻ 다시 재생</button>
       </div>
     </section>
 
@@ -5054,7 +5054,7 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
 · 증거가 없는 문장은 리포트에 쓰지 않는다.</div><div class="mkbox good"><span class="mkt">핵심 변경 ② — 미실행 정직 표기</span><span class="padd">＋</span> · 미시도는 "미실행", 실행 중 오류는 "ERROR"와 사유를 남긴다.<span class="t-str"></span>
   <span class="t-out">(빈칸·추정 금지 — 미실행은 숨길 일이 아니라 정보다)</span></div>
 <span class="t-hl">## 증거표 작성 예 (SERVICE_URL: 실제 대상 URL; 시각·종료 코드·전체 로그 별도 기록)</span>
-#1 헬스체크 | curl -sS -o health.body -w "%{http_code}" "$SERVICE_URL/health" | 200 OK | PASS
+#1 헬스체크 | curl -sS -o health.body -w "%{http_code}" "$SERVICE_URL/health" | 200 | PASS
 #4 DB 준비  | migrate --check | 권한 오류(13) | ERROR<b></b>
 
 <span class="t-hl">## 사람의 확인</span>
