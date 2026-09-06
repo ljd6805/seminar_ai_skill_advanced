@@ -26,8 +26,10 @@ AI Agent 팀 세미나 시리즈 **4편 — SKILL 심화** 의 발표 자료 저
 
 | 문서 | 설명 |
 |---|---|
-| [`docs/seminar-synopsis.md`](docs/seminar-synopsis.md) | 이론편 시놉시스 v0.8 — 핵심 메시지, 전개 원칙(사건 서사), 사건 카탈로그(문제 예시→원인→해결), 장별 구성, 시간 배분, 실습 연계 계획, 결정 기록. **슬라이드 작성의 기준 문서** |
-| [`slides/index.html`](slides/index.html) | 이론편 슬라이드 v0.8 (73장, 단일 흐름) — reveal.js 자립형(오프라인 동작), 1·2·3편과 동일한 테마 상속(Wanted Sans Variable + JetBrains Mono 임베드). 사건마다 문제·해결 리플레이 애니메이션, 원인 차트, **원리 도해 애니메이션**(목차와 본문·검문 게이트·창 분할 등 사건별 은유) 포함 |
+| [문서 안내](docs/index.html) | 교정 계획·검토 결과·시놉시스 진입점 |
+| [논리 교정 내역](docs/logic-correction-report.html) | v0.9 수정 근거·적용 조건·공식 출처·검증 범위 |
+| [`docs/seminar-synopsis.md`](docs/seminar-synopsis.md) | 이론편 시놉시스 v0.9 — 핵심 메시지, 전개 원칙(사건 서사), 사건 카탈로그(문제 예시→원인→해결), 장별 구성, 시간 배분, 실습 연계 계획, 결정 기록. **슬라이드 작성의 기준 문서** |
+| [`slides/index.html`](slides/index.html) | 이론편 슬라이드 v0.9 (73장, 단일 흐름) — reveal.js 자립형(오프라인 동작), 1·2·3편과 동일한 테마 상속(Wanted Sans Variable + JetBrains Mono 임베드). 사건마다 문제·해결 리플레이 애니메이션, 원인 차트, **원리 도해 애니메이션**(목차와 본문·검문 게이트·창 분할 등 사건별 은유) 포함 |
 | [`playground/`](playground/) | **13기법 case별 체험 키트** — 각 사건을 직접 손으로 돌려보는 개인 체험용 워크스페이스. case마다 `before/`(문제의 스킬)·`after/`(해결된 스킬) 를 나란히 두고, 동작하는 스크립트(`digest.py`·`gate.py`·`validate.py`)와 정답이 심긴 샘플 데이터를 포함. 체험 가이드: [`playground/index.html`](playground/index.html) (Pages: `…/playground/`). ※ 세미나 실습편과는 **별개**의 비공식 부속물 |
 
 GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced/slides/`
@@ -36,12 +38,26 @@ GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced
 
 - [x] 주제 선정 및 기법 카탈로그 확정 (13기법 · 3파트 — 확산(팩토리)은 범위 제외)
 - [x] 이론편 논리 구조 확정 (문제 주도형 사건 서사 — 문제예시→문제제기→원인분석→해결→기술소개)
-- [x] 시놉시스 v0.8
-- [x] 이론편 슬라이드 v0.8 (73장 — 2편 5이론 복습 · 사건 13건 × [문제·해결·원리 도해·Before/After], PART 2 "연결의 네 질문" 정리, PART 3 마무리 "하나의 흐름"(부품→라인→검사) 파트 연계 정리, 256k 가계부·파이프라인 시네마·결함 낙하 그물 애니메이션, 선택 지도·종합 사례·부록 요약표)
-- [ ] 슬라이드 검토·보강 ← **다음 단계**
+- [x] 시놉시스 v0.9
+- [x] 이론편 슬라이드 v0.9 (73장 — 2편 5이론 복습 · 사건 13건 × [문제·해결·원리 도해·Before/After], PART 2 "연결의 네 질문" 정리, PART 3 마무리 "하나의 흐름"(부품→라인→검사) 파트 연계 정리, 256k 가계부·파이프라인 시네마·결함 낙하 그물 애니메이션, 선택 지도·종합 사례·부록 요약표)
+- [x] 논리 교정 — 73장·13사건·전문 유지, 스킬과 실습 검사기 정렬
+- [ ] 리허설 및 운영 환경별 재현 확인
 - [ ] 리허설 및 시간 조정
 - [ ] 실습편 (Skill Quest 심화 시즌) 기획 — 미션 구성·레벨 체계·일정
 
 ## 작성 원칙
 
 슬라이드는 `docs/seminar-synopsis.md` 의 장 구조를 그대로 따른다. 시놉시스와 슬라이드가 어긋나면 시놉시스를 먼저 갱신한다.
+
+
+## 예시의 가정과 검증 범위
+
+73장·13기법·Before/After 전문을 유지한다. 리플레이와 수치 게이지는 교육용 예시이며 성능 실측 결과가 아니다. 256k는 이 자료의 환경 가정이다. SKILL은 절차를 안내하며 강제 실행·차단은 별도 실행기나 훅이 담당한다.
+
+`gate.py`의 PASS는 최소 작성 조건 검사다. `validate.py`는 원본 CSV와 요약·suite별 결과표까지 대조하지만 원인 해석이나 원본 데이터 자체의 진실성은 검증하지 않는다. 상세 범위는 [교정 내역](docs/logic-correction-report.html)에 명시했다.
+
+저장소 루트에서 검사기 회귀 테스트 실행:
+
+```bash
+python3 -m unittest discover -s tests -v
+```

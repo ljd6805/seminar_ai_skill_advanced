@@ -2052,7 +2052,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
 .nf-chip.okc { border-color:rgba(43,234,208,0.7); background:#0C2622; color:#C5FFF5 !important; }
 .netfall .net-row { position:relative; z-index:1; }
 </style>
-</head>
+<style>.logic-reference{position:fixed;top:12px;right:18px;z-index:50;color:#c5d4ef;font:12px system-ui;text-decoration:none;background:#11182acc;padding:6px 10px;border-radius:6px}@media print{.logic-reference{display:none}}</style></head>
 <body>
 
 <div id="hero-bg" aria-hidden="true">
@@ -2062,7 +2062,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
   <div class="hb-vignette"></div>
 </div>
 
-<div id="secfoot"></div>
+<div id="secfoot"></div><a class="logic-reference" href="../docs/logic-correction-report.html">v0.9 · 예시 가정·검사 범위·출처</a>
 
 <div class="reveal">
   <div class="slides">
@@ -2072,7 +2072,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
       <h1 class="autoshow fade-up" style="font-size:4.4rem">스킬 하나에서,<br><span class="grad">스킬 시스템으로</span></h1>
       <p class="autoshow fade-up" style="font-size:1.42rem; margin-top:1.1rem">열세 개의 <b>사건</b>에서 출발합니다 — 문제를 목격하고, 원인을 분석하고, 해결한 뒤에야 기법의 이름을 부릅니다.</p>
       <div class="meta autoshow fade-up">
-        <span><b>발표자</b> 이종덕</span><span><b>세션</b> 이론편 (실습편 별도 예정)</span><span><b>ver</b> 0.3 사건 서사 개편</span>
+        <span><b>발표자</b> 이종덕</span><span><b>세션</b> 이론편 (실습편 별도 예정)</span><span><b>ver</b> 0.9 논리·예제 정합성 교정</span>
       </div>
     </section>
 
@@ -2113,7 +2113,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
           <div class="t5g">
             <span class="m"><span class="t-hl">.opencode/skills/</span><br>└ <span class="t-str">&lt;이름&gt;</span>/<br>&nbsp;&nbsp;└ <span class="t-key">SKILL.md</span></span>
           </div>
-          <span class="t5d">폴더 하나에 파일 하나.<br><b>폴더 이름이 곧 스킬 이름</b>이고, 파일 이름은 반드시 SKILL.md.</span>
+          <span class="t5d">폴더 하나에 SKILL.md 하나.<br>frontmatter에 <b>name·description</b>을 적고, name은 폴더 이름과 맞춘다.</span>
         </div>
         <div class="t5 autoshow fade-up">
           <div class="t5h"><span class="tk-n">2</span>트리거링</div>
@@ -2122,7 +2122,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
             <span class="fl-arr" style="font-size:0.8rem">요청과 대조 ▼</span>
             <span class="vlab pass" style="font-size:0.7rem">발동</span>
           </div>
-          <span class="t5d"><b>발동 여부는 description이</b>,<br>결과 품질은 본문이 정한다.</span>
+          <span class="t5d">description은 <b>선택의 단서</b>이고,<br>본문은 실행 지침이다. 모델·도구·권한도 영향을 준다.</span>
         </div>
         <div class="t5 autoshow fade-up">
           <div class="t5h"><span class="tk-n">3</span>5요소 본문</div>
@@ -2155,7 +2155,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
           <div class="t5h" style="color:#7FE8D8">＋&nbsp; 오늘 — 심화</div>
           <div class="t5g">
             <span class="tkb-row" style="justify-content:center"><span class="tkb b1">①~⑤</span><span class="tkb b2">⑥~⑨</span><span class="tkb b3">⑩~⑬</span></span>
-            <span class="m" style="color:#A9FFF0 !important; font-weight:700">14가지 기법 · 4개 파트</span>
+            <span class="m" style="color:#A9FFF0 !important; font-weight:700">13가지 기법 · 3개 파트</span>
           </div>
           <span class="t5d">이 문법 위에 <b>컨텍스트 · 연계 · 검증</b>의<br>기법들을 조립합니다.</span>
         </div>
@@ -2176,7 +2176,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
               <div class="ska-log"><span class="sh-ok">READ</span> logs/regression.log <span class="sh-dim">— 50만 줄</span></div>
               <div class="ska-log"><span class="ska-danger">⚠ 한도 초과 — 12%에서 중단</span></div>
               <div class="ska-log"><span class="sh-agent">AGENT</span> "Timeout이 많아 보입니다" <span class="sh-dim">(추정)</span></div>
-              <div class="ska-log"><span class="ska-danger">실제 1위는 Assertion — 오답</span></div>
+              <div class="ska-log"><span class="ska-danger">샘플의 1위는 Assertion — 오답</span></div>
             </div>
           </div>
           <div style="text-align:center"><span class="pill green">→ 컨텍스트가 모자라다</span></div>
@@ -2200,7 +2200,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
             <div class="term-body" style="line-height:1.9; font-size:0.8rem; padding:0.75rem 0.9rem">
               <div class="ska-log"><span class="sh-agent">AGENT</span> "리포트 완료했습니다."</div>
               <div class="ska-log"><span class="ska-danger">CHECK '재현 절차' 누락</span></div>
-              <div class="ska-log"><span class="ska-danger">CHECK 12+3=15 ≠ 17 — 합계 불일치</span></div>
+              <div class="ska-log"><span class="ska-danger">CHECK 12+3+0=15 ≠ 17 — SKIP 2건 누락</span></div>
               <div class="ska-log"><span class="sh-req">USER</span> 결국 처음부터 재확인…</div>
               <div class="ska-log"><span class="sh-dim">"완료"라는 말만 남았다</span></div>
             </div>
@@ -2254,7 +2254,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
     <!-- 5 · 256k 가계부 -->
     <section data-sec="도입 · 컨텍스트 예산">
       <div><span class="chip">256k의 현실</span></div>
-      <h2>컨텍스트는 <span class="grad">예산</span>입니다 — 가득 차면, 오래된 기억부터 사라집니다</h2>
+      <h2>컨텍스트는 <span class="grad">예산</span>입니다. 압축 중 세부 정보가 줄어들 수 있습니다</h2>
       <div class="grid-2" style="margin-top:0.9rem; grid-template-columns:1.15fr 0.85fr; align-items:stretch">
         <div class="sim autoshow fade-left">
           <div class="ctx-win">
@@ -2267,20 +2267,20 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
             <span class="ctx-chip k7">지금 질문 + 답변 여유분</span>
           </div>
           <div class="ctx-gauge"><span>0</span><span class="cg-bar"><i></i></span><span>256k</span></div>
-          <p class="sim-cap ctx-cap">한도에 가까워지면 <b style="color:#FF94AC">오래된 내용부터 요약되거나 지워집니다</b> — 초반에 정한 규칙과 애써 읽어 둔 파일이 가장 먼저 희미해집니다.</p>
+          <p class="sim-cap ctx-cap">한도에 가까워지면 설정에 따라 대화 요약이나 도구 출력 정리가 일어납니다. 중요한 결정과 근거는 다시 확인해야 합니다.<b style="color:#FF94AC"></b></p>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="panel autoshow fade-right" style="justify-content:center; gap:0.7rem">
           <div class="phead">이 그림이 말해 주는 세 가지 원칙</div>
           <ul class="ol" style="flex:none">
-            <li class="show"><span class="ix">원칙 1</span><span class="lb"><b>기본 점유를 줄인다</b> — 스킬은 목차만 남긴다</span></li>
+            <li class="show"><span class="ix">원칙 1</span><span class="lb"><b>기본 점유를 줄인다</b> — 스킬 목록에는 이름·설명을 노출한다</span></li>
             <li class="show"><span class="ix">원칙 2</span><span class="lb"><b>원본은 밖에서 처리한다</b> — 큰 데이터는 컨텍스트에 넣지 않는다</span></li>
             <li class="show"><span class="ix">원칙 3</span><span class="lb"><b>기억은 파일에 남긴다</b> — 대화에 맡기지 않는다</span></li>
           </ul>
           <p class="small dim" style="margin-top:0.2rem">PART 1의 다섯 사건이 모두 이 세 원칙으로 풀립니다.</p>
         </div>
       </div>
-      <p class="note autoshow fade-up" style="margin-top:0.8rem">256k 토큰은 한글 문서로 치면 수백 페이지 분량이지만, <b>코드와 로그는 이 공간을 순식간에</b> 채웁니다. 칸의 비율은 이해를 돕기 위한 그림이며, 실제 구성은 환경마다 다릅니다.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.8rem">256k는 이 세미나의 환경 가정입니다. 실제 한도·압축·도구 출력 제한은 모델과 설정마다 다릅니다. 그림의 기본 점유 비율은 설명용이며, 종료한 세션의 저장 기록과 현재 모델 입력은 구분합니다.</p>
     </section>
 
     <!-- 6 · 진행 방식 -->
@@ -2291,7 +2291,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
         <div class="panel autoshow fade-left" style="gap:0.5rem; border-color:rgba(255,122,149,0.4)">
           <div class="phead bad">1 · 문제 장 — 사건을 목격합니다</div>
           <ul class="ol" style="flex:none">
-            <li class="show"><span class="ix">예시</span><span class="lb"><b>구체적 상황 재현</b> — 실제 요청, 실제 실패 로그</span></li>
+            <li class="show"><span class="ix">예시</span><span class="lb"><b>구체적 상황 재현</b> — 구체적 요청, 교육용 실패 재현</span></li>
             <li class="show"><span class="ix">원인</span><span class="lb"><b>원인 분석</b> — 문제의 스킬 원문과 함께 (구조·수치)</span></li>
           </ul>
         </div>
@@ -2326,11 +2326,11 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
       <ul class="ol autoshow fade-up" style="margin-top:1.4rem; max-width:46rem; flex:none">
         <li class="show"><span class="ix">사건 ①</span><span class="lb">스킬을 부를 때마다 규칙 30페이지가 실린다</span></li>
         <li class="show"><span class="ix">사건 ②</span><span class="lb">로그 50만 줄은 읽지도, 세지도 못한다</span></li>
-        <li class="show"><span class="ix">사건 ③</span><span class="lb">작업 3시간째, 에이전트가 첫 결정을 잊는다</span></li>
+        <li class="show"><span class="ix">사건 ③</span><span class="lb">작업 장기 작업 중 중요한 결정의 재확인이 필요하다</span></li>
         <li class="show"><span class="ix">사건 ④</span><span class="lb">설명 하나에 리포 절반을 읽는다</span></li>
         <li class="show"><span class="ix">사건 ⑤</span><span class="lb">아무리 아껴도 한 번에 안 들어간다</span></li>
       </ul>
-      <p class="autoshow fade-up" style="margin-top:1.2rem; font-size:1.2rem; color:var(--fg-soft) !important">공통 원리 — <b style="color:#fff">컨텍스트에는 결론만 들여보낸다.</b></p>
+      <p class="autoshow fade-up" style="margin-top:1.2rem; font-size:1.2rem; color:var(--fg-soft) !important">공통 원리 — <b style="color:#fff">컨텍스트에는 필요한 근거와 요약을 들여보낸다.</b></p>
     </section>
 
     <!-- 8 · 사건 ① 문제 -->
@@ -2349,20 +2349,20 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — 컨벤션 리뷰 스킬 (규칙을 본문에 전부 넣은 버전)</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — 컨벤션 리뷰 스킬 (규칙을 본문에 전부 넣은 버전)</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-req">USER</span>  "이 diff 컨벤션 리뷰해줘" <span class="sh-dim">— 변경은 스레드 코드 한 곳</span></div>
               <div class="ska-log"><span class="sh-ok">LOAD</span>  convention-review — SKILL.md <span class="sh-dim">(규칙 30페이지 포함)</span></div>
               <div class="ska-log"><span class="ska-danger">+38,000 토큰</span> <span class="sh-dim">— 네이밍·예외·동시성… 전부 로드</span></div>
               <div class="ska-log"><span class="sh-dim">이번 리뷰에 실제로 쓰인 규칙: 동시성 한 장 (약 2,000 토큰)</span></div>
-              <div class="ska-log"><span class="sh-agent">AGENT</span> 리뷰 완료 <span class="sh-dim">— 이 대화, 세 번 만에 한도 근접</span></div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> 리뷰 완료 <span class="sh-dim">— 다른 대화·도구 출력까지 누적되어 한도 근접</span></div>
               <div class="ska-log"><span class="ska-danger">⚠ 다음 요청부터 초반 대화 컴팩션 시작</span></div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term badsk" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">문제의 스킬 — convention-review/SKILL.md (당시 형태)</span></div>
+          <div class="term-bar"><span class="term-title">문제의 스킬 — convention-review/SKILL.md (문제 재현용 형태)</span></div>
           <div class="term-body"><span class="t-out">---</span>
 <span class="t-key">name:</span> <span class="t-str">convention-review</span>
 <span class="t-key">description:</span> <span class="t-str">코드 컨벤션 리뷰 요청 시 사용</span>
@@ -2402,7 +2402,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 요청, 지식을 references/로 분리한 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 요청, 지식을 references/로 분리한 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-req">USER</span>  "이 diff 컨벤션 리뷰해줘"</div>
               <div class="ska-log"><span class="sh-ok">LOAD</span>  convention-review — SKILL.md 40줄 <span class="sh-dim">(+900 토큰)</span></div>
@@ -2410,13 +2410,13 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
               <div class="ska-log"><span class="sh-ok">READ</span>  references/concurrency.md <span class="sh-dim">만 (+2,400 토큰)</span></div>
               <div class="ska-log"><span class="sh-dim">naming.md · error-handling.md — 끝까지 읽히지 않음</span></div>
               <div class="ska-log"><span class="sh-agent">AGENT</span> 지적 2건 — 근거: concurrency.md §3</div>
-              <div class="ska-log"><span class="sh-ok">DONE</span>  총 3,300 토큰 <span class="sh-dim">— 이전의 1/11</span> ✓</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  총 3,300 토큰 <span class="sh-dim">— 기존 추가분의 약 8.7%</span> ✓</div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 스킬 — convention-review/ (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — convention-review/ (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">convention-review/</span>
 ├─ <span class="t-key">SKILL.md</span>              <span class="t-out">← 절차 40줄, 목차 역할</span>
 └─ <span class="t-key">references/</span>
@@ -2435,7 +2435,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
       <div class="tname p1">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ① 레퍼런스 계층화</span><span class="tn-en">Progressive Disclosure</span></div>
         <p class="tn-one"><b>목차만 싣고, 지식은 문 뒤에.</b> 지식 비용이 보유한 전체 분량이 아니라 <b>이번 작업에 쓰인 분량</b>에 비례하게 됩니다.</p>
-        <div class="pills"><span class="pill green">기본 점유 ≈ 수십 토큰</span><span class="pill neutral">기준 개정 = 파일 교체</span></div>
+        <div class="pills"><span class="pill green">발동 전: 이름·설명</span><span class="pill neutral">기준 개정 = 파일 교체</span></div>
       </div>
     </section>
 
@@ -2451,7 +2451,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
           <span class="ska-cell"><span class="n">5</span>전체 점검</span>
         </div>
       </div>
-      <h2><span class="tkb b1" style="margin-right:0.5rem">①</span>레퍼런스 계층화 — <span class="grad">목차는 늘, 본문은 그때만</span></h2>
+      <h2><span class="tkb b1" style="margin-right:0.5rem">①</span>레퍼런스 계층화 — <span class="grad">이름·설명은 먼저, 본문·참조는 필요할 때</span></h2>
       <div class="scn sim mech" style="grid-template-columns:0.88fr 1.12fr; margin-top:0.8rem">
         <div class="scn-p bad">
           <span class="scn-tag">기존 — 한 권 통째</span>
@@ -2463,10 +2463,10 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
             <span class="fl-arr bad h0 ain" style="--dly:0.4s">→<small>발동 = 전부 로드</small></span>
             <div class="mwin hot h0 ain" style="--dly:0.4s">
               <span class="mw-t"><span>컨텍스트</span><b>+38k</b></span>
-              <div class="g red afill" style="--w:94%; --dly:0.8s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>94%</b></div></div>
+              <div class="g red afill" style="--w:14.84%; --dly:0.8s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>256k 대비 추가분</span><b>14.84%</b></div></div>
             </div>
           </div>
-          <p class="scn-cap">이번에 쓸 규칙은 <b>한 편</b>인데, 서른 페이지가 <b>함께</b> 들어옵니다.</p>
+          <p class="scn-cap">이 예시는 규칙 본문 38k 토큰을 전부 읽는 경우입니다. 기존 대화·시스템 지침의 점유는 포함하지 않습니다.</p>
         </div>
         <div class="scn-p good g1">
           <span class="scn-tag">레퍼런스 계층화 — 목차 따로, 본문 따로</span>
@@ -2485,15 +2485,15 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
               <span class="fl-arr ok h0 ain" style="--dly:3.5s">→<small>그때 읽기</small></span>
               <div class="mwin cool h0 ain" style="--dly:3.5s">
                 <span class="mw-t"><span>컨텍스트</span><b>+3.3k</b></span>
-                <div class="g afill" style="--w:8%; --dly:3.9s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>이전의 1/11</b></div></div>
+                <div class="g afill" style="--w:1.29%; --dly:3.9s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>256k 대비 추가분</span><b>1.29%</b></div></div>
               </div>
             </div>
           </div>
-          <p class="scn-cap"><b>목차는 늘 실리고</b>, 본문(references/)은 <b>조건이 맞은 파일만</b> 펼칩니다 — 펴지 않은 본문은 비용 0.</p>
+          <p class="scn-cap">발동 전에는 <b>name·description</b>, 발동 후에는 SKILL.md, 필요할 때 references/를 읽습니다. SKILL.md 900 + 참조 2,400 = 3,300토큰이라는 가정입니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
-      <p class="note" style="margin-top:0.4rem">지식 비용이 <b>보유량이 아니라 사용량에 비례</b>하게 됩니다 — 규칙이 100페이지로 늘어도 스킬은 그대로입니다.</p>
+      <p class="note" style="margin-top:0.4rem">지식을 분리하면 필요한 부분만 읽을 수 있습니다. 실제 절약량은 선택한 규칙과 토크나이저에 따라 달라집니다. 3.3k는 38k의 약 8.7%입니다.</p>
     </section>
 
     <!-- 사건 01 · 개조 명세 -->
@@ -2569,20 +2569,20 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — 리그레션 로그 원인 분석</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — 리그레션 로그 원인 분석</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-req">USER</span>  "지난밤 regression.log 원인 분석해줘"</div>
               <div class="ska-log"><span class="sh-ok">READ</span>  logs/regression.log <span class="sh-dim">— 500,000줄</span></div>
               <div class="ska-log"><span class="ska-danger">⚠ 컨텍스트 한도 초과 — 12% 지점에서 읽기 중단</span></div>
               <div class="ska-log"><span class="sh-agent">AGENT</span> "TimeoutError가 가장 많아 보입니다" <span class="sh-dim">— 읽은 범위 기준 추정</span></div>
-              <div class="ska-log"><span class="ska-danger">실제 1위는 AssertionError 1,842건 — 오답</span></div>
+              <div class="ska-log"><span class="ska-danger">샘플의 1위는 AssertionError 1,842건 — 오답</span></div>
               <div class="ska-log"><span class="sh-dim">읽은 범위조차 셀 때마다 건수가 달라진다</span></div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term badsk" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">문제의 스킬 — log-digest/SKILL.md (당시 형태)</span></div>
+          <div class="term-bar"><span class="term-title">문제의 스킬 — log-digest/SKILL.md (문제 재현용 형태)</span></div>
           <div class="term-body"><span class="t-out">---</span>
 <span class="t-key">name:</span> <span class="t-str">log-digest</span>
 <span class="t-key">description:</span> <span class="t-str">로그 요약·원인 분석 요청 시 사용</span>
@@ -2621,7 +2621,7 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 요청, 스크립트를 동봉한 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 요청, 스크립트를 동봉한 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-req">USER</span>  "지난밤 regression.log 원인 분석해줘"</div>
               <div class="ska-log"><span class="sh-cmd">RUN</span>   python scripts/digest.py logs/regression.log</div>
@@ -2629,30 +2629,30 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
               <div class="ska-log"><span class="sh-ok">OUT</span>   AssertionError 1,842 · TimeoutError 317 · 첫 급증 02:14</div>
               <div class="ska-log"><span class="sh-ok">READ</span>  요약 30줄만 입장 <span class="sh-dim">(+1,000 토큰)</span></div>
               <div class="ska-log"><span class="sh-agent">AGENT</span> "1위 AssertionError — 02:14 배포와의 상관 검토 제안"</div>
-              <div class="ska-log"><span class="sh-ok">DONE</span>  수치는 스크립트 값 그대로 인용 — 오차 0 ✓</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  수치는 스크립트 값 그대로 인용 — 집계값 인용 · 파서 검증 필요</div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 스킬 — log-digest/ (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — log-digest/ (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">log-digest/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">scripts/</span>
    └─ digest.py           <span class="t-out">← 집계·통계 담당</span>
 <span class="t-out">──────────────────────────────</span>
 <span class="t-hl">SKILL.md ▸ 절차 발췌</span>
-1. 로그 파일을 <span class="t-hl">직접 읽지 않는다</span>. <span class="t-out">(수천 줄 이상이면 반드시)</span>
+1. 큰 로그의 <span class="t-hl">통째 읽기를 피한다</span>. <span class="t-out">(분량과 도구 출력 한도를 확인)</span>
 2. <span class="t-str">python scripts/digest.py &lt;로그경로&gt;</span> 를 실행한다.
-   <span class="t-out">→ 유형별 건수 · 첫 발생 시각 · 대표 스택 20건</span>
-3. 스크립트 출력<b>만</b> 근거로 원인 후보를 판단한다.
+   <span class="t-out">→ 유형별 건수 · 첫 발생 시각 · 오류 유형별 대표 사례 최대 5건</span>
+3. 집계 출력으로 후보를 좁히고, 필요하면 관련 원문 범위를 확인한다.
 4. 수치는 출력의 숫자를 그대로 옮긴다. <span class="t-out">(직접 세지 않는다)</span></div>
         </div>
       </div>
       <div class="tname p1">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ② 스크립트 위임</span><span class="tn-en">Script Offloading</span></div>
-        <p class="tn-one"><b>세는 일은 코드가, 뜻을 읽는 일은 모델이.</b> 원본은 끝까지 밖에 두고, 컨텍스트에는 계산이 끝난 결과만 들입니다.</p>
-        <div class="pills"><span class="pill green">50만 줄 → 30줄</span><span class="pill neutral">수치 정확도 100%</span></div>
+        <p class="tn-one"><b>집계는 코드가, 해석은 모델이 담당합니다.</b> 파싱하지 못한 줄·집계 규칙도 확인해야 합니다. 원인 판단에는 필요한 원문과 주변 맥락을 추가로 조회합니다.</p>
+        <div class="pills"><span class="pill green">50만 줄 → 30줄</span><span class="pill neutral">집계 규칙과 입력 검증 필요</span></div>
       </div>
     </section>
 
@@ -2696,18 +2696,18 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
             <span class="fl-arr ok h0 ain" style="--dly:2.4s; flex:none">→<small>RUN 위임</small></span>
             <span class="fl-node scr h0 ainglow" style="--dly:2.4s; flex:none">scripts/digest.py<small>컨텍스트 밖에서 50만 줄 집계</small></span>
             <span class="fl-arr ok h0 ain" style="--dly:3.3s; flex:none">→<small>결과만</small></span>
-            <div class="doc mint h0 apop" style="--dly:3.6s; flex:none; min-width:0"><span class="dt">요약 30줄</span><span class="dl" style="width:72%"></span><span class="dl" style="width:56%"></span><span class="stamp">수치 오차 0</span></div>
+            <div class="doc mint h0 apop" style="--dly:3.6s; flex:none; min-width:0"><span class="dt">요약 30줄</span><span class="dl" style="width:72%"></span><span class="dl" style="width:56%"></span><span class="stamp">집계 결과 · 범위 확인</span></div>
             <span class="fl-arr ok h0 ain" style="--dly:4.2s; flex:none">→</span>
             <div class="mwin cool h0 ain" style="--dly:4.2s; flex:none">
               <span class="mw-t"><span>컨텍스트</span><b>+1k</b></span>
-              <div class="g afill" style="--w:4%; --dly:4.5s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>4%</b></div></div>
+              <div class="g afill" style="--w:0.39%; --dly:4.5s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>256k 대비 추가분</span><b>0.39%</b></div></div>
             </div>
           </div>
           <p class="scn-cap">확률 모델의 약점인 <b>세기(집계·산술)는 컨텍스트 밖의 코드</b>가, 강점인 <b>뜻 읽기(해석·판단)만 모델</b>이 맡습니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
-      <p class="note" style="margin-top:0.4rem">원본이 500만 줄이 되어도 컨텍스트 비용은 <b>여전히 30줄</b> — 크기와 비용이 분리됩니다.</p>
+      <p class="note" style="margin-top:0.4rem">원본 전체를 컨텍스트에 넣지 않아도 집계할 수 있습니다. 요약 길이는 오류 유형 수와 출력 제한에 따라 달라지므로 30줄·1k는 설명용 가정입니다.</p>
     </section>
 
     <!-- 사건 02 · 개조 명세 -->
@@ -2750,12 +2750,12 @@ section.present .sim .agatexv { animation:g4GateX .7s ease var(--d1,1s), g4GateV
 # Log Digest
 
 <span class="t-hl">## 절차</span>
-<div class="mkbox good"><span class="mkt">핵심 변경 ① — 읽기 대신 스크립트 실행</span><span class="padd">＋</span> 1. 로그 파일을 <b>직접 읽지 않는다</b>. <span class="t-out">(1,000줄 초과 시 반드시)</span>
+<div class="mkbox good"><span class="mkt">핵심 변경 ① — 읽기 대신 스크립트 실행</span><span class="padd">＋</span> 1. 큰 로그는 먼저 집계하고, 필요한 원문 범위는 이후 조회한다.<b></b><span class="t-out"></span>
 <span class="padd">＋</span> 2. <span class="t-str">python scripts/digest.py &lt;로그경로&gt;</span> 를 실행한다.
-   <span class="t-out">출력: 유형별 건수 · 첫 급증 시각 · 대표 스택 20건 (약 30줄)</span></div>3. 스크립트 출력만 근거로 원인 후보를 2~3개 적는다.
+   <span class="t-out">출력: 유형별 건수 · 첫 급증 시각 · 오류 유형별 대표 사례 최대 5건 (유형 수에 따라 길이가 달라짐)</span></div>3. 집계와 필요한 원문 근거로 원인 후보를 2~3개 적는다.
 5. <span class="t-str">output/digest.md</span> 로 저장. 끝줄: <span class="t-str">DIGEST-VERSION: 1</span>
-<div class="mkbox good"><span class="mkt">핵심 변경 ② — 원본 읽기 금지 · 수치는 코드 값만</span><span class="t-hl">## 금지</span>
-· 원본 로그의 READ, 부분 발췌 붙여넣기
+<div class="mkbox good"><span class="mkt">핵심 변경 ② — 원본 통째 읽기 방지 · 수치 근거 명시</span><span class="t-hl">## 금지</span>
+· 원본 로그를 무작정 통째로 적재하는 행위
 <span class="padd">＋</span> · 스크립트 출력에 없는 수치의 사용 <span class="t-out">(직접 세지 않는다)</span>
 <span class="t-hl">## 검증</span>
 <span class="padd">＋</span> · digest.md 의 유형별 건수 합 = 스크립트 TOTAL 값</div>
@@ -2777,24 +2777,24 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
           <span class="ska-cell"><span class="n">5</span>전체 점검</span>
         </div>
       </div>
-      <h2>작업이 3시간을 넘어가면, 에이전트는 첫 결정을 잊습니다</h2>
+      <h2>장기 작업에서는 <span class="grad">첫 결정의 재확인</span>이 필요합니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — 모듈 40개 API 마이그레이션</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — 모듈 40개 API 마이그레이션</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-dim">10:05</span> <span class="sh-req">USER</span> "전부 v2 API로 통일하기로 하자" <span class="sh-dim">— 첫 결정</span></div>
               <div class="ska-log"><span class="sh-dim">10:10~12:30</span> <span class="sh-ok">EDIT</span> 모듈 1~30 진행 <span class="sh-dim">— 대화·파일 본문 누적</span></div>
               <div class="ska-log"><span class="sh-dim">12:41</span> <span class="ska-danger">EDIT 모듈 31 — v1 스타일로 변환</span> <span class="sh-dim">← 첫 결정을 잊음</span></div>
-              <div class="ska-log"><span class="sh-dim">12:58</span> <span class="ska-danger">세션 종료 (점심·PC 절전)</span></div>
+              <div class="ska-log"><span class="sh-dim">12:58</span> <span class="ska-danger">작업 중단 후 다른 세션에서 재개</span></div>
               <div class="ska-log"><span class="sh-dim">14:02</span> <span class="sh-req">USER</span> "이어서 해줘"</div>
-              <div class="ska-log"><span class="sh-agent">AGENT</span> "무슨 작업을 말씀하시는지…" <span class="ska-danger">— 처음부터 다시</span></div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "무슨 작업을 말씀하시는지…" <span class="ska-danger">— 상태·저장된 세션 확인 필요</span></div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term badsk" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">문제의 스킬 — api-migration/SKILL.md (당시 형태)</span></div>
+          <div class="term-bar"><span class="term-title">문제의 스킬 — api-migration/SKILL.md (문제 재현용 형태)</span></div>
           <div class="term-body"><span class="t-out">---</span>
 <span class="t-key">name:</span> <span class="t-str">api-migration</span>
 <span class="t-key">description:</span> <span class="t-str">API 마이그레이션 작업 시 사용</span>
@@ -2809,10 +2809,10 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       </div>
       <div class="scn-p bad causebar sim">
         <span class="scn-tag">원인 분석</span>
-        <div class="cb-v"><span class="blob agray" style="--dly:0.8s">첫 결정</span><span class="blob agray" style="--dly:1.1s">초반 진행</span><span class="blob">최근 대화</span><span class="vlab fail h0 ain" style="--dly:1.5s">세션 종료 = 전체 삭제</span></div>
-        <p class="scn-cap">기억이 <b>대화에만</b> 있습니다. 한도가 차면 <b>오래된 결정부터</b> 지워지고, 세션이 끝나면 <b>전부</b> 지워집니다.</p>
+        <div class="cb-v"><span class="blob agray" style="--dly:0.8s">첫 결정</span><span class="blob agray" style="--dly:1.1s">초반 진행</span><span class="blob">최근 대화</span><span class="vlab fail h0 ain" style="--dly:1.5s">새 세션에는 별도 맥락 전달 필요</span></div>
+        <p class="scn-cap">중요한 결정이 <b>대화에만</b> 있으면 압축 후 세부 내용을 놓치거나 새 세션에서 찾지 못할 수 있습니다. <b>세션 종료가 저장 기록의 삭제를 뜻하지는 않습니다.</b></p>
       </div>
-      <p class="note" style="margin-top:0.55rem">성실히 일할수록 대화가 길어지고, 길어질수록 더 빨리 잊습니다 — <b>기억을 두는 곳</b>이 문제입니다. 다음 장에서 해결합니다.</p>
+      <p class="note" style="margin-top:0.55rem">문제의 기준은 3시간이라는 시간이 아니라 누적 토큰과 압축·재개 방식입니다. 저장된 세션 재개와 상태 파일을 함께 활용합니다.</p>
     </section>
 
     <!-- 13 · 사건 ③ 해결 -->
@@ -2831,7 +2831,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 작업, 상태 파일을 강제한 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 작업, 상태 파일을 강제한 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-dim">14:02</span> <span class="sh-req">USER</span> "이어서 해줘" <span class="sh-dim">— 새 세션, 빈 컨텍스트</span></div>
               <div class="ska-log"><span class="sh-ok">READ</span>  output/state.md</div>
@@ -2839,31 +2839,30 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
               <div class="ska-log"><span class="sh-agent">AGENT</span> "31번 모듈부터 v2 규칙으로 재개합니다"</div>
               <div class="ska-log"><span class="sh-ok">EDIT</span>  모듈 31 — v2 ✓ <span class="sh-dim">(첫 결정이 파일에 살아있다)</span></div>
               <div class="ska-log"><span class="sh-ok">WRITE</span> state.md — [x] 31 · 메모 1줄 추가</div>
-              <div class="ska-log"><span class="sh-ok">DONE</span>  지난 대화 필요량: 0줄 ✓</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  현재 상태·코드·검증 결과 대조 후 재개 ✓</div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 스킬 — long-task/ (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — long-task/ (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">long-task/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">assets/</span>
    └─ state-template.md   <span class="t-out">← 진행 상태 양식</span>
 <span class="t-out">──────────────────────────────</span>
 <span class="t-hl">SKILL.md ▸ 절차 발췌</span>
-1. 시작 시 <span class="t-str">output/state.md</span> 가 있으면 <span class="t-hl">먼저 읽고 이어서</span> 한다.
+1. 시작 시 state.md와 현재 코드·테스트 상태를 함께 확인한다.<span class="t-str"></span><span class="t-hl"></span>
    없으면 assets/state-template.md 로 생성한다.
 2. 항목 하나를 끝낼 때마다 해당 줄을 [ ] → [x] 로 바꾸고,
    발견 사항을 "메모" 절에 1줄 남긴다.
-3. 대화가 길어지면 <span class="t-hl">지난 대화가 아니라 state.md</span> 를
-   기준으로 삼는다.</div>
+3. 대화가 길어지면 <span class="t-hl">지난 대화가 아니라 state.md의 상태를 실제 산출물과 대조한다.</span></div>
         </div>
       </div>
       <div class="tname p1">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ③ 외부 기억</span><span class="tn-en">External Memory</span></div>
-        <p class="tn-one"><b>대화는 흘러가고, 파일은 남는다.</b> 기억을 휘발되는 컨텍스트에서 영속되는 파일로 — 세션이 끊겨도 더는 사고가 아닙니다.</p>
-        <div class="pills"><span class="pill green">세션 무관 재개</span><span class="pill neutral">인수인계 문서 겸용</span></div>
+        <p class="tn-one"><b>대화는 흘러가고, 파일은 남는다.</b> 중요한 결정을 지속되는 파일에도 기록 — 세션이 끊겨도 기록과 실제 작업 결과를 대조해 재개할 수 있습니다.</p>
+        <div class="pills"><span class="pill green">상태 확인 후 재개</span><span class="pill neutral">인수인계 문서 겸용</span></div>
       </div>
     </section>
 
@@ -2887,16 +2886,16 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
             <span class="blob agray" style="--dly:1.0s; flex:none">10:05 첫 결정<br>"v2로 통일"</span>
             <span class="blob agray" style="--dly:1.4s; flex:none">초반 진행<br>모듈 1~15</span>
             <span class="blob" style="flex:none">최근 대화</span>
-            <span class="vlab fail h0 apop" style="--dly:2.1s; flex:none">한도가 차면 앞에서부터 · 세션이 끝나면 전부</span>
+            <span class="vlab fail h0 apop" style="--dly:2.1s; flex:none">압축 시 세부 손실 가능 · 새 세션에는 맥락 전달 필요</span>
           </div>
-          <p class="scn-cap">컨텍스트는 <b>창</b>이지 창고가 아닙니다 — 성실히 일할수록 대화가 길어지고, <b>더 빨리 잊습니다</b>.</p>
+          <p class="scn-cap">컨텍스트는 현재 모델에 전달되는 정보입니다. 대화가 길면 압축될 수 있으며, 저장된 대화 기록과 현재 입력은 구분해야 합니다.</p>
         </div>
         <div class="scn-p good g1" style="min-height:9rem">
           <span class="scn-tag">After — 기록을 파일로 옮길 때 (외부 기억)</span>
           <div class="scn-row" style="flex-wrap:nowrap; gap:0.6rem">
             <div class="scn-col" style="flex:none; gap:0.3rem">
               <span class="blob h0 ain" style="--dly:2.7s; white-space:nowrap; font-size:0.74rem">세션 A — 작업</span>
-              <span class="tiny mono h0 ain" style="--dly:2.7s; color:#FF94AC !important; white-space:nowrap">종료 = 대화 증발</span>
+              <span class="tiny mono h0 ain" style="--dly:2.7s; color:#FF94AC !important; white-space:nowrap">새 세션에는 재개 정보 전달</span>
             </div>
             <span class="fl-arr ok h0 ain" style="--dly:3.1s; flex:none">→<small>매 단계 WRITE</small></span>
             <div class="doc mint aglow" style="--dly:3.5s; min-width:10rem; flex:none"><span class="dt">output/state.md</span>규칙: v2 통일
@@ -2904,11 +2903,11 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
 메모: 03 API 변경<span class="stamp h0 apop" style="--dly:4.4s">살아 있음 ✓</span></div>
             <span class="fl-arr ok h0 ain" style="--dly:4.8s; flex:none">→<small>시작 시 먼저 READ</small></span>
             <div class="scn-col" style="flex:none; gap:0.35rem">
-              <span class="blob h0 ain" style="--dly:5.1s; white-space:nowrap; font-size:0.74rem">세션 B — 빈 컨텍스트</span>
+              <span class="blob h0 ain" style="--dly:5.1s; white-space:nowrap; font-size:0.74rem">세션 B — 필요한 상태 재적재</span>
               <span class="vlab pass h0 apop" style="--dly:5.7s; white-space:nowrap">31번부터 재개 ✓</span>
             </div>
           </div>
-          <p class="scn-cap">기억을 <b>휘발되는 대화</b>가 아니라 <b>영속되는 파일</b>에 둡니다 — 세션이 끊겨도, 사람이 바뀌어도 <b>첫 결정 그대로</b> 이어집니다.</p>
+          <p class="scn-cap">상태 파일에 <b>결정·진행·미해결 사항</b>을 기록합니다. 재개할 때 파일의 체크 표시만 믿지 않고 <b>실제 코드와 검증 결과</b>를 대조합니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
@@ -2942,8 +2941,8 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
 <div class="mkbox"><span class="mkt">문제 지점 — 기억을 둘 곳이 없다</span>2. 진행 상황을 기억해 두고 이어서 한다.
    <span class="bx">✕ 대화가 유일한 저장소 — 양식도, 파일도 없다</span></div>3. 전 모듈이 끝나면 결과를 보고한다.
 
-<span class="bx">✕ 세션이 끊기면 진행 기록 전체가 사라진다</span>
-<span class="bx">✕ 대화가 길어지면 초반 결정(v2 통일)부터 잊는다</span>
+<span class="bx">✕ 새 세션에 진행 기록이 전달되지 않을 수 있다</span>
+<span class="bx">✕ 대화 압축 중 결정의 세부 내용이 손실될 수 있다</span>
 <span class="t-out">(상태 파일 규정 없음)</span></div>
         </div>
         <div class="term fixsk">
@@ -2955,12 +2954,12 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
 # API Migration
 
 <span class="t-hl">## 절차</span>
-<div class="mkbox good"><span class="mkt">핵심 변경 ① — 상태 파일을 시작 조건으로</span><span class="padd">＋</span> 1. 시작할 때 <span class="t-str">output/state.md</span> 가 있으면 <b>먼저 읽고 이어서</b> 한다.
+<div class="mkbox good"><span class="mkt">핵심 변경 ① — 상태 파일을 시작 조건으로</span><span class="padd">＋</span> 1. 시작할 때 state.md와 현재 코드·테스트 상태를 대조한다.<span class="t-str"></span><b></b>
    없으면 <span class="t-str">assets/state-template.md</span> 를 복사해 만든다.</div>2. 이번에 다룰 모듈 하나를 정하고, 규칙(state.md 상단)을 확인한다.
 3. 모듈을 v2 규칙으로 수정한다.
 <div class="mkbox good"><span class="mkt">핵심 변경 ② — 모듈마다 즉시 갱신 · 기준은 파일</span><span class="padd">＋</span> 4. 끝나는 즉시 state.md 를 갱신한다:
    · 해당 줄 [ ] → [x] · 특이 사항은 "메모" 절에 1줄
-<span class="padd">＋</span> 5. 대화가 길어지면 <b>대화가 아니라 state.md 를 기준</b>으로 삼는다.</div>
+<span class="padd">＋</span> 5. 대화가 길어지면 <b>대화가 아니라 state.md의 상태를 실제 산출물과 대조한다.</b></div>
 <span class="t-hl">## 금지</span>
 · state.md 갱신 없이 다음 모듈로 넘어가는 행위
 · "아까 정한 규칙"처럼 대화 기억에 기대는 표현
@@ -2987,7 +2986,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — 대형 리포에서 코드 답사</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — 대형 리포에서 코드 답사</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-req">USER</span>  "결제 검증이 어디서 어떻게 도는지 설명해줘"</div>
               <div class="ska-log"><span class="sh-ok">READ</span>  src/api.cpp <span class="sh-dim">— 4,200줄 통째</span></div>
@@ -3000,7 +2999,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term badsk" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">문제의 스킬 — repo-scout/SKILL.md (당시 형태)</span></div>
+          <div class="term-bar"><span class="term-title">문제의 스킬 — repo-scout/SKILL.md (문제 재현용 형태)</span></div>
           <div class="term-body"><span class="t-out">---</span>
 <span class="t-key">name:</span> <span class="t-str">repo-scout</span>
 <span class="t-key">description:</span> <span class="t-str">코드 구조·동작 설명 요청 시 사용</span>
@@ -3037,7 +3036,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 질문, 탐색 순서를 강제한 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 질문, 탐색 순서를 강제한 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-req">USER</span>  "결제 검증이 어디서 어떻게 도는지 설명해줘"</div>
               <div class="ska-log"><span class="sh-cmd">RUN</span>   tree -L 2 <span class="sh-dim">— 구조 12줄만</span></div>
@@ -3051,7 +3050,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 스킬 — repo-scout/SKILL.md (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — repo-scout/SKILL.md (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-out">---</span>
 <span class="t-key">name:</span> <span class="t-str">repo-scout</span>
 <span class="t-key">description:</span> <span class="t-str">코드 구조·동작 설명 요청 시 사용</span>
@@ -3069,7 +3068,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       </div>
       <div class="tname p1">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ④ 지도 우선 탐색</span><span class="tn-en">Map-first Navigation</span></div>
-        <p class="tn-one"><b>읽기는 검색의 결과여야 한다.</b> 소비가 리포 크기가 아니라 <b>질문 크기에 비례</b>하게 됩니다 — 같은 256k로 열 배 큰 리포를 다룰 수 있습니다.</p>
+        <p class="tn-one"><b>읽기는 검색의 결과여야 한다.</b> 소비가 리포 크기가 아니라 <b>질문 크기에 비례</b>하게 됩니다 — 필요 범위를 좁혀 더 큰 리포를 탐색할 수 있습니다.</p>
         <div class="pills"><span class="pill green">297줄로 완료</span><span class="pill neutral">근거는 파일:줄</span></div>
       </div>
     </section>
@@ -3113,7 +3112,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
-      <p class="note" style="margin-top:0.4rem">비용의 비례 대상이 <b>리포 크기에서 질문 크기로</b> 바뀝니다 — 같은 256k로 열 배 큰 리포를 다룹니다.</p>
+      <p class="note" style="margin-top:0.4rem">비용의 비례 대상이 <b>리포 크기에서 질문 크기로</b> 바뀝니다 — 질문에 필요한 범위를 좁혀 더 큰 리포를 탐색할 수 있습니다.</p>
     </section>
 
     <!-- 사건 04 · 개조 명세 -->
@@ -3185,7 +3184,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — 릴리즈 전 전체 보안 점검 (①~④ 전부 적용한 상태)</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — 릴리즈 전 전체 보안 점검 (①~④ 전부 적용한 상태)</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-req">USER</span>  "릴리즈 전에 모듈 12개 전부 보안 점검해줘"</div>
               <div class="ska-log"><span class="sh-ok">SCAN</span>  모듈 1~3 — 지도 우선·범위 읽기로 절약 중 ✓</div>
@@ -3198,7 +3197,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term badsk" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">문제의 스킬 — security-audit/SKILL.md (당시 형태)</span></div>
+          <div class="term-bar"><span class="term-title">문제의 스킬 — security-audit/SKILL.md (문제 재현용 형태)</span></div>
           <div class="term-body"><span class="t-out">---</span>
 <span class="t-key">name:</span> <span class="t-str">security-audit</span>
 <span class="t-key">description:</span> <span class="t-str">보안 점검 요청 시 사용</span>
@@ -3231,43 +3230,43 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
           <span class="ska-cell now"><span class="n">5</span>전체 점검</span>
         </div>
       </div>
-      <h2>쪼개서 위임하면, 컨텍스트는 곱해집니다</h2>
+      <h2>쪼개서 위임하면, <span class="grad">별도 컨텍스트로 분담</span>할 수 있습니다</h2>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 요청, 조율 스킬 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 요청, 조율 스킬 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-req">USER</span>  "릴리즈 전에 모듈 12개 전부 보안 점검해줘"</div>
               <div class="ska-log"><span class="sh-ok">PLAN</span>  output/audit/plan.md — 12조각으로 분할</div>
-              <div class="ska-log"><span class="sh-cmd">SPAWN</span> 워커 ×3 <span class="sh-dim">— 각자 깨끗한 256k에서 병렬 점검</span></div>
-              <div class="ska-log"><span class="sh-dim">      워커에게: "모듈 X만. 보고는 양식 10줄. 코드 원문 금지"</span></div>
-              <div class="ska-log"><span class="sh-ok">OUT</span>   output/audit/01~12.md — 10줄 보고 12장 도착</div>
-              <div class="ska-log"><span class="sh-agent">AGENT</span> 120줄만 읽고 종합 리포트 작성</div>
-              <div class="ska-log"><span class="sh-ok">DONE</span>  총 처리량 ≈ 3 × 256k — 디테일 소실 0 ✓</div>
+              <div class="ska-log"><span class="sh-cmd">SPAWN</span> 워커 ×3 <span class="sh-dim">— 각자 별도 컨텍스트에서 점검 (동시 실행 수는 환경별)</span></div>
+              <div class="ska-log"><span class="sh-dim">      워커에게: "모듈 X만. 보고는 요약 10줄 내외 + 근거. 필요하면 상세 별첨"</span></div>
+              <div class="ska-log"><span class="sh-ok">OUT</span>   output/audit/01~12.md — 요약 보고 12장과 근거 파일 도착</div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> 요약을 읽고 교차 의존성과 핵심 근거를 재확인</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  별도 창 3개로 작업 분담 — 요약 손실·모듈 간 의존성 재확인</div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 스킬 — module-audit/ (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — module-audit/ (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">module-audit/</span>
 ├─ <span class="t-key">SKILL.md</span>              <span class="t-out">← 조율자</span>
 └─ <span class="t-key">assets/</span>
-   └─ report-form.md      <span class="t-out">← 조각 보고 양식 (10줄 고정)</span>
+   └─ report-form.md      <span class="t-out">← 조각 보고 양식 (요약 10줄 내외·상세 별첨)</span>
 <span class="t-out">──────────────────────────────</span>
 <span class="t-hl">SKILL.md ▸ 절차 발췌</span>
 1. 대상 목록을 <span class="t-str">output/audit/plan.md</span> 에 적는다.
 2. 모듈마다 <span class="t-hl">서브에이전트(또는 새 세션)</span>에 위임한다.
    지시: "모듈 X만 점검. 결과는 report-form.md 양식
-   10줄로 <span class="t-str">output/audit/X.md</span> 저장. 코드 원문 금지."
-3. 조각이 모두 끝나면 <span class="t-str">output/audit/*.md</span> 만 읽어
+   10줄 내외로 저장. 근거·미확인 범위는 별첨.<span class="t-str"></span>"
+3. 조각이 모두 끝나면 <span class="t-str">모듈별 보고와 필요한 근거를 읽어</span>
    종합한다.</div>
         </div>
       </div>
       <div class="tname p1">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑤ 분업 요약</span><span class="tn-en">Fan-out &amp; Summarize</span></div>
-        <p class="tn-one"><b>쪼개면 컨텍스트는 곱해진다.</b> ①~④가 절약이라면 ⑤는 확장 — 총량을 <b>1×256k에서 N×256k로</b> 늘리는 유일한 기법입니다.</p>
-        <div class="pills"><span class="pill green">총량 N×256k</span><span class="pill neutral">회수는 요약만</span></div>
+        <p class="tn-one"><b>컨텍스트를 공유하지 않고 작업을 분담합니다.</b> 워커 3개가 단일 768k 창을 만드는 것은 아닙니다. 통합 시 요약 손실·모듈 간 의존성과 중복 비용을 확인합니다.</p>
+        <div class="pills"><span class="pill green">별도 창으로 분담</span><span class="pill neutral">회수는 요약만</span></div>
       </div>
     </section>
 
@@ -3283,7 +3282,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
           <span class="ska-cell now"><span class="n">5</span>전체 점검</span>
         </div>
       </div>
-      <h2><span class="tkb b1" style="margin-right:0.5rem">⑤</span>분업 요약 — <span class="grad">창을 쪼개면, 총량이 곱해진다</span></h2>
+      <h2>⑤분업 요약 — <span class="grad">여러 창에서 점검하고 근거를 연결한다</span></h2>
       <div class="scn sim mech" style="grid-template-columns:0.8fr 1.2fr; margin-top:0.8rem">
         <div class="scn-p bad">
           <span class="scn-tag">기존 — 창 하나가 전부 떠안기</span>
@@ -3292,25 +3291,25 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
             <div class="g red afill" style="--w:100%; --dly:0.5s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>상한</span><b>1 × 256k</b></div></div>
           </div>
           <span class="vlab fail h0 apop" style="--dly:1.4s">모듈 6에서 한도 — 앞 결과부터 뭉개짐</span>
-          <p class="scn-cap">①~④로 아껴도 <b>총량은 1 × 256k</b> — 작업이 상한을 넘으면 절약으로는 못 풉니다.</p>
+          <p class="scn-cap">한 세션에 모든 근거를 계속 쌓으면 입력 한도에 도달할 수 있습니다. 외부 상태와 순차 처리, 별도 세션 분담 중 작업에 맞는 방식을 선택합니다.</p>
         </div>
         <div class="scn-p good g1">
-          <span class="scn-tag">분업 요약 — 깨끗한 창 × N</span>
+          <span class="scn-tag">분업 요약 — 별도 컨텍스트 × N</span>
           <div class="mwin cool h0 ain" style="--dly:1.9s; align-self:center">
-            <span class="mw-t"><span>본부 — 계획·종합만</span><b>보고 12 × 10줄</b></span>
-            <div class="g afill" style="--w:12%; --dly:4.4s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>12%</b></div></div>
+            <span class="mw-t"><span>본부 — 계획·종합만</span><b>모듈별 요약 + 상세 근거</b></span>
+            <div class="g afill" style="--w:12%; --dly:4.4s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>작업별 상이</b></div></div>
           </div>
-          <span class="fl-arr ok h0 ain" style="--dly:3.9s">↑<small>회수는 요약만 — 코드 원문 금지</small></span>
+          <span class="fl-arr ok h0 ain" style="--dly:3.9s">↑<small>요약과 근거 경로 회수 · 필요 시 원문 재확인</small></span>
           <div class="scn-row" style="gap:0.7rem; flex-wrap:nowrap">
             <div class="mwin cool h0 apop" style="--dly:2.4s; min-width:0"><span class="mw-t"><span>워커 1</span><b>모듈 1~4</b></span><div class="g afill" style="--w:64%; --dly:2.8s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>자기 창</span><b>256k</b></div></div></div>
             <div class="mwin cool h0 apop" style="--dly:2.7s; min-width:0"><span class="mw-t"><span>워커 2</span><b>모듈 5~8</b></span><div class="g afill" style="--w:58%; --dly:3.1s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>자기 창</span><b>256k</b></div></div></div>
             <div class="mwin cool h0 apop" style="--dly:3.0s; min-width:0"><span class="mw-t"><span>워커 3</span><b>모듈 9~12</b></span><div class="g afill" style="--w:61%; --dly:3.4s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>자기 창</span><b>256k</b></div></div></div>
           </div>
-          <p class="scn-cap">조각마다 <b>깨끗한 256k</b>에서 점검하고, 본부에는 <b>양식에 맞춘 10줄</b>만 돌아옵니다 — 총 처리량 <b>3 × 256k</b>.</p>
+          <p class="scn-cap">각 워커의 입력 한도와 공유 지침은 환경에 따라 다릅니다. 본부는 요약을 읽고 <b>모듈 간 상호작용과 핵심 근거</b>를 다시 확인합니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
-      <p class="note" style="margin-top:0.4rem">①~④가 <b>절약</b>이라면 ⑤는 <b>확장</b>입니다 — 유일하게 총량 자체를 늘리는 기법.</p>
+      <p class="note" style="margin-top:0.4rem">병렬 실행 수·모델·권한은 사내 환경에서 확인합니다. 분업은 단일 컨텍스트 확장이나 무손실 요약을 보장하지 않습니다.</p>
     </section>
 
     <!-- 사건 05 · 개조 명세 -->
@@ -3354,15 +3353,15 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
 <span class="padd">＋</span> 2. 모듈마다 <b>서브에이전트(또는 새 세션)</b>에 위임한다.
    위임 지시문 <span class="t-out">(그대로 사용)</span>:
    "모듈 X만 점검하라. 결과는 report-form.md 양식
-    10줄로 output/audit/X.md 에 저장. 코드 원문 인용 금지."</div><span class="padd">＋</span> 3. 위임이 끝나면 <span class="t-str">output/audit/*.md</span> <b>만</b> 읽고 종합한다.
+    10줄 내외로 output/audit/X.md 에 저장. 핵심 근거·미확인 범위는 별첨."</div><span class="padd">＋</span> 3. 위임이 끝나면 <span class="t-str">모듈별 보고와 필요한 원문을 확인해 종합한다.</span><b></b>
 4. 종합 리포트에 모듈별 보고 파일 경로를 남긴다.
 
 <span class="t-hl">## 금지</span>
-· 부모 세션에서 모듈 코드를 직접 여는 행위
-<div class="mkbox good"><span class="mkt">핵심 변경 ② — 회수는 10줄 양식만</span><span class="t-hl">## 보고 양식</span> <span class="t-out">(assets/report-form.md · 10줄 고정)</span>
+· 필요한 교차 의존성·핵심 근거 확인을 생략하는 행위
+<div class="mkbox good"><span class="mkt">핵심 변경 ② — 요약과 근거를 함께 회수</span><span class="t-hl">## 보고 양식</span> <span class="t-out">(assets/report-form.md · 요약 10줄 내외·상세 별첨)</span>
 모듈: · 위험도(상/중/하): · 발견 1~3 <span class="t-out">(각 1줄)</span>
 근거: 파일:줄 · 제안 <span class="t-out">(1줄)</span>
-<span class="t-out">양식을 벗어난 보고는 반려하고 재위임한다.</span></div></div>
+<span class="t-out">미확인 범위·교차 의존성은 별첨하고 필요하면 재위임한다.</span></div></div>
         </div>
       </div>
     </section>
@@ -3370,10 +3369,10 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
     <!-- 18 · PART 1 정리 -->
     <section data-sec="PART 1 · 정리">
       <div><span class="chip">PART 1 · 정리</span></div>
-      <h2>다섯 해결의 공통 원리 — <span class="grad">원본은 밖에, 결론만 안에</span></h2>
+      <h2>다섯 해결의 공통 원리 — <span class="grad">원본은 밖에, 필요한 근거와 요약은 안에</span></h2>
       <div class="cx autoshow fade-up" style="margin-top:1.6rem">
         <div class="cx-zone out">
-          <span class="cx-label">컨텍스트 밖 — 크기 무제한</span>
+          <span class="cx-label">컨텍스트 밖 — 저장·처리 자원 범위 내</span>
           <div class="cx-item">규칙 30페이지<small>references/</small></div>
           <div class="cx-item">로그 50만 줄<small>원본 데이터</small></div>
           <div class="cx-item">지난 3시간의 결정<small>작업 이력</small></div>
@@ -3429,7 +3428,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — 요약 스킬의 결과로 리포트 만들기</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — 요약 스킬의 결과로 리포트 만들기</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-req">USER</span>  "아까 요약한 걸로 장애 리포트 만들어줘"</div>
               <div class="ska-log"><span class="sh-cmd">RUN</span>   incident-report</div>
@@ -3478,37 +3477,36 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 요청, 주고받기 약속을 명시한 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 요청, 주고받기 약속을 명시한 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-cmd">RUN</span>   log-digest</div>
-              <div class="ska-log"><span class="sh-ok">WRITE</span> output/digest.md <span class="sh-dim">— 형식 고정 · 끝줄 DIGEST-VERSION: 1</span></div>
+              <div class="ska-log"><span class="sh-ok">WRITE</span> output/digest.md <span class="sh-dim">— 형식 고정 · 끝줄 SCHEMA: 1 · RUN: &lt;현재 작업 ID&gt; · SOURCE: sha256:…</span></div>
               <div class="ska-log"><span class="sh-cmd">RUN</span>   incident-report</div>
-              <div class="ska-log"><span class="sh-ok">CHECK</span> output/digest.md 존재 · 버전 표시 확인 ✓</div>
+              <div class="ska-log"><span class="sh-ok">CHECK</span> output/digest.md 존재 · 형식·RUN·SOURCE 일치 확인 ✓</div>
               <div class="ska-log"><span class="sh-ok">READ</span>  digest.md<b>만</b> 근거로 리포트 작성</div>
-              <div class="ska-log"><span class="sh-ok">DONE</span>  복사·붙여넣기 0회 — 구버전 사고 원천 차단 ✓</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  복사·붙여넣기 0회 — 이번 입력·실행 식별자까지 확인 ✓</div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 두 스킬 — 약속 부분 (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 두 스킬 — 약속 부분 (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">log-digest ▸ 쓰는 쪽 약속</span> <span class="t-out">(생산자)</span>
 · 경로: <span class="t-str">output/digest.md</span> <span class="t-out">(고정)</span>
 · 형식: ## 요약 / ## 오류 Top 10 / ## 이상 징후
-· 마지막 줄: <span class="t-str">DIGEST-VERSION: 1</span>
+· 마지막 줄: <span class="t-str">SCHEMA: 1 · RUN: &lt;현재 작업 ID&gt; · SOURCE: sha256:…</span>
 
 <span class="t-hl">incident-report ▸ 읽는 쪽 약속</span> <span class="t-out">(소비자)</span>
-· <span class="t-str">output/digest.md</span> 가 있으면 <span class="t-hl">그것만</span> 근거로 쓴다.
-· 버전 표시(DIGEST-VERSION)가 없으면 <span class="t-hl">옛 파일·복사본으로
-  간주</span>하고 쓰지 않는다.
+· <span class="t-str">형식·RUN·SOURCE가 이번 요청과 일치하는 digest.md를 읽는다.</span><span class="t-hl"></span>
+· SCHEMA를 지원하고 RUN·SOURCE가 요청의 기대값과 일치해야 사용한다.<span class="t-hl"></span>
 · 파일이 없으면 log-digest 실행을 안내하고 멈춘다.
-  <span class="t-out">(직접 로그를 읽지 않는다 · 내용 검사는 하지 않는다)</span></div>
+  <span class="t-out">(필요한 원문은 범위를 좁혀 확인한다 · 내용 검사 범위는 ⑧에서 정의)</span></div>
         </div>
       </div>
       <div class="tname p2">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑥ 산출물 약속</span><span class="tn-en">Artifact Contract</span></div>
-        <p class="tn-one"><b>약속이 있어야 부품이 된다.</b> 전달 통로를 대화에서 <b>약속된 파일과 형식</b>으로 — 함수의 시그니처와 같은 역할입니다. 이 약속이 책임지는 건 <b>전달까지</b>입니다.</p>
-        <div class="pills"><span class="pill green">복붙 0회 · 구버전 차단</span><span class="pill neutral">어떤 조합도 가능</span></div>
+        <p class="tn-one"><b>약속은 입출력 조건의 정의입니다.</b> 경로·형식과 함께 실행 ID·입력 식별자를 정합니다. 형식 버전만으로 최신성을 확인할 수 없으며, 조건 검사는 게이트나 소비자가 수행합니다.</p>
+        <div class="pills"><span class="pill green">복붙 0회 · 입력·실행 일치 확인</span><span class="pill neutral">입출력 조건이 맞는 조합</span></div>
       </div>
     </section>
 
@@ -3535,24 +3533,24 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
             <span class="fl-node ghost" style="flex:none">incident-report<small>어디서 읽지?</small></span>
           </div>
           <span class="vlab fail h0 apop" style="--dly:1.9s">유실 · 형식 제각각 · 구버전 사고 ✕</span>
-          <p class="scn-cap">같은 요약인데, 전달이 <b>사람의 손(스크롤·복붙)</b>에 걸려 있습니다 — 날아가고, 형식이 없고, 버전도 없습니다.</p>
+          <p class="scn-cap">대화로도 전달할 수 있지만, 장기 작업에서는 입력의 출처·형식·실행 시점을 명시하지 않으면 다른 결과를 혼동하기 쉽습니다.</p>
         </div>
         <div class="scn-p good g2">
           <span class="scn-tag">경로 2 — 약속된 파일로 전달 (산출물 약속)</span>
-          <div class="h0 ain" style="--dly:2.4s; border:0.09rem dashed rgba(143,168,255,0.55); border-radius:0.7rem; background:rgba(143,168,255,0.05); padding:0.35rem 0.9rem 0.4rem; font-family:var(--mono); font-size:0.63rem; line-height:1.75; color:#C4D2FF; text-align:center">두 스킬이 공유하는 약속<br>경로 <span class="t-str">output/digest.md</span> · 형식 <span class="t-str">3섹션 고정</span> · 끝줄 <span class="t-str">DIGEST-VERSION: 1</span></div>
+          <div class="h0 ain" style="--dly:2.4s; border:0.09rem dashed rgba(143,168,255,0.55); border-radius:0.7rem; background:rgba(143,168,255,0.05); padding:0.35rem 0.9rem 0.4rem; font-family:var(--mono); font-size:0.63rem; line-height:1.75; color:#C4D2FF; text-align:center">두 스킬이 공유하는 약속<br>경로 <span class="t-str">output/digest.md</span> · 형식 <span class="t-str">3섹션 고정</span> · 끝줄 <span class="t-str">SCHEMA: 1 · RUN: &lt;현재 작업 ID&gt; · SOURCE: sha256:…</span></div>
           <div class="scn-row" style="flex-wrap:nowrap; gap:0.45rem">
             <span class="fl-node sk" style="flex:none">log-digest<small>생산자</small></span>
             <span class="fl-arr ok h0 ain" style="--dly:3.2s; flex:none">→<small>약속대로 WRITE</small></span>
             <div class="doc mint h0 apop" style="--dly:3.5s; flex:none; min-width:0"><span class="dt">digest.md</span><span class="dl" style="width:72%"></span><span class="dl" style="width:55%"></span><span class="stamp">형식 v1 ✓</span></div>
-            <span class="fl-arr ok h0 ain" style="--dly:4.1s; flex:none">→<small>형식 확인 후 READ</small></span>
+            <span class="fl-arr ok h0 ain" style="--dly:4.1s; flex:none">→<small>입력·실행 일치 확인 후 READ</small></span>
             <span class="fl-node sk h0 ainglow" style="--dly:4.4s; flex:none">incident-report<small>소비자</small></span>
           </div>
-          <span class="vlab pass h0 apop" style="--dly:5.1s">복붙 0회 · 구버전 차단 ✓</span>
-          <p class="scn-cap">함수의 시그니처처럼 — <b>어디에(경로) · 어떤 꼴로(형식) · 언제 것인지(버전)</b>를 고정합니다. 받는 쪽은 <b>겉(경로·형식)만 확인</b>하고 믿고 씁니다 — 내용을 뜯어보는 검사는 이 약속의 몫이 아닙니다.</p>
+          <span class="vlab pass h0 apop" style="--dly:5.1s">복붙 0회 · 입력·실행 일치 확인 ✓</span>
+          <p class="scn-cap"><b>SCHEMA</b>는 형식, <b>RUN</b>은 실행, <b>SOURCE</b>는 입력을 식별합니다. 요청이 기대하는 값과 대조해야 합니다. 파일에 식별자를 적기만 해서는 최신성이 확인되지 않습니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
-      <p class="note" style="margin-top:0.4rem">약속을 지키는 스킬은 <b>어떤 조합으로도</b> 이어 붙일 수 있습니다 — 부품이 된다는 뜻입니다. 전달된 <b>내용이 부실한 경우</b>는 별개의 사건입니다 — 사건 ⑧에서 다룹니다.</p>
+      <p class="note" style="margin-top:0.4rem">입출력 조건이 맞는 스킬을 연결합니다. 같은 경로에 남은 어제의 v1 파일도 존재하므로, 이번 실행·입력과의 일치와 완료 상태를 확인한 뒤 재사용합니다.</p>
     </section>
 
     <!-- 사건 06 · 개조 명세 -->
@@ -3590,17 +3588,17 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
           <div class="term fixsk" style="flex:1">
             <div class="term-bar"><span class="term-title">After ① — log-digest/SKILL.md (생산자 · 쓰는 쪽 약속 추가)</span></div>
             <div class="term-body"><span class="t-hl">## 절차</span> <span class="t-out">(1~2 동일)</span>
-<div class="mkbox good"><span class="mkt">핵심 변경 — 쓰는 쪽 약속: 경로·형식·버전 고정</span><span class="padd">＋</span> 3. 결과를 <span class="t-str">output/digest.md</span> 로 저장한다. <span class="t-out">(경로 고정)</span>
+<div class="mkbox good"><span class="mkt">핵심 변경 — 쓰는 쪽 약속: 경로·형식·입력 식별자 명시</span><span class="padd">＋</span> 3. 결과를 <span class="t-str">output/digest.md</span> 로 저장한다. <span class="t-out">(경로 고정)</span>
 <span class="padd">＋</span> 4. 형식: <span class="t-str">## 요약 / ## 오류 Top 10 / ## 이상 징후</span>
-<span class="padd">＋</span> 5. 마지막 줄에 <span class="t-str">DIGEST-VERSION: 1</span> 을 남긴다.</div>6. 사용자에게는 경로만 한 줄로 알린다.</div>
+<span class="padd">＋</span> 5. 마지막 줄에 <span class="t-str">SCHEMA: 1 · RUN: &lt;현재 작업 ID&gt; · SOURCE: sha256:…</span> 을 남긴다.</div>6. 사용자에게는 경로만 한 줄로 알린다.</div>
           </div>
-          <div style="text-align:center; font-family:var(--mono); font-size:0.68rem; font-weight:700; color:#9FF5E6; border:0.09rem solid rgba(43,234,208,0.5); border-radius:0.6rem; padding:0.24rem 0.6rem; background:rgba(43,234,208,0.06)">↓ 약속대로 WRITE — <span class="t-str">output/digest.md</span> (약속된 매개 문서) — 형식 확인 후 READ ↓</div>
+          <div style="text-align:center; font-family:var(--mono); font-size:0.68rem; font-weight:700; color:#9FF5E6; border:0.09rem solid rgba(43,234,208,0.5); border-radius:0.6rem; padding:0.24rem 0.6rem; background:rgba(43,234,208,0.06)">↓ 약속대로 WRITE — <span class="t-str">output/digest.md</span> (약속된 매개 문서) — 입력·실행 일치 확인 후 READ ↓</div>
           <div class="term fixsk" style="flex:1">
             <div class="term-bar"><span class="term-title">After ② — incident-report/SKILL.md (소비자 · 읽는 쪽 약속 추가)</span></div>
             <div class="term-body"><span class="t-hl">## 절차</span>
-<div class="mkbox good"><span class="mkt">핵심 변경 — 읽는 쪽 약속: 버전 확인 · 없으면 정지</span><span class="padd">＋</span> 1. <span class="t-str">output/digest.md</span> 가 있으면 <b>그것만</b> 근거로 쓴다.
-<span class="padd">＋</span> 2. 버전 표시(DIGEST-VERSION)가 없으면 <b>옛 파일·복사본으로 간주</b>, 쓰지 않는다.
-<span class="padd">＋</span> 3. 파일이 없으면 log-digest 실행을 안내하고 <b>멈춘다</b>.</div>4. 직접 로그를 읽지 않는다. <span class="t-out">(내용의 품질 검사는 이 약속의 몫이 아니다 — 사건 ⑧)</span></div>
+<div class="mkbox good"><span class="mkt">핵심 변경 — 읽는 쪽 약속: 입력 식별자 대조 · 불일치 시 정지</span><span class="padd">＋</span> 1. <span class="t-str">형식·RUN·SOURCE가 이번 요청과 일치하는 digest.md를 읽는다.</span><b></b>
+<span class="padd">＋</span> 2. SCHEMA 지원 여부와 RUN·SOURCE를 요청의 기대값과 대조한다.<b></b>
+<span class="padd">＋</span> 3. 파일이 없으면 log-digest 실행을 안내하고 <b>멈춘다</b>.</div>4. 필요한 원문은 범위를 좁혀 확인한다. <span class="t-out">(계약 확인은 소비자·검사기가 수행하며, ⑧ 예제는 최소 작성조건만 검사)</span></div>
           </div>
         </div>
       </div>
@@ -3622,7 +3620,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — 새벽 장애, 시니어 부재</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — 새벽 장애, 시니어 부재</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-dim">02:10</span> <span class="ska-danger">장애 발생</span> — 당직은 입사 3개월차</div>
               <div class="ska-log"><span class="sh-req">USER</span>  "로그 요약해줘" → 완료</div>
@@ -3669,7 +3667,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 새벽, 조율 스킬이 있는 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 새벽, 조율 스킬이 있는 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-dim">02:10</span> <span class="sh-req">USER</span> "장애 대응 시작해줘" <span class="sh-dim">— 한 마디가 전부</span></div>
               <div class="ska-log"><span class="sh-cmd">FLOW</span>  incident-flow 발동 — 단계 정의 로드</div>
@@ -3683,12 +3681,12 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 스킬 — incident-flow/SKILL.md (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — incident-flow/SKILL.md (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-out">---</span>
 <span class="t-key">name:</span> <span class="t-str">incident-flow</span>
 <span class="t-key">description:</span> <span class="t-str">"장애 대응 시작" 요청 시 전체 단계를 지휘</span>
 <span class="t-out">---</span>
-<span class="t-hl">## 단계</span> <span class="t-out">— 순서 고정 · 산출물 없으면 다음 단계 금지</span>
+<span class="t-hl">## 단계</span> <span class="t-out">— 순서 고정 · 식별자·검증 결과가 맞아야 진행</span>
 1. 수집   → log-digest 스킬        → <span class="t-str">output/digest.md</span>
 2. 분석   → root-cause 스킬        → <span class="t-str">output/analysis.md</span>
 3. 초안   → incident-report 스킬   → <span class="t-str">output/report.md</span>
@@ -3696,14 +3694,14 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
 
 <span class="t-hl">## 진행 규칙</span>
 · 각 단계 완료 시 <span class="t-hl">단계명과 산출물 경로만 한 줄</span> 보고.
-· 이전 단계 산출물이 없으면 그 단계부터 시작한다.
+· 이번 실행·입력에 맞고 검증된 산출물만 재사용한다.
   <span class="t-out">(중간부터 재개 가능 — 기법 ③의 원리)</span></div>
         </div>
       </div>
       <div class="tname p2">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑦ 파이프라인 스킬</span><span class="tn-en">Pipeline Orchestrator</span></div>
-        <p class="tn-one"><b>프로세스도 스킬이다.</b> 시니어의 머릿속 순서가 <b>기록된 자산</b>이 됩니다 — 단계 산출물이 파일로 남아 중간부터 다시 시작할 수도 있습니다.</p>
-        <div class="pills"><span class="pill green">시작은 한 마디</span><span class="pill neutral">단계 누락 0</span></div>
+        <p class="tn-one"><b>프로세스도 스킬로 명문화할 수 있습니다.</b> 단, 스킬은 지침입니다. 단계 차단을 강제하려면 실행기가 종료 코드·입력 식별자·검증 상태를 확인해야 합니다.</p>
+        <div class="pills"><span class="pill green">시작은 한 마디</span><span class="pill neutral">누락 방지 절차 명시</span></div>
       </div>
     </section>
 
@@ -3734,7 +3732,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
             <div class="doc coral h0 apop" style="--dly:2.6s; flex:none; min-width:0"><span class="dt">원인 불명 리포트</span><span class="dl" style="width:70%"></span><span class="stamp red">재작업</span></div>
             <span class="vlab fail h0 apop" style="--dly:3.2s; flex:none">순서는 시니어 머릿속 — 누락 · 재작업</span>
           </div>
-          <p class="scn-cap">매 단계 <b>사람이 다음을 지시</b>해야 하고 — 순서를 모르면 <b>건너뜁니다</b>. 검증(4)은 등장도 못 했습니다.</p>
+          <p class="scn-cap">매 단계 사람이 다음을 지시하면 순서를 놓칠 수 있습니다. 단계와 완료 조건을 명시해 재사용 가능한 절차로 남깁니다.</p>
         </div>
         <div class="scn-p good g2" style="min-height:9.5rem">
           <span class="scn-tag">After — 순서를 스킬이 알 때 (파이프라인)</span>
@@ -3752,11 +3750,11 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
             <span class="fl-node sk h0 ainglow" style="--dly:7.9s; flex:none">4 검증</span>
             <span class="vlab pass h0 apop" style="--dly:8.5s; flex:none">4/4 · 누락 0</span>
           </div>
-          <p class="scn-cap">같은 네 단계인데 사람의 개입은 <b>첫 한 마디뿐</b> — 순서는 <b>incident-flow의 단계표(파일)</b>에 있어, 새벽 2시의 신입이 돌려도 같은 길입니다. 산출물이 남아 <b>중간 재개</b>도 됩니다.</p>
+          <p class="scn-cap">incident-flow는 에이전트가 따를 단계표입니다. <b>실행 순서와 재개를 보장하려면 별도 실행 통제</b>가 필요합니다. 산출물의 존재만으로 이전 단계를 건너뛰지 않습니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
-      <p class="note" style="margin-top:0.4rem">각 단계를 잇는 화살표가 방금 배운 <b>산출물 약속(⑥)</b>입니다 — 약속이 있어야 지휘가 됩니다.</p>
+      <p class="note" style="margin-top:0.4rem">각 화살표에는 산출물 약속(⑥)이 있습니다. SKILL.md는 절차를 설명하고, 검사기는 조건을 판정하며, 실행기는 다음 호출을 허용하거나 차단합니다.</p>
     </section>
 
     <!-- 사건 07 · 개조 명세 -->
@@ -3791,16 +3789,16 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
 <span class="t-key">description:</span> <span class="t-str">"장애 대응 시작" 요청 시 아래 단계 전체를 지휘</span>
 <span class="t-out">---</span>
 # Incident Flow <span class="t-out">— 조율 스킬 (지휘자)</span>
-<div class="mkbox good"><span class="mkt">핵심 변경 ① — 단계·순서·산출물 명문화</span><span class="t-hl">## 단계</span> <span class="t-out">— 순서 고정 · 산출물 없으면 다음 단계 금지</span>
+<div class="mkbox good"><span class="mkt">핵심 변경 ① — 단계·순서·산출물 명문화</span><span class="t-hl">## 단계</span> <span class="t-out">— 순서 고정 · 식별자·검증 결과가 맞아야 진행</span>
 <span class="padd">＋</span> 1. 수집  → log-digest 스킬      → <span class="t-str">output/digest.md</span>
 <span class="padd">＋</span> 2. 분석  → root-cause 스킬      → <span class="t-str">output/analysis.md</span>
 <span class="padd">＋</span> 3. 초안  → incident-report 스킬 → <span class="t-str">output/report.md</span>
 <span class="padd">＋</span> 4. 검증  → report-check 스킬    → <span class="t-str">output/verdict.md</span></div>
 <span class="t-hl">## 진행 규칙</span>
 · 각 단계 완료 시 <b>단계명과 산출물 경로만 한 줄</b> 보고.
-<div class="mkbox good"><span class="mkt">핵심 변경 ② — 중간 재개 규칙</span><span class="padd">＋</span> · 이전 단계 산출물이 이미 있으면 그 단계는 건너뛴다.
+<div class="mkbox good"><span class="mkt">핵심 변경 ② — 중간 재개 규칙</span><span class="padd">＋</span> · 이번 실행·입력과 일치하고 검증된 단계만 재사용한다.
   <span class="t-out">(중간부터 재개 가능 — 사건 ③의 원리)</span>
-· 단계 실패 시: 실패 지점과 사유를 보고하고 멈춘다.</div>
+· 단계 실패 시: 종료 코드·사유를 보고하고 멈춘다. 자동 재시도는 별도 실행기에서 상한을 둔다.</div>
 <span class="t-hl">## 금지</span>
 · 단계 건너뛰기 · 순서 변경 · 산출물 없이 "완료" 보고</div>
         </div>
@@ -3822,21 +3820,21 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — 파이프라인(⑦)이 돌던 어느 날</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — 파이프라인(⑦)이 돌던 어느 날</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-ok">DONE</span>  2/4 분석 → analysis.md <span class="sh-dim">— '재현 절차' 섹션이 비어 있음</span></div>
-              <div class="ska-log"><span class="sh-ok">CHECK</span> 경로·버전 표시 ✓ <span class="sh-dim">— 약속(⑥)은 지켜짐 · 형식은 완벽</span></div>
+              <div class="ska-log"><span class="sh-ok">CHECK</span> 경로·형식·입력 식별자 ✓ — 최소 작성조건은 아직 미검사<span class="sh-dim"></span></div>
               <div class="ska-log"><span class="ska-danger">DONE  3/4 초안 — 부실한 분석을 그대로 근거로 작성</span></div>
               <div class="ska-log"><span class="ska-danger">FAIL  4/4 검증 — "재현 절차가 없어 검증 불가"</span></div>
               <div class="ska-log"><span class="sh-cmd">BACK</span>  2단계로 롤백 — 3·4단계 산출물 폐기</div>
-              <div class="ska-log"><span class="ska-danger">REWORK 재작업 비용 3배 — 결함은 2단계에서 태어나 4단계에서 발견</span></div>
+              <div class="ska-log"><span class="ska-danger">REWORK 후속 산출물까지 재작업 — 결함은 2단계에서 태어나 4단계에서 발견</span></div>
               <div class="ska-log"><span class="sh-dim">흐름(⑦)은 있는데, 흐름을 "믿을 장치"가 없다.</span></div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term badsk" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">문제의 스킬 — incident-report/SKILL.md (당시 형태)</span></div>
+          <div class="term-bar"><span class="term-title">문제의 스킬 — incident-report/SKILL.md (문제 재현용 형태)</span></div>
           <div class="term-body"><span class="t-out">---</span>
 <span class="t-key">name:</span> <span class="t-str">incident-report</span>
 <span class="t-key">description:</span> <span class="t-str">장애 리포트 작성 시 사용</span>
@@ -3850,10 +3848,10 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       </div>
       <div class="scn-p bad causebar sim">
         <span class="scn-tag">원인 분석</span>
-        <div class="g afill" style="--w:14%; --dly:0.4s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>2단계에서 잡으면</span><b>수정 1×</b></div></div>
-        <div class="g afill" style="--w:42%; --dly:0.8s"><div class="g-bar" style="border-color:rgba(255,212,107,0.5)"><i style="width:0; background:linear-gradient(90deg,#FFD46B,#FF9F7C)"></i></div><div class="g-cap"><span>3단계에서 잡으면</span><b>수정 3×</b></div></div>
-        <div class="g red afill" style="--w:100%; --dly:1.2s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>4단계에서 잡으면</span><b>수정 9× + 폐기</b></div></div>
-        <p class="scn-cap">약속(⑥)이 확인하는 건 <b>파일의 겉모습(경로·형식)까지</b>입니다. <b>내용을 보는 검문이 없으니</b> 결함이 흐르며 증폭됩니다 — 쓰레기가 들어가면 쓰레기가 나옵니다.</p>
+        <div class="g afill" style="--w:14%; --dly:0.4s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>2단계에서 잡으면</span><b>현재 단계 수정</b></div></div>
+        <div class="g afill" style="--w:42%; --dly:0.8s"><div class="g-bar" style="border-color:rgba(255,212,107,0.5)"><i style="width:0; background:linear-gradient(90deg,#FFD46B,#FF9F7C)"></i></div><div class="g-cap"><span>3단계에서 잡으면</span><b>후속 단계 재작업</b></div></div>
+        <div class="g red afill" style="--w:100%; --dly:1.2s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>4단계에서 잡으면</span><b>여러 단계 재작업</b></div></div>
+        <p class="scn-cap">산출물 약속은 요구조건의 정의입니다. 검사를 구현하지 않으면 조건을 위반한 입력이 다음 단계로 전달될 수 있습니다. 늦게 발견하면 후속 산출물까지 수정해야 합니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">각 스킬은 입력을 <b>신뢰</b>했습니다 — 신뢰를 만들 장치가 없었을 뿐입니다. 다음 장에서 해결합니다.</p>
     </section>
@@ -3873,21 +3871,21 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 결함, 게이트를 세운 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 결함, 게이트를 세운 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-cmd">RUN</span>   incident-report <span class="sh-dim">(3단계 시작 시도)</span></div>
               <div class="ska-log"><span class="sh-cmd">GATE</span>  python scripts/gate.py output/analysis.md</div>
               <div class="ska-log"><span class="ska-danger">FAIL  '재현 절차' 섹션 비어 있음 → 진행 거부</span></div>
               <div class="ska-log"><span class="sh-ok">BACK</span>  분석 단계로 반려 — 부족 항목 명시</div>
               <div class="ska-log"><span class="sh-ok">FIX</span>   분석 보완 → analysis.md v2</div>
-              <div class="ska-log"><span class="sh-ok">GATE</span>  PASS 2/2 → 리포트 진행 ✓</div>
-              <div class="ska-log"><span class="sh-ok">DONE</span>  결함이 태어난 자리에서 소멸 — 3·4단계는 무사 ✓</div>
+              <div class="ska-log"><span class="sh-ok">GATE</span>  PASS 3/3 → 리포트 진행 ✓</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  검사한 작성조건의 결함을 보완 — 3·4단계는 무사 ✓</div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 스킬 — incident-report/ 게이트 도입부 (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — incident-report/ 게이트 도입부 (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">incident-report/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">scripts/</span>
@@ -3895,8 +3893,8 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
 <span class="t-out">──────────────────────────────</span>
 <span class="t-hl">SKILL.md ▸ 절차 발췌 (도입부)</span>
 1. <span class="t-str">python scripts/gate.py output/analysis.md</span> 실행.
-   검사: 필수 섹션(재현 절차·영향 범위)이 <span class="t-hl">실제로
-   채워졌는가</span> · TODO/TBD 없음
+   검사: 필수 섹션(원인 후보·재현 절차·영향 범위)이 <span class="t-hl">최소 길이를
+   충족하는가</span> · TODO/TBD 없음
 2. <span class="t-hl">FAIL → 진행하지 않는다.</span> 부족 항목을 알리고
    분석 단계 스킬로 보완을 요청한다.
 3. PASS → 리포트 작성을 시작한다.</div>
@@ -3904,7 +3902,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       </div>
       <div class="tname p2">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑧ 게이트 체크</span><span class="tn-en">Stage Gate</span></div>
-        <p class="tn-one"><b>약속(⑥)이 파일의 형식을 본다면, 게이트는 내용을 본다.</b> 결함을 <b>가장 싼 단계</b>에서 차단 — 3편 Harness의 게이트를 스킬 사이에 옮겨 심었습니다.</p>
+        <p class="tn-one"><b>약속은 조건을 정의하고, 게이트는 검사 결과로 진행을 판단합니다.</b> 이 예제의 gate.py는 세 섹션의 최소 길이·미완성 표시만 검사합니다. 사실성·재현 성공은 별도 검증합니다.</p>
         <div class="pills"><span class="pill green">반려 사유 명시</span><span class="pill neutral">위험한 길목에만 한두 곳</span></div>
       </div>
     </section>
@@ -3937,24 +3935,24 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
               <div class="doc coral h0 ain" style="--dly:0.5s; min-width:0"><span class="dt">analysis.md</span>형식 ✓ · 재현 절차 <span class="bx">빈칸</span></div>
             </div>
             <div class="amvx" style="position:absolute; left:var(--l1); --l0:19%; --l1:62%; --dur:2.6s; --dly:5.4s; top:2.9rem; transform:translateY(-50%)">
-              <div class="doc mint h0 ain" style="--dly:4.9s; min-width:0"><span class="dt">analysis.md v2</span>재현 절차 <b>포함</b><span class="stamp">PASS 2/2</span></div>
+              <div class="doc mint h0 ain" style="--dly:4.9s; min-width:0"><span class="dt">analysis.md v2</span>재현 절차 <b>포함</b><span class="stamp">PASS 3/3</span></div>
             </div>
             <div class="mret h0 ain" style="--dly:2.9s; left:14%; right:52%; top:6.5rem"><span>FAIL — 부족 항목 명시 · 반려</span></div>
-            <span class="vlab pass h0 apop" style="--dly:8.2s; position:absolute; right:6%; top:6.9rem">뒤 단계는 안심 ✓</span>
+            <span class="vlab pass h0 apop" style="--dly:8.2s; position:absolute; right:6%; top:6.9rem">검사한 조건 통과 ✓</span>
           </div>
           <div class="scn-row" style="gap:0.5rem; margin-top:0.2rem">
-            <span class="pill green">여기서 잡으면 — 수정 1×</span>
-            <span class="pill neutral">다음 단계에서 — 수정 3×</span>
-            <span class="pill pink">끝에서 — 수정 9× + 폐기</span>
+            <span class="pill green">여기서 잡으면 — 현재 단계 수정</span>
+            <span class="pill neutral">다음 단계에서 — 후속 단계 재작업</span>
+            <span class="pill pink">끝에서 — 여러 단계 재작업</span>
           </div>
           <div class="scn-row" style="gap:0.6rem; margin-top:0.25rem">
-            <span class="vlab" style="border-color:rgba(143,168,255,0.7); color:#C4D2FF">⑥ 약속 = 형식 확인 — 맞는 파일이 · 맞는 자리에 · 맞는 모양으로</span>
-            <span class="vlab pass">⑧ 게이트 = 내용 검사 — 안이 채워졌고 믿을 만한가 · 아니면 반려</span>
+            <span class="vlab" style="border-color:rgba(143,168,255,0.7); color:#C4D2FF">⑥ 약속 = 요구조건 정의 — 경로·형식·입력 식별자·유효성 조건</span>
+            <span class="vlab pass">⑧ 게이트 = 검사와 진행 판단 — 구현된 조건의 충족 여부 · 실패하면 보완</span>
           </div>
           <div class="scn-row" style="gap:0.6rem; margin-top:0.1rem">
             <span class="vlab" style="border-color:rgba(255,212,107,0.7); color:#FFE9AE">어디에 세우나? — 연결마다 ✕ · 부실이 비싸지는 길목에만 ✓ (파이프라인에 한두 곳)</span>
           </div>
-          <p class="scn-cap">부실한 산출물은 <b>다음 단계의 입구</b>에서 멈춥니다 — 판정은 말이 아니라 <b>스크립트</b>가, 반려 사유는 <b>항목으로</b> 남습니다.</p>
+          <p class="scn-cap">이 gate.py는 <b>최소 작성조건 검사기</b>입니다. 근거 없는 문장도 길이 조건을 충족할 수 있습니다. FAIL 후 진행 차단은 호출 측 실행기가 담당해야 합니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
@@ -3999,11 +3997,11 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
 
 <span class="t-hl">## 절차</span>
 <div class="mkbox good"><span class="mkt">핵심 변경 ① — 도입부 게이트 실행</span><span class="padd">＋</span> 1. 시작 전에 <span class="t-str">python scripts/gate.py output/analysis.md</span> 실행.
-   <span class="t-out">검사: 필수 섹션(재현 절차·영향 범위·원인 후보) 존재</span>
-   <span class="t-out">· TODO/TBD 없음 · 인용 수치가 digest.md 와 일치</span></div><div class="mkbox good"><span class="mkt">핵심 변경 ② — FAIL이면 진행 거부 · 반려</span><span class="padd">＋</span> 2. <b>FAIL → 진행하지 않는다.</b>
+   <span class="t-out">검사: 필수 섹션(재현 절차·영향 범위·원인 후보) 작성조건</span>
+   <span class="t-out">· 최소 15자 · TODO/TBD 등 미완성 표시 없음</span></div><div class="mkbox good"><span class="mkt">핵심 변경 ② — FAIL이면 진행 거부 · 반려</span><span class="padd">＋</span> 2. <b>FAIL → 진행하지 않는다.</b>
    부족 항목을 그대로 알리고 분석 단계로 반려한다.
-   <span class="t-out">형식: "GATE FAIL — [항목]. 분석 보완 후 재시도."</span></div><span class="padd">＋</span> 3. PASS 2/2 → 리포트 작성을 시작한다.
-4. <span class="t-str">output/report.md</span> 저장 · PASS 로그를 리포트 끝에 첨부.
+   <span class="t-out">형식: "GATE FAIL — [항목]. 분석 보완 후 재시도."</span></div><span class="padd">＋</span> 3. PASS 3/3 → 리포트 작성을 시작한다.
+4. <span class="t-str">output/report.md</span> 저장 · PASS 범위·로그를 첨부. 사실성과 수치는 별도 검증.
 
 <span class="t-hl">## 폴더 구성</span>
 incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 판정기</span></div>
@@ -4026,7 +4024,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — 팀 스킬 20개가 쌓인 뒤</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — 팀 스킬 20개가 쌓인 뒤</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-req">USER</span>  "이 로그 좀 봐줘"</div>
               <div class="ska-log"><span class="ska-danger">TRIGGER pdf-export 발동 ✕</span> <span class="sh-dim">— description "로그를 문서로…"와 유사</span></div>
@@ -4046,7 +4044,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
 
 <span class="t-hl">review-summary/SKILL.md</span>
 <span class="t-key">description:</span> <span class="t-str">Summarize review comments…</span>
-   <span class="bx">✕ 사용자가 실제로 칠 한글 표현이 없다 → 미발동</span>
+   <span class="bx">✕ 사용자가 실제로 칠 한글 요청으로 동작을 확인하지 않음</span>
 
 <span class="t-out">(스킬 20개의 전체 지도를 가진 파일: 없음)</span></div>
         </div>
@@ -4054,7 +4052,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       <div class="scn-p bad causebar sim">
         <span class="scn-tag">원인 분석</span>
         <div class="cb-v"><span class="fl-node sk" style="font-size:0.74rem">log-digest</span><span class="fl-node sk" style="font-size:0.74rem; margin-left:-1.1rem; background:#1A2140">pdf-export</span><span class="vlab fail">겹침 → 오발동</span><span class="fl-node ghost" style="font-size:0.74rem">…표현 없음…</span><span class="vlab fail">빈틈 → 미발동</span></div>
-        <p class="scn-cap">발동 판단이 description끼리의 <b>유사도 경쟁</b>이 됩니다 — 스킬이 늘수록 <b>겹침과 빈틈이 함께</b> 늘어납니다.</p>
+        <p class="scn-cap">모델은 요청·description·주변 지침을 함께 보고 스킬을 선택합니다. 설명이 모호하거나 겹치면 선택이 빗나갈 수 있습니다. 영어 설명이라는 이유만으로 미발동한다고 단정할 수는 없습니다.</p>
       </div>
       <p class="note" style="margin-top:0.55rem">2편의 교통정리(description 다듬기)로 버티다가, 스무 개에서 <b>구조의 한계</b>를 만났습니다. 다음 장에서 해결합니다.</p>
     </section>
@@ -4074,7 +4072,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 요청, 접수 창구를 세운 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 요청, 접수 창구를 세운 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-req">USER</span>  "이 로그 좀 봐줘"</div>
               <div class="ska-log"><span class="sh-cmd">ROUTE</span> qa-desk 발동 — 접수 창구 <span class="sh-dim">(넓은 description)</span></div>
@@ -4082,13 +4080,13 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
               <div class="ska-log"><span class="sh-ok">RUN</span>   log-digest ✓</div>
               <div class="ska-log"><span class="sh-req">USER</span>  "그… 지난주 그거 정리해줘" <span class="sh-dim">(모호)</span></div>
               <div class="ska-log"><span class="sh-agent">ASK</span>   "리뷰 정리 / 주간 리포트 — 어느 쪽인가요?" <span class="sh-dim">— 짐작 금지</span></div>
-              <div class="ska-log"><span class="sh-ok">DONE</span>  오발동 0 · 미발동 0 — 입구는 하나 ✓</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  선택 결과 확인 · 모호한 요청은 질문 — 입구는 하나 ✓</div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 스킬 — qa-desk/SKILL.md (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — qa-desk/SKILL.md (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-key">description:</span> <span class="t-str">QA 업무 요청 전반의 접수 창구.
   로그·리포트·리뷰 요청이 모호할 때 우선 사용.</span>
 
@@ -4106,7 +4104,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       </div>
       <div class="tname p2">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑨ 라우터 스킬</span><span class="tn-en">Router Skill</span></div>
-        <p class="tn-one"><b>전문가가 많을수록 접수 창구가 필요하다.</b> 발동 판단을 유사도 경쟁에서 <b>명시된 분류표</b>로 끌어올립니다.</p>
+        <p class="tn-one"><b>분류 기준을 명시하면 선택을 돕습니다.</b> 라우터 스킬이 항상 먼저 선택되는 것은 아닙니다. 명시적 호출·진입점 통제가 필요한지 판단하고, 복합 요청과 모호한 요청을 시험합니다.</p>
         <div class="pills"><span class="pill green">진입점 1개</span><span class="pill neutral">모호하면 질문</span></div>
       </div>
     </section>
@@ -4125,19 +4123,19 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       <h2><span class="tkb b2" style="margin-right:0.5rem">⑨</span>라우터 스킬 — <span class="grad">입구는 하나, 분류는 표로</span></h2>
       <div class="scn one sim mech" style="margin-top:0.8rem; gap:1.0rem">
         <div class="scn-p bad" style="min-height:8.5rem">
-          <span class="scn-tag">Before — description 유사도 경쟁</span>
+          <span class="scn-tag">Before — 모호한 설명과 선택 오류</span>
           <div class="scn-row" style="flex-wrap:nowrap; gap:0.55rem">
             <span class="blob h0 ain" style="--dly:0.3s; flex:none">"이 로그 좀 봐줘"</span>
-            <span class="fl-arr bad h0 ain" style="--dly:0.7s; flex:none">→<small>비슷한 말이 이긴다</small></span>
+            <span class="fl-arr bad h0 ain" style="--dly:0.7s; flex:none">→<small>모델의 선택이 빗나감</small></span>
             <span class="fl-node sk agray" style="--dly:1.5s; flex:none">pdf-export</span>
             <span class="vlab fail h0 apop" style="--dly:1.1s; flex:none">엉뚱한 스킬 — 오발동 ✕</span>
             <span style="flex:none; width:1.6rem"></span>
             <span class="blob h0 ain" style="--dly:2.0s; flex:none">"리뷰 코멘트 정리해줘"</span>
-            <span class="fl-arr bad h0 ain" style="--dly:2.4s; flex:none">→<small>맞는 표현이 없다</small></span>
+            <span class="fl-arr bad h0 ain" style="--dly:2.4s; flex:none">→<small>요청 의도를 놓침</small></span>
             <span class="fl-node ghost" style="flex:none">…반응 없음</span>
             <span class="vlab fail h0 apop" style="--dly:2.8s; flex:none">미발동 ✕</span>
           </div>
-          <p class="scn-cap">발동이 description끼리의 <b>유사도 경쟁</b>에 맡겨져 있습니다 — 스킬이 늘수록 <b>겹침(오발동)과 빈틈(미발동)</b>이 함께 늘어납니다.</p>
+          <p class="scn-cap">description은 선택의 단서입니다. 키워드의 단순 일치나 유사도 순위만으로 발동한다고 단정하지 않습니다. 실제 요청으로 선택 결과를 확인합니다.</p>
         </div>
         <div class="scn-p good g2" style="min-height:11rem">
           <span class="scn-tag">After — 접수 창구 (라우터)</span>
@@ -4156,11 +4154,11 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
               <span class="fl-node hum h0 ainglow" style="--dly:5.9s; --gc:rgba(255,212,107,0.9); --gs:rgba(255,212,107,0.3)">모호함 → 질문<small>"리뷰 정리 / 주간 리포트 — 어느 쪽?"</small></span>
             </div>
           </div>
-          <p class="scn-cap">같은 요청들이 <b>표에 적힌 규칙</b>대로 각자 담당에게 갑니다 — 분류 불가면 짐작 대신 <b>질문</b>이 정답입니다.</p>
+          <p class="scn-cap">분류표는 담당 스킬을 고르는 지침입니다. <b>서로 겹치는 복합 요청</b>은 작업을 나누거나 사용자에게 확인하며, 입구를 강제하려면 명시적 실행 경로가 필요합니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
-      <p class="note" style="margin-top:0.4rem">창구의 description은 <b>넓게</b>, 전문 스킬은 <b>좁고 정확하게</b> — 겹침도 빈틈도 사라집니다.</p>
+      <p class="note" style="margin-top:0.4rem">창구의 description은 <b>넓게</b>, 전문 스킬은 <b>좁고 정확하게</b> — 선택 모호성을 줄입니다. 우선 사용은 지침이며 강제 라우팅은 별도 실행 통제가 필요합니다.</p>
     </section>
 
     <!-- 사건 09 · 개조 명세 -->
@@ -4184,9 +4182,9 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
 <span class="t-hl">log-digest/SKILL.md</span>
 <span class="t-key">description:</span> <span class="t-str">로그 파일을 요약할 때 사용</span></div><div class="mkbox"><span class="mkt">문제 지점 ② — 표현의 빈틈</span><span class="t-hl">review-summary/SKILL.md</span>
 <span class="t-key">description:</span> <span class="t-str">Summarize review comments…</span>
-   <span class="bx">✕ 사용자가 실제로 칠 한글 표현이 없다 → 미발동</span></div>
+   <span class="bx">✕ 사용자가 실제로 칠 한글 요청으로 동작을 확인하지 않음</span></div>
 <span class="bx">✕ 스킬 20개의 전체 지도를 가진 파일: 없음</span>
-<span class="t-out">(발동이 description끼리의 유사도 경쟁에 맡겨져 있다)</span></div>
+<span class="t-out">(발동이 요청·description·주변 지침을 바탕으로 한 모델의 선택에 맡겨져 있다)</span></div>
         </div>
         <div class="term fixsk">
           <div class="term-bar"><span class="term-title">After — qa-desk/SKILL.md (해결 시점 — 새로 추가)</span></div>
@@ -4228,7 +4226,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
         <div class="net-row" style="border-color:rgba(255,122,149,0.5); background:rgba(255,122,149,0.04)">
           <div class="nt"><span class="tkb b2" style="color:#FF94AC; border-color:rgba(255,122,149,0.85)">⑧</span>게이트 체크</div>
           <div class="nc">연결의 질문 — <b>받은 것을 믿어도 되는가?</b> (내용 검사 · 반려 — 위험한 길목에만)</div>
-          <div class="nj">없으면: 부실 전파 · 재작업 9× · 전량 폐기</div>
+          <div class="nj">없으면: 부실 전파 · 후속 단계 재작업 · 전량 폐기</div>
         </div>
         <div class="net-row" style="border-color:rgba(143,168,255,0.4)">
           <div class="nt"><span class="tkb b2">⑨</span>라우터 스킬</div>
@@ -4238,12 +4236,12 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       </div>
       <div class="autoshow fade-up" style="margin-top:0.85rem; display:grid; grid-template-columns:1fr 1fr; gap:0.8rem">
         <div class="scn-p g2" style="min-height:0; border-style:solid; padding:1.0rem 1.0rem 0.7rem; align-items:flex-start; gap:0.3rem">
-          <span class="scn-tag">가장 헷갈리는 한 쌍 — ⑥ 약속은 형식 확인</span>
-          <p class="scn-cap" style="text-align:left; font-size:0.98rem"><b>그 파일이, 그 자리에, 맞는 형식으로</b> 왔는가만 봅니다. 내용은 열어 보지 않습니다 — <b>전달을 보장</b>하는 장치입니다. <span class="dim">(택배의 송장 확인)</span></p>
+          <span class="scn-tag">가장 헷갈리는 한 쌍 — ⑥ 약속은 조건 정의</span>
+          <p class="scn-cap" style="text-align:left; font-size:0.98rem"><b>산출물 약속은 조건을 정의합니다.</b> 경로·형식뿐 아니라 실행 ID·입력 식별자·유효성 조건도 포함할 수 있습니다. 약속 자체가 검사를 실행하지는 않습니다.</p>
         </div>
         <div class="scn-p g3" style="min-height:0; padding:1.0rem 1.0rem 0.7rem; align-items:flex-start; gap:0.3rem">
-          <span class="scn-tag">가장 헷갈리는 한 쌍 — ⑧ 게이트는 내용 검사</span>
-          <p class="scn-cap" style="text-align:left; font-size:0.98rem">상자를 열어 <b>안이 채워졌고 믿을 만한가</b>를 봅니다. 아니면 그 자리에서 <b>반려</b> — <b>품질을 보증</b>하는 장치입니다. <span class="dim">(택배의 검수대)</span></p>
+          <span class="scn-tag">가장 헷갈리는 한 쌍 — ⑧ 게이트는 검사와 진행 판단</span>
+          <p class="scn-cap" style="text-align:left; font-size:0.98rem"><b>게이트는 조건을 검사하고 진행 여부를 판단합니다.</b> 형식·수치·내용 중 구현한 범위만 확인합니다. 이 예제의 최소 작성조건 PASS가 내용 전체의 정확성을 뜻하지는 않습니다.</p>
         </div>
       </div>
       <p class="note autoshow fade-up" style="margin-top:0.7rem">배운 순서가 곧 구축 순서입니다 — <b>⑥이 연결(전달)을 먼저 고정해야, ⑦이 그 연결들로 라인(순서)을 세울 수 있고, ⑧이 흐르는 내용을 검수</b>합니다. 스킬이 불어나면 <b>⑨가 입구를 정리</b>합니다. 다음 장에서 넷이 함께 도는 모습을 봅니다.</p>
@@ -4252,7 +4250,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
     <!-- 28 · PART 2 데모 · 파이프라인 시네마 -->
     <section data-sec="PART 2 · 데모 · 파이프라인">
       <div><span class="chip">데모</span> <span class="pill">동작 재현 <span class="tiny" style="font-weight:400">(기법 ⑥⑦⑧⑨ 결합)</span></span></div>
-      <h2>네 기법이 연결되면, 프로세스가 <span class="grad">스스로 흐릅니다</span></h2>
+      <h2>네 기법이 연결되면, 프로세스의 <span class="grad">진행 조건이 명확해집니다</span></h2>
       <div class="pp-scene sim" style="margin-top:0.8rem">
         <div class="pp-track">
           <div class="pp-st rt pp-s1">접수<span class="sub">qa-desk ⑨ 분류표</span></div>
@@ -4265,7 +4263,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
           <span class="pp-card rej">analysis.md — 재현 절차 없음 ✕</span>
           <span class="pp-card okc">analysis.md v2 — 재현 절차 포함</span>
           <div class="pp-ret"><span>반려 — 보완 후 재시도</span></div>
-          <span class="pp-stamp">파이프라인 완료 ✓</span>
+          <span class="pp-stamp">보고 단계 완료 ✓</span>
         </div>
         <div class="term" style="margin-top:0.2rem; border-color:rgba(255,255,255,0.1)">
           <div class="term-bar"><span class="term-title">진행 로그 — 사용자에게 보이는 전부</span></div>
@@ -4274,13 +4272,13 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
             <div class="pl pl2"><span class="sh-ok">DONE</span>  1/3 수집 — output/digest.md <span class="sh-dim">(50만 줄 → 30줄)</span></div>
             <div class="pl pl3"><span class="plx">GATE</span>  2/3 분석 반려 — '재현 절차' 섹션 없음 → 분석 재작업</div>
             <div class="pl pl4"><span class="sh-ok">DONE</span>  2/3 분석(v2) — output/analysis.md</div>
-            <div class="pl pl5"><span class="plv">PASS</span>  게이트 통과 — 필수 섹션 2/2 · TODO 0건</div>
-            <div class="pl pl6"><span class="sh-ok">DONE</span>  3/3 보고 — output/report.md · <span class="plv">사람 개입 0회</span></div>
+            <div class="pl pl5"><span class="plv">PASS</span>  게이트 통과 — 필수 섹션 3/3 · TODO 0건</div>
+            <div class="pl pl6"><span class="sh-ok">DONE</span>  3/3 보고 — output/report.md · <span class="plv">실행 통제가 있을 때의 예시</span></div>
           </div>
         </div>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem">
-        <p class="note" style="margin:0; border-top:none; padding-top:0">사람의 개입 없이 — 부실 산출물은 <b class="accent3">게이트가 반려</b>하고, 프로세스는 <b class="accent2">스스로 회복</b>합니다. 게이트는 여기서도 <b>한 곳뿐</b> — 연결마다가 아니라, 부실이 비싸지는 길목에만 세웁니다.</p>
+        <p class="note" style="margin:0; border-top:none; padding-top:0">도해는 수집·분석·보고 3단계만 표시합니다. 실제 절차의 최종 검증(4단계)은 유지합니다. 자동 반려·재시도에는 별도 실행기와 재시도 상한이 필요합니다.<b></b></p>
         <button class="pill" onclick="simReplay(this)" style="cursor:pointer">↻ 다시 재생</button>
       </div>
     </section>
@@ -4313,7 +4311,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — PR 설명 초안</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — PR 설명 초안</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-req">USER</span>  "PR 설명 초안 작성해줘" → 초안 완료</div>
               <div class="ska-log"><span class="sh-req">USER</span>  "괜찮아? 빠진 거 없어?"</div>
@@ -4325,7 +4323,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term badsk" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">문제의 스킬 — pr-desc/SKILL.md (당시 형태)</span></div>
+          <div class="term-bar"><span class="term-title">문제의 스킬 — pr-desc/SKILL.md (문제 재현용 형태)</span></div>
           <div class="term-body"><span class="t-out">---</span>
 <span class="t-key">name:</span> <span class="t-str">pr-desc</span>
 <span class="t-key">description:</span> <span class="t-str">PR 설명 작성 요청 시 사용</span>
@@ -4360,7 +4358,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 초안, 리뷰 루프를 절차로 고정한 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 초안, 리뷰 루프를 절차로 고정한 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-ok">DRAFT</span> output/draft.md 작성</div>
               <div class="ska-log"><span class="sh-cmd">SWITCH</span> "지금부터 리뷰어다" — references/checklist.md 로드</div>
@@ -4373,7 +4371,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 스킬 — pr-desc/ (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — pr-desc/ (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">pr-desc/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">references/</span>
@@ -4390,7 +4388,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       </div>
       <div class="tname p3">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑩ 자가 리뷰 루프</span><span class="tn-en">Self-Review Loop</span></div>
-        <p class="tn-one"><b>작성자와 리뷰어는 같은 모델, 다른 프레임.</b> 비판 프레임과 체크리스트가 결함 탐지율을 끌어올립니다 — 사람의 페어 리뷰를 스킬로 옮긴 것입니다.</p>
+        <p class="tn-one"><b>작성과 검토의 관점을 나눕니다.</b> 체크리스트는 탐지를 돕지만 같은 모델의 역할 전환이 독립적인 검증은 아닙니다. 지적 0건은 발견한 문제가 없다는 뜻이며, 무결함을 보장하지 않습니다.</p>
         <div class="pills"><span class="pill green">품질 균질화</span><span class="pill neutral">기준은 팀 공유 파일</span></div>
       </div>
     </section>
@@ -4406,7 +4404,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
           <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
         </div>
       </div>
-      <h2><span class="tkb b3" style="margin-right:0.5rem">⑩</span>자가 리뷰 루프 — <span class="grad">같은 모델, 다른 프레임</span></h2>
+      <h2><span class="tkb b3" style="margin-right:0.5rem">⑩</span>자가 리뷰 루프 — <span class="grad">같은 모델, 다른 검토 관점</span></h2>
       <div class="scn one sim mech" style="margin-top:0.8rem">
         <div class="scn-p g3" style="min-height:19.5rem; justify-content:flex-start; gap:0.5rem">
           <span class="scn-tag">혼자서 하는 페어 리뷰</span>
@@ -4427,11 +4425,11 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
             <span class="vlab pass h0 apop" style="--dly:5.3s; position:absolute; left:63%; top:52%">지적 0건 → 제출 ✓</span>
             <span class="tiny mono h0 ain" style="--dly:5.8s; position:absolute; left:63%; top:70%; color:#A9B4D8 !important">사람 리뷰에는 남은 것만 올라간다</span>
           </div>
-          <p class="scn-cap">같은 모델이라도 <b>프레임(역할 선언)과 체크리스트</b>를 바꾸면 남의 눈이 됩니다 — 기준이 파일이니 <b>누가 써도 같은 수준</b>으로 잡습니다.</p>
+          <p class="scn-cap">같은 모델에 다른 관점과 체크리스트를 제공합니다. <b>실제 결함이 모두 발견된다는 보장은 없으며</b>, 중요한 항목은 테스트나 별도 검토로 확인합니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
-      <p class="note" style="margin-top:0.4rem">비용은 몇 초의 재검토 — 대가는 <b>사람 리뷰에서 반복 지적이 사라지는 것</b>입니다.</p>
+      <p class="note" style="margin-top:0.4rem">재검토에는 추가 시간과 토큰이 듭니다. 이 예시는 최대 2회이며, 남은 지적이나 확인하지 못한 항목은 사용자에게 넘깁니다.</p>
     </section>
 
     <!-- 사건 10 · 개조 명세 -->
@@ -4479,7 +4477,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
    0건이 안 되면: 남은 지적을 정리해 사용자 판단에 넘긴다.</div>
 <span class="t-hl">## checklist.md 발췌</span> <span class="t-out">(references/ · 팀 공유)</span>
 #2 테스트 영향이 적혀 있는가 · #5 롤백 계획이 있는가
-#7 과장·모호 표현이 없는가 <span class="t-out">("완벽히", "아마" 등)</span></div>
+#7 근거 없는 과장이 없는가 · 불확실성은 근거·확인 계획과 함께 표시<span class="t-out"></span></div>
         </div>
       </div>
     </section>
@@ -4499,9 +4497,9 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — 장애 원인 보고 (리뷰 루프 ⑩까지 통과한 상태)</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — 장애 원인 보고 (리뷰 루프 ⑩까지 통과한 상태)</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
-              <div class="ska-log"><span class="sh-agent">AGENT</span> "원인은 8/12 배포입니다 — 배포 직후 오류 급증"</div>
+              <div class="ska-log"><span class="sh-agent">AGENT</span> "8/12 배포가 오류를 처음 발생시켰다입니다 — 배포 직후 오류 급증"</div>
               <div class="ska-log"><span class="sh-ok">REVIEW</span> "근거 명확, 그래프 일치 — 타당합니다" <span class="sh-dim">— 리뷰도 통과</span></div>
               <div class="ska-log"><span class="sh-cmd">ACTION</span> 롤백 실행</div>
               <div class="ska-log"><span class="ska-danger">RESULT 오류 여전 — 원인이 아니었다</span></div>
@@ -4512,7 +4510,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term badsk" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">문제의 스킬 — root-cause/SKILL.md (검증 부분, 당시 형태)</span></div>
+          <div class="term-bar"><span class="term-title">문제의 스킬 — root-cause/SKILL.md (검증 부분, 문제 재현용 형태)</span></div>
           <div class="term-body"><span class="t-hl">## 절차 ▸ 검증 부분</span>
 3. 원인 후보를 뒷받침하는 증거를 모은다
    <span class="bx">✕ 지지 증거만 모으는 방향</span>
@@ -4525,9 +4523,9 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       <div class="scn-p bad causebar sim">
         <span class="scn-tag">원인 분석</span>
         <div class="cb-v"><span class="blob" style="border-style:solid">지지 증거 수집 ✓✓</span><span class="blob" style="min-height:2.4rem; display:flex; align-items:center">반례 탐색 — 비어 있음</span></div>
-        <p class="scn-cap"><b>확증 편향</b> — 지지 증거는 아무리 쌓여도 확증이 아니고, 반례는 <b>하나만 있어도 결정적</b>입니다.</p>
+        <p class="scn-cap">지지 증거와 반박 근거를 함께 확인합니다. 반례가 결론의 어떤 부분을 반박하는지 구분해야 하며, 동일 증상이 이전에 있었다고 배포의 악화 기여까지 배제되지는 않습니다.</p>
       </div>
-      <p class="note" style="margin-top:0.55rem">리뷰 프레임(⑩)도 "통과시킬 이유"를 찾습니다 — 방향 자체를 뒤집어야 합니다. 다음 장에서 해결합니다.</p>
+      <p class="note" style="margin-top:0.55rem">체크리스트 리뷰에서도 같은 해석을 반복할 수 있습니다. 원인 검증에서는 최초 발생·빈도 증가·복합 원인을 구분해 가설을 조사합니다.</p>
     </section>
 
     <!-- 33 · 사건 ⑪ 해결 -->
@@ -4545,20 +4543,20 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 결론, 반박 절차를 통과시키는 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 결론, 반박 절차를 통과시키는 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
-              <div class="ska-log"><span class="sh-cmd">CLAIM</span> "원인은 8/12 배포" — 반박 검증 시작</div>
+              <div class="ska-log"><span class="sh-cmd">CLAIM</span> "8/12 배포가 오류를 처음 발생시켰다" — 반박 검증 시작</div>
               <div class="ska-log"><span class="sh-cmd">REFUTE</span> 시간 반박: <span class="sh-dim">grep ERROR 8/09~8/12 로그</span></div>
               <div class="ska-log"><span class="ska-danger">FOUND</span> 8/10에도 동일 오류 다수 — <b>배포 전!</b></div>
-              <div class="ska-log"><span class="sh-ok">REJECT</span> 결론 기각 — 반례 1건이 결정적</div>
-              <div class="ska-log"><span class="sh-cmd">RE-SEARCH</span> 대안 원인 조사 → 8/10 인증서 만료 확인</div>
-              <div class="ska-log"><span class="sh-ok">REPORT</span> 정정 보고 + 반박 기록 첨부 ✓ <span class="sh-dim">— 롤백 헛수고 없음</span></div>
+              <div class="ska-log"><span class="sh-ok">REJECT</span> 결론 기각 — 최초 발생 가설을 반박 · 악화 기여는 별도 조사</div>
+              <div class="ska-log"><span class="sh-cmd">RE-SEARCH</span> 대안 원인 조사 → 인증서 만료 근거 추가 확인</div>
+              <div class="ska-log"><span class="sh-ok">REPORT</span> 가설 상태·반박 기록 첨부 ✓ — 롤백 필요성도 별도 판단<span class="sh-dim"></span></div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 스킬 — refute-check/SKILL.md (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — refute-check/SKILL.md (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-out">---</span>
 <span class="t-key">name:</span> <span class="t-str">refute-check</span>
 <span class="t-key">description:</span> <span class="t-str">원인·결론 보고의 검증 요청 시 사용</span>
@@ -4570,14 +4568,14 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
    · 시간 반박 — 원인 이전에도 증상이 있었나
    · 사례 반박 — 조건이 같은데 증상 없는 곳은
    · 대안 반박 — 같은 증상의 다른 원인 후보는
-3. 반례 발견 → <span class="t-hl">결론 기각</span>, 근거와 함께 보고.
-4. 3경로 모두 실패 → "반박 3회 실패"를 명시하고 채택.
-<span class="t-out">※ 가능하면 새 세션에서 실행 (작성 편향 차단)</span></div>
+3. 명제와 직접 모순되는 반례이면 해당 가설을 기각하고 근거를 보고.<span class="t-hl"></span>
+4. 세 경로에서 반박 근거를 찾지 못함 → "세 경로 조사 결과와 남은 불확실성"을 기록하고 잠정 가설로 남긴다. 자료 부족이면 판단 보류.
+<span class="t-out">※ 가능하면 새 세션에서 실행 (작성 편향 완화 시도)</span></div>
         </div>
       </div>
       <div class="tname p3">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑪ 반박 검증</span><span class="tn-en">Adversarial Check</span></div>
-        <p class="tn-one"><b>반박에서 살아남은 결론만 결론이다.</b> 검증의 방향을 "통과 찾기"에서 <b>"반례 찾기"</b>로 뒤집습니다 — 반증주의를 절차로 만든 것입니다.</p>
+        <p class="tn-one"><b>반박을 못 찾은 가설은 아직 입증된 결론이 아닙니다.</b> 가설을 반박하는 증거·조사 범위·대안 원인을 기록하고, 근거에 따라 반증·잠정 가설·판단 보류를 구분합니다.</p>
         <div class="pills"><span class="pill green">거짓 확신 차단</span><span class="pill neutral">반박 기록이 남는다</span></div>
       </div>
     </section>
@@ -4593,10 +4591,10 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
           <span class="ska-cell"><span class="n">13</span>완료 한 줄</span>
         </div>
       </div>
-      <h2><span class="tkb b3" style="margin-right:0.5rem">⑪</span>반박 검증 — <span class="grad">반례 하나가 확신을 이긴다</span></h2>
+      <h2><span class="tkb b3" style="margin-right:0.5rem">⑪</span>반박 검증 — <span class="grad">가설과 모순되는 근거를 확인한다</span></h2>
       <div class="scn one sim mech" style="margin-top:0.8rem; gap:1.0rem">
         <div class="scn-p bad" style="min-height:8.8rem">
-          <span class="scn-tag">경우 1 — 반례가 하나라도 나오면, 기각</span>
+          <span class="scn-tag">경우 1 — 가설을 직접 반박하는 근거가 있으면 기각</span>
           <div class="scn-row" style="flex-wrap:nowrap; gap:1.0rem">
             <div class="scn-col" style="gap:0.35rem; align-items:flex-end; flex:none">
               <span class="pill pink h0 ain" style="--dly:0.5s">시간 반박 — 그 전에도 있었나?</span>
@@ -4604,23 +4602,23 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
               <span class="pill neutral">대안 반박 — 다른 원인 후보는?</span>
             </div>
             <span class="fl-arr bad h0 ain" style="--dly:1.1s; flex:none">→<small>grep 8/09~8/12 — 반례 발견!</small></span>
-            <div class="doc coral ahit" style="--dly:1.7s; min-width:13rem; flex:none"><span class="dt">결론 A — "원인은 8/12 배포"</span>근거: 배포 직후 오류 급증
-<span class="bx">반례: 8/10에도 동일 오류 — 배포 전</span><span class="stamp red h0 apop" style="--dly:2.3s">기각</span></div>
+            <div class="doc coral ahit" style="--dly:1.7s; min-width:13rem; flex:none"><span class="dt">결론 A — "8/12 배포가 오류를 처음 발생시켰다"</span>근거: 배포 직후 오류 급증
+<span class="bx">반례: 8/10에도 동일 오류 — 최초 발생 주장과 모순</span><span class="stamp red h0 apop" style="--dly:2.3s">기각</span></div>
           </div>
-          <p class="scn-cap">지지 증거가 아무리 쌓여 있어도 — <b>반례 하나면 결정적</b>입니다. 기각도 성과입니다: 헛 롤백을 막았습니다.</p>
+          <p class="scn-cap">배포 전에 같은 오류가 있었다면 <b>배포가 최초 원인이라는 주장</b>은 반박됩니다. 배포가 오류를 늘렸는지와 인증서 만료의 영향은 별도 조사합니다.</p>
         </div>
         <div class="scn-p good g1" style="min-height:8.8rem">
-          <span class="scn-tag">경우 2 — 세 반박을 모두 견디면, 채택</span>
+          <span class="scn-tag">경우 2 — 반박을 못 찾으면 잠정 가설 · 자료 부족은 판단 보류</span>
           <div class="scn-row" style="flex-wrap:nowrap; gap:1.0rem">
             <div class="scn-col" style="gap:0.35rem; align-items:flex-end; flex:none">
               <span class="vlab pass h0 apop" style="--dly:3.2s">시간 반박 실패</span>
               <span class="vlab pass h0 apop" style="--dly:3.7s">사례 반박 실패</span>
               <span class="vlab pass h0 apop" style="--dly:4.2s">대안 반박 실패</span>
             </div>
-            <span class="fl-arr ok h0 ain" style="--dly:4.7s; flex:none">→<small>세 번 살아남음</small></span>
-            <div class="doc mint h0 ainglow" style="--dly:2.9s; min-width:13rem; flex:none"><span class="dt">결론 B — "8/10 인증서 만료"</span>반박 기록 3건 첨부<span class="stamp h0 apop" style="--dly:5.1s">채택 ✓</span></div>
+            <span class="fl-arr ok h0 ain" style="--dly:4.7s; flex:none">→<small>조사 범위와 한계 기록</small></span>
+            <div class="doc mint h0 ainglow" style="--dly:2.9s; min-width:13rem; flex:none"><span class="dt">결론 B — "8/10 인증서 만료"</span>반박 기록 3건 첨부<span class="stamp h0 apop" style="--dly:5.1s">잠정 가설</span></div>
           </div>
-          <p class="scn-cap">반박에서 <b>살아남은 결론만</b> 보고됩니다 — 시도한 반박 경로가 <b>기록으로 함께</b> 남습니다.</p>
+          <p class="scn-cap">반박을 찾지 못한 경우에는 <b>잠정 가설</b>로 남깁니다. 데이터가 부족하면 <b>판단 보류</b>로 보고합니다. 세 경로 조사는 진실을 보장하는 횟수 기준이 아닙니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
@@ -4665,12 +4663,12 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
 1. 검증할 결론을 한 문장으로 적는다.
 <div class="mkbox good"><span class="mkt">핵심 변경 ① — 반례 3경로 탐색</span><span class="padd">＋</span> 2. <b>입장 전환 — "이 결론은 틀렸다"</b>를 전제로:
 <span class="padd">＋</span>    · 시간 반박 — 원인 시점 <b>이전</b>에도 증상이 있었나
-     <span class="t-out">(예: grep ERROR 8/09~8/12 — 배포 전 로그)</span>
+     <span class="t-out">(예: 배포 시각 이전 로그만 필터링 — 8/12 13:00 전후 구분)</span>
 <span class="padd">＋</span>    · 사례 반박 — 조건이 같은데 증상 없는 곳은
-<span class="padd">＋</span>    · 대안 반박 — 같은 증상을 내는 다른 원인 후보는</div>3. 반례 발견 → <b>결론 기각</b>. 근거를 첨부해 보고한다.
-4. 3경로 모두 실패 → "반박 3회 실패"를 명시하고 채택한다.
+<span class="padd">＋</span>    · 대안 반박 — 같은 증상을 내는 다른 원인 후보는</div>3. 명제와 직접 모순되는 반례이면 해당 가설을 기각한다. 근거를 첨부한다.<b></b>
+4. 세 경로에서 반박 근거를 찾지 못함 → "세 경로 조사 결과와 남은 불확실성"을 기록하고 잠정 가설로 남긴다. 자료 부족이면 판단 보류.
 <div class="mkbox good"><span class="mkt">핵심 변경 ② — 반박 기록 · 새 세션 권장</span><span class="padd">＋</span> · 시도한 반박 경로·명령·결과를 보고에 그대로 남긴다.
-<span class="padd">＋</span> · 가능하면 <b>새 세션</b>에서 실행한다. <span class="t-out">(작성 편향 차단)</span></div></div>
+<span class="padd">＋</span> · 가능하면 <b>새 세션</b>에서 실행한다. <span class="t-out">(작성 편향 완화 시도)</span></div></div>
         </div>
       </div>
     </section>
@@ -4690,10 +4688,10 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — 주간 테스트 리포트</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — 주간 테스트 리포트</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-agent">AGENT</span> "주간 리포트 완료했습니다."</div>
-              <div class="ska-log"><span class="ska-danger">REVIEW(사람) PASS 12 + FAIL 3 = 15 ≠ 전체 17 — 합계 불일치</span></div>
+              <div class="ska-log"><span class="ska-danger">REVIEW(사람) PASS 12 + FAIL 3 + SKIP 0 = 15 ≠ 전체 17 — SKIP 누락</span></div>
               <div class="ska-log"><span class="sh-req">USER</span>  "다시 확인해줘"</div>
               <div class="ska-log"><span class="sh-agent">AGENT</span> "확인했습니다 — 문제없어 보입니다" <span class="sh-dim">— 말로 검증</span></div>
               <div class="ska-log"><span class="ska-danger">REVIEW(사람) 이번엔 '환경' 섹션 누락 발견 — 재작업 2회째</span></div>
@@ -4703,7 +4701,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term badsk" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">문제의 스킬 — test-report/SKILL.md (당시 형태)</span></div>
+          <div class="term-bar"><span class="term-title">문제의 스킬 — test-report/SKILL.md (문제 재현용 형태)</span></div>
           <div class="term-body"><span class="t-out">---</span>
 <span class="t-key">name:</span> <span class="t-str">test-report</span>
 <span class="t-key">description:</span> <span class="t-str">주간 테스트 리포트 작성 시 사용</span>
@@ -4738,21 +4736,21 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 리포트, 채점 루프를 절차에 넣은 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 리포트, 채점 루프를 절차에 넣은 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-ok">WRITE</span> output/test-report.md 작성</div>
               <div class="ska-log"><span class="sh-cmd">RUN</span>   python scripts/validate.py output/test-report.md</div>
-              <div class="ska-log"><span class="ska-danger">FAIL</span>  합계 15≠17 · '환경' 섹션 누락 <span class="sh-dim">— 항목 명시</span></div>
+              <div class="ska-log"><span class="ska-danger">FAIL</span>  SKIP 2건 누락 · 합계 15≠17 · '환경' 섹션 누락 <span class="sh-dim">— 항목 명시</span></div>
               <div class="ska-log"><span class="sh-ok">FIX</span>   지적 항목 수정</div>
               <div class="ska-log"><span class="sh-cmd">RUN</span>   validate.py → <span class="plv" style="font-weight:700">PASS</span> ✓</div>
-              <div class="ska-log"><span class="sh-ok">ATTACH</span> PASS 출력 원문을 리포트 끝에 첨부</div>
-              <div class="ska-log"><span class="sh-ok">DONE</span>  사람은 PASS 로그만 확인 — 검산기 은퇴 ✓</div>
+              <div class="ska-log"><span class="sh-ok">ATTACH</span> PASS 출력 원문과 검사 대상·입력 경로를 리포트 끝에 첨부</div>
+              <div class="ska-log"><span class="sh-ok">DONE</span>  사람은 검사 범위·원본·잔여 위험 확인 — 검산기 은퇴 ✓</div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 스킬 — test-report/ (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — test-report/ (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">test-report/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">scripts/</span>
@@ -4761,15 +4759,15 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
 <span class="t-hl">SKILL.md ▸ 절차 발췌</span>
 1. 리포트를 <span class="t-str">output/test-report.md</span> 로 작성한다.
 2. <span class="t-str">python scripts/validate.py output/test-report.md</span>
-   검사: 필수 섹션 · PASS+FAIL=전체 합계 · 금지 문구
+   검사: 필수 섹션 · PASS/FAIL/SKIP 합계 · CSV·표 대조
 3. FAIL이면 지적 항목을 고치고 2를 다시 실행한다.
    <span class="t-hl">PASS가 나올 때까지 반복한다.</span> <span class="t-out">(최대 5회, 초과 시 보고)</span>
-4. PASS 출력 원문을 리포트 끝에 첨부한다.</div>
+4. PASS 출력 원문과 검사 대상·입력 경로를 리포트 끝에 첨부한다.</div>
         </div>
       </div>
       <div class="tname p3">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑫ 기계 채점 하네스</span><span class="tn-en">Script-Judged Gate</span></div>
-        <p class="tn-one"><b>말로 통과하지 말고, 채점으로 통과하라.</b> 3편의 Validation 루프를 스킬 안에 넣은 것 — 그리고 <b>2편 실습의 check.sh가 바로 이 구조</b>였습니다.</p>
+        <p class="tn-one"><b>PASS는 정의한 검사 범위의 결과입니다.</b> 이 채점기는 12 PASS + 3 FAIL + 2 SKIP = 17을 원본 CSV·결과표와 대조합니다. 원본 데이터의 신뢰성과 서술의 인과 해석은 별도 확인합니다.</p>
         <div class="pills"><span class="pill green">판정 재현 가능</span><span class="pill neutral">루프 상한 명시</span></div>
       </div>
     </section>
@@ -4795,10 +4793,10 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
             <span class="fl-node ag" style="flex:none">말로 검토<small>"스스로 한 번 검토한다"</small></span>
             <span class="blob h0 ain" style="--dly:0.9s; flex:none">"문제없어 보입니다"</span>
             <span class="fl-arr bad h0 ain" style="--dly:1.4s; flex:none">→</span>
-            <span class="fl-node hum" style="flex:none">사람 리뷰<small>합계 15≠17 을 또 발견</small></span>
+            <span class="fl-node hum" style="flex:none">사람 리뷰<small>SKIP 2건 누락 · 합계 15≠17 을 또 발견</small></span>
             <span class="vlab fail h0 apop" style="--dly:1.9s; flex:none">확률적 — 매번 다르게 놓친다 ✕</span>
           </div>
-          <p class="scn-cap">형식·합계는 <b>결정적 기준</b>인데 검사 도구가 <b>확률적(말)</b>입니다 — 사람이 매주 검산기 노릇을 합니다.</p>
+          <p class="scn-cap">형식·집계를 자연어 검토에만 맡기면 오류를 놓칠 수 있습니다. 검사 가능한 기준을 명시하고 원본과 비교하는 코드를 실행합니다.</p>
         </div>
         <div class="scn-p g3" style="min-height:12.5rem; justify-content:flex-start; gap:0.4rem">
           <span class="scn-tag">After — 채점기 동봉, PASS까지 루프</span>
@@ -4806,13 +4804,13 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
             <div style="position:absolute; left:14%; right:16%; top:26%; border-top:0.13rem dashed rgba(255,122,149,0.38)"></div>
             <span style="position:absolute; left:26%; top:26%; transform:translateY(-54%); color:rgba(255,148,172,0.85); font-size:0.8rem; line-height:1">▸</span>
             <div class="doc h0 apop" style="--dly:2.5s; position:absolute; left:2%; top:12%; min-width:0"><span class="dt">test-report.md</span><span class="dl" style="width:70%"></span><span class="dl" style="width:52%"></span></div>
-            <span class="fl-node scr agatexv" style="position:absolute; left:31%; top:10%; --d1:3.6s; --d2:6.6s">scripts/validate.py<small>필수 섹션 · 합계 일치 · 금지 문구</small></span>
-            <span class="vlab fail h0 apop" style="--dly:3.8s; position:absolute; left:61%; top:6%">FAIL — 합계 15≠17 · '환경' 누락</span>
+            <span class="fl-node scr agatexv" style="position:absolute; left:31%; top:10%; --d1:3.6s; --d2:6.6s">scripts/validate.py<small>필수 섹션 · CSV·표·합계 대조</small></span>
+            <span class="vlab fail h0 apop" style="--dly:3.8s; position:absolute; left:61%; top:6%">FAIL — SKIP 2건 누락 · 합계 15≠17 · '환경' 누락</span>
             <span class="vlab pass h0 apop" style="--dly:6.8s; position:absolute; left:61%; top:31%">PASS — 2회차 ✓</span>
             <div class="mret h0 ain" style="--dly:4.4s; left:5%; right:54%; top:58%"><span>지적 항목만 고쳐 재채점 — PASS까지 (상한 5회)</span></div>
             <div class="doc mint h0 apop" style="--dly:7.4s; position:absolute; left:61%; top:52%; min-width:0"><span class="dt">최종 리포트</span>끝에 PASS 로그 원문 첨부<span class="stamp">증명 동봉</span></div>
           </div>
-          <p class="scn-cap">판정이 <b>코드(결정적)</b>이니 같은 입력이면 같은 판정 — 사람은 검산기가 아니라 <b>PASS 로그만</b> 확인합니다.</p>
+          <p class="scn-cap">같은 입력·검사기 버전에서 재현 가능한 판정을 얻습니다. <b>자기 합계만 맞는 오답도 가능</b>하므로 원본 CSV·결과표까지 대조합니다. PASS는 내용 전체의 정확성 보장이 아닙니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
@@ -4861,9 +4859,9 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
 1. 리포트를 <span class="t-str">output/test-report.md</span> 로 작성한다.
 <div class="mkbox good"><span class="mkt">핵심 변경 ① — 판정을 채점기로</span><span class="padd">＋</span> 2. <span class="t-str">python scripts/validate.py output/test-report.md</span> 실행.
    <span class="t-out">검사: 필수 섹션(요약·환경·결과표·특이사항)</span>
-   <span class="t-out">· PASS+FAIL=전체 합계 · 금지 문구("아마"·빈 셀)</span></div><div class="mkbox good"><span class="mkt">핵심 변경 ② — PASS까지 루프 · 로그 첨부</span><span class="padd">＋</span> 3. FAIL → 고치고 2를 다시 실행한다.
+   <span class="t-out">· PASS+FAIL+SKIP=전체 · 원본 CSV 대조 · 미완성 표시(TODO/TBD)·빈 셀</span></div><div class="mkbox good"><span class="mkt">핵심 변경 ② — PASS까지 루프 · 로그 첨부</span><span class="padd">＋</span> 3. FAIL → 고치고 2를 다시 실행한다.
    <b>PASS가 나올 때까지 반복.</b> <span class="t-out">(최대 5회 · 초과 시 보고)</span>
-<span class="padd">＋</span> 5. PASS 출력 원문을 리포트 끝에 첨부한다.</div>
+<span class="padd">＋ 4. PASS 출력 원문과 검사 대상·입력 경로</span>를 리포트 끝에 첨부한다.</div>
 <span class="t-hl">## 금지</span>
 · 채점 없이 "완료" 보고 · 채점기 수정으로 통과 시도
 
@@ -4888,7 +4886,7 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.12fr 0.88fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">문제 재현 — 배포 전 점검</span></div>
+            <div class="term-bar"><span class="term-title">교육용 문제 재현 — 배포 전 점검</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
               <div class="ska-log"><span class="sh-agent">AGENT</span> "배포 전 점검 8항목 완료 — 이상 없습니다."</div>
               <div class="ska-log"><span class="sh-cmd">DEPLOY</span> 배포 진행</div>
@@ -4900,7 +4898,7 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term badsk" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">문제의 스킬 — release-check/SKILL.md (당시 형태)</span></div>
+          <div class="term-bar"><span class="term-title">문제의 스킬 — release-check/SKILL.md (문제 재현용 형태)</span></div>
           <div class="term-body"><span class="t-out">---</span>
 <span class="t-key">name:</span> <span class="t-str">release-check</span>
 <span class="t-key">description:</span> <span class="t-str">배포 전 점검 요청 시 사용</span>
@@ -4935,29 +4933,29 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
       <div class="grid-2 sim" style="margin-top:0.7rem; grid-template-columns:1.05fr 0.95fr; align-items:stretch">
         <div>
           <div class="term shell">
-            <div class="term-bar"><span class="term-title">해결 리플레이 — 같은 점검, 증거표 양식 버전</span></div>
+            <div class="term-bar"><span class="term-title">교육용 해결 재현 — 같은 점검, 증거표 양식 버전</span></div>
             <div class="term-body" style="line-height:1.95; font-size:0.95rem">
-              <div class="ska-log"><span class="sh-cmd">CHECK</span> 8항목 — 각 행: 실행 명령 + 출력 3줄 + 판정</div>
-              <div class="ska-log"><span class="sh-ok">#1</span>    curl /health → 200 OK — <span class="plv" style="font-weight:700">PASS</span></div>
+              <div class="ska-log"><span class="sh-cmd">CHECK 8항목 — 대상·시각·명령·종료 코드·출력·판정</span></div>
+              <div class="ska-log"><span class="sh-ok">#1</span>    GET https://service.example/health → HTTP 200 — <span class="plv" style="font-weight:700">PASS</span></div>
               <div class="ska-log"><span class="sh-ok">#2~3</span>  디스크·백업 확인 — PASS <span class="sh-dim">(출력 첨부)</span></div>
-              <div class="ska-log"><span class="t-hl">#4</span>    migrate --check → 권한 오류 → <b style="color:#FFE08A">"미실행" 정직 표기</b></div>
+              <div class="ska-log"><span class="t-hl">#4</span>    migrate --check → 권한 오류 → ERROR (명령 실행 시도 후 실패)<b style="color:#FFE08A"></b></div>
               <div class="ska-log"><span class="sh-ok">REPORT</span> 증거표 첨부해 완료 보고</div>
-              <div class="ska-log"><span class="sh-ok">HUMAN</span> 훑는 데 3분 — 미실행 1건만 조치 후 <span class="plv" style="font-weight:700">안전 배포</span> ✓</div>
+              <div class="ska-log"><span class="sh-ok">HUMAN</span> 근거와 잔여 위험 확인 — 실패·미실행 항목과 핵심 근거 확인 후 <span class="plv" style="font-weight:700">배포 조건 재확인</span></div>
             </div>
           </div>
           <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
         </div>
         <div class="term" style="align-self:stretch">
-          <div class="term-bar"><span class="term-title">해결된 스킬 — release-check/ (실제 작성 형태)</span></div>
+          <div class="term-bar"><span class="term-title">해결된 스킬 — release-check/ (참고 작성 형태)</span></div>
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">release-check/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">assets/</span>
    └─ evidence-form.md     <span class="t-out">← 증거표 양식</span>
 <span class="t-out">──────────────────────────────</span>
 <span class="t-hl">SKILL.md ▸ 출력 규칙 발췌</span>
-· <span class="t-hl">"완료" 선언은 증거표가 채워진 경우에만</span> 허용한다.
+· <span class="t-hl">점검 보고 완료와 배포 준비 완료를 구분한다. 필수 점검이 모두 통과해야 배포 준비 완료다.</span>
 · 증거표 각 행:
-  점검 항목 | 실행한 명령 | 출력 원문(3줄 이내) | 판정
+  점검 항목 | 대상·시각·명령·종료 코드 | 출력 요약·전체 로그 경로 | 판정
 · 실행하지 않은 항목은 <span class="t-str">"미실행"</span> 으로 남긴다.
   <span class="t-out">(빈칸·추정 금지)</span>
 · 증거가 없는 주장은 리포트에 쓰지 않는다.</div>
@@ -4965,8 +4963,8 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
       </div>
       <div class="tname p3">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑬ 증거 기반 완료</span><span class="tn-en">Evidence-based Done</span></div>
-        <p class="tn-one"><b>증거가 없으면 완료가 아니다.</b> 완료의 정의를 주장에서 <b>검증 가능한 기록</b>으로 바꿉니다 — 3편 Record 개념을 산출물에 적용한 것입니다.</p>
-        <div class="pills"><span class="pill green">재확인 30분 → 3분</span><span class="pill neutral">감사 추적 확보</span></div>
+        <p class="tn-one"><b>완료에는 검증 가능한 기록이 필요합니다.</b> 명령·대상·실행 시각·종료 코드·출력을 연결하고 PASS·FAIL·ERROR·미실행을 구분합니다. 필수 점검이 실패했다면 배포 준비 완료로 선언하지 않습니다.</p>
+        <div class="pills"><span class="pill green">재확인할 항목을 좁힘</span><span class="pill neutral">감사 추적 확보</span></div>
       </div>
     </section>
 
@@ -4987,28 +4985,28 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
           <span class="scn-tag">기존 — 주장문 한 줄</span>
           <span class="blob" style="font-size:0.95rem">"점검 완료 — 이상 없습니다"<br><b style="color:#FF94AC">증거 0줄</b></span>
           <span class="fl-arr h0 ain" style="--dly:0.6s">↓</span>
-          <span class="fl-node hum h0 ain" style="--dly:0.6s">사람의 선택지<small>전부 재검증(30분) — 또는 그냥 믿기</small></span>
+          <span class="fl-node hum h0 ain" style="--dly:0.6s">사람의 선택지<small>전부 재검증 — 또는 그냥 믿기</small></span>
           <span class="vlab fail h0 apop" style="--dly:1.3s">실패한 항목이 뭉개져도 모른다</span>
           <p class="scn-cap">확인도 반박도 <b>불가능한 형식</b>입니다 — 신뢰가 아니라 <b>도박</b>이 됩니다.</p>
         </div>
         <div class="scn-p good g4">
           <span class="scn-tag">증거 기반 완료 — 행마다 실행 기록</span>
           <div style="border:0.0781rem solid rgba(255,212,107,0.4); border-radius:0.7rem; background:rgba(11,14,26,0.62); padding:0.55rem 0.85rem; font-family:var(--mono); font-size:0.7rem; line-height:2.0; align-self:stretch">
-            <div class="h0 ain" style="--dly:1.8s"><span class="t-out">#1 헬스체크</span>  curl -s /health  <span class="t-out">→</span> 200 OK  <span class="plv">PASS</span></div>
+            <div class="h0 ain" style="--dly:1.8s"><span class="t-out">#1 헬스체크</span>  curl -sS -o health.body -w "%{http_code}" "$SERVICE_URL/health"  <span class="t-out">→ HTTP 200</span>  <span class="plv">PASS</span></div>
             <div class="h0 ain" style="--dly:2.2s"><span class="t-out">#2 디스크</span>    df -h /data      <span class="t-out">→</span> 61% 사용  <span class="plv">PASS</span></div>
             <div class="h0 ain" style="--dly:2.6s"><span class="t-out">#3 백업</span>      ls backups/      <span class="t-out">→</span> 오늘자 존재  <span class="plv">PASS</span></div>
-            <div class="h0 ainhit" style="--dly:3.0s; border:0.09rem solid rgba(255,212,107,0.65); border-radius:0.4rem; padding:0 0.4rem; background:rgba(255,212,107,0.07)"><span class="t-out">#4 DB 준비</span>   migrate --check  <span class="t-out">→</span> 권한 오류(13)  <b style="color:#FFE08A">미실행</b></div>
+            <div class="h0 ainhit" style="--dly:3.0s; border:0.09rem solid rgba(255,212,107,0.65); border-radius:0.4rem; padding:0 0.4rem; background:rgba(255,212,107,0.07)"><span class="t-out">#4 DB 준비</span>   migrate --check  <span class="t-out">→</span> 권한 오류(13)  ERROR<b style="color:#FFE08A"></b></div>
           </div>
           <div class="scn-row" style="gap:0.7rem">
-            <span class="fl-arr ok h0 ain" style="--dly:3.9s">↓<small>3분 훑기</small></span>
-            <span class="fl-node hum h0 ainglow" style="--dly:3.9s; --gc:rgba(255,212,107,0.9); --gs:rgba(255,212,107,0.3)">사람<small>"미실행" 행만 조치</small></span>
-            <span class="vlab pass h0 apop" style="--dly:4.7s">#4 처리 후 안전 배포 ✓</span>
+            <span class="fl-arr ok h0 ain" style="--dly:3.9s">↓<small>근거·잔여 위험 확인</small></span>
+            <span class="fl-node hum h0 ainglow" style="--dly:3.9s; --gc:rgba(255,212,107,0.9); --gs:rgba(255,212,107,0.3)">사람<small>실패·미실행 행과 핵심 근거 확인</small></span>
+            <span class="vlab pass h0 apop" style="--dly:4.7s">#4 처리 후 배포 조건 재확인</span>
           </div>
           <p class="scn-cap">완료의 정의가 <b>주장</b>에서 <b>검증 가능한 기록</b>으로 바뀝니다 — 미실행은 숨길 일이 아니라 <b>정보</b>입니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
-      <p class="note" style="margin-top:0.4rem">3편의 Record 개념을 산출물에 적용한 것입니다 — 사람의 재확인이 <b>30분에서 3분</b>이 됩니다.</p>
+      <p class="note" style="margin-top:0.4rem">증거표가 채워져도 필수 점검이 실패하거나 수행되지 않았다면 배포 준비는 미완료입니다. PASS 기록의 대상·시각·종료 코드와 핵심 근거도 확인합니다.</p>
     </section>
 
     <!-- 사건 13 · 개조 명세 -->
@@ -5050,17 +5048,17 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
 # Release Check
 
 <span class="t-hl">## 출력 규칙</span>
-<div class="mkbox good"><span class="mkt">핵심 변경 ① — 완료 = 증거표 의무</span><span class="padd">＋</span> · <b>"완료" 선언은 증거표가 채워진 경우에만</b> 허용한다.
+<div class="mkbox good"><span class="mkt">핵심 변경 ① — 완료 = 증거표 의무</span><span class="padd">＋</span> · <b>점검 보고 완료와 배포 준비 완료를 구분한다. 필수 점검이 모두 통과해야 배포 준비 완료다.</b>
 <span class="padd">＋</span> · 각 행 <span class="t-out">(assets/evidence-form.md)</span>:
-  점검 항목 | 실행한 명령 | 출력 원문(3줄 이내) | 판정
-· 증거가 없는 문장은 리포트에 쓰지 않는다.</div><div class="mkbox good"><span class="mkt">핵심 변경 ② — 미실행 정직 표기</span><span class="padd">＋</span> · 실행하지 못한 항목은 판정을 <span class="t-str">"미실행"</span> + 사유로 남긴다.
+  항목 | 대상·시각·명령·종료 코드 | 출력 요약·전체 로그 경로 | 판정
+· 증거가 없는 문장은 리포트에 쓰지 않는다.</div><div class="mkbox good"><span class="mkt">핵심 변경 ② — 미실행 정직 표기</span><span class="padd">＋</span> · 미시도는 "미실행", 실행 중 오류는 "ERROR"와 사유를 남긴다.<span class="t-str"></span>
   <span class="t-out">(빈칸·추정 금지 — 미실행은 숨길 일이 아니라 정보다)</span></div>
-<span class="t-hl">## 증거표 작성 예</span>
-#1 헬스체크 | curl -s /health | 200 OK | PASS
-#4 DB 준비  | migrate --check | 권한 오류(13) | <b>미실행</b>
+<span class="t-hl">## 증거표 작성 예 (SERVICE_URL: 실제 대상 URL; 시각·종료 코드·전체 로그 별도 기록)</span>
+#1 헬스체크 | curl -sS -o health.body -w "%{http_code}" "$SERVICE_URL/health" | 200 OK | PASS
+#4 DB 준비  | migrate --check | 권한 오류(13) | ERROR<b></b>
 
 <span class="t-hl">## 사람의 확인</span>
-· 증거표만 훑고, "미실행" 행만 조치 대상으로 넘긴다. <span class="t-out">(3분)</span></div>
+· 실패·미실행 항목, 핵심 PASS 근거와 잔여 위험을 확인한다.<span class="t-out"></span></div>
         </div>
       </div>
     </section>
@@ -5073,12 +5071,12 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
         <span class="nf-chip amvy" style="left:8%; --t0:0rem; --t1:2.55rem; --dur:0.9s; --dly:0.3s; top:var(--t1)">누락·모호 발견</span>
         <span class="nf-chip amvy" style="left:30%; --t0:0rem; --t1:5.95rem; --dur:1.2s; --dly:1.2s; top:var(--t1)">그럴듯한 오답</span>
         <span class="nf-chip amvy" style="left:54%; --t0:0rem; --t1:9.35rem; --dur:1.5s; --dly:2.1s; top:var(--t1)">합계 불일치</span>
-        <span class="nf-chip okc amvy" style="left:76%; --t0:0rem; --t1:15.2rem; --dur:2.1s; --dly:3.1s; top:var(--t1)">검증된 결과 ✓</span>
+        <span class="nf-chip okc amvy" style="left:76%; --t0:0rem; --t1:15.2rem; --dur:2.1s; --dly:3.1s; top:var(--t1)">검사 범위 통과 ✓</span>
         <div class="net">
           <div class="net-row n10 ahit" style="--dly:1.15s">
             <div class="nt"><span class="tkb b3">⑩</span>자가 리뷰 루프</div>
             <div class="nc">잡는 것 — <b>누락 · 모호함 · 형식 이탈</b></div>
-            <div class="nj">판정: 리뷰 프레임 · 비용 초 단위</div>
+            <div class="nj">판정: 리뷰 프레임 · 비용은 모델·입력에 따라 다름</div>
           </div>
           <div class="net-row n11 ahit" style="--dly:2.3s">
             <div class="nt"><span class="tkb b3">⑪</span>반박 검증</div>
@@ -5093,13 +5091,13 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
           <div class="net-row n13">
             <div class="nt"><span class="tkb b3">⑬</span>증거 기반 완료</div>
             <div class="nc">남기는 것 — <b>사람이 확인할 근거</b></div>
-            <div class="nj">판정: 사람 · 훑기 3분</div>
+            <div class="nj">판정: 사람 · 근거·잔여 위험 확인</div>
           </div>
         </div>
         <div class="h0 ain" style="--dly:4.6s; margin-top:0.55rem; border:0.11rem dashed rgba(43,234,208,0.55); border-radius:0.75rem; padding:0.45rem 0.9rem; text-align:center; font-weight:800; color:#A9FFF0; background:rgba(43,234,208,0.05)">통과 — 증거와 함께 사람 승인 ✓</div>
         <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
       </div>
-      <p class="note autoshow fade-up" style="margin-top:0.6rem">넷을 다 쓸 필요는 없습니다 — <b>산출물의 위험도에 맞춰 겹쳐 씁니다.</b> 메모 정리는 ⑩ 하나면 되고, 배포 점검은 ⑩⑫⑬을 함께 씁니다.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.6rem">넷을 다 쓸 필요는 없습니다 — <b>산출물의 위험도에 맞춰 겹쳐 씁니다.</b> 단순 메모는 ⑩부터 시작할 수 있고, 배포 점검은 ⑩⑫⑬을 함께 씁니다.</p>
     </section>
 
     <!-- P123 · 하나의 흐름 -->
@@ -5119,10 +5117,10 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
             <span class="fl-arr ok h0 ain" style="--dly:2.0s; flex:none">→</span>
             <div class="mwin cool h0 ain" style="--dly:2.0s; flex:none">
               <span class="mw-t"><span>컨텍스트</span><b>가볍다</b></span>
-              <div class="g afill" style="--w:8%; --dly:2.3s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>8%</b></div></div>
+              <div class="g afill" style="--w:8%; --dly:2.3s"><div class="g-bar"><i style="width:0"></i></div><div class="g-cap"><span>점유</span><b>작업별 상이</b></div></div>
             </div>
           </div>
-          <p class="scn-cap">다섯 기법이 스킬 하나를 <b>256k 안에서 가볍게</b> 만듭니다 — 컨텍스트에는 결론만 들어옵니다.</p>
+          <p class="scn-cap">다섯 기법은 필요한 정보에 집중하도록 돕습니다. <b>요약과 원문 근거를 연결</b>하고, 분업은 별도 컨텍스트에서 수행합니다.</p>
         </div>
         <div class="scn-p good g2" style="min-height:6rem; gap:0.4rem">
           <span class="scn-tag">PART 2 · 라인 — 연결을 설계해 프로세스로</span>
@@ -5138,7 +5136,7 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
             <span class="fl-arr ok h0 ain" style="--dly:4.8s; flex:none">→</span>
             <span class="fl-node sk h0 ainglow" style="--dly:4.9s; flex:none">초안</span>
           </div>
-          <p class="scn-cap">가벼운 부품들을 <b>약속(⑥)으로 잇고, 순서(⑦)를 스킬에 넣습니다</b> — 위험한 길목엔 게이트(⑧), 입구엔 창구(⑨).</p>
+          <p class="scn-cap">산출물 조건(⑥)과 절차(⑦)를 정의하고, 필요한 길목에서 조건을 검사(⑧)합니다. 라우터(⑨)는 선택을 돕고 실제 강제 통제는 실행기가 담당합니다.</p>
         </div>
         <div class="scn-p g3" style="min-height:6rem; gap:0.4rem">
           <span class="scn-tag">PART 3 · 검사 — 흐르는 산출물을 믿을 수 있게</span>
@@ -5149,14 +5147,14 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
             <span class="pill pink h0 apop" style="--dly:6.1s; flex:none">⑪ 반박 검증</span>
             <span class="pill pink h0 apop" style="--dly:6.4s; flex:none">⑫ 기계 채점 PASS</span>
             <span class="fl-arr ok h0 ain" style="--dly:6.7s; flex:none">→</span>
-            <div class="doc amber h0 apop" style="--dly:6.9s; flex:none; min-width:0"><span class="dt">⑬ 증거표</span>#1 PASS · #2 PASS · #4 미실행<span class="stamp">증거 동봉</span></div>
-            <span class="vlab pass h0 apop" style="--dly:7.4s; flex:none">사람은 증거만 확인 ✓</span>
+            <div class="doc amber h0 apop" style="--dly:6.9s; flex:none; min-width:0"><span class="dt">⑬ 증거표</span>#1 PASS · #2 PASS · #4 ERROR<span class="stamp">증거 동봉</span></div>
+            <span class="vlab pass h0 apop" style="--dly:7.4s; flex:none">사람은 근거·실패·잔여 위험 확인 ✓</span>
           </div>
-          <p class="scn-cap">라인을 흐르는 산출물마다 <b>그물(⑩⑪⑫)</b>이 걸리고, 완료는 <b>증거(⑬)</b>로 끝납니다 — 믿고 받는 완료가 됩니다.</p>
+          <p class="scn-cap">검사 결과는 범위 안에서만 해석합니다. 기록(⑬)에는 실패·미실행도 남기며, <b>필수 점검 통과와 잔여 위험 확인</b> 후 배포 준비 여부를 판단합니다.</p>
         </div>
       </div>
       <div class="sim-replay-row"><button class="sim-replay" onclick="simReplay(this)">↻ 다시 재생</button></div>
-      <p class="note" style="margin-top:0.45rem">한 줄로 — <b>컨텍스트에는 결론만(P1) · 스킬 사이에는 약속을(P2) · 완료에는 증거를(P3).</b> 남은 일은 <b>내 상황에 맞는 기법을 고르는 것</b> — 다음 장의 선택 지도로 정리합니다.</p>
+      <p class="note" style="margin-top:0.45rem">한 줄로 — <b>컨텍스트에는 필요한 근거와 요약을(P1) · 스킬 사이에는 약속을(P2) · 완료에는 증거를(P3).</b> 남은 일은 <b>내 상황에 맞는 기법을 고르는 것</b> — 다음 장의 선택 지도로 정리합니다.</p>
     </section>
 
     <!-- 42 · 기법 선택 지도 -->
@@ -5204,7 +5202,7 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
       <div><span class="chip">종합 ② · 사례 — 주간 리그레션 리포트</span></div>
       <h2>실전에서는, 기법이 <span class="grad">겹쳐서</span> 쓰입니다</h2>
       <div class="case">
-        <div class="case-row autoshow fade-up"><div class="case-node" style="border-color:rgba(255,212,107,0.5)"><span class="tkb b4" style="visibility:hidden">·</span>"주간 리그레션 리포트 만들어줘" <small>— 사용자의 전부</small></div><span class="case-out dim2">사람의 입력 끝</span></div>
+        <div class="case-row autoshow fade-up"><div class="case-node" style="border-color:rgba(255,212,107,0.5)"><span class="tkb b4" style="visibility:hidden">·</span>"주간 리그레션 리포트 만들어줘" <small>— 사용자의 전부</small></div><span class="case-out dim2">범위·입력 확인 후 시작</span></div>
         <div class="case-arr autoshow fade-in">▼</div>
         <div class="case-row autoshow fade-up"><div class="case-node"><span class="tkb b2">⑨</span>qa-desk 접수 — 분류표에서 주간 리포트 파이프라인 선택</div><span class="case-out dim2">라우터</span></div>
         <div class="case-arr autoshow fade-in">▼</div>
@@ -5216,9 +5214,9 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
         <div class="case-arr autoshow fade-in">▼</div>
         <div class="case-row autoshow fade-up"><div class="case-node"><span class="tkb b2">⑧</span>게이트 — 필수 섹션·건수 검사, 미달이면 반려</div><span class="case-out dim2">gate.py</span></div>
         <div class="case-arr autoshow fade-in">▼</div>
-        <div class="case-row autoshow fade-up"><div class="case-node"><span class="tkb b3">⑫</span>작성 — validate.py 채점 루프, PASS까지 수정</div><span class="case-out">output/report.md</span></div>
+        <div class="case-row autoshow fade-up"><div class="case-node"><span class="tkb b3">⑫</span>작성 — validate.py 채점 루프, 상한 5회 내 수정 · 미해결 시 보고</div><span class="case-out">output/report.md</span></div>
         <div class="case-arr autoshow fade-in">▼</div>
-        <div class="case-row autoshow fade-up"><div class="case-node"><span class="tkb b3">⑬</span>완료 — 증거표(명령·출력·판정) 첨부해 보고</div><span class="case-out dim2">사람은 훑고 승인</span></div>
+        <div class="case-row autoshow fade-up"><div class="case-node"><span class="tkb b3">⑬</span>완료 — 증거표(명령·출력·판정) 첨부해 보고</div><span class="case-out dim2">사람은 근거와 잔여 위험을 확인</span></div>
       </div>
       <p class="note autoshow fade-up" style="margin-top:0.8rem">한 업무에 기법 <b>일곱 개</b>가 겹쳐 쓰였습니다 — 그리고 이 소재는 <b class="accent2">2편 실습 리포의 데이터 그대로</b>입니다.</p>
     </section>
@@ -5274,21 +5272,21 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
       <h2 style="font-size:2.1rem">한 장 요약 — 문제가 보이면, 기법이 보입니다</h2>
       <table class="risk-table" style="margin-top:0.6rem; width:100%">
         <tr class="rh"><th style="width:2.4rem">#</th><th style="width:15rem">기법</th><th>이런 사건에</th><th>극복 원리</th><th style="width:16rem">외우는 한 줄</th></tr>
-        <tr><td>①</td><td>레퍼런스 계층화</td><td>발동마다 규칙 30페이지가 실린다</td><td>기본 점유는 한 줄, 지식은 조건부 로드</td><td class="one">목차만 싣고, 지식은 문 뒤에</td></tr>
+        <tr><td>①</td><td>레퍼런스 계층화</td><td>발동마다 규칙 30페이지가 실린다</td><td>이름·설명 노출, 본문·참조는 단계적 로드</td><td class="one">목차만 싣고, 지식은 문 뒤에</td></tr>
         <tr><td>②</td><td>스크립트 위임</td><td>로그 50만 줄 — 못 읽고, 세면 틀린다</td><td>집계는 밖의 코드, 판단만 모델</td><td class="one">세는 일은 코드가</td></tr>
-        <tr><td>③</td><td>외부 기억</td><td>3시간째, 에이전트가 첫 결정을 잊는다</td><td>기억을 대화에서 파일로 이동</td><td class="one">파일은 남는다</td></tr>
+        <tr><td>③</td><td>외부 기억</td><td>장기 작업 중 중요한 결정의 재확인이 필요하다</td><td>핵심 상태를 파일로 명시하고 실제 결과와 대조</td><td class="one">파일은 남는다</td></tr>
         <tr><td>④</td><td>지도 우선 탐색</td><td>설명 하나에 리포 절반을 읽는다</td><td>소비가 질문 크기에 비례</td><td class="one">읽기는 검색의 결과</td></tr>
-        <tr><td>⑤</td><td>분업 요약</td><td>아무리 아껴도 한 번에 안 들어간다</td><td>N×256k로 확장, 회수는 요약만</td><td class="one">쪼개면 곱해진다</td></tr>
-        <tr><td>⑥</td><td>산출물 약속</td><td>결과를 다음 스킬로 넘길 때 전달 사고</td><td>약속된 경로+형식 = 인터페이스</td><td class="one">약속이 있어야 부품</td></tr>
+        <tr><td>⑤</td><td>분업 요약</td><td>아무리 아껴도 한 번에 안 들어간다</td><td>별도 컨텍스트로 분담, 요약과 근거 회수</td><td class="one">분담하고 근거를 연결한다</td></tr>
+        <tr><td>⑥</td><td>산출물 약속</td><td>결과를 다음 스킬로 넘길 때 전달 사고</td><td>경로·형식·입력 식별자 = 인터페이스</td><td class="one">약속이 있어야 부품</td></tr>
         <tr><td>⑦</td><td>파이프라인 스킬</td><td>순서가 시니어 머릿속에만 있다</td><td>순서를 명시적 자산으로</td><td class="one">프로세스도 스킬이다</td></tr>
         <tr><td>⑧</td><td>게이트 체크</td><td>부실 산출물이 끝까지 흘러간다</td><td>위험한 길목에서만 차단 (1~2곳)</td><td class="one">게이트가 흐름을 지킨다</td></tr>
         <tr><td>⑨</td><td>라우터 스킬</td><td>스킬 20개 — 오발동·미발동</td><td>발동 판단을 분류표로 승격</td><td class="one">접수 창구를 세워라</td></tr>
-        <tr><td>⑩</td><td>자가 리뷰 루프</td><td>물으면 항상 "괜찮다"고 한다</td><td>생성·비판 프레임 분리</td><td class="one">같은 모델, 다른 프레임</td></tr>
-        <tr><td>⑪</td><td>반박 검증</td><td>그럴듯한 결론이 통과해 버린다</td><td>반례 하나가 결정적 — 반증주의</td><td class="one">무너뜨려 보라</td></tr>
-        <tr><td>⑫</td><td>기계 채점 하네스</td><td>형식·합계 실수가 말로는 안 잡힌다</td><td>판정을 확률에서 결정으로</td><td class="one">채점으로 통과하라</td></tr>
-        <tr><td>⑬</td><td>증거 기반 완료</td><td>"이상 없습니다"를 사람이 재확인</td><td>완료 = 검증 가능한 기록</td><td class="one">증거 없으면 미완료</td></tr>
+        <tr><td>⑩</td><td>자가 리뷰 루프</td><td>물으면 항상 "괜찮다"고 한다</td><td>생성·비판 프레임 분리</td><td class="one">같은 모델, 다른 검토 관점</td></tr>
+        <tr><td>⑪</td><td>반박 검증</td><td>그럴듯한 결론이 통과해 버린다</td><td>주장을 직접 반박하는 근거를 확인 — 반증주의</td><td class="one">무너뜨려 보라</td></tr>
+        <tr><td>⑫</td><td>기계 채점 하네스</td><td>형식·합계 실수가 말로는 안 잡힌다</td><td>정의한 기준을 코드로 일관되게 판정</td><td class="one">채점으로 통과하라</td></tr>
+        <tr><td>⑬</td><td>증거 기반 완료</td><td>"이상 없습니다"를 사람이 재확인</td><td>완료 = 필수 조건 충족 + 검증 가능한 기록</td><td class="one">증거 없으면 미완료</td></tr>
       </table>
-      <p class="note" style="margin-top:0.7rem">유인물·복습용 한 장 — 각 기법의 상세는 해당 사건의 [문제 → 해결] 두 장에 있습니다.</p>
+      <p class="note" style="margin-top:0.7rem">각 기법의 문제·해결·원리·Before/After 전문을 함께 읽습니다. 효과는 조건부이며, 실행 환경과 검사 범위를 확인합니다. <a href="../docs/logic-correction-report.html">논리 교정·검증 범위와 출처</a></p>
     </section>
 
   </div>

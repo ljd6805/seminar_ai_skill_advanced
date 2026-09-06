@@ -5,14 +5,14 @@ description: 모듈 API 마이그레이션(v1→v2) 작업·재개 요청 시 �
 # API Migration
 
 ## 절차
-1. 시작할 때 `output/state.md` 가 있으면 **먼저 읽고 이어서** 한다.
+1. 시작할 때 `output/state.md` 가 있으면 먼저 읽고 현재 코드·변경 내역·검증 결과와 대조한 뒤 이어서 한다.
    없으면 `assets/state-template.md` 를 복사해 만든다.
 2. 이번에 다룰 모듈 하나를 정하고, 규칙(state.md 상단)을 확인한다.
 3. 모듈을 v2 규칙으로 수정한다. (아래 "v2 규칙" 참조)
 4. 끝나는 즉시 state.md 를 갱신한다:
    - 해당 줄 `[ ]` → `[x]`
    - 특이 사항은 "메모" 절에 1줄
-5. 대화가 길어지면 **대화가 아니라 state.md 를 기준**으로 삼는다.
+5. 대화가 길어지면 state.md를 재개 지점으로 삼되, 실제 파일 상태와 다르면 확인 후 갱신한다.
 
 ## v2 규칙
 - import: `from legacy.http import client, LegacyError` → `from api.http import client, ApiError`

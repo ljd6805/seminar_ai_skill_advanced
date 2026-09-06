@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""단계 게이트 — 이전 산출물(analysis.md)의 '내용'이 채워졌는지 판정한다.
+"""단계 게이트 — 이전 산출물의 필수 섹션·최소 길이·미완성 표시를 검사한다.
 
-약속(⑥)은 파일의 겉모습(경로·형식)까지 본다. 게이트(⑧)는 안이 채워졌는지 본다.
+약속(⑥)은 파일의 겉모습(경로·형식)까지 본다. 이 예제 게이트(⑧)는 최소 작성 조건을 본다. 의미·수치·근거는 검사하지 않는다.
 사용: python3 gate.py output/analysis.md
 종료코드: PASS=0, FAIL=1 (스킬은 FAIL이면 진행하지 않는다)
 """
 import re
 import sys
+from pathlib import Path
 
 REQUIRED = ["원인 후보", "재현 절차", "영향 범위"]
 PLACEHOLDERS = ["TODO", "TBD", "(작성 예정)", "N/A", "..."]
@@ -24,9 +25,9 @@ def section_body(text: str, title: str) -> str:
 
 def main(path: str) -> int:
     try:
-        text = open(path, encoding="utf-8").read()
-    except FileNotFoundError:
-        print(f"GATE FAIL — 입력 파일 없음: {path}")
+        text = Path(path).read_text(encoding="utf-8")
+    except (OSError, UnicodeError):
+        print(f"GATE FAIL — 입력 파일 읽기 실패: {path}")
         return 1
 
     problems = []
@@ -46,9 +47,9 @@ def main(path: str) -> int:
         print(f"GATE FAIL — {len(problems)}/{checked} 항목 미충족")
         for p in problems:
             print(f"  - {p}")
-        print("→ 분석 보완 후 재시도. (다음 단계로 진행하지 않음)")
+        print("→ 분석 보완 후 재시도. (호출 측에서 종료코드 1을 확인하고 진행을 중단해야 함)")
         return 1
-    print(f"GATE PASS {checked}/{checked} — 필수 섹션이 모두 채워짐. 리포트 진행 가능.")
+    print(f"GATE PASS {checked}/{checked} — 필수 섹션·최소 길이·미완성 표시 검사 통과. 의미·근거 검증은 별도.")
     return 0
 
 

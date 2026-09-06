@@ -10,7 +10,7 @@
 ## 먼저 채점기만 체험
 ```bash
 cd after
-python3 .opencode/skills/test-report/scripts/validate.py output/test-report.bad.md   # FAIL (합계·섹션·금지문구)
+python3 .opencode/skills/test-report/scripts/validate.py output/test-report.bad.md   # FAIL (SKIP 누락·섹션·원본 대조)
 python3 .opencode/skills/test-report/scripts/validate.py output/test-report.good.md  # PASS
 ```
 
@@ -24,8 +24,12 @@ python3 .opencode/skills/test-report/scripts/validate.py output/test-report.good
      PASS 로그 원문을 리포트 끝에 첨부.
 
 ## 관찰 포인트
-- 판정이 코드(결정적)라 같은 입력이면 같은 판정 — 사람은 검산기가 아니라 PASS 로그만 확인.
+- 판정이 코드(결정적)라 같은 입력이면 같은 판정 — 사람은 검사 범위·원본·잔여 위험을 확인.
 - 사건 ②(스크립트 위임)의 교훈이 검증에도 적용된다 — 세는 일은 코드의 몫.
 - 2편 실습의 `check.sh` 가 바로 이 구조였다.
 
 **한 줄 정리 — 채점으로 통과하라.** 말로 통과하지 말고, PASS까지 스스로 고친다.
+
+## v0.9 검토 기준
+
+validate.py는 원본 CSV와 요약·suite별 결과표까지 대조한다. PASS 12 + FAIL 3 + SKIP 2 = 전체 17이다. PASS는 형식·집계 검증이며 원인 해석이나 CSV 자체의 진실성까지 보증하지 않는다.
