@@ -25,6 +25,21 @@
 <p><code>env/</code>는 교육용으로 저장한 출력이다. <code>cat env/health.txt</code>의 성공은 파일을 읽었다는 뜻이며 현재 서비스의 정상 증거가 아니다. 저장된 권한 오류는 원래 점검의 ERROR로 분류한다. 원래 종료코드가 기록되지 않았다면 임의로 만들지 않는다.</p>
 <h2>검증 결과와 한계</h2><ul><li>회귀 테스트 18개 통과: 원본과 다른 자기 일관적 요약, suite 분포 변경, SKIP 누락, 빈 셀·본문, 중복 테스트·suite·수치, 잘못된 상태, 음수·소수, 원본 파일 부재, 정상·불량 예제.</li><li>73장과 순서를 보존하고 13개 Before/After 패널을 유지. 임베디드 폰트와 기존 실행 스크립트를 보존.</li><li>참고 스킬, 체험 가이드의 After 전문, 지원 양식, 시놉시스와 설명을 정렬.</li><li>GitHub Pages 배포 성공 후 공개 화면의 34·48·57·65장을 확인했다. 긴 전문의 잘림 여부를 검토하고 재생 버튼의 줄바꿈을 보정했다.</li><li>이 테스트는 결정적 검사기의 동작을 확인한다. 13개 스킬의 실제 모델 선택·추론·외부 도구 실행 성공률을 측정한 테스트가 아니다.</li><li>공개 문서로는 사내 OpenCode 배포판의 정확한 버전·설정·승인 흐름을 검증할 수 없다. 발표 전에 실제 환경에서 경계·복합 요청을 확인한다.</li></ul>
 <pre>python3 -m unittest discover -s tests -v</pre>
+<h2 id="followup">후속 교정 · 종합 장과 예시의 남은 모순</h2>
+<p>1차 교정 커밋 <code>6143138</code>을 다시 대조해, 본문에서는 바로잡았지만 종합 장·도해·재현 문장에 남은 모순을 보완했다. 추가 변경 대상은 8·12·14·16·23·25·26·32·49·54·60·69·71장이다. 기법과 사례는 모두 유지했다.</p>
+<div class="scroll"><table><thead><tr><th>대상</th><th>남아 있던 문제</th><th>추가 교정</th></tr></thead><tbody>
+<tr><td>12 · 규칙 선택</td><td>diff 정독을 금지해 실제 코드 확인까지 막을 수 있고, 절차 번호가 1→2→4→3으로 배열됨.</td><td>먼저 적용할 규칙을 고른 뒤 관련 코드와 주변 맥락을 확인하도록 수정. 무관한 참조 일괄 로드를 피하되 필요한 참조의 확인은 허용. 번호는 1→2→3→4로 정렬.</td></tr>
+<tr><td>14·16 · 집계 출력</td><td>대표 사례를 오류 유형마다 최대 5건 출력하는 것으로 설명.</td><td>실제 <code>counts.most_common(5)</code>와 <code>sample[etype]</code> 동작에 맞춰 상위 5개 오류 유형별 대표 사례 1건으로 정정.</td></tr>
+<tr><td>23 · 지도 우선 탐색</td><td>grep이 파일 본문을 읽지 않는 도구로 설명됨. 같은 예시의 검색 후보 수가 3곳과 2곳으로 불일치.</td><td>grep은 파일 본문을 검색하고 일치 위치를 반환한다. 검색 도구가 읽는 데이터와 모델에 전달하는 정보를 구분하고, 후보 수를 3곳으로 맞춤.</td></tr>
+<tr><td>25 · 순차 처리와 분업</td><td>전체 작업량이 한 컨텍스트를 넘으면 분업이 필수라는 결론으로 이어짐.</td><td>현재 모델 입력 한도와 전체 작업량을 구분. 외부 상태·순차 처리로도 진행할 수 있으며 분업은 분할 가능성과 통합 비용을 보고 선택하도록 명시.</td></tr>
+<tr><td>26·32·71 · 근거 회수</td><td>“회수는 요약만”, “digest.md만 근거”, “결론만 들여보낸다”가 본문의 원문 재확인 원칙과 충돌.</td><td>요약과 근거를 함께 회수하고 필요한 원문은 다시 확인하도록 통일. 마지막 장도 “필요한 근거와 요약”으로 정렬.</td></tr>
+<tr><td>49·60·69 · 검사 범위</td><td>검사 결과를 “증명”으로 부르고, 종합 사례에서는 gate.py가 건수까지 검사한다고 설명.</td><td>“검사 결과와 근거”, “검사 기록”으로 정정. gate.py의 범위는 3섹션·최소 15자·미완성 표시 검사로 명시. 수치 대조는 validate.py의 역할.</td></tr>
+<tr><td>54 · 인과관계</td><td>롤백 후 오류가 남았다는 이유로 배포의 원인 기여를 배제하고 인증서 만료를 바로 정답으로 제시.</td><td>롤백 결과만으로 인과관계를 단정하지 않음. 인증서 만료 기록은 조사할 근거로 제시하고 원인 후보·배포 영향을 추가 확인. 비문도 교정.</td></tr>
+<tr><td>8 · 문장 중복</td><td>“작업 장기 작업 중”으로 중복된 문구.</td><td>“장기 작업 중”으로 정정.</td></tr>
+</tbody></table></div>
+<p>추가 판단의 근거는 <a href="https://github.com/ljd6805/seminar_ai_skill_advanced/blob/6143138de6bab9c2d88ed7f6ceae29184d863a32/playground/case02-script-offloading/after/.opencode/skills/log-digest/scripts/digest.py">집계기 원본</a>, <a href="https://github.com/ljd6805/seminar_ai_skill_advanced/blob/6143138de6bab9c2d88ed7f6ceae29184d863a32/playground/case08-stage-gate/after/.opencode/skills/incident-report/scripts/gate.py">게이트 원본</a>, <a href="https://www.gnu.org/software/grep/manual/grep.html">GNU grep 공식 설명</a>과 슬라이드 간 대조다. 순차 처리·분업의 선택과 롤백 결과의 인과 해석은 이 자료의 전제를 검토한 논리적 판단이다.</p>
+<p><strong>이번 확인:</strong> 현재 검사기로 회귀 테스트 18개를 재실행해 모두 통과했다. 73장·13개 Before/After 패널, 기존 슬라이드 순서, 임베디드 폰트와 실행 스크립트를 보존했다. 검사기 코드는 추가로 변경하지 않았다. 슬라이드의 변경 방향은 기존 시놉시스의 “필요한 근거와 요약”, “검사 범위와 확인 근거” 원칙과도 일치한다.</p>
+<p><strong>화면 확인 한계:</strong> 이번 실행 환경에는 브라우저가 설치되어 있지 않았고 브라우저 다운로드가 제한 시간 안에 완료되지 않아 후속 변경 장의 렌더링은 재확인하지 못했다. 위 1차 교정의 공개 화면 확인 기록과 구분한다. 사내 OpenCode에서의 실제 재현 검증도 별도다.</p>
 <h2>검토에 사용한 공식 자료</h2><ul><li><a href="https://agentskills.io/specification">Agent Skills 공식 명세</a> — name·description과 단계적 로드의 기준.</li><li><a href="https://opencode.ai/docs/skills/">OpenCode Agent Skills</a> — 스킬의 발견·필요 시 로드·권한 설정.</li><li><a href="https://opencode.ai/docs/config/#compaction">OpenCode Compaction 설정</a> — 자동 컴팩션, 오래된 도구 출력 정리, 여유 토큰 설정의 구분.</li><li><a href="https://opencode.ai/docs/agents/">OpenCode Agents</a> — 작업별 서브에이전트와 자식 세션, 컴팩션 요약 에이전트.</li><li><a href="https://github.com/ljd6805/seminar_ai_skill_advanced">이 저장소의 원본과 실습 코드</a> — CSV 17건과 검사기 동작은 제공 파일을 직접 대조했다.</li></ul>
 <p>공식 자료는 2026-09-06 확인했다. 인과관계의 범위, 검사 결과와 사실성의 구분, 교육 효과에 대한 평가는 이 자료의 논리와 코드 동작을 검토한 판단이다.</p>
 <nav><a href="index.html">문서 안내</a> · <a href="../slides/">다음: 교정 슬라이드</a> · <a href="../playground/">체험 가이드</a></nav></body></html>
