@@ -3503,7 +3503,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
 · <span class="t-str">형식·RUN·SOURCE가 이번 요청과 일치하는 digest.md를 읽는다.</span><span class="t-hl"></span>
 · SCHEMA를 지원하고 RUN·SOURCE가 요청의 기대값과 일치해야 사용한다.<span class="t-hl"></span>
 · 파일이 없으면 log-digest 실행을 안내하고 멈춘다.
-  <span class="t-out">(필요한 원문은 범위를 좁혀 확인한다 · 내용 검사 범위는 ⑧에서 정의)</span></div>
+  <span class="t-out">(필요한 원문은 범위를 좁혀 확인한다 · 파일의 속이 채워졌는지는 ⑧에서 검사)</span></div>
         </div>
       </div>
       <div class="tname p2">
@@ -3894,7 +3894,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
           <div class="term-body" style="white-space:pre-wrap; font-size:0.8rem; line-height:1.62"><span class="t-hl">incident-report/</span>
 ├─ <span class="t-key">SKILL.md</span>
 └─ <span class="t-key">scripts/</span>
-   └─ gate.py             <span class="t-out">← 이전 산출물 판정기</span>
+   └─ gate.py             <span class="t-out">← 이전 산출물 완결성 검사기</span>
 <span class="t-out">──────────────────────────────</span>
 <span class="t-hl">SKILL.md ▸ 절차 발췌 (도입부)</span>
 1. <span class="t-str">python scripts/gate.py output/analysis.md</span> 실행.
@@ -3907,7 +3907,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
       </div>
       <div class="tname p2">
         <div><span class="tn-k">이 해결책의 이름</span><span class="tn-name">기법 ⑧ 게이트 체크</span><span class="tn-en">Stage Gate</span></div>
-        <p class="tn-one"><b>약속은 조건을 정의하고, 게이트는 검사 결과로 진행을 판단합니다.</b> 이 예제의 gate.py는 세 섹션의 최소 길이·미완성 표시만 검사합니다. 사실성·재현 성공은 별도 검증합니다.</p>
+        <p class="tn-one"><b>약속(⑥)은 "맞는 파일이 왔는가"를, 게이트(⑧)는 "그 파일로 다음 일을 시작할 수 있는가"를 검사합니다.</b> 게이트는 PASS/FAIL만 돌려주고, 진행·반려는 그 결과를 받은 호출 측이 결정합니다. 이 예제의 gate.py는 세 섹션의 최소 길이·미완성 표시만 검사합니다. 내용이 옳은지는 둘 다 보지 않으며 별도 검증합니다.</p>
         <div class="pills"><span class="pill green">반려 사유 명시</span><span class="pill neutral">위험한 길목에만 한두 곳</span></div>
       </div>
     </section>
@@ -3933,7 +3933,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
             <span style="position:absolute; left:66.2%; top:2.9rem; transform:translateY(-54%); color:rgba(143,168,255,0.85); font-size:0.85rem; line-height:1">▸</span>
             <div style="position:absolute; left:0; right:0; top:0; height:5.8rem; display:flex; align-items:center; z-index:2">
               <div style="flex:1; display:flex; justify-content:center"><span class="fl-node sk">2 · 분석<small>root-cause</small></span></div>
-              <div style="flex:1; display:flex; justify-content:center"><span class="fl-node gate agatexv" style="--d1:2.3s; --d2:6.4s">게이트<small>scripts/gate.py — 기계 판정</small></span></div>
+              <div style="flex:1; display:flex; justify-content:center"><span class="fl-node gate agatexv" style="--d1:2.3s; --d2:6.4s">게이트<small>scripts/gate.py — 기계 검사</small></span></div>
               <div style="flex:1; display:flex; justify-content:center"><span class="fl-node sk">3 · 초안<small>incident-report</small></span></div>
             </div>
             <div class="amvb" style="position:absolute; left:var(--l0); --l0:19%; --l1:33%; --dur:3.4s; --dly:0.9s; top:2.9rem; transform:translateY(-50%)">
@@ -3951,8 +3951,8 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
             <span class="pill pink">끝에서 — 여러 단계 재작업</span>
           </div>
           <div class="scn-row" style="gap:0.6rem; margin-top:0.25rem">
-            <span class="vlab" style="border-color:rgba(143,168,255,0.7); color:#C4D2FF">⑥ 약속 = 요구조건 정의 — 경로·형식·입력 식별자·유효성 조건</span>
-            <span class="vlab pass">⑧ 게이트 = 검사와 진행 판단 — 구현된 조건의 충족 여부 · 실패하면 보완</span>
+            <span class="vlab" style="border-color:rgba(143,168,255,0.7); color:#C4D2FF">⑥ 약속 = 파일의 겉 — 맞는 파일이 왔는가? (경로·형식·RUN·SOURCE)</span>
+            <span class="vlab pass">⑧ 게이트 = 파일의 속 — 그 파일로 다음 일을 시작할 수 있는가? (필수 항목 채워짐 · 진행·반려는 호출 측)</span>
           </div>
           <div class="scn-row" style="gap:0.6rem; margin-top:0.1rem">
             <span class="vlab" style="border-color:rgba(255,212,107,0.7); color:#FFE9AE">어디에 세우나? — 연결마다 ✕ · 부실이 비싸지는 길목에만 ✓ (파이프라인에 한두 곳)</span>
@@ -4009,7 +4009,7 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
 4. <span class="t-str">output/report.md</span> 저장 · PASS 범위·로그를 첨부. 사실성과 수치는 별도 검증.
 
 <span class="t-hl">## 폴더 구성</span>
-incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 판정기</span></div>
+incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 완결성 검사기</span></div>
         </div>
       </div>
     </section>
@@ -4230,7 +4230,7 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
         </div>
         <div class="net-row" style="border-color:rgba(255,122,149,0.5); background:rgba(255,122,149,0.04)">
           <div class="nt"><span class="tkb b2" style="color:#FF94AC; border-color:rgba(255,122,149,0.85)">⑧</span>게이트 체크</div>
-          <div class="nc">연결의 질문 — <b>받은 것을 믿어도 되는가?</b> (내용 검사 · 반려 — 위험한 길목에만)</div>
+          <div class="nc">연결의 질문 — <b>받은 것으로 다음 일을 시작할 수 있는가?</b> (완결성 검사 · 반려 — 위험한 길목에만)</div>
           <div class="nj">없으면: 부실 전파 · 후속 단계 재작업 · 전량 폐기</div>
         </div>
         <div class="net-row" style="border-color:rgba(143,168,255,0.4)">
@@ -4241,15 +4241,15 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       </div>
       <div class="autoshow fade-up" style="margin-top:0.85rem; display:grid; grid-template-columns:1fr 1fr; gap:0.8rem">
         <div class="scn-p g2" style="min-height:0; border-style:solid; padding:1.0rem 1.0rem 0.7rem; align-items:flex-start; gap:0.3rem">
-          <span class="scn-tag">가장 헷갈리는 한 쌍 — ⑥ 약속은 조건 정의</span>
-          <p class="scn-cap" style="text-align:left; font-size:0.98rem"><b>산출물 약속은 조건을 정의합니다.</b> 경로·형식뿐 아니라 실행 ID·입력 식별자·유효성 조건도 포함할 수 있습니다. 약속 자체가 검사를 실행하지는 않습니다.</p>
+          <span class="scn-tag">가장 헷갈리는 한 쌍 — ⑥ 약속은 파일의 겉</span>
+          <p class="scn-cap" style="text-align:left; font-size:0.98rem"><b>약속은 "맞는 파일이 왔는가"를 다룹니다.</b> 어디 있는가(경로), 어떤 모양인가(형식), 이번 실행·이번 입력의 것인가(RUN·SOURCE). 파일이 없거나 다른 실행의 것이면 연결이 고장난 것이므로 생산자를 다시 돌립니다.</p>
         </div>
         <div class="scn-p g3" style="min-height:0; padding:1.0rem 1.0rem 0.7rem; align-items:flex-start; gap:0.3rem">
-          <span class="scn-tag">가장 헷갈리는 한 쌍 — ⑧ 게이트는 검사와 진행 판단</span>
-          <p class="scn-cap" style="text-align:left; font-size:0.98rem"><b>게이트는 조건을 검사하고 진행 여부를 판단합니다.</b> 형식·수치·내용 중 구현한 범위만 확인합니다. 이 예제의 최소 작성조건 PASS가 내용 전체의 정확성을 뜻하지는 않습니다.</p>
+          <span class="scn-tag">가장 헷갈리는 한 쌍 — ⑧ 게이트는 파일의 속</span>
+          <p class="scn-cap" style="text-align:left; font-size:0.98rem"><b>게이트는 "그 파일로 다음 일을 시작할 수 있는가"를 다룹니다.</b> 맞는 파일이 왔어도 필수 항목이 비어 있으면 앞 단계로 반려합니다. 게이트는 PASS/FAIL만 돌려주고 진행 여부는 호출 측이 결정합니다. 내용이 옳은지는 ⑥도 ⑧도 보지 않습니다.</p>
         </div>
       </div>
-      <p class="note autoshow fade-up" style="margin-top:0.7rem">배운 순서가 곧 구축 순서입니다 — <b>⑥이 연결(전달)을 먼저 고정해야, ⑦이 그 연결들로 라인(순서)을 세울 수 있고, ⑧이 흐르는 내용을 검수</b>합니다. 스킬이 불어나면 <b>⑨가 입구를 정리</b>합니다. 다음 장에서 넷이 함께 도는 모습을 봅니다.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.7rem">배운 순서가 곧 구축 순서입니다 — <b>⑥이 연결(전달)을 먼저 고정해야, ⑦이 그 연결들로 라인(순서)을 세울 수 있고, ⑧이 흐르는 파일의 속이 채워졌는지 검사</b>합니다. 스킬이 불어나면 <b>⑨가 입구를 정리</b>합니다. 다음 장에서 넷이 함께 도는 모습을 봅니다.</p>
     </section>
 
     <!-- 28 · PART 2 데모 · 파이프라인 시네마 -->

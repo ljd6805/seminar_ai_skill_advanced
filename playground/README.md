@@ -53,7 +53,7 @@
 |---|---|---|---|---|
 | ⑥ | `case06-artifact-contract` | 산출물 약속 | 약속이 있어야 부품 | digest.md 매개 · 장애 로그 |
 | ⑦ | `case07-pipeline` | 파이프라인 스킬 | 프로세스도 스킬이다 | `incident-flow` 지휘자 + 부품 4개 |
-| ⑧ | `case08-stage-gate` | 게이트 체크 | 약속이 형식이면 게이트는 내용 | `gate.py` + bad/good 분석 |
+| ⑧ | `case08-stage-gate` | 게이트 체크 | 약속은 파일의 겉, 게이트는 파일의 속 | `gate.py` + bad/good 분석 |
 | ⑨ | `case09-router` | 라우터 스킬 | 접수 창구를 세워라 | `qa-desk` 분류표 + 스킬 4개 |
 
 ### PART 3 · 검증·리뷰 하네스 — "'됐습니다'를 '증명됐습니다'로"

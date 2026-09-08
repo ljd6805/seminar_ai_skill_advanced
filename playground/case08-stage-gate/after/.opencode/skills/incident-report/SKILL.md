@@ -14,7 +14,7 @@ description: 장애 리포트 작성 시 사용 (분석 산출물 게이트 포�
 4. `output/report.md` 저장 · PASS 로그를 리포트 끝에 첨부.
 
 ## 폴더 구성
-incident-report/ ├─ SKILL.md └─ scripts/gate.py  ← 이전 산출물 판정기
+incident-report/ ├─ SKILL.md └─ scripts/gate.py  ← 이전 산출물 완결성 검사기
 
 ## 강제 실행의 경계
 SKILL.md는 FAIL일 때 중단하도록 지시한다. gate.py는 종료코드만 반환하며 후속 도구 실행을 직접 차단하지 않는다. 강제 차단은 호출 실행기나 훅이 종료코드를 확인하도록 구성한다.
