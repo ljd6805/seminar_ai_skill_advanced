@@ -10,7 +10,7 @@ AI Agent 팀 세미나 시리즈 **3편 — SKILL 심화** 의 발표 자료 저
 |---|---|---|---|
 | 1편 | AI Agent 기본 개념 (Agent · Skill · MCP · Harness) | 이론 | [seminar_ai_agent](https://github.com/ljd6805/seminar_ai_agent) |
 | 2편 | Skill Quest — Skill 실습 | 게임형 실습 | [seminar_ai_skill_quest](https://github.com/ljd6805/seminar_ai_skill_quest) |
-| **3편** | **SKILL 심화 — 기법 카탈로그** | 이론 + 실습(기획 중) | 본 저장소 |
+| **3편** | **SKILL 심화 — 기법 카탈로그** | 이론 | 본 저장소 |
 
 ※ Hook & Harness 자료([seminar_ai_hook_harness_slide](https://github.com/ljd6805/seminar_ai_hook_harness_slide))는 이 편보다 뒤로 밀렸고 일정은 미정이다.
 
@@ -21,7 +21,7 @@ AI Agent 팀 세미나 시리즈 **3편 — SKILL 심화** 의 발표 자료 저
   - **PART 2 · 스킬 연계술** ⑥산출물 약속 ⑦파이프라인 스킬 ⑧게이트 체크 ⑨라우터 스킬 — 하나의 장애 대응 프로세스를 네 사건으로 이어 완성하는 연작. 네 기법은 스킬과 스킬의 **연결**에 관한 네 질문(무엇을 주고받나·순서는·믿어도 되나·누가 나서나)에 답한다 (+ 연결의 네 질문 정리 · 결합 데모 시네마 · "하나의 흐름" 정리 — P1 부품 → P2 라인 연계)
   - ※ **검증·리뷰(구 PART 3 — ⑩자가 리뷰 루프 ⑪반박 검증 ⑫기계 채점 하네스 ⑬증거 기반 완료)는 v1.0에서 세미나 범위에서 제외**했다. 하네스 편의 연속으로 설계된 파트인데 세미나 순서가 바뀌어 전제가 사라졌고, 내용도 실행기·훅의 몫에 가깝다. 체험 키트만 `playground/case10~13`에 번외로 남긴다.
   - ※ 확산(스킬 팩토리 — 기법을 팀의 기본값으로 배포)도 범위에서 제외
-- **실습편 — Skill Quest 심화 시즌** (별도 기획, 방식 미정): 기존 [skill quest 리포](https://github.com/ljd6805/seminar_ai_skill_quest)의 데이터·채점기·보드 위에 심화 미션 트랙을 얹는 방향. 해결 장의 스킬구성이 미션 골격이 된다.
+- **실습편은 열지 않는다** (v1.0). 해결 장의 Before/After 전문과 `playground/`가 세미나 후 각자 돌려보는 자료를 대신한다.
 
 ## 문서
 
@@ -30,8 +30,8 @@ AI Agent 팀 세미나 시리즈 **3편 — SKILL 심화** 의 발표 자료 저
 | [문서 안내](docs/index.html) | 교정 계획·검토 결과·시놉시스 진입점 |
 | [논리 교정 내역](docs/logic-correction-report.html) | v0.9 수정 근거·적용 조건·공식 출처·검증 범위 |
 | [`docs/seminar-synopsis.md`](docs/seminar-synopsis.md) | 이론편 시놉시스 v1.0 — 핵심 메시지, 전개 원칙(사건 서사), 사건 카탈로그(문제 예시→원인→해결), 장별 구성, 시간 배분, 실습 연계 계획, 결정 기록. **슬라이드 작성의 기준 문서** |
-| [`slides/index.html`](slides/index.html) | 이론편 슬라이드 v1.0 (55장, 단일 흐름) — reveal.js 자립형(오프라인 동작), 1·2편과 동일한 테마 상속(Wanted Sans Variable + JetBrains Mono 임베드). 사건마다 문제·해결 리플레이 애니메이션, 원인 차트, **원리 도해 애니메이션**(목차와 본문·검문 게이트·창 분할 등 사건별 은유) 포함 |
-| [`playground/`](playground/) | **9기법(+번외 4) case별 체험 키트** — 각 사건을 직접 손으로 돌려보는 개인 체험용 워크스페이스. case마다 `before/`(문제의 스킬)·`after/`(해결된 스킬) 를 나란히 두고, 동작하는 스크립트(`digest.py`·`gate.py`·`validate.py`)와 정답이 심긴 샘플 데이터를 포함. 체험 가이드: [`playground/index.html`](playground/index.html) (Pages: `…/playground/`). ※ 세미나 실습편과는 **별개**의 비공식 부속물 |
+| [`slides/index.html`](slides/index.html) | 이론편 슬라이드 v1.0 (54장, 단일 흐름) — reveal.js 자립형(오프라인 동작), 1·2편과 동일한 테마 상속(Wanted Sans Variable + JetBrains Mono 임베드). 사건마다 문제·해결 리플레이 애니메이션, 원인 차트, **원리 도해 애니메이션**(목차와 본문·검문 게이트·창 분할 등 사건별 은유) 포함 |
+| [`playground/`](playground/) | **9기법(+번외 4) case별 체험 키트** — 각 사건을 직접 손으로 돌려보는 개인 체험용 워크스페이스. case마다 `before/`(문제의 스킬)·`after/`(해결된 스킬) 를 나란히 두고, 동작하는 스크립트(`digest.py`·`gate.py`·`validate.py`)와 정답이 심긴 샘플 데이터를 포함. 체험 가이드: [`playground/index.html`](playground/index.html) (Pages: `…/playground/`). ※ 세미나에 실습 세션은 없다 — 세미나 후 각자 돌려보는 비공식 부속물 |
 
 GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced/slides/`
 
@@ -40,12 +40,11 @@ GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced
 - [x] 주제 선정 및 기법 카탈로그 확정 (9기법 · 2파트 — 검증·리뷰(구 PART 3)와 확산(팩토리)은 범위 제외)
 - [x] 이론편 논리 구조 확정 (문제 주도형 사건 서사 — 문제예시→문제제기→원인분석→해결→기술소개)
 - [x] 시놉시스 v1.0
-- [x] 이론편 슬라이드 v1.0 (55장 — 2편 5이론 복습 · 사건 9건 × [문제·해결·원리 도해·Before/After], PART 2 "연결의 네 질문" 정리, "하나의 흐름"(부품→라인) 파트 연계 정리, 256k 가계부·파이프라인 시네마 애니메이션, 선택 지도·종합 사례·부록 요약표)
+- [x] 이론편 슬라이드 v1.0 (54장 — 2편 5이론 복습 · 사건 9건 × [문제·해결·원리 도해·Before/After], PART 2 "연결의 네 질문" 정리, "하나의 흐름"(부품→라인) 파트 연계 정리, 256k 가계부·파이프라인 시네마 애니메이션, 선택 지도·종합 사례·부록 요약표)
 - [x] 논리 교정 (v0.9) — 전문 유지, 스킬과 실습 검사기 정렬
-- [x] 범위 확정 (v1.0) — PART 3 제외, 사건당 시간 2분 30초→3분
+- [x] 범위 확정 (v1.0) — PART 3 제외, 실습편 취소, 사건당 시간 2분 30초→3분, 남는 시간은 Q&A
 - [ ] 리허설 및 운영 환경별 재현 확인
 - [ ] 리허설 및 시간 조정
-- [ ] 실습편 (Skill Quest 심화 시즌) 기획 — 미션 구성·레벨 체계·일정
 
 ## 작성 원칙
 
@@ -54,7 +53,7 @@ GitHub Pages 활성화 시: `https://ljd6805.github.io/seminar_ai_skill_advanced
 
 ## 예시의 가정과 검증 범위
 
-55장·9기법·Before/After 전문을 유지한다. 리플레이와 수치 게이지는 교육용 예시이며 성능 실측 결과가 아니다. 256k는 이 자료의 환경 가정이다. SKILL은 절차를 안내하며 강제 실행·차단은 별도 실행기나 훅이 담당한다.
+54장·9기법·Before/After 전문을 유지한다. 리플레이와 수치 게이지는 교육용 예시이며 성능 실측 결과가 아니다. 256k는 이 자료의 환경 가정이다. SKILL은 절차를 안내하며 강제 실행·차단은 별도 실행기나 훅이 담당한다.
 
 `gate.py`의 PASS는 최소 작성 조건 검사다. 번외 `validate.py`(case12)는 원본 CSV와 요약·suite별 결과표까지 대조하지만 원인 해석이나 원본 데이터 자체의 진실성은 검증하지 않는다. 상세 범위는 [교정 내역](docs/logic-correction-report.html)에 명시했다.
 
