@@ -1406,6 +1406,11 @@ footer, header, hgroup, main, menu, nav, section {
       color: #8A93B2; border: 0.0625rem solid rgba(138,147,178,0.35);
       border-radius: 62.4375rem; padding: 0.16rem 0.6rem; opacity: 0.75; pointer-events: none;
     }
+
+    /* 원문자(①②③…) 시인성 — 본문 어디서든 주변 글자보다 한 단계 크게.
+       로드 시 스크립트가 .slides 안의 원문자를 .cn 으로 감싼다 (.tkb 배지는 제외 — 아래에서 배지 자체를 키움).
+       line-height:0 이라 줄 높이는 그대로 두고 글자만 커진다. */
+    .reveal section .cn { font-size: 1.32em; line-height: 0; font-weight: 700; vertical-align: -0.05em; }
   </style>
 <style>
 /* ============ SKILL 심화 전용 스타일 (ska-* · tk-*) ============ */
@@ -1530,8 +1535,8 @@ section.present .tname { animation:asFadeUp .6s ease var(--dly,1.4s) both; }
 /* --- 기법 번호 뱃지 (파트색) --- */
 .reveal section .tkb {
   display:inline-flex; align-items:center; justify-content:center; flex:none;
-  min-width:1.5rem; height:1.5rem; padding:0 0.28rem; border-radius:50%;
-  font-family:var(--mono); font-size:0.72rem; font-weight:800;
+  min-width:1.6rem; height:1.6rem; padding:0 0.28rem; border-radius:50%;
+  font-family:var(--mono); font-size:0.95rem; font-weight:800;
   border:0.11rem solid rgba(190,200,224,0.6); background:var(--bg-0); color:#D6DCEC;
   vertical-align:middle;
 }
@@ -3692,8 +3697,9 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
 
 <span class="t-hl">## 진행 규칙</span>
 · 각 단계 완료 시 <span class="t-hl">단계명과 산출물 경로만 한 줄</span> 보고.
-· 이번 실행·입력에 맞고 검증된 산출물만 재사용한다.
-  <span class="t-out">(중간부터 재개 가능 — 기법 ③의 원리)</span></div>
+· 이번 실행·입력과 일치하고 검증된 단계는 다시 돌리지 않고 산출물을 그대로 쓴다.
+  <span class="t-out">→ 끊겨도 처음부터가 아니라 빈 단계부터 이어간다.
+    산출물 파일이 곧 진행 상태 — 기법 3 「외부 기억」과 같은 원리</span></div>
         </div>
       </div>
       <div class="tname p2">
@@ -3794,8 +3800,9 @@ log-digest/ ├─ SKILL.md └─ scripts/digest.py <span class="t-out">← 컨
 <span class="padd">＋</span> 4. 검증  → report-check 스킬    → <span class="t-str">output/verdict.md</span></div>
 <span class="t-hl">## 진행 규칙</span>
 · 각 단계 완료 시 <b>단계명과 산출물 경로만 한 줄</b> 보고.
-<div class="mkbox good"><span class="mkt">핵심 변경 ② — 중간 재개 규칙</span><span class="padd">＋</span> · 이번 실행·입력과 일치하고 검증된 단계만 재사용한다.
-  <span class="t-out">(중간부터 재개 가능 — 사건 ③의 원리)</span>
+<div class="mkbox good"><span class="mkt">핵심 변경 ② — 중간 재개 규칙</span><span class="padd">＋</span> · 이번 실행·입력과 일치하고 검증된 단계는 다시 돌리지 않고 산출물을 그대로 쓴다.
+  <span class="t-out">→ 끊겨도 처음부터가 아니라 빈 단계부터 이어간다.
+    산출물 파일이 곧 진행 상태 — 기법 3 「외부 기억」과 같은 원리</span>
 · 단계 실패 시: 종료 코드·사유를 보고하고 멈춘다. 자동 재시도는 별도 실행기에서 상한을 둔다.</div>
 <span class="t-hl">## 금지</span>
 · 단계 건너뛰기 · 순서 변경 · 산출물 없이 "완료" 보고</div>
@@ -5312,6 +5319,34 @@ test-report/ ├─ SKILL.md └─ scripts/validate.py</div>
     document.body.classList.add('presentation');
     document.querySelectorAll('.slides section[data-layer="READ"], .slides section[data-layer="APPENDIX"]')
       .forEach(function (s) { s.remove(); });
+  })();
+
+  // ====== 원문자(①②③…) 확대 — .slides 안 텍스트의 원문자를 <span class="cn">으로 감싼다 ======
+  // (.tkb 번호 배지는 CSS에서 배지 자체를 키우므로 제외. Reveal 레이아웃 전에 실행.)
+  (function () {
+    var CN = /[①-⑳❶-❿⓫-⓴]+/;          // ①-⑳ ❶-❿ ⓫-⓴
+    var SPLIT = /([①-⑳❶-❿⓫-⓴]+)/;
+    var root = document.querySelector('.slides');
+    if (!root) return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        if (!CN.test(n.nodeValue)) return NodeFilter.FILTER_REJECT;
+        var p = n.parentElement;
+        if (!p || p.closest('.tkb, .cn, script, style')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function (n) {
+      var frag = document.createDocumentFragment();
+      n.nodeValue.split(SPLIT).forEach(function (t, i) {
+        if (!t) return;
+        if (i % 2) { var s = document.createElement('span'); s.className = 'cn'; s.textContent = t; frag.appendChild(s); }
+        else frag.appendChild(document.createTextNode(t));
+      });
+      n.parentNode.replaceChild(frag, n);
+    });
   })();
 
   Reveal.initialize({
