@@ -1544,6 +1544,8 @@ section.present .tname { animation:asFadeUp .6s ease var(--dly,1.4s) both; }
 .reveal section .tkb.b2 { color:#AFC3FF; border-color:rgba(143,168,255,0.85); }
 .reveal section .tkb.b3 { color:#FF94AC; border-color:rgba(255,122,149,0.85); }
 .reveal section .tkb.b4 { color:#FFE08A; border-color:rgba(255,212,107,0.85); }
+/* 원문자 대신 "사건 6" 같은 글자 배지 — 알약형 */
+.reveal section .tkb.wide { border-radius:62.4375rem; padding:0 0.6rem; font-size:0.8rem; letter-spacing:0.02em; white-space:nowrap; }
 .tkb-row { display:flex; gap:0.32rem; flex-wrap:wrap; align-items:center; }
 
 /* --- 미니 플로 (노드·화살표) --- */
@@ -4219,37 +4221,37 @@ incident-report/ ├─ SKILL.md └─ scripts/gate.py <span class="t-out">← 
       <p class="autoshow fade-up" style="margin-top:0.6rem; font-size:1.1rem; color:var(--fg-soft) !important">스킬 하나를 잘 쓰는 법은 2편과 PART 1에서 끝났습니다 — 연계술의 네 기법은 스킬과 스킬의 <b style="color:#fff">연결에 관한 네 가지 질문</b>에 하나씩 답합니다.</p>
       <div class="net autoshow fade-up" style="margin-top:0.9rem">
         <div class="net-row" style="border-color:rgba(143,168,255,0.55); background:rgba(143,168,255,0.05)">
-          <div class="nt"><span class="tkb b2">⑥</span>산출물 약속</div>
+          <div class="nt"><span class="tkb b2 wide">사건 6</span>산출물 약속</div>
           <div class="nc">연결의 질문 — <b>무엇을 주고받는가?</b> (경로 · 형식 · 버전)</div>
           <div class="nj">없으면: 전달 유실 · 수동 복붙 · 구버전 사고</div>
         </div>
         <div class="net-row" style="border-color:rgba(143,168,255,0.4)">
-          <div class="nt"><span class="tkb b2">⑦</span>파이프라인 스킬</div>
+          <div class="nt"><span class="tkb b2 wide">사건 7</span>파이프라인 스킬</div>
           <div class="nc">연결의 질문 — <b>다음 순서는 무엇인가?</b> (단계 · 완료 조건)</div>
           <div class="nj">없으면: 단계 누락 · 시니어 부재 시 정지</div>
         </div>
         <div class="net-row" style="border-color:rgba(255,122,149,0.5); background:rgba(255,122,149,0.04)">
-          <div class="nt"><span class="tkb b2" style="color:#FF94AC; border-color:rgba(255,122,149,0.85)">⑧</span>게이트 체크</div>
+          <div class="nt"><span class="tkb b2 wide" style="color:#FF94AC; border-color:rgba(255,122,149,0.85)">사건 8</span>게이트 체크</div>
           <div class="nc">연결의 질문 — <b>받은 것으로 다음 일을 시작할 수 있는가?</b> (완결성 검사 · 반려 — 위험한 길목에만)</div>
           <div class="nj">없으면: 부실 전파 · 후속 단계 재작업 · 전량 폐기</div>
         </div>
         <div class="net-row" style="border-color:rgba(143,168,255,0.4)">
-          <div class="nt"><span class="tkb b2">⑨</span>라우터 스킬</div>
+          <div class="nt"><span class="tkb b2 wide">사건 9</span>라우터 스킬</div>
           <div class="nc">연결의 질문 — <b>누가 먼저 나서는가?</b> (입구 · 분류표)</div>
           <div class="nj">없으면: 오발동 · 미발동 · 발견 실패</div>
         </div>
       </div>
       <div class="autoshow fade-up" style="margin-top:0.85rem; display:grid; grid-template-columns:1fr 1fr; gap:0.8rem">
         <div class="scn-p g2" style="min-height:0; border-style:solid; padding:1.0rem 1.0rem 0.7rem; align-items:flex-start; gap:0.3rem">
-          <span class="scn-tag">가장 헷갈리는 한 쌍 — ⑥ 약속은 파일의 겉</span>
+          <span class="scn-tag">가장 헷갈리는 한 쌍 — 사건 6 약속은 파일의 겉</span>
           <p class="scn-cap" style="text-align:left; font-size:0.98rem"><b>약속은 "맞는 파일이 왔는가"를 다룹니다.</b> 어디 있는가(경로), 어떤 모양인가(형식), 이번 실행·이번 입력의 것인가(RUN·SOURCE). 파일이 없거나 다른 실행의 것이면 연결이 고장난 것이므로 생산자를 다시 돌립니다.</p>
         </div>
         <div class="scn-p g3" style="min-height:0; padding:1.0rem 1.0rem 0.7rem; align-items:flex-start; gap:0.3rem">
-          <span class="scn-tag">가장 헷갈리는 한 쌍 — ⑧ 게이트는 파일의 속</span>
-          <p class="scn-cap" style="text-align:left; font-size:0.98rem"><b>게이트는 "그 파일로 다음 일을 시작할 수 있는가"를 다룹니다.</b> 맞는 파일이 왔어도 필수 항목이 비어 있으면 앞 단계로 반려합니다. 게이트는 PASS/FAIL만 돌려주고 진행 여부는 호출 측이 결정합니다. 내용이 옳은지는 ⑥도 ⑧도 보지 않습니다.</p>
+          <span class="scn-tag">가장 헷갈리는 한 쌍 — 사건 8 게이트는 파일의 속</span>
+          <p class="scn-cap" style="text-align:left; font-size:0.98rem"><b>게이트는 "그 파일로 다음 일을 시작할 수 있는가"를 다룹니다.</b> 맞는 파일이 왔어도 필수 항목이 비어 있으면 앞 단계로 반려합니다. 게이트는 PASS/FAIL만 돌려주고 진행 여부는 호출 측이 결정합니다. 내용이 옳은지는 사건 6도 사건 8도 보지 않습니다.</p>
         </div>
       </div>
-      <p class="note autoshow fade-up" style="margin-top:0.7rem">배운 순서가 곧 구축 순서입니다 — <b>⑥이 연결(전달)을 먼저 고정해야, ⑦이 그 연결들로 라인(순서)을 세울 수 있고, ⑧이 흐르는 파일의 속이 채워졌는지 검사</b>합니다. 스킬이 불어나면 <b>⑨가 입구를 정리</b>합니다. 다음 장에서 넷이 함께 도는 모습을 봅니다.</p>
+      <p class="note autoshow fade-up" style="margin-top:0.7rem">배운 순서가 곧 구축 순서입니다 — <b>사건 6이 연결(전달)을 먼저 고정해야, 사건 7이 그 연결들로 라인(순서)을 세울 수 있고, 사건 8이 흐르는 파일의 속이 채워졌는지 검사</b>합니다. 스킬이 불어나면 <b>사건 9가 입구를 정리</b>합니다. 다음 장에서 넷이 함께 도는 모습을 봅니다.</p>
     </section>
 
     <!-- 28 · PART 2 데모 · 파이프라인 시네마 -->
