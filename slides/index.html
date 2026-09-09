@@ -1547,6 +1547,9 @@ section.present .tname { animation:asFadeUp .6s ease var(--dly,1.4s) both; }
 /* 원문자 대신 "사건 6" 같은 글자 배지 — 알약형 */
 .reveal section .tkb.wide { border-radius:62.4375rem; padding:0 0.6rem; font-size:0.8rem; letter-spacing:0.02em; white-space:nowrap; }
 .tkb-row { display:flex; gap:0.32rem; flex-wrap:wrap; align-items:center; }
+/* 51장 종합 사례 — 배지 원 테두리 없이 원문자 글리프만 크게 (이중 원 방지) */
+.reveal section .case .tkb { border:0; background:transparent; padding:0; min-width:1.5rem; height:auto; font-size:1.5rem; line-height:1; }
+.reveal section .case .case-out .tkb { font-size:1.25rem; transform:none !important; }
 
 /* --- 미니 플로 (노드·화살표) --- */
 .fl { display:flex; align-items:center; justify-content:center; gap:0.42rem; flex-wrap:wrap; }
